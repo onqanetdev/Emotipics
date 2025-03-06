@@ -16,9 +16,10 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath)
-        cell.textLabel?.text = "Cell No.: \(indexPath.row)"
-        cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
+        //cell.textLabel?.text = "Cell No.: \(indexPath.row)"
+        //cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        
         cell.layer.cornerRadius = 10
         return cell
     }
@@ -29,6 +30,7 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Current height of the view is ", heightsOfContactsiTblView.constant)
         heightsOfContactsiTblView.constant += 100
+        contentViewHeight.constant = contentViewHeight.constant + 100 // this 100 is the height of the cell
         tableView.reloadData()
     }
 }

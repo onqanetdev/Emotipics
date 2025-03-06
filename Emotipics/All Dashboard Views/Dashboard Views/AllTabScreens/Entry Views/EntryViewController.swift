@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Charts
+
 
 class EntryViewController: UIViewController {
     
@@ -48,8 +50,10 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var fileColView: UICollectionView!
     
     
-    
+    //MARK: 1500 height of the scroll view
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
+    
+    
     
  //MARK: current Plans Titles
     
@@ -105,13 +109,24 @@ class EntryViewController: UIViewController {
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         fileColView.delegate = self
         fileColView.dataSource = self
-        fileColView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        //fileColView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        fileColView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        
+        
+        
         // Table Views for contact Listing
         contactsTblView.dataSource = self
         contactsTblView.delegate = self
-        contactsTblView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
+       // contactsTblView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
+        contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
+       // contactsTblView.isHidden = true
         
+        //Manipulating contentViewHeight
         
+        contentViewHeight.constant = 850
+        heightsOfContactsiTblView.constant = 100
+        contentViewHeight.constant += heightsOfContactsiTblView.constant
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -134,10 +149,7 @@ class EntryViewController: UIViewController {
     
     
     @IBAction func viewAllContacts(_ sender: Any) {
-        
+        navigationController?.pushViewController(ExampleViewController(), animated: true)
         print("This is my all contacts")
     }
-    
-    
-    
 }

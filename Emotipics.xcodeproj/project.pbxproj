@@ -11,6 +11,10 @@
 		8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521632D7958F800AE5FC4 /* EntryViewController.xib */; };
 		8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */; };
 		8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05216A2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift */; };
+		8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05216C2D7996FD00AE5FC4 /* EntryTableViewCell.swift */; };
+		8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A05216D2D7996FD00AE5FC4 /* EntryTableViewCell.xib */; };
+		8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521702D79A83A00AE5FC4 /* EntryCollectionViewCell.swift */; };
+		8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -50,6 +54,10 @@
 		8A0521632D7958F800AE5FC4 /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
 		8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryViewController+EntryViewCollectionViews.swift"; sourceTree = "<group>"; };
 		8A05216A2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryViewController+TableViewControllers.swift"; sourceTree = "<group>"; };
+		8A05216C2D7996FD00AE5FC4 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableViewCell.swift; sourceTree = "<group>"; };
+		8A05216D2D7996FD00AE5FC4 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryTableViewCell.xib; sourceTree = "<group>"; };
+		8A0521702D79A83A00AE5FC4 /* EntryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCell.swift; sourceTree = "<group>"; };
+		8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,8 +128,28 @@
 		8A0521672D7960B000AE5FC4 /* Entry Cell Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A0521742D79A87200AE5FC4 /* Table Cells */,
+				8A0521752D79A88B00AE5FC4 /* CollectionCells */,
 			);
 			path = "Entry Cell Views";
+			sourceTree = "<group>";
+		};
+		8A0521742D79A87200AE5FC4 /* Table Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8A05216C2D7996FD00AE5FC4 /* EntryTableViewCell.swift */,
+				8A05216D2D7996FD00AE5FC4 /* EntryTableViewCell.xib */,
+			);
+			path = "Table Cells";
+			sourceTree = "<group>";
+		};
+		8A0521752D79A88B00AE5FC4 /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+				8A0521702D79A83A00AE5FC4 /* EntryCollectionViewCell.swift */,
+				8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */,
+			);
+			path = CollectionCells;
 			sourceTree = "<group>";
 		};
 		8A43537F2D75760600ABB7A0 = {
@@ -314,12 +342,14 @@
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
 				8A4353B82D758F4700ABB7A0 /* lato_black.ttf in Resources */,
+				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
 				8A4353B62D758F4700ABB7A0 /* jost_regular.ttf in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
 				8A4353B32D758F4700ABB7A0 /* jost_bold.ttf in Resources */,
 				8A4353BA2D758F4700ABB7A0 /* lato_light.ttf in Resources */,
 				8A4353B92D758F4700ABB7A0 /* lato_bold.ttf in Resources */,
+				8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */,
 				8A4353C62D75AA1200ABB7A0 /* RegisterViewController.xib in Resources */,
 				8A4353BB2D758F4700ABB7A0 /* lato_regular.ttf in Resources */,
 				8A4353A22D757D4F00ABB7A0 /* HomeViewController.xib in Resources */,
@@ -333,10 +363,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
+				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
