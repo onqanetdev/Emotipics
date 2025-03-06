@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521622D7958F800AE5FC4 /* EntryViewController.swift */; };
+		8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521632D7958F800AE5FC4 /* EntryViewController.xib */; };
+		8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */; };
+		8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A05216A2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -42,6 +46,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0521622D7958F800AE5FC4 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		8A0521632D7958F800AE5FC4 /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
+		8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryViewController+EntryViewCollectionViews.swift"; sourceTree = "<group>"; };
+		8A05216A2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryViewController+TableViewControllers.swift"; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +97,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0521612D79588700AE5FC4 /* AllTabScreens */ = {
+			isa = PBXGroup;
+			children = (
+				8A0521662D79601E00AE5FC4 /* Entry Views */,
+			);
+			path = AllTabScreens;
+			sourceTree = "<group>";
+		};
+		8A0521662D79601E00AE5FC4 /* Entry Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A0521672D7960B000AE5FC4 /* Entry Cell Views */,
+				8A0521622D7958F800AE5FC4 /* EntryViewController.swift */,
+				8A0521632D7958F800AE5FC4 /* EntryViewController.xib */,
+				8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */,
+				8A05216A2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift */,
+			);
+			path = "Entry Views";
+			sourceTree = "<group>";
+		};
+		8A0521672D7960B000AE5FC4 /* Entry Cell Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Entry Cell Views";
+			sourceTree = "<group>";
+		};
 		8A43537F2D75760600ABB7A0 = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +228,7 @@
 		8ABA8ABC2D771B4D003D4727 /* Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A0521612D79588700AE5FC4 /* AllTabScreens */,
 				8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */,
 				8ABA8ABE2D771B69003D4727 /* DashboardViewController.xib */,
 				8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */,
@@ -266,6 +302,7 @@
 			files = (
 				8A4353952D75760900ABB7A0 /* Assets.xcassets in Resources */,
 				8ABA8AC02D771B69003D4727 /* DashboardViewController.xib in Resources */,
+				8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */,
 				8A4353B52D758F4700ABB7A0 /* jost_medium.ttf in Resources */,
 				8A4353982D75760900ABB7A0 /* Base in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
@@ -297,10 +334,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
+				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
+				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
+				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,

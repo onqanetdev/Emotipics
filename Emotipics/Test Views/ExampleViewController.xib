@@ -18,16 +18,20 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yDu-wf-CpZ">
-                    <rect key="frame" x="139" y="398" width="75" height="78.666666666666686"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yDu-wf-CpZ">
+                    <rect key="frame" x="159" y="386.66666666666669" width="75" height="78.666666666666686"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FvL-Lx-95h">
                             <rect key="frame" x="0.0" y="0.0" width="75" height="34.333333333333336"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34.329999999999998" id="H4o-XG-YgK"/>
+                                <constraint firstAttribute="width" constant="75" id="uHI-NB-8uZ"/>
+                            </constraints>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="filled" title="Button"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOG-M8-fWL">
-                            <rect key="frame" x="0.0" y="44.333333333333329" width="75" height="34.333333333333329"/>
+                            <rect key="frame" x="0.0" y="44.333333333333314" width="75" height="34.333333333333343"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Button"/>
                         </button>
@@ -36,6 +40,10 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="yDu-wf-CpZ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="STv-Gz-1Me"/>
+                <constraint firstItem="yDu-wf-CpZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XsK-Xw-iyt"/>
+            </constraints>
             <point key="canvasLocation" x="132" y="-11"/>
         </view>
     </objects>

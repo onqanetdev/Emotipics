@@ -13,9 +13,14 @@ class ExampleViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        view.backgroundColor = .systemGray
     }
 
 
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
     /*
     // MARK: - Navigation
 

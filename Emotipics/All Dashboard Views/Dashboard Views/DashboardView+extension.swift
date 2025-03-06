@@ -16,7 +16,7 @@ extension DashboardViewController {
         tabBarController.tabBar.backgroundColor = .white // Set a solid background color
         tabBarController.tabBar.isTranslucent = false
         // Create View Controllers for each tab
-        let firstViewController = UIViewController()
+        let firstViewController = EntryViewController()
         firstViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "HomeDash"), tag: 0)
         
         

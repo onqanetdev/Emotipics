@@ -49,7 +49,7 @@ class DashboardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+//        rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         // Setup Tab Bar Controller
         setupTabBarController()
     }
@@ -59,5 +59,17 @@ class DashboardViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    
+    
+    @IBAction func allCatalogueAction(_ sender: Any) {
+        
+        //navigationController?.pushViewController(ExampleViewController(), animated: true)
+        print("The Navigation is not working")
+    }
+    
+    @IBAction func bellIconAction(_ sender: Any) {
+        
+        print("This is my bell Icon")
+    }
     
 }

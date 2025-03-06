@@ -1,0 +1,35 @@
+//
+//  EntryViewController+TableViewControllers.swift
+//  Emotipics
+//
+//  Created by Onqanet on 06/03/25.
+//
+
+import Foundation
+import UIKit
+
+
+
+extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath)
+        cell.textLabel?.text = "Cell No.: \(indexPath.row)"
+        cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        cell.layer.cornerRadius = 10
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Current height of the view is ", heightsOfContactsiTblView.constant)
+        heightsOfContactsiTblView.constant += 100
+        tableView.reloadData()
+    }
+}
+
