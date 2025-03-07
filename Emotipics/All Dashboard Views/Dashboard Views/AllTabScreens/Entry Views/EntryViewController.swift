@@ -17,14 +17,11 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var topView: UIView!
     
-    
-    
 
-    
 
     @IBOutlet weak var welcomeBackLbl: UILabel!{
         didSet{
-            
+            welcomeBackLbl.font = UIFont(name: "Lato-Bold", size: 18)
         }
     }
     
@@ -49,11 +46,8 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var fileColView: UICollectionView!
     
-    
     //MARK: 1500 height of the scroll view
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
-    
-    
     
  //MARK: current Plans Titles
     
@@ -65,22 +59,42 @@ class EntryViewController: UIViewController {
         }
     }
     
-    
     @IBOutlet weak var getMoreLbl: UILabel!
-    
-    
     
     @IBOutlet weak var priceTagLbl: UILabel!
     
-    
-    
-    
+
     @IBOutlet weak var viewPlansBtn: UIButton!{
         didSet{
             viewPlansBtn.layer.cornerRadius = 10
             viewPlansBtn.clipsToBounds = true
         }
     }
+    
+    
+    @IBOutlet weak var blueCircle: UIView! {
+        didSet {
+            blueCircle.layer.cornerRadius = blueCircle.frame.size.width / 2
+            blueCircle.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var lightBlueCircle: UIView! {
+        didSet {
+            lightBlueCircle.layer.cornerRadius = lightBlueCircle.frame.size.width / 2
+            lightBlueCircle.clipsToBounds = true
+        }
+    }
+    
+    
+    //Fonts of  lato-regular
+    @IBOutlet weak var totalStorageLbl: UILabel!
+    @IBOutlet weak var usedFromLbl: UILabel!
+    @IBOutlet weak var viewAllLbl: UIButton!
+    @IBOutlet weak var contactsViewAllLbl: UIButton!
+    
+    
+    
     
     //MARK: This is my table view
     
@@ -101,11 +115,34 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var heightsOfContactsiTblView: NSLayoutConstraint!
     
+    
+    //Implementing the circular view
+    var circularView: Circular!
+    
+    
+    private var pertentageLbl:UILabel = {
+        let label = UILabel()
+        label.text = "60%"
+        label.font = UIFont(name: "Jost-Medium", size: 20)
+        label.textColor = #colorLiteral(red: 0.6705882353, green: 0.8235294118, blue: 0.9843137255, alpha: 1)
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        // Setting Ups The font
+        
+//         let inputFont = "Lato-Regular"
+        totalStorageLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 16)
+        usedFromLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
+        viewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
+        contactsViewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 17)
+        
+        
+        
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         fileColView.delegate = self
         fileColView.dataSource = self
@@ -127,11 +164,53 @@ class EntryViewController: UIViewController {
         contentViewHeight.constant = 850
         heightsOfContactsiTblView.constant = 100
         contentViewHeight.constant += heightsOfContactsiTblView.constant
+        pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
+        setupCircularView()
+        setupPecentageLbl()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    
+    //Setting Up the Circular View
+    
+    private func setupCircularView() {
+
+        let sampleColor:UIColor = #colorLiteral(red: 0.6705882353, green: 0.8235294118, blue: 0.9843137255, alpha: 1)
+        let percentages: [Double] = [40.00, 60.00] // Example data percentages
+        let colors: [UIColor] = [ sampleColor, .systemBlue] // Example colors
+        
+        
+        circularView = Circular(percentages: percentages, colors: colors)
+        circularView.translatesAutoresizingMaskIntoConstraints = false
+        
+       
+        cardView.addSubview(circularView)
+        
+        
+        NSLayoutConstraint.activate([
+            circularView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            circularView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 27),
+            circularView.widthAnchor.constraint(equalToConstant: 90),
+            circularView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+    }
+
+    
+    private func setupPecentageLbl() {
+        //cardView.addSubview(pertentageLbl)
+        circularView.addSubview(pertentageLbl)
+        
+        
+        NSLayoutConstraint.activate([
+            pertentageLbl.centerXAnchor.constraint(equalTo: circularView.centerXAnchor),
+            pertentageLbl.centerYAnchor.constraint(equalTo: circularView.centerYAnchor)
+        ])
+        
     }
     
     

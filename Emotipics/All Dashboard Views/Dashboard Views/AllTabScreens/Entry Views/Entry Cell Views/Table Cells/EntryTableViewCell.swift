@@ -26,6 +26,11 @@ class EntryTableViewCell: UITableViewCell {
             //1. Set corner radius for the profile photo
             
             
+            
+            profilePhoto.image = profilePhoto.image?.withRenderingMode(.alwaysTemplate)
+            
+                profilePhoto.tintColor = UIColor.systemBlue // Change to your desired color
+            //}
         }
     }
     

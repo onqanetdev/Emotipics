@@ -5,6 +5,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>poppins_regular.ttf</string>
+		<string>lato_bold.ttf</string>
+		<string>lato_regular.ttf</string>
 		<string>poppins_medium.ttf</string>
 		<string>jost_semi_bold.ttf</string>
 		<string>jost_regular.ttf</string>

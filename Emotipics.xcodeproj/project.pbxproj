@@ -15,6 +15,8 @@
 		8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A05216D2D7996FD00AE5FC4 /* EntryTableViewCell.xib */; };
 		8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521702D79A83A00AE5FC4 /* EntryCollectionViewCell.swift */; };
 		8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */; };
+		8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91C2D7AC96800F358FD /* Circular.swift */; };
+		8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91E2D7B19C300F358FD /* TextEnums.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -58,6 +60,8 @@
 		8A05216D2D7996FD00AE5FC4 /* EntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryTableViewCell.xib; sourceTree = "<group>"; };
 		8A0521702D79A83A00AE5FC4 /* EntryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCollectionViewCell.xib; sourceTree = "<group>"; };
+		8A22D91C2D7AC96800F358FD /* Circular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circular.swift; sourceTree = "<group>"; };
+		8A22D91E2D7B19C300F358FD /* TextEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEnums.swift; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 		8A0521662D79601E00AE5FC4 /* Entry Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A22D9192D7AC75400F358FD /* Circular Views */,
 				8A0521672D7960B000AE5FC4 /* Entry Cell Views */,
 				8A0521622D7958F800AE5FC4 /* EntryViewController.swift */,
 				8A0521632D7958F800AE5FC4 /* EntryViewController.xib */,
@@ -130,6 +135,7 @@
 			children = (
 				8A0521742D79A87200AE5FC4 /* Table Cells */,
 				8A0521752D79A88B00AE5FC4 /* CollectionCells */,
+				8A22D91E2D7B19C300F358FD /* TextEnums.swift */,
 			);
 			path = "Entry Cell Views";
 			sourceTree = "<group>";
@@ -150,6 +156,14 @@
 				8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */,
 			);
 			path = CollectionCells;
+			sourceTree = "<group>";
+		};
+		8A22D9192D7AC75400F358FD /* Circular Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A22D91C2D7AC96800F358FD /* Circular.swift */,
+			);
+			path = "Circular Views";
 			sourceTree = "<group>";
 		};
 		8A43537F2D75760600ABB7A0 = {
@@ -364,11 +378,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
+				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
+				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
