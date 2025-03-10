@@ -136,6 +136,12 @@ class EntryViewController: UIViewController {
         return label
     }()
     
+    
+    
+   
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -171,6 +177,7 @@ class EntryViewController: UIViewController {
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         setupCircularView()
         setupPecentageLbl()
+       
         
     }
     
@@ -242,6 +249,20 @@ class EntryViewController: UIViewController {
         ])
         
     }
+    
+    
+    
+//    private func settinUpPlus() {
+//        guard let tabBar = tabBarController?.tabBar else { return }
+//        view.addSubview(plusView)
+//        NSLayoutConstraint.activate([
+//            plusView.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: 100),
+//            plusView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            plusView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
+//            plusView.heightAnchor.constraint(equalToConstant: 200)
+//            
+//        ])
+//    }
     
     
     

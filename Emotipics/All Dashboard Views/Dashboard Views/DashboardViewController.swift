@@ -10,38 +10,16 @@ import UIKit
 class DashboardViewController: UIViewController {
     
     
-    @IBOutlet weak var rotateBtn: UIButton!
+
+    var plusView:UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+        return view
+        
+    }()
     
     
-    @IBOutlet weak var topView: UIView!
-    
-    
-    
-    @IBOutlet weak var welcomeBackLbl: UILabel!{
-        didSet{
-            //1.set the font family
-            //2. May be need make two separate labels or '+' the existing name
-            
-        }
-    }
-    
-    
-    //The Oval Card
-    
-    @IBOutlet weak var cardView: UIView!{
-        didSet{
-            cardView.layer.cornerRadius = 25
-            cardView.clipsToBounds = true
-        }
-    }
-    
-    
-    @IBOutlet weak var CatalogueLbl: UILabel!{
-        didSet{
-            //1. set the font family for the label
-            
-        }
-    }
     
     
     override func viewDidLoad() {
@@ -49,8 +27,7 @@ class DashboardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-//        rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-        // Setup Tab Bar Controller
+
         setupTabBarController()
     }
     
@@ -61,15 +38,5 @@ class DashboardViewController: UIViewController {
     
     
     
-    @IBAction func allCatalogueAction(_ sender: Any) {
-        
-        //navigationController?.pushViewController(ExampleViewController(), animated: true)
-        print("The Navigation is not working")
-    }
-    
-    @IBAction func bellIconAction(_ sender: Any) {
-        
-        print("This is my bell Icon")
-    }
-    
+  
 }
