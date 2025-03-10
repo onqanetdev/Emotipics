@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -58,6 +59,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kbs-XP-Hcr">
+                                <rect key="frame" x="16" y="97.333333333333329" width="18" height="16.666666666666671"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Nhc-XC-ggm"/>
+                                    <constraint firstAttribute="height" constant="18" id="spF-fo-epU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared by name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGH-8m-3oF">
+                                <rect key="frame" x="39" y="96.333333333333329" width="100" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="40j-kW-U2b"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" name="A1A1A1"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -65,11 +83,15 @@
                             <constraint firstItem="vUl-w5-YAf" firstAttribute="top" secondItem="Kn7-y1-odp" secondAttribute="bottom" constant="15" id="ELC-5V-UtO"/>
                             <constraint firstAttribute="trailing" secondItem="c7r-aG-Z0M" secondAttribute="trailing" constant="23" id="Faf-zR-a3v"/>
                             <constraint firstItem="OCG-0U-3qo" firstAttribute="top" secondItem="vUl-w5-YAf" secondAttribute="bottom" constant="3" id="LGm-eX-Hxb"/>
+                            <constraint firstItem="Kbs-XP-Hcr" firstAttribute="top" secondItem="OCG-0U-3qo" secondAttribute="bottom" constant="4" id="LN6-ic-gT7"/>
+                            <constraint firstItem="EGH-8m-3oF" firstAttribute="top" secondItem="OCG-0U-3qo" secondAttribute="bottom" constant="4" id="MXw-xb-gHw"/>
                             <constraint firstItem="Kn7-y1-odp" firstAttribute="leading" secondItem="AhC-cg-BRg" secondAttribute="leading" constant="13" id="QPH-1V-B5z"/>
                             <constraint firstItem="c7r-aG-Z0M" firstAttribute="top" secondItem="O8O-G2-bvF" secondAttribute="bottom" constant="37" id="XFz-p7-XwM"/>
                             <constraint firstAttribute="trailing" secondItem="O8O-G2-bvF" secondAttribute="trailing" constant="8" id="ami-ql-d4p"/>
                             <constraint firstItem="Kn7-y1-odp" firstAttribute="top" secondItem="AhC-cg-BRg" secondAttribute="top" constant="11" id="cuN-3P-4pv"/>
                             <constraint firstItem="OCG-0U-3qo" firstAttribute="leading" secondItem="AhC-cg-BRg" secondAttribute="leading" constant="13" id="dzr-mK-D2s"/>
+                            <constraint firstItem="Kbs-XP-Hcr" firstAttribute="leading" secondItem="AhC-cg-BRg" secondAttribute="leading" constant="16" id="pY1-6s-4if"/>
+                            <constraint firstItem="EGH-8m-3oF" firstAttribute="leading" secondItem="Kbs-XP-Hcr" secondAttribute="trailing" constant="5" id="q6F-sF-iI0"/>
                             <constraint firstItem="O8O-G2-bvF" firstAttribute="top" secondItem="AhC-cg-BRg" secondAttribute="top" constant="24" id="u48-us-m7g"/>
                         </constraints>
                     </view>
@@ -83,14 +105,25 @@
                 <constraint firstItem="AhC-cg-BRg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pKo-Gp-IAy"/>
             </constraints>
             <size key="customSize" width="250" height="150"/>
+            <connections>
+                <outlet property="fiveGbLbl" destination="c7r-aG-Z0M" id="C4b-2G-IEl"/>
+                <outlet property="noOfFiles" destination="OCG-0U-3qo" id="89i-18-Guf"/>
+                <outlet property="projectFilesLbl" destination="vUl-w5-YAf" id="qWg-co-For"/>
+                <outlet property="sharedByLbl" destination="EGH-8m-3oF" id="xIe-U0-t9s"/>
+                <outlet property="sharedImgView" destination="Kbs-XP-Hcr" id="54p-yW-7NW"/>
+            </connections>
             <point key="canvasLocation" x="282.44274809160305" y="23.943661971830988"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="ShowFolder" width="60" height="60"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="A1A1A1">
+            <color red="0.63137254901960782" green="0.63137254901960782" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

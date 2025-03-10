@@ -18,15 +18,22 @@
                 <outlet property="contactsTblView" destination="bXb-F7-f6T" id="GIA-FK-Dsz"/>
                 <outlet property="contactsViewAllLbl" destination="JYP-tK-eag" id="UOU-YD-sg6"/>
                 <outlet property="contentViewHeight" destination="urR-Ap-QA4" id="NXL-2g-daF"/>
+                <outlet property="fifteenGbLbl" destination="UkG-pc-N9j" id="AQG-2v-cT5"/>
                 <outlet property="fileColView" destination="j1D-J5-6EP" id="7CM-Lp-Tvd"/>
+                <outlet property="getHundredGbLbl" destination="5jD-bB-Mac" id="m8r-kD-QkQ"/>
                 <outlet property="getMoreLbl" destination="5jD-bB-Mac" id="E72-T2-gVx"/>
                 <outlet property="heightsOfContactsiTblView" destination="Efe-Pb-ruk" id="vFt-JR-exk"/>
                 <outlet property="lightBlueCircle" destination="w7k-HX-srr" id="7fB-6a-e8k"/>
+                <outlet property="myContactsLbl" destination="BZU-I4-UPn" id="7Xj-dw-ul1"/>
+                <outlet property="nineGbLbl" destination="nnj-5i-Hva" id="zzs-3x-siZ"/>
+                <outlet property="photosLbl" destination="tfM-mk-w9y" id="DGc-Bv-glx"/>
                 <outlet property="priceTagLbl" destination="lIi-Dr-psJ" id="01k-1K-qw0"/>
                 <outlet property="rotateBtn" destination="yrf-Sg-DtA" id="HhX-HK-RaH"/>
+                <outlet property="sixGbLbl" destination="mA4-WL-gcC" id="qRx-eE-HVq"/>
                 <outlet property="topView" destination="H2F-1t-Vn3" id="V21-4K-V8P"/>
                 <outlet property="totalStorageLbl" destination="6Mi-cf-gFW" id="4Sv-hQ-aWt"/>
                 <outlet property="usedFromLbl" destination="w9j-y7-FCI" id="xNs-fu-fWg"/>
+                <outlet property="videosLbl" destination="3rb-GD-tg0" id="kZe-Gp-UKX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewAllLbl" destination="O1p-7h-Xeh" id="JTH-Xr-hmp"/>
                 <outlet property="viewPlansBtn" destination="uCR-OQ-zFi" id="h4s-6d-kgS"/>
@@ -136,14 +143,14 @@
                                             <color key="backgroundColor" red="0.6705882353" green="0.82352941180000006" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-mk-w9y">
-                                            <rect key="frame" x="46" y="148" width="42.333333333333343" height="15.666666666666657"/>
+                                            <rect key="frame" x="46" y="148" width="55" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <color key="textColor" red="0.6705882353" green="0.82352941180000006" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3rb-GD-tg0">
-                                            <rect key="frame" x="46" y="170" width="44.333333333333343" height="17"/>
+                                            <rect key="frame" x="46" y="170" width="59" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.6705882353" green="0.82352941180000006" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -406,7 +413,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tableCellBlueTextColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

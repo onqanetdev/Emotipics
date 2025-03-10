@@ -25,12 +25,13 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 70
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Current height of the view is ", heightsOfContactsiTblView.constant)
-        heightsOfContactsiTblView.constant += 100
-        contentViewHeight.constant = contentViewHeight.constant + 100 // this 100 is the height of the cell
+        let height:CGFloat = 70
+        heightsOfContactsiTblView.constant += height
+        contentViewHeight.constant = contentViewHeight.constant + height // this 100 is the height of the cell
         tableView.reloadData()
     }
 }

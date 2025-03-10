@@ -13,12 +13,7 @@ class EntryViewController: UIViewController {
     
     
     @IBOutlet weak var rotateBtn: UIButton!
-    
-    
     @IBOutlet weak var topView: UIView!
-    
-
-
     @IBOutlet weak var welcomeBackLbl: UILabel!{
         didSet{
             welcomeBackLbl.font = UIFont(name: "Lato-Bold", size: 18)
@@ -60,10 +55,7 @@ class EntryViewController: UIViewController {
     }
     
     @IBOutlet weak var getMoreLbl: UILabel!
-    
     @IBOutlet weak var priceTagLbl: UILabel!
-    
-
     @IBOutlet weak var viewPlansBtn: UIButton!{
         didSet{
             viewPlansBtn.layer.cornerRadius = 10
@@ -93,8 +85,23 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var viewAllLbl: UIButton!
     @IBOutlet weak var contactsViewAllLbl: UIButton!
     
+    //Fonts for lato - bold
+    
+    @IBOutlet weak var fifteenGbLbl: UILabel!
+    @IBOutlet weak var getHundredGbLbl: UILabel!
     
     
+    @IBOutlet weak var myContactsLbl: UILabel!
+    
+    
+    
+    @IBOutlet weak var photosLbl: UILabel!
+    
+    @IBOutlet weak var videosLbl: UILabel!
+    
+    @IBOutlet weak var nineGbLbl: UILabel!
+    
+    @IBOutlet weak var sixGbLbl: UILabel!
     
     //MARK: This is my table view
     
@@ -115,6 +122,7 @@ class EntryViewController: UIViewController {
     
     @IBOutlet weak var heightsOfContactsiTblView: NSLayoutConstraint!
     
+
     
     //Implementing the circular view
     var circularView: Circular!
@@ -135,12 +143,8 @@ class EntryViewController: UIViewController {
         view.backgroundColor = .white
         // Setting Ups The font
         
-//         let inputFont = "Lato-Regular"
-        totalStorageLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 16)
-        usedFromLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
-        viewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
-        contactsViewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 17)
-        
+        settingUpFonts()
+
         
         
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
@@ -160,9 +164,9 @@ class EntryViewController: UIViewController {
        // contactsTblView.isHidden = true
         
         //Manipulating contentViewHeight
-        
         contentViewHeight.constant = 850
-        heightsOfContactsiTblView.constant = 100
+        //heightsOfContactsiTblView.constant = 100
+        heightsOfContactsiTblView.constant = 70
         contentViewHeight.constant += heightsOfContactsiTblView.constant
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         setupCircularView()
@@ -173,6 +177,32 @@ class EntryViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    
+    
+    
+    //MARK: Font Family Settigs
+    private func settingUpFonts() {
+        //         let inputFont = "Lato-Regular"
+                totalStorageLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 16)
+                usedFromLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
+                viewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
+                contactsViewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 17)
+                //setting Ups fonts  lato-bold
+                fifteenGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 28)
+                CatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+                getHundredGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+                myContactsLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+                //setting ups for fonts poppins-regular
+                photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+                videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+                nineGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+                sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+                //settings ups for fonts poppins-medium
+                
+                priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
+                viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
     }
     
     

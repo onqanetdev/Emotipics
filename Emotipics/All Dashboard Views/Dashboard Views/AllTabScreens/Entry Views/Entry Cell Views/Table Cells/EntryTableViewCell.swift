@@ -23,18 +23,19 @@ class EntryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profilePhoto: UIImageView! {
         didSet{
-            //1. Set corner radius for the profile photo
-            
-            
-            
+           
             profilePhoto.image = profilePhoto.image?.withRenderingMode(.alwaysTemplate)
             
                 profilePhoto.tintColor = UIColor.systemBlue // Change to your desired color
-            //}
         }
     }
     
     
+    @IBOutlet weak var sarahLbl: UILabel!{
+        didSet{
+            sarahLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 15)
+        }
+    }
     
     
 
