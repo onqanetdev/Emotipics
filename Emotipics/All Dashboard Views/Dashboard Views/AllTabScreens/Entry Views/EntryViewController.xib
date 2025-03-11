@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="CatalogueLbl" destination="jHT-jH-r5h" id="EJh-EZ-cu6"/>
                 <outlet property="CurrentPlanView" destination="ved-ki-pnP" id="qRm-dL-Q5A"/>
+                <outlet property="backImgView" destination="Hw0-FD-2IF" id="eHo-gF-0E4"/>
+                <outlet property="bellIconOutlet" destination="dwP-QM-hIK" id="etG-5R-cMc"/>
                 <outlet property="blueCircle" destination="TfA-IS-yNb" id="sg7-FE-F6T"/>
                 <outlet property="cardView" destination="pSY-Ob-TBm" id="dZD-Fg-MgW"/>
                 <outlet property="contactsTblView" destination="bXb-F7-f6T" id="GIA-FK-Dsz"/>
@@ -24,9 +26,11 @@
                 <outlet property="getMoreLbl" destination="5jD-bB-Mac" id="E72-T2-gVx"/>
                 <outlet property="heightsOfContactsiTblView" destination="Efe-Pb-ruk" id="vFt-JR-exk"/>
                 <outlet property="lightBlueCircle" destination="w7k-HX-srr" id="7fB-6a-e8k"/>
+                <outlet property="moreBtnLbl" destination="yrf-Sg-DtA" id="6Nj-Yo-CuJ"/>
                 <outlet property="myContactsLbl" destination="BZU-I4-UPn" id="7Xj-dw-ul1"/>
                 <outlet property="nineGbLbl" destination="nnj-5i-Hva" id="zzs-3x-siZ"/>
                 <outlet property="photosLbl" destination="tfM-mk-w9y" id="DGc-Bv-glx"/>
+                <outlet property="priceTagImg" destination="kCH-H7-6Da" id="yNf-7V-nqQ"/>
                 <outlet property="priceTagLbl" destination="lIi-Dr-psJ" id="01k-1K-qw0"/>
                 <outlet property="rotateBtn" destination="yrf-Sg-DtA" id="HhX-HK-RaH"/>
                 <outlet property="sixGbLbl" destination="mA4-WL-gcC" id="qRx-eE-HVq"/>
@@ -62,10 +66,11 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yrf-Sg-DtA">
-                                            <rect key="frame" x="336" y="13" width="51" height="45"/>
+                                            <rect key="frame" x="337" y="10.666666666666671" width="50" height="50"/>
+                                            <color key="backgroundColor" red="0.95294117649999999" green="0.97647058819999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="51" id="7Z0-mg-sx4"/>
-                                                <constraint firstAttribute="height" constant="45" id="Xhb-NB-jKo"/>
+                                                <constraint firstAttribute="width" constant="50" id="7Z0-mg-sx4"/>
+                                                <constraint firstAttribute="height" constant="50" id="Xhb-NB-jKo"/>
                                             </constraints>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system">
@@ -73,10 +78,11 @@
                                             </buttonConfiguration>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwP-QM-hIK">
-                                            <rect key="frame" x="294" y="18" width="39" height="35"/>
+                                            <rect key="frame" x="279" y="10.666666666666671" width="50" height="50"/>
+                                            <color key="backgroundColor" red="0.92549019607843142" green="0.96078431372549022" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="J1e-zo-ZaF"/>
-                                                <constraint firstAttribute="width" constant="39" id="fpb-iv-3Xt"/>
+                                                <constraint firstAttribute="height" constant="50" id="J1e-zo-ZaF"/>
+                                                <constraint firstAttribute="width" constant="50" id="fpb-iv-3Xt"/>
                                             </constraints>
                                             <color key="tintColor" red="0.0" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Button"/>
@@ -94,7 +100,7 @@
                                         <constraint firstItem="Hwu-Nm-aw9" firstAttribute="centerY" secondItem="H2F-1t-Vn3" secondAttribute="centerY" id="dyU-3y-s6w"/>
                                         <constraint firstItem="Hwu-Nm-aw9" firstAttribute="leading" secondItem="H2F-1t-Vn3" secondAttribute="leading" constant="10" id="nxm-Ju-vP9"/>
                                         <constraint firstItem="dwP-QM-hIK" firstAttribute="centerY" secondItem="H2F-1t-Vn3" secondAttribute="centerY" id="s7a-0j-jm5"/>
-                                        <constraint firstItem="yrf-Sg-DtA" firstAttribute="leading" secondItem="dwP-QM-hIK" secondAttribute="trailing" constant="3" id="yVI-hD-2jj"/>
+                                        <constraint firstItem="yrf-Sg-DtA" firstAttribute="leading" secondItem="dwP-QM-hIK" secondAttribute="trailing" constant="8" id="yVI-hD-2jj"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SeA-z6-J8E">
@@ -252,15 +258,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ved-ki-pnP">
                                     <rect key="frame" x="15" y="544" width="363" height="70"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PriceTag" translatesAutoresizingMaskIntoConstraints="NO" id="kCH-H7-6Da">
-                                            <rect key="frame" x="12" y="17.666666666666629" width="60" height="35"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="REH-IC-sWh"/>
-                                                <constraint firstAttribute="height" constant="35" id="bK0-E0-eB3"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For $100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIi-Dr-psJ">
-                                            <rect key="frame" x="75" y="36.333333333333371" width="69" height="17"/>
+                                            <rect key="frame" x="80" y="36.333333333333371" width="69" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="69" id="joa-Gm-C3Q"/>
                                             </constraints>
@@ -269,7 +268,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get 100GB More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jD-bB-Mac">
-                                            <rect key="frame" x="73" y="14.999999999999998" width="141" height="20.333333333333329"/>
+                                            <rect key="frame" x="80" y="14.999999999999998" width="141" height="20.333333333333329"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="141" id="f0k-l9-MWo"/>
                                             </constraints>
@@ -297,17 +296,34 @@
                                                 </attributedString>
                                             </buttonConfiguration>
                                         </button>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hw0-FD-2IF">
+                                            <rect key="frame" x="10" y="5" width="60" height="60"/>
+                                            <color key="backgroundColor" red="0.074509803921568626" green="0.2627450980392157" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="29D-OE-2Fj"/>
+                                                <constraint firstAttribute="height" constant="60" id="9RS-Uw-84F"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PriceTag" translatesAutoresizingMaskIntoConstraints="NO" id="kCH-H7-6Da">
+                                            <rect key="frame" x="20" y="17.666666666666629" width="40" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="REH-IC-sWh"/>
+                                                <constraint firstAttribute="height" constant="35" id="bK0-E0-eB3"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.0" green="0.16470588235294117" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="kCH-H7-6Da" firstAttribute="leading" secondItem="ved-ki-pnP" secondAttribute="leading" constant="12" id="1h9-fB-uc6"/>
+                                        <constraint firstItem="kCH-H7-6Da" firstAttribute="leading" secondItem="ved-ki-pnP" secondAttribute="leading" constant="20" id="1h9-fB-uc6"/>
                                         <constraint firstItem="5jD-bB-Mac" firstAttribute="top" secondItem="ved-ki-pnP" secondAttribute="top" constant="15" id="5Km-gF-0IK"/>
                                         <constraint firstAttribute="height" constant="70" id="9C4-mS-ocg"/>
-                                        <constraint firstItem="5jD-bB-Mac" firstAttribute="leading" secondItem="kCH-H7-6Da" secondAttribute="trailing" constant="1" id="ILm-ih-klM"/>
+                                        <constraint firstItem="Hw0-FD-2IF" firstAttribute="centerY" secondItem="kCH-H7-6Da" secondAttribute="centerY" id="Ga3-W0-Wrj"/>
+                                        <constraint firstItem="5jD-bB-Mac" firstAttribute="leading" secondItem="Hw0-FD-2IF" secondAttribute="trailing" constant="10" id="ILm-ih-klM"/>
                                         <constraint firstItem="kCH-H7-6Da" firstAttribute="centerY" secondItem="ved-ki-pnP" secondAttribute="centerY" id="LgS-PF-qs1"/>
+                                        <constraint firstItem="Hw0-FD-2IF" firstAttribute="centerX" secondItem="kCH-H7-6Da" secondAttribute="centerX" id="Pdw-DK-g1t"/>
                                         <constraint firstItem="uCR-OQ-zFi" firstAttribute="centerY" secondItem="ved-ki-pnP" secondAttribute="centerY" id="VhH-RG-NQO"/>
                                         <constraint firstAttribute="trailing" secondItem="uCR-OQ-zFi" secondAttribute="trailing" constant="11" id="Zrt-A4-FWs"/>
-                                        <constraint firstItem="lIi-Dr-psJ" firstAttribute="leading" secondItem="kCH-H7-6Da" secondAttribute="trailing" constant="3" id="md3-uZ-bTa"/>
+                                        <constraint firstItem="lIi-Dr-psJ" firstAttribute="leading" secondItem="Hw0-FD-2IF" secondAttribute="trailing" constant="10" id="md3-uZ-bTa"/>
                                         <constraint firstItem="lIi-Dr-psJ" firstAttribute="top" secondItem="5jD-bB-Mac" secondAttribute="bottom" constant="1" id="zBj-RE-J84"/>
                                     </constraints>
                                 </view>
@@ -405,7 +421,7 @@
     </objects>
     <resources>
         <image name="Emoticon Dark" width="201" height="201"/>
-        <image name="PriceTag" width="60" height="60"/>
+        <image name="PriceTag" width="20" height="20"/>
         <image name="bell" catalog="system" width="125" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
@@ -413,7 +429,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tableCellBlueTextColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

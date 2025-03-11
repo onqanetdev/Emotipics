@@ -124,8 +124,46 @@ class EntryViewController: UIViewController {
     
 
     
+    
+    @IBOutlet weak var bellIconOutlet: UIButton!{
+        didSet {
+            bellIconOutlet.layer.cornerRadius = 25
+            bellIconOutlet.clipsToBounds = true
+        }
+    }
+    
+    
+    @IBOutlet weak var moreBtnLbl: UIButton!{
+        didSet{
+            moreBtnLbl.layer.cornerRadius = 25
+            moreBtnLbl.clipsToBounds = true
+        }
+    }
+    
+    
+    @IBOutlet weak var priceTagImg: UIImageView!
+//    {
+//        didSet{
+//            priceTagImg.layer.cornerRadius = 20
+//            priceTagImg.clipsToBounds = true
+//        }
+//    }
+    
+    
+    @IBOutlet weak var backImgView: UIImageView! {
+        didSet {
+            backImgView.layer.cornerRadius = 30
+            backImgView.clipsToBounds = true
+        }
+    }
+    
+    
+    
     //Implementing the circular view
     var circularView: Circular!
+    
+    var collectionHeight:Int = 110
+    
     
     
     private var pertentageLbl:UILabel = {

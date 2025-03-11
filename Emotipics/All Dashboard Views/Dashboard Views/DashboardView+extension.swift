@@ -67,17 +67,17 @@ extension DashboardViewController {
 
         let floatingButton = UIButton(type: .custom)
                // floatingButton.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-       // floatingButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+        floatingButton.setBackgroundImage(UIImage(named: "PlusIcon"), for: .normal)
         //floatingButton.background.imageContentMode =
-        if let image = UIImage(systemName: "plus.circle.fill")?.withRenderingMode(.alwaysTemplate) {
-            // Create a configuration that scales the image
-            var config = UIButton.Configuration.plain()
-            config.background.image = image
-            config.background.imageContentMode = .scaleToFill
-            floatingButton.configuration = config
-        }
+//        if let image = UIImage(named: "PlusIcon")?.withRenderingMode(.alwaysTemplate) {
+//            // Create a configuration that scales the image
+//            var config = UIButton.Configuration.plain()
+//            config.background.image = image
+//            config.background.imageContentMode = .scaleToFill
+//            floatingButton.configuration = config
+//        }
 
-        floatingButton.tintColor = #colorLiteral(red: 0.007843137255, green: 0.3176470588, blue: 0.6549019608, alpha: 1)
+        //floatingButton.tintColor = #colorLiteral(red: 0.007843137255, green: 0.3176470588, blue: 0.6549019608, alpha: 1)
        // floatingButton.backgroundColor = .brown
                 floatingButton.layer.cornerRadius = 30  // Make it circular
 //                floatingButton.layer.shadowColor = UIColor.black.cgColor
