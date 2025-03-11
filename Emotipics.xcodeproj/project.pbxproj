@@ -17,6 +17,10 @@
 		8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */; };
 		8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91C2D7AC96800F358FD /* Circular.swift */; };
 		8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91E2D7B19C300F358FD /* TextEnums.swift */; };
+		8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */; };
+		8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */; };
+		8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DE12D80196F002D7BA8 /* ContactsView.swift */; };
+		8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -62,6 +66,10 @@
 		8A0521712D79A83A00AE5FC4 /* EntryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryCollectionViewCell.xib; sourceTree = "<group>"; };
 		8A22D91C2D7AC96800F358FD /* Circular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circular.swift; sourceTree = "<group>"; };
 		8A22D91E2D7B19C300F358FD /* TextEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEnums.swift; sourceTree = "<group>"; };
+		8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
+		8A241DE12D80196F002D7BA8 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtn.swift; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +174,47 @@
 			path = "Circular Views";
 			sourceTree = "<group>";
 		};
+		8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A241DE02D801952002D7BA8 /* Contacts HeaderView  */,
+				8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */,
+				8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */,
+			);
+			path = "Contacts Views";
+			sourceTree = "<group>";
+		};
+		8A241DE02D801952002D7BA8 /* Contacts HeaderView  */ = {
+			isa = PBXGroup;
+			children = (
+				8A241DE12D80196F002D7BA8 /* ContactsView.swift */,
+			);
+			path = "Contacts HeaderView ";
+			sourceTree = "<group>";
+		};
+		8A241DE32D803BE1002D7BA8 /* FloationgView */ = {
+			isa = PBXGroup;
+			children = (
+				8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */,
+			);
+			path = FloationgView;
+			sourceTree = "<group>";
+		};
+		8A241DE62D8047A8002D7BA8 /* Catalouges */ = {
+			isa = PBXGroup;
+			children = (
+				8A241DE72D8047B7002D7BA8 /* Views */,
+			);
+			path = Catalouges;
+			sourceTree = "<group>";
+		};
+		8A241DE72D8047B7002D7BA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		8A43537F2D75760600ABB7A0 = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +234,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A241DE32D803BE1002D7BA8 /* FloationgView */,
 				8A48815A2D78249700EAB64B /* All Dashboard Views */,
 				8AB7D6832D76B28000B291BA /* Test Views */,
 				8A4353C72D75BE7B00ABB7A0 /* SampleScrollView */,
@@ -270,6 +320,8 @@
 		8ABA8ABC2D771B4D003D4727 /* Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A241DE62D8047A8002D7BA8 /* Catalouges */,
+				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
 				8A0521612D79588700AE5FC4 /* AllTabScreens */,
 				8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */,
 				8ABA8ABE2D771B69003D4727 /* DashboardViewController.xib */,
@@ -347,6 +399,7 @@
 				8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */,
 				8A4353B52D758F4700ABB7A0 /* jost_medium.ttf in Resources */,
 				8A4353982D75760900ABB7A0 /* Base in Resources */,
+				8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
 				8A4353C02D758F4700ABB7A0 /* poppins_semi_bold.ttf in Resources */,
@@ -381,6 +434,7 @@
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
+				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
@@ -389,8 +443,10 @@
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
+				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
+				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 			);

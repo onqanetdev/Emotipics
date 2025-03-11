@@ -142,12 +142,6 @@ class EntryViewController: UIViewController {
     
     
     @IBOutlet weak var priceTagImg: UIImageView!
-//    {
-//        didSet{
-//            priceTagImg.layer.cornerRadius = 20
-//            priceTagImg.clipsToBounds = true
-//        }
-//    }
     
     
     @IBOutlet weak var backImgView: UIImageView! {
@@ -317,7 +311,7 @@ class EntryViewController: UIViewController {
     
     
     @IBAction func viewAllContacts(_ sender: Any) {
-        navigationController?.pushViewController(ExampleViewController(), animated: true)
+        navigationController?.pushViewController(ContactsViewController(), animated: true)
         print("This is my all contacts")
     }
 }

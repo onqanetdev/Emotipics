@@ -17,23 +17,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CL5-Yy-1eI">
-                        <rect key="frame" x="8" y="6" width="429" height="88"/>
+                        <rect key="frame" x="12" y="17.666666666666671" width="421" height="65"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact" translatesAutoresizingMaskIntoConstraints="NO" id="I0y-U1-zUv">
-                                <rect key="frame" x="13" y="17" width="32" height="54"/>
+                                <rect key="frame" x="13" y="5.3333333333333286" width="32" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="R6k-CO-SNA"/>
                                     <constraint firstAttribute="height" constant="54" id="dB3-Yb-myO"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarah Williams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zW-JW-JQQ">
-                                <rect key="frame" x="55.999999999999993" y="35" width="100.33333333333331" height="18"/>
+                                <rect key="frame" x="55.999999999999993" y="23.333333333333329" width="100.33333333333331" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDk-0R-r4P">
-                                <rect key="frame" x="379" y="26.666666666666664" width="35" height="35"/>
+                                <rect key="frame" x="371" y="15" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="P2y-Xw-mPg"/>
                                     <constraint firstAttribute="height" constant="35" id="XWz-yv-5HD"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="2zW-JW-JQQ" firstAttribute="leading" secondItem="I0y-U1-zUv" secondAttribute="trailing" constant="11" id="17u-mF-Rva"/>
                             <constraint firstItem="EDk-0R-r4P" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="EzE-GP-Fua"/>
                             <constraint firstItem="I0y-U1-zUv" firstAttribute="leading" secondItem="CL5-Yy-1eI" secondAttribute="leading" constant="13" id="Gnc-ji-oFA"/>
-                            <constraint firstAttribute="height" constant="88" id="PZv-Dh-MVZ"/>
+                            <constraint firstAttribute="height" constant="65" id="PZv-Dh-MVZ"/>
                             <constraint firstItem="2zW-JW-JQQ" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="b1C-zu-mxB"/>
                             <constraint firstAttribute="trailing" secondItem="EDk-0R-r4P" secondAttribute="trailing" constant="15" id="l10-dF-bo3"/>
                             <constraint firstItem="I0y-U1-zUv" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="wLw-vP-Btw"/>
@@ -58,8 +58,8 @@
                 <constraints>
                     <constraint firstItem="CL5-Yy-1eI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="46l-rs-xaG"/>
                     <constraint firstItem="CL5-Yy-1eI" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Zvs-qi-z39"/>
-                    <constraint firstItem="CL5-Yy-1eI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="mfW-Ti-G84"/>
-                    <constraint firstAttribute="trailing" secondItem="CL5-Yy-1eI" secondAttribute="trailing" constant="8" id="qfH-Mg-TBP"/>
+                    <constraint firstItem="CL5-Yy-1eI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="mfW-Ti-G84"/>
+                    <constraint firstAttribute="trailing" secondItem="CL5-Yy-1eI" secondAttribute="trailing" constant="12" id="qfH-Mg-TBP"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
