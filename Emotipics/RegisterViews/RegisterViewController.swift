@@ -217,6 +217,7 @@ class RegisterViewController: UIViewController {
                 navigationController?.pushViewController(registerVC, animated: true)
             } else {
                 registerVC.isSomeFieldsHidden = true
+                //registerVC.registerBtn.titleLabel?.text = "Login"
                 navigationController?.pushViewController(registerVC, animated: true)
             }
         }else {
@@ -231,6 +232,8 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func registerBtnAction(_ sender: Any) {
+        print("register Button ", loginlbl.text )
+        
         navigationController?.pushViewController(DashboardViewController(), animated: true)
         print("The register button tapped")
         

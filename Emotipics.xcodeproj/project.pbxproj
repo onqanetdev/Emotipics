@@ -21,6 +21,8 @@
 		8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */; };
 		8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DE12D80196F002D7BA8 /* ContactsView.swift */; };
 		8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */; };
+		8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */; };
+		8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -48,6 +50,8 @@
 		8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */; };
 		8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */; };
 		8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */; };
+		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
+		8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA459322D8191D60004938B /* AllCataloguesViewController.xib */; };
 		8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */; };
 		8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */; };
 		8ABA8AB62D770848003D4727 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8ABA8AB52D770848003D4727 /* IQKeyboardManagerSwift */; };
@@ -70,6 +74,8 @@
 		8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsViewController.xib; sourceTree = "<group>"; };
 		8A241DE12D80196F002D7BA8 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtn.swift; sourceTree = "<group>"; };
+		8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
+		8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalogueViewController.xib; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +105,8 @@
 		8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScrollViewController.swift; sourceTree = "<group>"; };
 		8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestScrollViewController.xib; sourceTree = "<group>"; };
 		8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardView+extension.swift"; sourceTree = "<group>"; };
+		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
+		8AA459322D8191D60004938B /* AllCataloguesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllCataloguesViewController.xib; sourceTree = "<group>"; };
 		8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
 		8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -200,17 +208,20 @@
 			path = FloationgView;
 			sourceTree = "<group>";
 		};
-		8A241DE62D8047A8002D7BA8 /* Catalouges */ = {
+		8A241DEC2D80494E002D7BA8 /* Catalogues */ = {
 			isa = PBXGroup;
 			children = (
-				8A241DE72D8047B7002D7BA8 /* Views */,
+				8AA459302D81909E0004938B /* SubViews */,
+				8A241DED2D804962002D7BA8 /* Views */,
 			);
-			path = Catalouges;
+			path = Catalogues;
 			sourceTree = "<group>";
 		};
-		8A241DE72D8047B7002D7BA8 /* Views */ = {
+		8A241DED2D804962002D7BA8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */,
+				8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,6 +319,15 @@
 			path = "All Dashboard Views";
 			sourceTree = "<group>";
 		};
+		8AA459302D81909E0004938B /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				8AA459312D8191D60004938B /* AllCataloguesViewController.swift */,
+				8AA459322D8191D60004938B /* AllCataloguesViewController.xib */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		8AB7D6832D76B28000B291BA /* Test Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,7 +340,7 @@
 		8ABA8ABC2D771B4D003D4727 /* Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
-				8A241DE62D8047A8002D7BA8 /* Catalouges */,
+				8A241DEC2D80494E002D7BA8 /* Catalogues */,
 				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
 				8A0521612D79588700AE5FC4 /* AllTabScreens */,
 				8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */,
@@ -406,9 +426,11 @@
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
 				8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */,
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
+				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
 				8A4353B82D758F4700ABB7A0 /* lato_black.ttf in Resources */,
+				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
 				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
 				8A4353B62D758F4700ABB7A0 /* jost_regular.ttf in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
@@ -431,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
+				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
@@ -438,6 +461,7 @@
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
+				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,

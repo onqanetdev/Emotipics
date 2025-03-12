@@ -300,7 +300,7 @@ class EntryViewController: UIViewController {
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
-        navigationController?.pushViewController(ExampleViewController(), animated: true)
+        navigationController?.pushViewController(CatalogueViewController(), animated: true)
         //print("The Navigation is not working")
     }
     
