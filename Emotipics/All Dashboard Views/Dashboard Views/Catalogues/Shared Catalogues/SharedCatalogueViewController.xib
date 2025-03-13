@@ -10,8 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SharedCatalogueViewController" customModule="Emotipics" customModuleProvider="target">
             <connections>
+                <outlet property="myCataLogueLbl" destination="U9x-hD-dQM" id="777-q5-gGL"/>
                 <outlet property="roundedView" destination="zNj-f9-Wem" id="4zZ-HK-Xpx"/>
+                <outlet property="segmentControlShared" destination="APT-QS-IVi" id="phJ-NV-8h7"/>
                 <outlet property="sharedCollView" destination="qIV-LM-srV" id="ng5-Jf-sp9"/>
+                <outlet property="sortByLbl" destination="gor-Sn-Is1" id="TgO-MP-NET"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QQ1-FA-kQs" userLabel="Main Background">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="230"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="255"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="TCk-D3-iPq">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="230"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="255"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-Yc-38n">
                             <rect key="frame" x="0.0" y="52" width="393" height="92"/>
@@ -137,19 +140,19 @@
                         <constraint firstAttribute="bottom" secondItem="TCk-D3-iPq" secondAttribute="bottom" id="gcu-XL-0W8"/>
                         <constraint firstItem="TCk-D3-iPq" firstAttribute="top" secondItem="QQ1-FA-kQs" secondAttribute="top" id="kWZ-hs-joR"/>
                         <constraint firstItem="hI2-Yc-38n" firstAttribute="leading" secondItem="QQ1-FA-kQs" secondAttribute="leading" id="qXe-rT-LjD"/>
-                        <constraint firstAttribute="height" constant="230" id="s6U-mZ-APg"/>
+                        <constraint firstAttribute="height" constant="255" id="s6U-mZ-APg"/>
                         <constraint firstItem="Ldo-7R-8S8" firstAttribute="leading" secondItem="czY-do-qlx" secondAttribute="leading" id="uD3-qv-fiF"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNj-f9-Wem" userLabel="Rounded View">
-                    <rect key="frame" x="0.0" y="170" width="393" height="200"/>
+                    <rect key="frame" x="0.0" y="155" width="393" height="218"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="8cs-9V-cO4"/>
+                        <constraint firstAttribute="height" constant="218" id="8cs-9V-cO4"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eA0-2u-b0Q" userLabel="MyCatalogueView">
-                    <rect key="frame" x="0.0" y="205" width="393" height="50"/>
+                    <rect key="frame" x="0.0" y="193" width="393" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Catalogue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9x-hD-dQM">
                             <rect key="frame" x="13" y="11" width="119" height="21"/>
@@ -193,16 +196,22 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfx-cj-KvG" userLabel="Segment Control View">
-                    <rect key="frame" x="0.0" y="255" width="393" height="68"/>
+                    <rect key="frame" x="0.0" y="243" width="393" height="68"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="APT-QS-IVi">
-                            <rect key="frame" x="13" y="18.666666666666686" width="367" height="32"/>
-                            <color key="backgroundColor" red="0.90980392160000001" green="0.93333333330000001" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="13" y="9" width="367" height="51"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="fm6-6I-VhO"/>
+                            </constraints>
                             <segments>
                                 <segment title="Shared with me"/>
                                 <segment title="Shared by me"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="changingSegments:" destination="-1" eventType="valueChanged" id="VOe-hQ-Ye4"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -215,7 +224,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qIV-LM-srV">
-                    <rect key="frame" x="0.0" y="328" width="393" height="524"/>
+                    <rect key="frame" x="0.0" y="316" width="393" height="536"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9gU-Pp-bOK">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -238,8 +247,8 @@
                 <constraint firstAttribute="trailing" secondItem="zNj-f9-Wem" secondAttribute="trailing" id="b1j-YZ-V8c"/>
                 <constraint firstItem="QQ1-FA-kQs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="boH-vI-Xpz"/>
                 <constraint firstItem="zNj-f9-Wem" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dJM-Aa-Jzn"/>
-                <constraint firstItem="eA0-2u-b0Q" firstAttribute="top" secondItem="zNj-f9-Wem" secondAttribute="bottom" constant="-165" id="qNE-7c-ptf"/>
-                <constraint firstItem="zNj-f9-Wem" firstAttribute="top" secondItem="QQ1-FA-kQs" secondAttribute="bottom" constant="-60" id="rMi-Y5-cio"/>
+                <constraint firstItem="eA0-2u-b0Q" firstAttribute="top" secondItem="zNj-f9-Wem" secondAttribute="bottom" constant="-180" id="qNE-7c-ptf"/>
+                <constraint firstItem="zNj-f9-Wem" firstAttribute="top" secondItem="QQ1-FA-kQs" secondAttribute="bottom" constant="-100" id="rMi-Y5-cio"/>
                 <constraint firstItem="dfx-cj-KvG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xKs-1z-89s"/>
                 <constraint firstItem="eA0-2u-b0Q" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="y2n-dE-C3u"/>
                 <constraint firstItem="eA0-2u-b0Q" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="zPY-O3-U7e"/>
