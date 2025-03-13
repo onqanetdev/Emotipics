@@ -109,7 +109,22 @@ class CatalogueViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+        //self.tabBarController?.editButtonItem.isHidden = true
+        if let tabBarController = self.tabBarController {
+                for subview in tabBarController.view.subviews {
+                    if let button = subview as? UIButton,
+                       button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
+                        button.isHidden = true
+                    }
+                }
+            }
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
     
     func addPlusIcon(){
        // floatingBtn.addSubview(Flo)
