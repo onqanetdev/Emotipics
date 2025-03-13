@@ -143,6 +143,16 @@ class CatalogueViewController: UIViewController {
         
         print("Moving to next view controller")
     }
+    
+    
+    
+    
+    @IBAction func SharedViewAllBtn(_ sender: Any) {
+        
+        navigationController?.pushViewController(SharedCatalogueViewController(), animated: true)
+        
+        
+    }
 }
 
 

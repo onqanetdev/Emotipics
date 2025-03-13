@@ -81,6 +81,9 @@ class HomeViewController: UIViewController {
         print("Tapped on login")
         let loginView = RegisterViewController()
         loginView.isSomeFieldsHidden = true
+       
+        
+
         navigationController?.pushViewController(loginView, animated: true)
         
     }

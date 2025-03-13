@@ -54,9 +54,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="get started!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iHt-9T-88p">
-                                    <rect key="frame" x="136.66666666666666" y="41" width="119.99999999999997" height="26.333333333333329"/>
+                                    <rect key="frame" x="106.66666666666669" y="41" width="180" height="26.333333333333329"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="120" id="pNx-YM-Qpn"/>
+                                        <constraint firstAttribute="width" constant="180" id="pNx-YM-Qpn"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                     <nil key="textColor"/>

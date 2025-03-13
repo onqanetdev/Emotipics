@@ -135,6 +135,8 @@ class RegisterViewController: UIViewController {
     
     var isSomeFieldsHidden: Bool = false
     
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -166,29 +168,32 @@ class RegisterViewController: UIViewController {
         passwordTxtFld.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
         
         
-        if isSomeFieldsHidden {
-            fullNameTxtFld.isHidden = true
-            phnTxtFld.isHidden = true
-            //trying to minimizing the the height
-            fullNameHeight.constant = 0
-            phnNumberHeight.constant = 0
-            scrollView.isScrollEnabled = false
-          //  contentViewHeight.constant = -
-            welcomeLblSubOne.text = "Welcome back! Glad to see"
-            welcomeLblSubTwo.text = "you again!"
-            registerBtn.titleLabel?.text = "Login"
-            alreadyAccLbl.text = "Don't have an account?"
-            loginlbl.text = "Register"
-        }
+//        if isSomeFieldsHidden {
+//            fullNameTxtFld.isHidden = true
+//            phnTxtFld.isHidden = true
+//            //trying to minimizing the the height
+//            fullNameHeight.constant = 0
+//            phnNumberHeight.constant = 0
+//            scrollView.isScrollEnabled = false
+//          //  contentViewHeight.constant = -
+//            welcomeLblSubOne.text = "Welcome back! Glad to see"
+//            welcomeLblSubTwo.text = "you again!"
+//            registerBtn.titleLabel?.text = "Login"
+//            alreadyAccLbl.text = "Don't have an account?"
+//            loginlbl.text = "Register"
+//        }
+        updateUIForState()
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        
     }
     
     
     
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -206,34 +211,66 @@ class RegisterViewController: UIViewController {
         contentViewHeight.constant = totalHeight + 320
         contentViewHeight.constant += 20
     }
-    
-    
+    // extra function
+    func updateUIForState() {
+        if isSomeFieldsHidden {
+            fullNameTxtFld.isHidden = true
+            phnTxtFld.isHidden = true
+            fullNameHeight.constant = 0
+            phnNumberHeight.constant = 0
+            scrollView.isScrollEnabled = false
+            welcomeLblSubOne.text = "Welcome back! Glad to see"
+            welcomeLblSubTwo.text = "you again!"
+            registerBtn.setTitle("Login", for: .normal)
+            alreadyAccLbl.text = "Don't have an account?"
+            loginlbl.text = "Register"
+        } else {
+            fullNameTxtFld.isHidden = false
+            phnTxtFld.isHidden = false
+            fullNameHeight.constant = 50
+            phnNumberHeight.constant = 50
+            scrollView.isScrollEnabled = true
+            welcomeLblSubOne.text = "Create an Account"
+            welcomeLblSubTwo.text = "Join us today!"
+            registerBtn.setTitle("Register", for: .normal)
+            alreadyAccLbl.text = "Already have an account?"
+            loginlbl.text = "Login"
+        }
+
+        // Apply layout changes
+//        UIView.animate(withDuration: 0.3) {
+//            self.view.layoutIfNeeded()
+//        }
+    }
+
     
     @objc func tapAction(){
-        let registerVC = RegisterViewController()
-        if let labeltitle = loginlbl.text {
-            if labeltitle == "Register" {
-                registerVC.isSomeFieldsHidden = false
-                navigationController?.pushViewController(registerVC, animated: true)
-            } else {
-                registerVC.isSomeFieldsHidden = true
-                //registerVC.registerBtn.titleLabel?.text = "Login"
-                navigationController?.pushViewController(registerVC, animated: true)
-            }
-        }else {
-            navigationController?.popViewController(animated: true)
-        }
+        //let registerVC = RegisterViewController()
+//        isSomeFieldsHidden.toggle() // Toggle state
+//            updateUIForState() // Update UI
         
+
+    
+        let registerVC = RegisterViewController() // Create a new instance
+
+           if loginlbl.text == "Register" {
+               registerVC.isSomeFieldsHidden = false // Set state for Register view
+           } else {
+               registerVC.isSomeFieldsHidden = true  // Set state for Login view
+           }
+
+           navigationController?.pushViewController(registerVC, animated: true)
         
-        //navigationController?.pushViewController(registerVC, animated: true)
+       
         
     }
     
     
     
     @IBAction func registerBtnAction(_ sender: Any) {
-        print("register Button ", loginlbl.text )
-        
+        //print("register Button ", registerBtn.titleLabel?.text )
+//        registerBtn.titleLabel?.text = "Login"
+//        print("register Button ", registerBtn.titleLabel?.text )
         navigationController?.pushViewController(DashboardViewController(), animated: true)
         print("The register button tapped")
         
