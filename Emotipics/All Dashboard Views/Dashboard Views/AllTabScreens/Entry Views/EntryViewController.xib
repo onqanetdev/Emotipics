@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +17,7 @@
                 <outlet property="blueCircle" destination="TfA-IS-yNb" id="sg7-FE-F6T"/>
                 <outlet property="cardView" destination="pSY-Ob-TBm" id="dZD-Fg-MgW"/>
                 <outlet property="contactsTblView" destination="bXb-F7-f6T" id="GIA-FK-Dsz"/>
-                <outlet property="contactsViewAllLbl" destination="JYP-tK-eag" id="UOU-YD-sg6"/>
+                <outlet property="contactsViewAllLbl" destination="djq-yX-kUn" id="MUL-pF-FoI"/>
                 <outlet property="contentViewHeight" destination="urR-Ap-QA4" id="NXL-2g-daF"/>
                 <outlet property="fifteenGbLbl" destination="UkG-pc-N9j" id="AQG-2v-cT5"/>
                 <outlet property="fileColView" destination="j1D-J5-6EP" id="7CM-Lp-Tvd"/>
@@ -263,7 +262,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O1p-7h-Xeh">
-                                            <rect key="frame" x="256" y="2" width="124" height="24"/>
+                                            <rect key="frame" x="259" y="2" width="124" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="124" id="x17-Nt-92L"/>
                                                 <constraint firstAttribute="height" constant="24" id="xU5-l8-ZFr"/>
@@ -284,7 +283,7 @@
                                         <constraint firstItem="O1p-7h-Xeh" firstAttribute="centerY" secondItem="4r5-bO-ytY" secondAttribute="centerY" id="NIg-qh-jNg"/>
                                         <constraint firstItem="jHT-jH-r5h" firstAttribute="leading" secondItem="4r5-bO-ytY" secondAttribute="leading" constant="19" id="SPj-wB-pXH"/>
                                         <constraint firstAttribute="height" constant="28" id="VMq-aK-BrC"/>
-                                        <constraint firstAttribute="trailing" secondItem="O1p-7h-Xeh" secondAttribute="trailing" constant="13" id="aXH-aF-fpH"/>
+                                        <constraint firstAttribute="trailing" secondItem="O1p-7h-Xeh" secondAttribute="trailing" constant="10" id="aXH-aF-fpH"/>
                                         <constraint firstItem="jHT-jH-r5h" firstAttribute="centerY" secondItem="4r5-bO-ytY" secondAttribute="centerY" id="wib-m7-jtQ"/>
                                     </constraints>
                                 </view>
@@ -382,27 +381,31 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JYP-tK-eag">
-                                            <rect key="frame" x="303.33333333333331" y="1" width="77.666666666666686" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djq-yX-kUn">
+                                            <rect key="frame" x="304" y="2.6666666666666288" width="79" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="79" id="Frn-Gf-5PM"/>
+                                                <constraint firstAttribute="height" constant="18" id="VjC-Uq-ZR9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <inset key="imageEdgeInsets" minX="108" minY="0.0" maxX="2.2250738585072014e-308" maxY="-1"/>
-                                            <state key="normal" title="View All ">
+                                            <inset key="titleEdgeInsets" minX="-24" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <inset key="imageEdgeInsets" minX="64" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="View All" image="chevron.right" catalog="system">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <imageReference key="image" image="chevron.right" catalog="system" symbolScale="medium"/>
                                             </state>
                                             <connections>
-                                                <action selector="viewAllContacts:" destination="-1" eventType="touchUpInside" id="2yl-pN-1OX"/>
+                                                <action selector="viewAllContacts:" destination="-1" eventType="touchUpInside" id="TSr-px-MCJ"/>
                                             </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="23" id="0Zl-jh-rB3"/>
-                                        <constraint firstAttribute="trailing" secondItem="JYP-tK-eag" secondAttribute="trailing" constant="12" id="LJy-oi-bzK"/>
                                         <constraint firstItem="BZU-I4-UPn" firstAttribute="centerY" secondItem="GtA-ab-jMx" secondAttribute="centerY" id="Qd9-HO-wNb"/>
-                                        <constraint firstItem="JYP-tK-eag" firstAttribute="centerY" secondItem="GtA-ab-jMx" secondAttribute="centerY" id="dmS-jE-Z77"/>
+                                        <constraint firstAttribute="trailing" secondItem="djq-yX-kUn" secondAttribute="trailing" constant="10" id="eaE-zD-7eY"/>
                                         <constraint firstItem="BZU-I4-UPn" firstAttribute="leading" secondItem="GtA-ab-jMx" secondAttribute="leading" constant="20" id="gbq-9v-6of"/>
+                                        <constraint firstItem="djq-yX-kUn" firstAttribute="centerY" secondItem="BZU-I4-UPn" secondAttribute="centerY" id="viA-2i-qbD"/>
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-F7-f6T">

@@ -83,7 +83,11 @@ class EntryViewController: UIViewController {
     @IBOutlet weak var totalStorageLbl: UILabel!
     @IBOutlet weak var usedFromLbl: UILabel!
     @IBOutlet weak var viewAllLbl: UIButton!
-    @IBOutlet weak var contactsViewAllLbl: UIButton!
+    @IBOutlet weak var contactsViewAllLbl: UIButton! {
+        didSet {
+            contactsViewAllLbl.setTitleColor(.black, for: .normal)
+        }
+    }
     
     //Fonts for lato - bold
     

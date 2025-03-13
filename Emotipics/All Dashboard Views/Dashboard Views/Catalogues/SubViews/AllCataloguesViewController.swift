@@ -29,6 +29,13 @@ class AllCataloguesViewController: UIViewController {
     
     @IBOutlet weak var sortByLbl: UILabel!
     
+    private var floatingBtn: UIView = {
+        let btn = FloatingBtn()
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +49,28 @@ class AllCataloguesViewController: UIViewController {
         
         myCatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         sortByLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
+        addPlusIcon()
+        
+    }
+    
+    
+    
+    @IBAction func backToCatalogue(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+        
+    }
+    
+    func addPlusIcon(){
+       // floatingBtn.addSubview(Flo)
+        view.addSubview(floatingBtn)
+        
+        NSLayoutConstraint.activate([
+            floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
+            floatingBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            floatingBtn.heightAnchor.constraint(equalToConstant: 60),
+            floatingBtn.widthAnchor.constraint(equalToConstant: 60)
+        ])
         
     }
 }
