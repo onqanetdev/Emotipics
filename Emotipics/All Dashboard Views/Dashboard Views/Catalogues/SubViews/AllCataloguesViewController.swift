@@ -23,7 +23,7 @@ class AllCataloguesViewController: UIViewController {
     
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     
-
+    
     
     @IBOutlet weak var myCatalogueLbl: UILabel!
     
@@ -36,22 +36,69 @@ class AllCataloguesViewController: UIViewController {
     }()
     
     
+    @IBOutlet weak var myCatalogueSubLbl: UILabel!
+    
+    
+    //Boolean View for registering Cell
+    var isImageCell: Bool = false
+    
+    
+    //Taking all constraints for all
+    
+    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
+    
+   
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         catalogueCollView.dataSource = self
         catalogueCollView.delegate = self
-        catalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        if  isImageCell {
+            //print("This is true")
+            myCatalogueLbl.text = "Project Files"
+            myCatalogueSubLbl.isHidden = false
+            catalogueCollView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
+        } else {
+            catalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+            myCatalogueSubLbl.isHidden = true
+        }
+        
+        //        catalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         
         myCatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         sortByLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
         addPlusIcon()
         
+        
+        
+        updateScrollViewHeight()
     }
+    
+
+    
+    func updateScrollViewHeight() {
+        // Force collectionView layout update
+        catalogueCollView.layoutIfNeeded()
+        //scrollViewHeight.constant = 1500
+        var height:CGFloat = 180 * 13
+        collectionViewHeight.constant = height
+        scrollViewHeight.constant = collectionViewHeight.constant + 50
+        print("The height of collection View", collectionViewHeight.constant)
+        print("The Height of scroll View", scrollViewHeight.constant)
+        //scrollViewHeight.constant = collectionViewHeight.constant + 200
+    }
+
+    
     
     
     
@@ -62,7 +109,7 @@ class AllCataloguesViewController: UIViewController {
     }
     
     func addPlusIcon(){
-       // floatingBtn.addSubview(Flo)
+        // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
         
         NSLayoutConstraint.activate([
@@ -78,23 +125,38 @@ class AllCataloguesViewController: UIViewController {
 
 extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 35
+        return 25
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
-    
+        
+        
+        if isImageCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as!ImageCatalogueViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
+            cell.layer.cornerRadius = 15
+            cell.clipsToBounds = true
+            return cell
+        }
+        
+        
+        // return UICollectionViewCell()
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+       // return CGSize(width: 180, height: 140)
+        
+        if isImageCell {
+            return CGSize(width: 180, height: 160)
+        } else {
             return CGSize(width: 180, height: 140)
-       
+        }
         
         //return CGSize(width: 180, height: 130)
     }

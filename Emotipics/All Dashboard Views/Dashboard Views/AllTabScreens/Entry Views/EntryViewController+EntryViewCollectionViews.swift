@@ -32,4 +32,10 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             return UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 65) // Leading space for the first cell
         }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageViewController = AllCataloguesViewController()
+        imageViewController.isImageCell = true
+    
+        navigationController?.pushViewController(imageViewController, animated: true)
+    }
 }
