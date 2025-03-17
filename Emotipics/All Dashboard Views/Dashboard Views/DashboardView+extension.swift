@@ -98,7 +98,8 @@ extension DashboardViewController {
         fourthViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), tag: 3)
         fourthViewController.view.backgroundColor = .systemOrange
         
-        let fifthViewController = UIViewController()
+//        let fifthViewController = UIViewController()
+        let fifthViewController = GroupListViewController()
         fifthViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.3"), tag: 4)
         fifthViewController.view.backgroundColor = .systemPurple
         

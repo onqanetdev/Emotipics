@@ -51,7 +51,7 @@
                                         <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.95294117647058818" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="bcw-n6-hIh" firstAttribute="leading" secondItem="8Qp-4r-jo6" secondAttribute="leading" constant="15" id="AIo-5M-42d"/>
                                     <constraint firstAttribute="height" constant="29" id="CdO-Tk-chu"/>
@@ -70,7 +70,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.95294117647058818" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ct3-CK-H6J" firstAttribute="top" secondItem="8Qp-4r-jo6" secondAttribute="bottom" constant="7" id="Hkq-jM-YlT"/>
                             <constraint firstItem="8Qp-4r-jo6" firstAttribute="top" secondItem="Uxf-fd-f5G" secondAttribute="top" constant="8" id="Kub-Kb-BqW"/>

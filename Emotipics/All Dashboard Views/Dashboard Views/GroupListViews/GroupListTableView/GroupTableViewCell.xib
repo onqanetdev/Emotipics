@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Group" rowHeight="200" id="KGk-i7-Jjw" customClass="GroupTableViewCell" customModule="Emotipics" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="336" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="336" height="200"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="itz-HH-x4T">
+                        <rect key="frame" x="10" y="10" width="316" height="180"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uDO-QE-BN3">
+                                <rect key="frame" x="20" y="61" width="60" height="59.333333333333329"/>
+                                <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="EzR-33-pWa"/>
+                                    <constraint firstAttribute="height" constant="60" id="kZh-76-VNJ"/>
+                                </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudeepa Pal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L89-oB-MUP">
+                                <rect key="frame" x="91" y="65" width="98" height="19.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="PoC-lQ-ti7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACH-Gs-a2b">
+                                <rect key="frame" x="91" y="96.333333333333329" width="54" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="kk3-NS-260"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="ABB0BA"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-0l-40v">
+                                <rect key="frame" x="266" y="65" width="30" height="8"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="RW1-of-3re"/>
+                                    <constraint firstAttribute="width" constant="30" id="dKZ-Z7-vpt"/>
+                                </constraints>
+                                <color key="tintColor" red="0.52549019607843139" green="0.52156862745098043" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="ellipsis" catalog="system"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwV-KR-nVe">
+                                <rect key="frame" x="266" y="85" width="30" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="2mq-6O-CkU"/>
+                                    <constraint firstAttribute="height" constant="30" id="sX7-LX-PUy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="17" height="7"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 day(s) ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-DE-ciQ">
+                                <rect key="frame" x="168" y="98" width="88" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="88" id="mXw-Ve-eEx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fMF-DE-ciQ" firstAttribute="bottom" secondItem="lwV-KR-nVe" secondAttribute="bottom" constant="-2" id="0GI-KL-JgQ"/>
+                            <constraint firstItem="uDO-QE-BN3" firstAttribute="leading" secondItem="itz-HH-x4T" secondAttribute="leading" constant="20" id="46U-K3-WZQ"/>
+                            <constraint firstAttribute="trailing" secondItem="9ne-0l-40v" secondAttribute="trailing" constant="20" id="KYl-bf-4Zp"/>
+                            <constraint firstItem="lwV-KR-nVe" firstAttribute="trailing" secondItem="9ne-0l-40v" secondAttribute="trailing" id="Yt4-3k-YPs"/>
+                            <constraint firstItem="lwV-KR-nVe" firstAttribute="leading" secondItem="fMF-DE-ciQ" secondAttribute="trailing" constant="10" id="cWq-VR-yXR"/>
+                            <constraint firstItem="L89-oB-MUP" firstAttribute="top" secondItem="uDO-QE-BN3" secondAttribute="top" constant="5" id="hgQ-EA-GeM"/>
+                            <constraint firstItem="9ne-0l-40v" firstAttribute="top" secondItem="uDO-QE-BN3" secondAttribute="top" constant="5" id="mDR-60-aSu"/>
+                            <constraint firstItem="L89-oB-MUP" firstAttribute="leading" secondItem="uDO-QE-BN3" secondAttribute="trailing" constant="11" id="o0y-Rt-2hg"/>
+                            <constraint firstItem="ACH-Gs-a2b" firstAttribute="leading" secondItem="L89-oB-MUP" secondAttribute="leading" id="pnd-fR-uwi"/>
+                            <constraint firstItem="lwV-KR-nVe" firstAttribute="top" secondItem="9ne-0l-40v" secondAttribute="bottom" constant="12" id="u6F-Zj-tD6"/>
+                            <constraint firstItem="ACH-Gs-a2b" firstAttribute="top" secondItem="L89-oB-MUP" secondAttribute="bottom" constant="12" id="u7b-CE-L10"/>
+                            <constraint firstItem="uDO-QE-BN3" firstAttribute="centerY" secondItem="itz-HH-x4T" secondAttribute="centerY" id="uIi-B2-oPZ"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="itz-HH-x4T" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="JV3-JS-XV3"/>
+                    <constraint firstItem="itz-HH-x4T" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="KWi-c4-jcV"/>
+                    <constraint firstAttribute="trailing" secondItem="itz-HH-x4T" secondAttribute="trailing" constant="10" id="Tdf-62-MJe"/>
+                    <constraint firstAttribute="bottom" secondItem="itz-HH-x4T" secondAttribute="bottom" constant="10" id="lnH-pp-Iu2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="aboutBtn" destination="9ne-0l-40v" id="Umb-Ri-yTb"/>
+                <outlet property="daysLbl" destination="fMF-DE-ciQ" id="dc5-ha-EPP"/>
+                <outlet property="imageViewGroup" destination="uDO-QE-BN3" id="e3Z-8J-yIJ"/>
+                <outlet property="noOfCounts" destination="lwV-KR-nVe" id="5QV-m5-PeX"/>
+                <outlet property="noOfUsers" destination="ACH-Gs-a2b" id="gsv-7x-owU"/>
+                <outlet property="userName" destination="L89-oB-MUP" id="l9w-gs-7CQ"/>
+            </connections>
+            <point key="canvasLocation" x="238.1679389312977" y="73.943661971830991"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="person.3" catalog="system" width="128" height="66"/>
+        <namedColor name="ABB0BA">
+            <color red="0.6705882352941176" green="0.69019607843137254" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

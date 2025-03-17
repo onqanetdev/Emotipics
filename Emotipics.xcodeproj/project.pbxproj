@@ -26,6 +26,10 @@
 		8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */; };
 		8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
+		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
+		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
+		8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */; };
+		8A3B82462D8820B800CFFC37 /* GroupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -83,6 +87,10 @@
 		8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 		8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalogueViewController.xib; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
+		8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
+		8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupListViewController.xib; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +253,33 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B82412D88205A00CFFC37 /* Views */,
+				8A3B82422D88207500CFFC37 /* GroupListTableView */,
+			);
+			path = GroupListViews;
+			sourceTree = "<group>";
+		};
+		8A3B82412D88205A00CFFC37 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */,
+				8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8A3B82422D88207500CFFC37 /* GroupListTableView */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */,
+				8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */,
+			);
+			path = GroupListTableView;
+			sourceTree = "<group>";
+		};
 		8A43537F2D75760600ABB7A0 = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +403,7 @@
 		8ABA8ABC2D771B4D003D4727 /* Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A3B823C2D881A8A00CFFC37 /* GroupListViews */,
 				8A241DEC2D80494E002D7BA8 /* Catalogues */,
 				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
 				8A0521612D79588700AE5FC4 /* AllTabScreens */,
@@ -462,6 +498,7 @@
 				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
 				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
 				8A4353B62D758F4700ABB7A0 /* jost_regular.ttf in Resources */,
+				8A3B82462D8820B800CFFC37 /* GroupListViewController.xib in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
 				8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */,
@@ -470,6 +507,7 @@
 				8A4353B92D758F4700ABB7A0 /* lato_bold.ttf in Resources */,
 				8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */,
 				8A4353C62D75AA1200ABB7A0 /* RegisterViewController.xib in Resources */,
+				8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */,
 				8A4353BB2D758F4700ABB7A0 /* lato_regular.ttf in Resources */,
 				8A4353A22D757D4F00ABB7A0 /* HomeViewController.xib in Resources */,
 			);
@@ -484,7 +522,9 @@
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
+				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
+				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
@@ -654,8 +694,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49WK7KKU4C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Emotipics/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -668,8 +710,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emotipics.Emotipics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.stayzapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -681,8 +724,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 49WK7KKU4C;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Emotipics/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -695,8 +740,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.emotipics.Emotipics;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.stayzapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
