@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,17 +20,17 @@
                         <rect key="frame" x="10" y="10" width="316" height="180"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uDO-QE-BN3">
-                                <rect key="frame" x="20" y="61" width="60" height="59.333333333333329"/>
+                                <rect key="frame" x="20" y="66" width="50" height="49.333333333333329"/>
                                 <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="EzR-33-pWa"/>
-                                    <constraint firstAttribute="height" constant="60" id="kZh-76-VNJ"/>
+                                    <constraint firstAttribute="width" constant="50" id="EzR-33-pWa"/>
+                                    <constraint firstAttribute="height" constant="50" id="kZh-76-VNJ"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudeepa Pal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L89-oB-MUP">
-                                <rect key="frame" x="91" y="65" width="98" height="19.333333333333329"/>
+                                <rect key="frame" x="81" y="70" width="98" height="19.333333333333329"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="PoC-lQ-ti7"/>
                                 </constraints>
@@ -40,16 +39,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACH-Gs-a2b">
-                                <rect key="frame" x="91" y="96.333333333333329" width="54" height="15"/>
+                                <rect key="frame" x="81" y="101.33333333333333" width="54" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="kk3-NS-260"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" name="ABB0BA"/>
+                                <color key="textColor" red="0.52549019607843139" green="0.52156862745098043" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ne-0l-40v">
-                                <rect key="frame" x="266" y="65" width="30" height="8"/>
+                                <rect key="frame" x="266" y="70" width="30" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="RW1-of-3re"/>
                                     <constraint firstAttribute="width" constant="30" id="dKZ-Z7-vpt"/>
@@ -61,19 +60,19 @@
                                 </buttonConfiguration>
                             </button>
                             <label userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwV-KR-nVe">
-                                <rect key="frame" x="266" y="85" width="30" height="30"/>
+                                <rect key="frame" x="266" y="90" width="30" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2mq-6O-CkU"/>
                                     <constraint firstAttribute="height" constant="30" id="sX7-LX-PUy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="17" height="7"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 day(s) ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-DE-ciQ">
-                                <rect key="frame" x="168" y="98" width="88" height="15"/>
+                                <rect key="frame" x="168" y="103" width="88" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="88" id="mXw-Ve-eEx"/>
                                 </constraints>
@@ -82,7 +81,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fMF-DE-ciQ" firstAttribute="bottom" secondItem="lwV-KR-nVe" secondAttribute="bottom" constant="-2" id="0GI-KL-JgQ"/>
                             <constraint firstItem="uDO-QE-BN3" firstAttribute="leading" secondItem="itz-HH-x4T" secondAttribute="leading" constant="20" id="46U-K3-WZQ"/>
@@ -109,6 +108,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="aboutBtn" destination="9ne-0l-40v" id="Umb-Ri-yTb"/>
+                <outlet property="backGrdView" destination="itz-HH-x4T" id="uJj-qW-7cc"/>
                 <outlet property="daysLbl" destination="fMF-DE-ciQ" id="dc5-ha-EPP"/>
                 <outlet property="imageViewGroup" destination="uDO-QE-BN3" id="e3Z-8J-yIJ"/>
                 <outlet property="noOfCounts" destination="lwV-KR-nVe" id="5QV-m5-PeX"/>
@@ -121,8 +121,5 @@
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="person.3" catalog="system" width="128" height="66"/>
-        <namedColor name="ABB0BA">
-            <color red="0.6705882352941176" green="0.69019607843137254" blue="0.72941176470588232" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>

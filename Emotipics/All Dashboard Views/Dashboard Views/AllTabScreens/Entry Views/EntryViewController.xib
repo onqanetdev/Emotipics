@@ -88,6 +88,7 @@
                                             <buttonConfiguration key="configuration" style="plain" image="bell" catalog="system"/>
                                             <connections>
                                                 <action selector="bellIconAction:" destination="-1" eventType="touchUpInside" id="TxG-s8-0y3"/>
+                                                <action selector="notificationViewAction:" destination="-1" eventType="touchUpInside" id="cw3-hJ-p74"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -473,7 +474,7 @@
         <image name="PriceTag" width="20" height="20"/>
         <image name="bell" catalog="system" width="125" height="128"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
-        <image name="ellipsis" catalog="system" width="32" height="32"/>
+        <image name="ellipsis" catalog="system" width="128" height="37"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

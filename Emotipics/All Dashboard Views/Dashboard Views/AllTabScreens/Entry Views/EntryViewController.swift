@@ -318,4 +318,17 @@ class EntryViewController: UIViewController {
         navigationController?.pushViewController(ContactsViewController(), animated: true)
         print("This is my all contacts")
     }
+    
+    
+    
+    @IBAction func notificationViewAction(_ sender: Any) {
+        let notificationView = GroupListViewController()
+        notificationView.notificationView = true
+       
+        navigationController?.pushViewController(notificationView, animated: true)
+        
+        
+    }
+    
+    
 }

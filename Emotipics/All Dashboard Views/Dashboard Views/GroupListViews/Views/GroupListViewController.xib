@@ -13,6 +13,7 @@
                 <outlet property="curvedView" destination="zLE-dB-r8W" id="obz-am-IAt"/>
                 <outlet property="groupHeadingLbl" destination="3Cq-6h-ggd" id="vAN-mr-16I"/>
                 <outlet property="tblViewForGroups" destination="SAD-WW-ZIZ" id="791-7Y-OjJ"/>
+                <outlet property="topConstraint" destination="r2A-uh-2dB" id="MaU-ud-12s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,17 +34,17 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zLE-dB-r8W">
                             <rect key="frame" x="0.0" y="205" width="393" height="647"/>
                             <subviews>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SAD-WW-ZIZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="647"/>
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SAD-WW-ZIZ">
+                                    <rect key="frame" x="0.0" y="10" width="393" height="637"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 </tableView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemMintColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="SAD-WW-ZIZ" secondAttribute="trailing" id="1CL-DI-NCm"/>
                                 <constraint firstItem="SAD-WW-ZIZ" firstAttribute="leading" secondItem="zLE-dB-r8W" secondAttribute="leading" id="XwX-Bo-bW5"/>
                                 <constraint firstAttribute="bottom" secondItem="SAD-WW-ZIZ" secondAttribute="bottom" id="bhL-5M-9pF"/>
-                                <constraint firstItem="SAD-WW-ZIZ" firstAttribute="top" secondItem="zLE-dB-r8W" secondAttribute="top" id="r2A-uh-2dB"/>
+                                <constraint firstItem="SAD-WW-ZIZ" firstAttribute="top" secondItem="zLE-dB-r8W" secondAttribute="top" constant="10" id="r2A-uh-2dB"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wZS-dV-C2j">
@@ -69,6 +70,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain"/>
+                                            <connections>
+                                                <action selector="backToPreVious:" destination="-1" eventType="touchUpInside" id="CN9-W8-Zj5"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -178,9 +182,6 @@
         <image name="loginBackground" width="402" height="874"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

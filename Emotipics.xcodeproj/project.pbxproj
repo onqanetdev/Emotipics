@@ -25,11 +25,17 @@
 		8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */; };
 		8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */; };
 		8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */; };
+		8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DED8D2D894D900057DFC0 /* GroupDetailViewCell.swift */; };
+		8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */; };
+		8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */; };
+		8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
 		8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */; };
 		8A3B82462D8820B800CFFC37 /* GroupListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */; };
+		8A3B824A2D88458F00CFFC37 /* NotificationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B82492D88458F00CFFC37 /* NotificationViewCell.xib */; };
+		8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B82482D88458F00CFFC37 /* NotificationViewCell.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -86,11 +92,17 @@
 		8A241DE42D803C03002D7BA8 /* FloatingBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingBtn.swift; sourceTree = "<group>"; };
 		8A241DEE2D804994002D7BA8 /* CatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueViewController.swift; sourceTree = "<group>"; };
 		8A241DEF2D804994002D7BA8 /* CatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CatalogueViewController.xib; sourceTree = "<group>"; };
+		8A2DED8D2D894D900057DFC0 /* GroupDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewCell.swift; sourceTree = "<group>"; };
+		8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailViewCell.xib; sourceTree = "<group>"; };
+		8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailViewController.xib; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
 		8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewController.swift; sourceTree = "<group>"; };
 		8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupListViewController.xib; sourceTree = "<group>"; };
+		8A3B82482D88458F00CFFC37 /* NotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewCell.swift; sourceTree = "<group>"; };
+		8A3B82492D88458F00CFFC37 /* NotificationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationViewCell.xib; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -253,6 +265,33 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		8A2DED8C2D894CF30057DFC0 /* Group Details View */ = {
+			isa = PBXGroup;
+			children = (
+				8A2DED912D897B020057DFC0 /* GroupDetailViewControllers */,
+				8A2DED932D897B5A0057DFC0 /* GroupDetailCell  */,
+			);
+			path = "Group Details View";
+			sourceTree = "<group>";
+		};
+		8A2DED912D897B020057DFC0 /* GroupDetailViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */,
+				8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */,
+			);
+			path = GroupDetailViewControllers;
+			sourceTree = "<group>";
+		};
+		8A2DED932D897B5A0057DFC0 /* GroupDetailCell  */ = {
+			isa = PBXGroup;
+			children = (
+				8A2DED8D2D894D900057DFC0 /* GroupDetailViewCell.swift */,
+				8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */,
+			);
+			path = "GroupDetailCell ";
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +319,15 @@
 			path = GroupListTableView;
 			sourceTree = "<group>";
 		};
+		8A3B82472D88455D00CFFC37 /* NotificationViews */ = {
+			isa = PBXGroup;
+			children = (
+				8A3B82482D88458F00CFFC37 /* NotificationViewCell.swift */,
+				8A3B82492D88458F00CFFC37 /* NotificationViewCell.xib */,
+			);
+			path = NotificationViews;
+			sourceTree = "<group>";
+		};
 		8A43537F2D75760600ABB7A0 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +347,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A3B82472D88455D00CFFC37 /* NotificationViews */,
 				8A241DE32D803BE1002D7BA8 /* FloationgView */,
 				8A48815A2D78249700EAB64B /* All Dashboard Views */,
 				8AB7D6832D76B28000B291BA /* Test Views */,
@@ -403,6 +452,7 @@
 		8ABA8ABC2D771B4D003D4727 /* Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A2DED8C2D894CF30057DFC0 /* Group Details View */,
 				8A3B823C2D881A8A00CFFC37 /* GroupListViews */,
 				8A241DEC2D80494E002D7BA8 /* Catalogues */,
 				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
@@ -489,8 +539,10 @@
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
 				8A4353C02D758F4700ABB7A0 /* poppins_semi_bold.ttf in Resources */,
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
+				8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */,
 				8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */,
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
+				8A3B824A2D88458F00CFFC37 /* NotificationViewCell.xib in Resources */,
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
@@ -503,6 +555,7 @@
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
 				8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */,
 				8A4353B32D758F4700ABB7A0 /* jost_bold.ttf in Resources */,
+				8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */,
 				8A4353BA2D758F4700ABB7A0 /* lato_light.ttf in Resources */,
 				8A4353B92D758F4700ABB7A0 /* lato_bold.ttf in Resources */,
 				8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */,
@@ -521,6 +574,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
+				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
+				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
@@ -543,6 +598,7 @@
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 			);

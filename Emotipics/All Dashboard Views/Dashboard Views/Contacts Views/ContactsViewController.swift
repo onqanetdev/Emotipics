@@ -31,6 +31,9 @@ class ContactsViewController: UIViewController {
     }()
     
     
+    
+    //var notificationView:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +49,7 @@ class ContactsViewController: UIViewController {
         
         contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
         
+    
         addPlusIcon()
         
         
@@ -80,13 +84,17 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
-       
-        return cell
+        
+
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
+           
+            return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+       
+            return 80
+      
     }
     
 
@@ -103,6 +111,7 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
 
        // Set header height
        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-           return 50 // Adjust the height as needed
+           return 50
+           
        }
 }

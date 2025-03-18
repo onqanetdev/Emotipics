@@ -11,9 +11,18 @@ class GroupTableViewCell: UITableViewCell {
 
     
     
+    @IBOutlet weak var backGrdView: UIView!{
+        didSet {
+            backGrdView.layer.cornerRadius  = 25
+            backGrdView.clipsToBounds = true
+        }
+    }
+    
+    
+    
     @IBOutlet weak var imageViewGroup: UIImageView!{
         didSet{
-            imageViewGroup.layer.cornerRadius = 30
+            imageViewGroup.layer.cornerRadius = 25
             imageViewGroup.clipsToBounds = true
         }
     }
@@ -42,7 +51,7 @@ class GroupTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        userName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 15)
+        userName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         noOfUsers.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
         daysLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
         noOfCounts.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 12)
