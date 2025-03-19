@@ -143,6 +143,8 @@
 //        }
 //}
 
+
+
 import UIKit
 import Foundation
 
@@ -156,6 +158,11 @@ extension DashboardViewController: UITabBarControllerDelegate {
         tabBarController.tabBar.isTranslucent = false
         tabBarController.tabBar.backgroundColor = .clear
         
+        
+        
+       
+            tabBarController.tabBar.tintColor = .gray
+        
         // Add custom background image
         if let tabBarImage = UIImage(named: "TabbarBackGround") {
             let imageView = UIImageView(image: tabBarImage)
@@ -166,6 +173,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
                 width: tabBarController.tabBar.bounds.width,
                 height: tabBarController.tabBar.bounds.height + 10
             )
+            imageView.tintColor = .brown
             tabBarController.tabBar.insertSubview(imageView, at: 0)
         }
         
@@ -173,6 +181,12 @@ extension DashboardViewController: UITabBarControllerDelegate {
         let homeTab = EntryViewController()
        // self.navigationController?.pushViewController(homeTab, animated: true)
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "HomeDash"), tag: 0)
+        homeTab.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(named: "HomeDash")?.withRenderingMode(.alwaysOriginal), // Preserve original image color
+            selectedImage: UIImage(named: "HomeDash")?.withTintColor(.systemBlue, renderingMode: .alwaysOriginal) // Set brown color
+        )
+        
         
        // let catalogueTab = UIViewController()
         let catalogueTab = EntryViewController()
@@ -228,7 +242,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
             case 0:
                 
                 
-                self.navigationController?.pushViewController(EntryViewController(), animated: true)
+//                self.navigationController?.pushViewController(EntryViewController(), animated: true)
                 print("Nothing From Here")
                 
             case 1:
