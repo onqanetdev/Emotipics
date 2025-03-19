@@ -46,6 +46,38 @@ class GroupDetailViewController: UIViewController {
     
     
     @IBOutlet weak var ContentView: UIView!
+
+    
+    @IBOutlet weak var shareFilesBtn: UIButton!{
+        didSet {
+            shareFilesBtn.layer.cornerRadius = 25
+            shareFilesBtn.clipsToBounds = true
+            shareFilesBtn.layer.borderWidth = 1
+            shareFilesBtn.layer.borderColor = #colorLiteral(red: 0, green: 0.1647058824, blue: 0.3450980392, alpha: 1)
+            shareFilesBtn.titleLabel?.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 18)
+        }
+    }
+    
+    
+    @IBOutlet weak var userGroupName: UILabel!{
+        didSet{
+            userGroupName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 16)
+        }
+    }
+    
+    
+    
+    @IBOutlet weak var tenUsers: UILabel!{
+        didSet {
+            tenUsers.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     
     

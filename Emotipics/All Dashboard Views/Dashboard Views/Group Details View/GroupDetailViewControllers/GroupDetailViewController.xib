@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,8 +16,11 @@
                 <outlet property="groupIconImgView" destination="lqA-ds-7VT" id="LHF-hi-Ovk"/>
                 <outlet property="roundedView" destination="me1-fN-hSm" id="6sn-z6-ySD"/>
                 <outlet property="scrollViewHeight" destination="tAg-kz-a3p" id="pZl-zO-oeE"/>
+                <outlet property="shareFilesBtn" destination="bTz-YN-mPU" id="dYx-KZ-1NR"/>
                 <outlet property="tblViewHeight" destination="25W-fb-J7t" id="mcx-dk-P8K"/>
+                <outlet property="tenUsers" destination="TC6-IB-wrp" id="baz-Zm-5Ni"/>
                 <outlet property="topView" destination="EzJ-vg-6my" id="0UX-Ne-L3a"/>
+                <outlet property="userGroupName" destination="nzD-sC-9a2" id="f6R-7S-BG3"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -157,7 +161,7 @@
                     </constraints>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwT-A6-S7F">
-                    <rect key="frame" x="0.0" y="199" width="393" height="619"/>
+                    <rect key="frame" x="0.0" y="187" width="393" height="631"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vak-7F-ZUp" userLabel="Content View">
                             <rect key="frame" x="0.0" y="2" width="393" height="800"/>
@@ -263,6 +267,21 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="FXt-pK-CtD"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="N8F-fQ-DbM"/>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bTz-YN-mPU">
+                    <rect key="frame" x="15" y="763" width="363" height="55"/>
+                    <color key="backgroundColor" red="0.81960784310000001" green="0.90588235289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="71Q-X1-8sl"/>
+                    </constraints>
+                    <color key="tintColor" red="0.0" green="0.16470588235294117" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="titleEdgeInsets" minX="-68" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="185" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Share Files">
+                        <color key="titleColor" red="0.0" green="0.16470588235294117" blue="0.34509803921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <imageReference key="image" image="plus.circle.fill" catalog="system" variableValue="0.0"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="light"/>
+                    </state>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -270,11 +289,14 @@
                 <constraint firstItem="H0c-XE-Nmp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7n7-0O-KTR"/>
                 <constraint firstAttribute="trailing" secondItem="H0c-XE-Nmp" secondAttribute="trailing" id="Inm-vp-MSt"/>
                 <constraint firstItem="H0c-XE-Nmp" firstAttribute="bottom" secondItem="me1-fN-hSm" secondAttribute="bottom" id="K97-6E-jtW"/>
+                <constraint firstAttribute="trailing" secondItem="bTz-YN-mPU" secondAttribute="trailing" constant="15" id="LkQ-FY-xi5"/>
+                <constraint firstItem="bTz-YN-mPU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="MsV-40-gAN"/>
                 <constraint firstItem="me1-fN-hSm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="O7Y-lp-CEc"/>
                 <constraint firstAttribute="trailing" secondItem="MwT-A6-S7F" secondAttribute="trailing" id="SQA-G0-rOp"/>
                 <constraint firstItem="H0c-XE-Nmp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aB7-Bh-erk"/>
                 <constraint firstAttribute="trailing" secondItem="me1-fN-hSm" secondAttribute="trailing" id="gtc-Ib-k57"/>
-                <constraint firstItem="MwT-A6-S7F" firstAttribute="top" secondItem="me1-fN-hSm" secondAttribute="bottom" constant="-78" id="j1a-hJ-EtE"/>
+                <constraint firstItem="MwT-A6-S7F" firstAttribute="top" secondItem="me1-fN-hSm" secondAttribute="bottom" constant="-90" id="j1a-hJ-EtE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bTz-YN-mPU" secondAttribute="bottom" id="r8L-yP-t0b"/>
                 <constraint firstItem="MwT-A6-S7F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="srA-kX-xq1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="MwT-A6-S7F" secondAttribute="bottom" id="tJc-kd-Sai"/>
             </constraints>
@@ -289,6 +311,7 @@
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="loginBackground" width="402" height="874"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

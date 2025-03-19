@@ -27,10 +27,18 @@ class GroupDetailViewCell: UITableViewCell {
     }
     
     
-    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userName: UILabel!{
+        didSet{
+            userName.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 13)
+        }
+    }
     
     
-    @IBOutlet weak var sendingTime: UILabel!
+    @IBOutlet weak var sendingTime: UILabel!{
+        didSet{
+            sendingTime.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        }
+    }
     
     
     @IBOutlet weak var userProfilephoto: UIImageView!
@@ -48,6 +56,7 @@ class GroupDetailViewCell: UITableViewCell {
         didSet{
             downLoadBtn.layer.cornerRadius = 15
             downLoadBtn.clipsToBounds = true
+            downLoadBtn.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
         }
     }
     
