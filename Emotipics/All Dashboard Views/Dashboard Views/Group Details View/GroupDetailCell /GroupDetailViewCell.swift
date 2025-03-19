@@ -18,7 +18,66 @@ class GroupDetailViewCell: UITableViewCell {
     
     
     
-    @IBOutlet weak var partyImageView: UIImageView!
+    @IBOutlet weak var partyImageView: UIImageView! {
+        didSet {
+            partyImageView.layer.cornerRadius = 15
+            
+            partyImageView.clipsToBounds = true
+        }
+    }
+    
+    
+    @IBOutlet weak var userName: UILabel!
+    
+    
+    @IBOutlet weak var sendingTime: UILabel!
+    
+    
+    @IBOutlet weak var userProfilephoto: UIImageView!
+    
+    
+    @IBOutlet weak var partyImgPhoto: UIImageView! {
+        didSet{
+            partyImgPhoto.layer.cornerRadius = 15
+            partyImgPhoto.clipsToBounds = true
+        }
+    }
+    
+    
+    @IBOutlet weak var downLoadBtn: UIButton!{
+        didSet{
+            downLoadBtn.layer.cornerRadius = 15
+            downLoadBtn.clipsToBounds = true
+        }
+    }
+    
+    
+    @IBOutlet weak var photoIcon: UIImageView!{
+        didSet{
+            photoIcon.layer.cornerRadius = 15
+            photoIcon.clipsToBounds = true
+        }
+    }
+    
+    @IBOutlet weak var selectEmojiBtn: UIButton! {
+        didSet{
+            selectEmojiBtn.layer.cornerRadius = 8
+            selectEmojiBtn.clipsToBounds = true
+        }
+    }
+    
+    
+    
+    @IBOutlet weak var allEmojiBtn: UIButton!{
+        didSet {
+            allEmojiBtn.layer.cornerRadius = 10
+            allEmojiBtn.clipsToBounds = true
+        }
+    }
+    
+    
+    
+    
     
     
     override func awakeFromNib() {

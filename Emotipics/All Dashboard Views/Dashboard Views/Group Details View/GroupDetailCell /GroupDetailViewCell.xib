@@ -5,93 +5,138 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailChat" rowHeight="300" id="KGk-i7-Jjw" customClass="GroupDetailViewCell" customModule="Emotipics" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailChat" rowHeight="300" id="KGk-i7-Jjw" customClass="GroupDetailViewCell" customModule="Emotipics">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qe-8Q-G1Q">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="6:32 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiU-Hg-Nqj">
-                                <rect key="frame" x="275" y="227" width="69" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jhon Doe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQN-mS-WJa">
+                                <rect key="frame" x="258" y="14.333333333333336" width="67" height="15.666666666666664"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="NOC-Ho-4f5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.52549019610000003" green="0.52156862749999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Jhon Doe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQN-mS-WJa">
-                                <rect key="frame" x="280" y="14" width="67" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OE7-KU-2NO">
-                                <rect key="frame" x="106" y="228" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.81960784310000001" green="0.90588235289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="smiley" catalog="system" symbolScale="small"/>
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
-                                </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCF-bK-ww1">
-                                <rect key="frame" x="30" y="230" width="73" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCF-bK-ww1">
+                                <rect key="frame" x="20" y="245" width="73" height="23"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="73" id="VWv-m3-8CI"/>
+                                    <constraint firstAttribute="height" constant="23" id="dF4-p0-Rua"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray">
                                     <backgroundConfiguration key="background" image="LongEmoji" imageContentMode="scaleAspectFill"/>
+                                    <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R8N-5b-EPS">
-                                <rect key="frame" x="26" y="40" width="317" height="167"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8N-5b-EPS">
+                                <rect key="frame" x="20" y="38" width="300" height="200"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Party" translatesAutoresizingMaskIntoConstraints="NO" id="oYq-0q-2b5">
-                                        <rect key="frame" x="29" y="9" width="253" height="148"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Party" translatesAutoresizingMaskIntoConstraints="NO" id="oYq-0q-2b5">
+                                        <rect key="frame" x="10" y="10" width="280" height="180"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8l-9Q-wHT">
-                                        <rect key="frame" x="184" y="136" width="91" height="17"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g8l-9Q-wHT">
+                                        <rect key="frame" x="181" y="149" width="102" height="30"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="10"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="102" id="d3u-Ao-nNM"/>
+                                            <constraint firstAttribute="height" constant="30" id="mZk-Wi-LRG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".SFNS-Regular" family=".AppleSystemUIFont" pointSize="14"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Download" image="Download">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rop-On-lHT">
-                                        <rect key="frame" x="44" y="127.33333333333337" width="29" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rop-On-lHT">
+                                        <rect key="frame" x="16" y="159.33333333333334" width="30" height="25.333333333333343"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0jx-U4-zAx"/>
+                                            <constraint firstAttribute="width" constant="30" id="cit-LW-GKa"/>
+                                        </constraints>
                                         <imageReference key="image" image="photo" catalog="system" symbolScale="small"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small" weight="light"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small" weight="light"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="g8l-9Q-wHT" secondAttribute="trailing" constant="17" id="7cn-FS-Hnx"/>
+                                    <constraint firstAttribute="bottom" secondItem="rop-On-lHT" secondAttribute="bottom" constant="13" id="A7J-fA-E4y"/>
+                                    <constraint firstItem="oYq-0q-2b5" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" constant="10" id="BUn-k9-3bR"/>
+                                    <constraint firstItem="rop-On-lHT" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" constant="16" id="GuL-jn-7Lo"/>
+                                    <constraint firstAttribute="bottom" secondItem="oYq-0q-2b5" secondAttribute="bottom" constant="10" id="VQb-ae-YVs"/>
+                                    <constraint firstAttribute="height" constant="200" id="WBl-0Q-kLC"/>
+                                    <constraint firstItem="oYq-0q-2b5" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="top" constant="10" id="WXs-TD-VhX"/>
+                                    <constraint firstAttribute="width" constant="300" id="hpX-AJ-YpS"/>
+                                    <constraint firstAttribute="trailing" secondItem="oYq-0q-2b5" secondAttribute="trailing" constant="10" id="mx5-hb-kQi"/>
+                                    <constraint firstAttribute="bottom" secondItem="g8l-9Q-wHT" secondAttribute="bottom" constant="21" id="r3o-o4-dYh"/>
+                                </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ProfilePhotobg" translatesAutoresizingMaskIntoConstraints="NO" id="B5P-bc-jwN">
-                                <rect key="frame" x="350" y="199" width="42" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePhotobg" translatesAutoresizingMaskIntoConstraints="NO" id="B5P-bc-jwN">
+                                <rect key="frame" x="329" y="247" width="40" height="40"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="7qK-AH-eLq"/>
+                                    <constraint firstAttribute="height" constant="40" id="kF9-lE-XHN"/>
+                                </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OE7-KU-2NO">
+                                <rect key="frame" x="96" y="245" width="24" height="24"/>
+                                <color key="backgroundColor" red="0.81960784310000001" green="0.90588235289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="JdV-AG-qk4"/>
+                                    <constraint firstAttribute="width" constant="24" id="Yyx-Lo-4LD"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="AddEmoji" symbolScale="small"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="light"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6:32 pm" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wiU-Hg-Nqj">
+                                <rect key="frame" x="249" y="256" width="70" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="2N4-vG-Uzq"/>
+                                    <constraint firstAttribute="width" constant="70" id="gw1-ad-NJ0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="R8N-5b-EPS" firstAttribute="top" secondItem="fQN-mS-WJa" secondAttribute="bottom" constant="8" id="43i-en-sTo"/>
+                            <constraint firstItem="wiU-Hg-Nqj" firstAttribute="bottom" secondItem="OE7-KU-2NO" secondAttribute="bottom" constant="5" id="BLc-Fe-NCn"/>
+                            <constraint firstItem="B5P-bc-jwN" firstAttribute="leading" secondItem="OE7-KU-2NO" secondAttribute="trailing" constant="209" id="Fov-Fr-zhL"/>
+                            <constraint firstItem="OE7-KU-2NO" firstAttribute="leading" secondItem="oCF-bK-ww1" secondAttribute="trailing" constant="3" id="Gni-Ld-i2Y"/>
+                            <constraint firstItem="R8N-5b-EPS" firstAttribute="top" secondItem="5qe-8Q-G1Q" secondAttribute="top" constant="38" id="HMH-q5-ch4"/>
+                            <constraint firstItem="B5P-bc-jwN" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="9" id="IB9-Jh-jZw"/>
+                            <constraint firstItem="oCF-bK-ww1" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="7" id="K19-RJ-3F8"/>
+                            <constraint firstItem="OE7-KU-2NO" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="7" id="Q3T-Sg-8s7"/>
+                            <constraint firstItem="fQN-mS-WJa" firstAttribute="trailing" secondItem="R8N-5b-EPS" secondAttribute="trailing" constant="5" id="dRk-El-UGK"/>
+                            <constraint firstItem="R8N-5b-EPS" firstAttribute="leading" secondItem="5qe-8Q-G1Q" secondAttribute="leading" constant="20" id="eIr-ww-BNy"/>
+                            <constraint firstItem="oCF-bK-ww1" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" id="lJn-Ru-Nr7"/>
+                            <constraint firstItem="wiU-Hg-Nqj" firstAttribute="leading" secondItem="OE7-KU-2NO" secondAttribute="trailing" constant="129" id="wVV-Yf-DaP"/>
+                        </constraints>
                     </view>
                 </subviews>
                 <constraints>
@@ -104,23 +149,25 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ImageViewBackground" destination="R8N-5b-EPS" id="upL-8K-Iwr"/>
+                <outlet property="allEmojiBtn" destination="oCF-bK-ww1" id="0Jq-0r-pR5"/>
+                <outlet property="downLoadBtn" destination="g8l-9Q-wHT" id="k0s-sc-R3c"/>
                 <outlet property="partyImageView" destination="oYq-0q-2b5" id="kRv-bg-t5X"/>
+                <outlet property="partyImgPhoto" destination="oYq-0q-2b5" id="TCQ-Uq-N8Z"/>
+                <outlet property="photoIcon" destination="rop-On-lHT" id="vaY-Sk-zqP"/>
+                <outlet property="selectEmojiBtn" destination="OE7-KU-2NO" id="lmO-5g-wWg"/>
+                <outlet property="sendingTime" destination="wiU-Hg-Nqj" id="VhD-EY-UE5"/>
+                <outlet property="userName" destination="fQN-mS-WJa" id="rC8-6V-SHH"/>
+                <outlet property="userProfilephoto" destination="B5P-bc-jwN" id="dLT-3E-q0K"/>
             </connections>
-            <point key="canvasLocation" x="242.74809160305344" y="79.577464788732399"/>
+            <point key="canvasLocation" x="280.91603053435114" y="79.577464788732399"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="AddEmoji" width="14" height="15"/>
         <image name="Download" width="12" height="12"/>
         <image name="LongEmoji" width="204" height="72"/>
         <image name="Party" width="1000" height="667"/>
         <image name="ProfilePhotobg" width="108" height="108"/>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="smiley" catalog="system" width="128" height="123"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
     </resources>
 </document>
