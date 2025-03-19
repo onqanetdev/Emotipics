@@ -111,6 +111,17 @@ class SharedCatalogueViewController: UIViewController {
     }
     
     
+    
+    
+    
+    @IBAction func backToPrevious(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+    
     @IBAction func changingSegments(_ sender: Any) {
         
         UIView.animate(withDuration: 0.3) {

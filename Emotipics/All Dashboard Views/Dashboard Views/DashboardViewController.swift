@@ -27,7 +27,9 @@ class DashboardViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        let testViewController = EntryViewController()
 
+       
         setupTabBarController()
     }
     
