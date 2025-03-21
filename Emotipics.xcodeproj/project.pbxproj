@@ -71,6 +71,11 @@
 		8ABA8AB62D770848003D4727 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8ABA8AB52D770848003D4727 /* IQKeyboardManagerSwift */; };
 		8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */; };
 		8ABA8AC02D771B69003D4727 /* DashboardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABA8ABE2D771B69003D4727 /* DashboardViewController.xib */; };
+		8ABB968F2D8D39960032E6DA /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB968E2D8D39960032E6DA /* ProfileViewController.xib */; };
+		8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB968D2D8D39960032E6DA /* ProfileViewController.swift */; };
+		8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */; };
+		8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */; };
+		8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -139,6 +144,11 @@
 		8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
 		8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		8ABA8ABE2D771B69003D4727 /* DashboardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardViewController.xib; sourceTree = "<group>"; };
+		8ABB968D2D8D39960032E6DA /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		8ABB968E2D8D39960032E6DA /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +357,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8ABB968C2D8D38C60032E6DA /* ProfileView */,
 				8A3B82472D88455D00CFFC37 /* NotificationViews */,
 				8A241DE32D803BE1002D7BA8 /* FloationgView */,
 				8A48815A2D78249700EAB64B /* All Dashboard Views */,
@@ -464,6 +475,34 @@
 			path = "Dashboard Views";
 			sourceTree = "<group>";
 		};
+		8ABB968C2D8D38C60032E6DA /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				8ABB969E2D8D6F4F0032E6DA /* Profile Manager */,
+				8ABB96912D8D3B320032E6DA /* Profile Cells */,
+				8ABB968D2D8D39960032E6DA /* ProfileViewController.swift */,
+				8ABB968E2D8D39960032E6DA /* ProfileViewController.xib */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		8ABB96912D8D3B320032E6DA /* Profile Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */,
+				8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */,
+			);
+			path = "Profile Cells";
+			sourceTree = "<group>";
+		};
+		8ABB969E2D8D6F4F0032E6DA /* Profile Manager */ = {
+			isa = PBXGroup;
+			children = (
+				8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */,
+			);
+			path = "Profile Manager";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -536,6 +575,7 @@
 				8A4353982D75760900ABB7A0 /* Base in Resources */,
 				8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
+				8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */,
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
 				8A4353C02D758F4700ABB7A0 /* poppins_semi_bold.ttf in Resources */,
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
@@ -546,6 +586,7 @@
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
+				8ABB968F2D8D39960032E6DA /* ProfileViewController.xib in Resources */,
 				8A4353B82D758F4700ABB7A0 /* lato_black.ttf in Resources */,
 				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
 				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
@@ -575,6 +616,7 @@
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
+				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
@@ -584,8 +626,10 @@
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
+				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
+				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
@@ -753,7 +797,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 49WK7KKU4C;
+				DEVELOPMENT_TEAM = 5YGAMY496T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Emotipics/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -766,7 +810,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.stayzapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Emotipics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -783,7 +827,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 49WK7KKU4C;
+				DEVELOPMENT_TEAM = 5YGAMY496T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Emotipics/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -796,7 +840,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ios.stayzapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ios.Emotipics;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

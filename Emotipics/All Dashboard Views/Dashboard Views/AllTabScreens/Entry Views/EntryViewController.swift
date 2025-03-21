@@ -20,6 +20,7 @@ class EntryViewController: UIViewController {
         }
     }
     
+    private let sideMenuManager = SideMenuManager()
     
     //The Oval Card
     
@@ -215,6 +216,9 @@ class EntryViewController: UIViewController {
         setupPecentageLbl()
        
         
+        
+        sideMenuManager.setup(in: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -288,20 +292,7 @@ class EntryViewController: UIViewController {
     }
     
     
-    
-//    private func settinUpPlus() {
-//        guard let tabBar = tabBarController?.tabBar else { return }
-//        view.addSubview(plusView)
-//        NSLayoutConstraint.activate([
-//            plusView.bottomAnchor.constraint(equalTo: tabBar.topAnchor, constant: 100),
-//            plusView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            plusView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
-//            plusView.heightAnchor.constraint(equalToConstant: 200)
-//            
-//        ])
-//    }
-    
-    
+
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
@@ -330,6 +321,18 @@ class EntryViewController: UIViewController {
         
         
     }
+    
+    
+    
+    @IBAction func myProfileView(_ sender: Any) {
+        
+        
+        print("My Profile is Showing")
+        sideMenuManager.toggleSideMenu()
+    }
+    
+    
+    
     
     
 }

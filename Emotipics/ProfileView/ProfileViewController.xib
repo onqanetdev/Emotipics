@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Inter-Regular.ttf">
+            <string>Inter-Regular</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Emotipics" customModuleProvider="target">
+            <connections>
+                <outlet property="sideMenuTableView" destination="jxY-aD-Ilg" id="tGJ-ld-cyO"/>
+                <outlet property="userEmail" destination="vZa-bf-v0e" id="IQy-bn-3fy"/>
+                <outlet property="userName" destination="ewc-Pg-OkZ" id="ZqW-3s-HFF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcI-ho-asT">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aOI-2w-lEk">
+                            <rect key="frame" x="16" y="64" width="84" height="82.666666666666686"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="84" id="aFj-nJ-Yky"/>
+                                <constraint firstAttribute="width" constant="84" id="t2p-Rg-HLL"/>
+                            </constraints>
+                        </imageView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UGR-Vu-fFO">
+                            <rect key="frame" x="108" y="77" width="275" height="50.666666666666657"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Biltu Das" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewc-Pg-OkZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="275" height="25.333333333333332"/>
+                                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2l-bj-JoH">
+                                    <rect key="frame" x="0.0" y="25.333333333333329" width="275" height="25.333333333333329"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biltu@onqanet.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZa-bf-v0e">
+                                            <rect key="frame" x="0.0" y="2" width="151" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="BTE-rj-4zz"/>
+                                                <constraint firstAttribute="width" constant="151" id="gRD-qU-Gyc"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                            <color key="textColor" red="0.98823529480000005" green="0.98823529480000005" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstItem="vZa-bf-v0e" firstAttribute="top" secondItem="H2l-bj-JoH" secondAttribute="top" constant="2" id="GzM-kr-Rxc"/>
+                                        <constraint firstItem="vZa-bf-v0e" firstAttribute="leading" secondItem="H2l-bj-JoH" secondAttribute="leading" id="MZc-rz-WK8"/>
+                                        <constraint firstAttribute="height" constant="25.329999999999998" id="Q2W-5F-wLr"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="UGR-Vu-fFO" secondAttribute="trailing" constant="10" id="9pw-3I-aSp"/>
+                        <constraint firstItem="UGR-Vu-fFO" firstAttribute="leading" secondItem="aOI-2w-lEk" secondAttribute="trailing" constant="8" symbolic="YES" id="Dt6-BX-hfs"/>
+                        <constraint firstItem="aOI-2w-lEk" firstAttribute="leading" secondItem="dcI-ho-asT" secondAttribute="leading" constant="16" id="HQy-c0-UGb"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="J7O-St-dcR"/>
+                        <constraint firstItem="UGR-Vu-fFO" firstAttribute="top" secondItem="dcI-ho-asT" secondAttribute="top" constant="77" id="MaU-uj-qmd"/>
+                        <constraint firstItem="aOI-2w-lEk" firstAttribute="top" secondItem="dcI-ho-asT" secondAttribute="top" constant="63" id="q2o-Ii-OQU"/>
+                        <constraint firstAttribute="height" constant="200" id="sP8-qV-cwp"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jxY-aD-Ilg">
+                    <rect key="frame" x="0.0" y="200" width="393" height="602"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="dcI-ho-asT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7pL-Xv-Kue"/>
+                <constraint firstAttribute="bottom" secondItem="jxY-aD-Ilg" secondAttribute="bottom" constant="50" id="AnA-3E-pg8"/>
+                <constraint firstAttribute="trailing" secondItem="jxY-aD-Ilg" secondAttribute="trailing" id="W9E-EI-48h"/>
+                <constraint firstItem="jxY-aD-Ilg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ylq-rN-s0P"/>
+                <constraint firstItem="dcI-ho-asT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="a8O-ML-cy3"/>
+                <constraint firstItem="jxY-aD-Ilg" firstAttribute="top" secondItem="dcI-ho-asT" secondAttribute="bottom" id="erM-or-O8p"/>
+                <constraint firstAttribute="trailing" secondItem="dcI-ho-asT" secondAttribute="trailing" id="fr4-Qs-bET"/>
+            </constraints>
+            <point key="canvasLocation" x="25" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
