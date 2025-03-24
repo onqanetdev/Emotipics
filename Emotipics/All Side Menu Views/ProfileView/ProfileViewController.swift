@@ -77,6 +77,23 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
         
         if contentsTitle[indexPath.row] == "My Account" {
             navigationController?.pushViewController(MyAccountDetailsVC(), animated: true)
+        } else if contentsTitle[indexPath.row] == "About Us" {
+            let aboutUs = AboutUsVC()
+            aboutUs.aboutUsTitleText = "About Us"
+            navigationController?.pushViewController(aboutUs, animated: true)
+            //navigationController?.pushViewController(AboutUsVC(), animated: true)
+            
+            
+        } else if contentsTitle[indexPath.row] == "Terms & Conditions" {
+            let termsView = AboutUsVC()
+            termsView.aboutUsTitleText = "Terms & Conditions"
+            //termsView.aboutusTitle.text = "Terms & Conditions"
+            navigationController?.pushViewController(termsView, animated: true)
+        } else if contentsTitle[indexPath.row] == "Support" {
+            let supportView = AboutUsVC()
+            supportView.aboutUsTitleText = "Support"
+            //supportView.aboutusTitle.text = "Support"
+            navigationController?.pushViewController(supportView, animated: true)
         }
     }
     

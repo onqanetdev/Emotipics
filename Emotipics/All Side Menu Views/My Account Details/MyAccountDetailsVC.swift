@@ -54,6 +54,16 @@ class MyAccountDetailsVC: UIViewController {
         userEmailLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 15)
         myAccountLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 19)
     }
+    
+    
+    
+    
+    @IBAction func backToPrevious(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
 }
 
 

@@ -64,6 +64,8 @@
 		8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */; };
 		8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */; };
 		8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */; };
+		8A53333A2D913AAC00B524A7 /* AboutUsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333392D913AAC00B524A7 /* AboutUsVC.xib */; };
+		8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333382D913AAC00B524A7 /* AboutUsVC.swift */; };
 		8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */; };
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
@@ -140,6 +142,8 @@
 		8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardView+extension.swift"; sourceTree = "<group>"; };
 		8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountDetailsVC.swift; sourceTree = "<group>"; };
 		8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountDetailsVC.xib; sourceTree = "<group>"; };
+		8A5333382D913AAC00B524A7 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
+		8A5333392D913AAC00B524A7 /* AboutUsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsVC.xib; sourceTree = "<group>"; };
 		8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCatalogueViewController.swift; sourceTree = "<group>"; };
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
@@ -440,6 +444,7 @@
 		8A5333312D91144200B524A7 /* All Side Menu Views */ = {
 			isa = PBXGroup;
 			children = (
+				8A5333372D913A5300B524A7 /* About Us */,
 				8A5333322D9114EF00B524A7 /* My Account Details */,
 				8ABB968C2D8D38C60032E6DA /* ProfileView */,
 			);
@@ -453,6 +458,15 @@
 				8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */,
 			);
 			path = "My Account Details";
+			sourceTree = "<group>";
+		};
+		8A5333372D913A5300B524A7 /* About Us */ = {
+			isa = PBXGroup;
+			children = (
+				8A5333382D913AAC00B524A7 /* AboutUsVC.swift */,
+				8A5333392D913AAC00B524A7 /* AboutUsVC.xib */,
+			);
+			path = "About Us";
 			sourceTree = "<group>";
 		};
 		8AA25B902D82A1920093F3F1 /* Shared Catalogues */ = {
@@ -625,6 +639,7 @@
 				8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */,
 				8A4353C62D75AA1200ABB7A0 /* RegisterViewController.xib in Resources */,
 				8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */,
+				8A53333A2D913AAC00B524A7 /* AboutUsVC.xib in Resources */,
 				8A4353BB2D758F4700ABB7A0 /* lato_regular.ttf in Resources */,
 				8A4353A22D757D4F00ABB7A0 /* HomeViewController.xib in Resources */,
 			);
@@ -647,6 +662,7 @@
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
+				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
