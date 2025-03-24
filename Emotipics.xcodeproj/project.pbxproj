@@ -66,6 +66,8 @@
 		8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */; };
 		8A53333A2D913AAC00B524A7 /* AboutUsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333392D913AAC00B524A7 /* AboutUsVC.xib */; };
 		8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333382D913AAC00B524A7 /* AboutUsVC.swift */; };
+		8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A53333D2D915BCF00B524A7 /* NotificationDetailsVC.swift */; };
+		8A5333402D915BCF00B524A7 /* NotificationDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A53333E2D915BCF00B524A7 /* NotificationDetailsVC.xib */; };
 		8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */; };
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
@@ -144,6 +146,8 @@
 		8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountDetailsVC.xib; sourceTree = "<group>"; };
 		8A5333382D913AAC00B524A7 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		8A5333392D913AAC00B524A7 /* AboutUsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutUsVC.xib; sourceTree = "<group>"; };
+		8A53333D2D915BCF00B524A7 /* NotificationDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationDetailsVC.swift; sourceTree = "<group>"; };
+		8A53333E2D915BCF00B524A7 /* NotificationDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationDetailsVC.xib; sourceTree = "<group>"; };
 		8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCatalogueViewController.swift; sourceTree = "<group>"; };
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 		8A3B82472D88455D00CFFC37 /* NotificationViews */ = {
 			isa = PBXGroup;
 			children = (
+				8A53333C2D915AAF00B524A7 /* NotificationDetailsViews */,
 				8A3B82482D88458F00CFFC37 /* NotificationViewCell.swift */,
 				8A3B82492D88458F00CFFC37 /* NotificationViewCell.xib */,
 			);
@@ -467,6 +472,15 @@
 				8A5333392D913AAC00B524A7 /* AboutUsVC.xib */,
 			);
 			path = "About Us";
+			sourceTree = "<group>";
+		};
+		8A53333C2D915AAF00B524A7 /* NotificationDetailsViews */ = {
+			isa = PBXGroup;
+			children = (
+				8A53333D2D915BCF00B524A7 /* NotificationDetailsVC.swift */,
+				8A53333E2D915BCF00B524A7 /* NotificationDetailsVC.xib */,
+			);
+			path = NotificationDetailsViews;
 			sourceTree = "<group>";
 		};
 		8AA25B902D82A1920093F3F1 /* Shared Catalogues */ = {
@@ -627,6 +641,7 @@
 				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
 				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
 				8A4353B62D758F4700ABB7A0 /* jost_regular.ttf in Resources */,
+				8A5333402D915BCF00B524A7 /* NotificationDetailsVC.xib in Resources */,
 				8A3B82462D8820B800CFFC37 /* GroupListViewController.xib in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
@@ -658,6 +673,7 @@
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
+				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,

@@ -142,8 +142,16 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let groupDetailView = GroupDetailViewController()
-        navigationController?.pushViewController(groupDetailView, animated: true)
+        
+        if notificationView {
+            print("This is notification view")
+            let notificationDetailsView = NotificationDetailsVC()
+            navigationController?.pushViewController(notificationDetailsView, animated: true)
+            
+        } else {
+            let groupDetailView = GroupDetailViewController()
+            navigationController?.pushViewController(groupDetailView, animated: true)
+        }
     }
     
 }
