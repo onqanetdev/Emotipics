@@ -67,6 +67,19 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 57
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+       // print("The title of the Row", contentsTitle[indexPath.row])
+        
+        if contentsTitle[indexPath.row] == "My Account" {
+            navigationController?.pushViewController(MyAccountDetailsVC(), animated: true)
+        }
+    }
+    
+    
+    
 }

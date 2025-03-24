@@ -156,7 +156,7 @@
                         <constraint firstAttribute="height" constant="230" id="xRY-3T-2lO"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aff-v3-17I">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aff-v3-17I" userLabel="CurvedBackground">
                     <rect key="frame" x="0.0" y="199" width="393" height="619"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>

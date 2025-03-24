@@ -16,6 +16,16 @@ class SideMenuCell: UITableViewCell {
     
     @IBOutlet weak var myTitleLbl: UILabel!
     
+    
+    @IBOutlet weak var moreBtn: UIButton!{
+        didSet {
+            moreBtn.isHidden = true
+        }
+    }
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -3,12 +3,13 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Poppins-Regular.ttf">
+        <array key="poppins_regular.ttf">
             <string>Poppins-Regular</string>
         </array>
     </customFonts>
@@ -33,14 +34,26 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-Ap-LBj">
-                                <rect key="frame" x="81" y="24.666666666666671" width="94" height="21"/>
+                                <rect key="frame" x="81" y="22.333333333333336" width="103.66666666666669" height="25.333333333333336"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" red="0.25882357360000002" green="0.25882357360000002" blue="0.25882357360000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V79-BW-UWC">
+                                <rect key="frame" x="284" y="30" width="9" height="10.333333333333329"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="CVz-6o-pKt"/>
+                                    <constraint firstAttribute="width" constant="9" id="Maw-vR-m6N"/>
+                                </constraints>
+                                <color key="tintColor" name="535353"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="chevron.right" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="V79-BW-UWC" firstAttribute="centerY" secondItem="uOj-vG-9I0" secondAttribute="centerY" id="0ku-6x-IPN"/>
+                            <constraint firstAttribute="trailing" secondItem="V79-BW-UWC" secondAttribute="trailing" constant="27" id="Oel-BP-zrr"/>
                             <constraint firstItem="4lo-Ap-LBj" firstAttribute="centerY" secondItem="uOj-vG-9I0" secondAttribute="centerY" id="PjC-Xt-EBy"/>
                             <constraint firstItem="YGx-4Q-eFF" firstAttribute="leading" secondItem="uOj-vG-9I0" secondAttribute="leading" constant="20" id="cWR-fM-OEd"/>
                             <constraint firstItem="YGx-4Q-eFF" firstAttribute="centerY" secondItem="uOj-vG-9I0" secondAttribute="centerY" constant="-1" id="h28-eN-hSs"/>
@@ -58,13 +71,18 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imgViewTitle" destination="YGx-4Q-eFF" id="OHx-lx-e0T"/>
+                <outlet property="moreBtn" destination="V79-BW-UWC" id="X2H-tw-sh2"/>
                 <outlet property="myTitleLbl" destination="4lo-Ap-LBj" id="x1q-pp-F7g"/>
             </connections>
             <point key="canvasLocation" x="36.641221374045799" y="-2.1126760563380285"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="chevron.right" catalog="system" width="97" height="128"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <namedColor name="535353">
+            <color red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
