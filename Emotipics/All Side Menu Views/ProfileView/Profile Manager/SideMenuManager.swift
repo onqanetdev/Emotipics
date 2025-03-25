@@ -12,7 +12,7 @@ import UIKit
 
 
 
-class SideMenuManager: NSObject, UIGestureRecognizerDelegate {
+class SideMenuManager: NSObject, UIGestureRecognizerDelegate, ProfileViewControllerDelegate {
     
     private var sideMenuViewController: ProfileViewController!
     private var sideMenuRevealWidth: CGFloat = 300
@@ -40,6 +40,7 @@ class SideMenuManager: NSObject, UIGestureRecognizerDelegate {
         // Setup side menu
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         sideMenuViewController = ProfileViewController()
+        sideMenuViewController.delegate = self
         view.addSubview(sideMenuViewController.view)
         viewController.addChild(sideMenuViewController)
         sideMenuViewController.didMove(toParent: viewController)
@@ -71,6 +72,15 @@ class SideMenuManager: NSObject, UIGestureRecognizerDelegate {
     func toggleSideMenu() {
         sideMenuState(expanded: !isExpanded)
     }
+    
+    //MARK: Delegate Methods
+    
+    func didSelectMenuItem() {
+            // Close the menu when a row is selected
+        print("Hello from Side Menu Manager")
+            sideMenuState(expanded: false)
+        }
+    
     
     @objc private func handleTapGesture(sender: UITapGestureRecognizer) {
         if isExpanded {
@@ -109,7 +119,7 @@ class SideMenuManager: NSObject, UIGestureRecognizerDelegate {
         }
     }
     
-    private func sideMenuState(expanded: Bool) {
+    public func sideMenuState(expanded: Bool) {
         isExpanded = expanded
         animateSideMenu(targetPosition: expanded ? 0 : -sideMenuRevealWidth - paddingForRotation)
         UIView.animate(withDuration: 0.5) { self.sideMenuShadowView.alpha = expanded ? 0.6 : 0.0 }

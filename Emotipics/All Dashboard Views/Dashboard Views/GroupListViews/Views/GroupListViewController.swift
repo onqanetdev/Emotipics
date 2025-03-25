@@ -51,6 +51,8 @@ class GroupListViewController: UIViewController {
             tblViewForGroups.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
             tblViewForGroups.separatorStyle = .none
             
+            //7tblViewForGroups.sel
+            
 //            let backgroundImage = UIImage(named: "TableViewBackground")
 //                let backgroundImageView = UIImageView(image: backgroundImage)
 //                backgroundImageView.contentMode = .scaleAspectFill
@@ -117,12 +119,15 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
 //           cell.backgroundColor = .clear
 //            cell.layer.cornerRadius = 25
 //            cell.clipsToBounds = true
+            cell.selectionStyle = .none
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupTableViewCell
            cell.backgroundColor = .clear
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
+            cell.selectionStyle = .none
             return cell
         }
         

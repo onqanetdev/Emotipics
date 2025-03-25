@@ -7,6 +7,18 @@
 
 import UIKit
 
+
+protocol ProfileViewControllerDelegate: AnyObject {
+    func didSelectMenuItem()
+}
+
+
+
+
+
+
+
+
 class ProfileViewController: UIViewController {
 
     
@@ -25,6 +37,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userName: UILabel!
     
     @IBOutlet weak var userEmail: UILabel!
+    
+    weak var delegate: ProfileViewControllerDelegate?
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +62,9 @@ class ProfileViewController: UIViewController {
         
         userName.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 18)
         userEmail.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 15)
+        
+        
+        //sideMenuManager.setup(in: self)
 
     }
 }
@@ -73,7 +91,13 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-       // print("The title of the Row", contentsTitle[indexPath.row])
+       
+        
+       // sideMenuManager.toggleSideMenu()
+        
+        delegate?.didSelectMenuItem()
+        
+        //self.dismiss(animated: true)
         
         if contentsTitle[indexPath.row] == "My Account" {
             navigationController?.pushViewController(MyAccountDetailsVC(), animated: true)
@@ -82,8 +106,6 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
             aboutUs.aboutUsTitleText = "About Us"
             navigationController?.pushViewController(aboutUs, animated: true)
             //navigationController?.pushViewController(AboutUsVC(), animated: true)
-            
-            
         } else if contentsTitle[indexPath.row] == "Terms & Conditions" {
             let termsView = AboutUsVC()
             termsView.aboutUsTitleText = "Terms & Conditions"
@@ -94,6 +116,12 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
             supportView.aboutUsTitleText = "Support"
             //supportView.aboutusTitle.text = "Support"
             navigationController?.pushViewController(supportView, animated: true)
+        } else if contentsTitle[indexPath.row] == "Catalogue" {
+            navigationController?.pushViewController(CatalogueViewController(), animated: true)
+        } else if contentsTitle[indexPath.row] == "Contact List" {
+            navigationController?.pushViewController(ContactsViewController(), animated: true)
+        } else if contentsTitle[indexPath.row] == "Groups" {
+            navigationController?.pushViewController(GroupListViewController(), animated: true)
         }
     }
     
