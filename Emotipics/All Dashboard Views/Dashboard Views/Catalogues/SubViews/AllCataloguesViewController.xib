@@ -15,7 +15,7 @@
                 <outlet property="collectionViewHeight" destination="Ts0-LR-Umk" id="vMT-RN-xVA"/>
                 <outlet property="myCatalogueLbl" destination="OI6-Q3-fEw" id="x4l-z5-LQj"/>
                 <outlet property="myCatalogueSubLbl" destination="GtO-kP-A67" id="ulv-1H-tRX"/>
-                <outlet property="scrollViewHeight" destination="bTC-wd-Iic" id="SVv-UA-ath"/>
+                <outlet property="scrollViewHeight" destination="bTC-wd-Iic" id="r9M-HZ-qAb"/>
                 <outlet property="sortByLbl" destination="8pb-Pe-cvr" id="cGa-zh-jdU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -280,7 +280,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
