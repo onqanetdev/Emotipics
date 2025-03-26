@@ -277,12 +277,12 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
         
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5 // Reduce spacing between items
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+//        return -4 // Reduce spacing between items
+//    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 3, bottom: 10, right: 7) // Reduce left & right insets
+        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Reduce left & right insets
     }
 
     override func viewDidLayoutSubviews() {

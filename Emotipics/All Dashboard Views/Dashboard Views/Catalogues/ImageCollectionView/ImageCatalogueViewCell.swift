@@ -12,7 +12,7 @@ class ImageCatalogueViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imgViewColl: UIImageView!{
         didSet{
-            imgViewColl.layer.cornerRadius = 15
+            imgViewColl.layer.cornerRadius = 13
         }
     }
     
