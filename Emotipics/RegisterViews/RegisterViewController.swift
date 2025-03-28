@@ -98,16 +98,16 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var backBtn: UIButton!{
         didSet {
-                backBtn.frame = CGRect(x: 0, y: 0, width: 50, height: 50) // Increase button size
-                backBtn.backgroundColor = .clear // Transparent background
-                
-                var config = UIButton.Configuration.plain()
-                config.image = UIImage(systemName: "chevron.left.circle")?.withRenderingMode(.alwaysTemplate)
+            backBtn.frame = CGRect(x: 0, y: 0, width: 50, height: 50) // Increase button size
+            backBtn.backgroundColor = .clear // Transparent background
+            
+            var config = UIButton.Configuration.plain()
+            config.image = UIImage(systemName: "chevron.left.circle")?.withRenderingMode(.alwaysTemplate)
             config.baseForegroundColor = UIColor(red: 171/255, green: 210/255, blue: 252/255, alpha: 1.0).withAlphaComponent(0.2) // Lighter tint
             config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 28, weight: .light) // Increase image size
-                
-                backBtn.configuration = config
-            }
+            
+            backBtn.configuration = config
+        }
         
     }
     
@@ -135,7 +135,18 @@ class RegisterViewController: UIViewController {
     
     var isSomeFieldsHidden: Bool = false
     
-   
+    
+    var loginViewModel:LoginViewModel = LoginViewModel()
+    
+    //let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+    
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +156,8 @@ class RegisterViewController: UIViewController {
         view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = true
         
+        
+        setupActivityIndicator()
         
         if let inputFont = UIFont(name: "Poppins-Regular", size: 16) {
             fullNameTxtFld.font = inputFont
@@ -168,20 +181,20 @@ class RegisterViewController: UIViewController {
         passwordTxtFld.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
         
         
-//        if isSomeFieldsHidden {
-//            fullNameTxtFld.isHidden = true
-//            phnTxtFld.isHidden = true
-//            //trying to minimizing the the height
-//            fullNameHeight.constant = 0
-//            phnNumberHeight.constant = 0
-//            scrollView.isScrollEnabled = false
-//          //  contentViewHeight.constant = -
-//            welcomeLblSubOne.text = "Welcome back! Glad to see"
-//            welcomeLblSubTwo.text = "you again!"
-//            registerBtn.titleLabel?.text = "Login"
-//            alreadyAccLbl.text = "Don't have an account?"
-//            loginlbl.text = "Register"
-//        }
+        //        if isSomeFieldsHidden {
+        //            fullNameTxtFld.isHidden = true
+        //            phnTxtFld.isHidden = true
+        //            //trying to minimizing the the height
+        //            fullNameHeight.constant = 0
+        //            phnNumberHeight.constant = 0
+        //            scrollView.isScrollEnabled = false
+        //          //  contentViewHeight.constant = -
+        //            welcomeLblSubOne.text = "Welcome back! Glad to see"
+        //            welcomeLblSubTwo.text = "you again!"
+        //            registerBtn.titleLabel?.text = "Login"
+        //            alreadyAccLbl.text = "Don't have an account?"
+        //            loginlbl.text = "Register"
+        //        }
         updateUIForState()
     }
     
@@ -193,7 +206,20 @@ class RegisterViewController: UIViewController {
     
     
     
-
+    func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -236,43 +262,96 @@ class RegisterViewController: UIViewController {
             alreadyAccLbl.text = "Already have an account?"
             loginlbl.text = "Login"
         }
-
+        
         // Apply layout changes
-//        UIView.animate(withDuration: 0.3) {
-//            self.view.layoutIfNeeded()
-//        }
+        //        UIView.animate(withDuration: 0.3) {
+        //            self.view.layoutIfNeeded()
+        //        }
     }
-
+    
     
     @objc func tapAction(){
-        //let registerVC = RegisterViewController()
-//        isSomeFieldsHidden.toggle() // Toggle state
-//            updateUIForState() // Update UI
         
-
-    
+        
         let registerVC = RegisterViewController() // Create a new instance
-
-           if loginlbl.text == "Register" {
-               registerVC.isSomeFieldsHidden = false // Set state for Register view
-           } else {
-               registerVC.isSomeFieldsHidden = true  // Set state for Login view
-           }
-
-           navigationController?.pushViewController(registerVC, animated: true)
         
-       
+        if loginlbl.text == "Register" {
+            registerVC.isSomeFieldsHidden = false // Set state for Register view
+        } else {
+            registerVC.isSomeFieldsHidden = true  // Set state for Login view
+        }
         
+        //Call The API through view model
+        
+        
+        navigationController?.pushViewController(registerVC, animated: true)
+        
+        
+        
+    }
+    
+    //Calling for NSDataDetector for mail validation
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let detector = try? NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
+        let matches = detector?.matches(in: email, options: [], range: NSRange(location: 0, length: email.utf16.count))
+        
+        return matches?.contains(where: { $0.url?.scheme == "mailto" }) ?? false
     }
     
     
     
     @IBAction func registerBtnAction(_ sender: Any) {
-        //print("register Button ", registerBtn.titleLabel?.text )
-//        registerBtn.titleLabel?.text = "Login"
-//        print("register Button ", registerBtn.titleLabel?.text )
-        navigationController?.pushViewController(DashboardViewController(), animated: true)
-        print("The register button tapped")
+        
+        
+        
+        if loginlbl.text == "Register" {
+            //print("Okay Tested")
+            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty , let passwordText = passwordTxtFld.text, !passwordText.isEmpty {
+                
+                guard isValidEmail(emailtext) else {
+                    AlertView.showAlert("Invalid Email!", message: "Please enter a valid email address.", okTitle: "OK")
+                    return
+                }
+                
+                
+                activityIndicator.startAnimating()
+                
+                // Disable button to prevent multiple taps
+                registerBtn.isEnabled = false
+                
+                loginViewModel.requestModel.email = emailtext
+                loginViewModel.requestModel.password = passwordText
+                loginViewModel.getLoginData(loginViewModel.requestModel) { result in
+                    
+                    DispatchQueue.main.async{
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.registerBtn.isEnabled = true
+                        
+                        switch result { //result
+                        case .goAhead:
+                            DispatchQueue.main.async {
+                                
+                                self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                            }
+                            
+                        case .heyStop:
+                            print("Something Went Wrong!!!")
+                        }
+                        //result
+                        
+                    }
+                }
+                //navigationController?.pushViewController(DashboardViewController(), animated: true)
+                //print("The register button tapped")
+            } else {
+                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "Okay")
+            }
+        } else {
+            print("This is my Register View")
+        }
+        
         
     }
     

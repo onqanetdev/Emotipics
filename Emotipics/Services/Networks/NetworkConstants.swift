@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+
+
+
+enum APIEndpoint: String {
+    case login = "login"
+//    case register = "/auth/register"
+//    case userProfile = "/user/profile"
+}
+
+let baseURL = "https://onqanet.net/dev_biltu01/emotipics/api/"
+
+

@@ -63,7 +63,8 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
+    var loginViewModel:LoginViewModel = LoginViewModel()
+    var requestModel:LoginParamsStruct = LoginParamsStruct(email: "", password: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,9 +83,16 @@ class HomeViewController: UIViewController {
         let loginView = RegisterViewController()
         loginView.isSomeFieldsHidden = true
        
-        
+      //  APICaller.getAllProducts(email: "sudeepa@onqanet.com", password: "123456")
+//        requestModel.email = "sudeepa@onqanet.com"
+//        requestModel.password = "123456"
+//        loginViewModel.getLoginData(requestModel)
 
         navigationController?.pushViewController(loginView, animated: true)
+        
+      //  APICaller.getAllProducts(email: "sudeepa@onqanet.com", password: "123456")
+        
+        
         
     }
     
@@ -92,6 +100,12 @@ class HomeViewController: UIViewController {
     @IBAction func registerBtnAction(_ sender: Any) {
         print("Tapped on Register")
         navigationController?.pushViewController(RegisterViewController(), animated: true)
+        //APICaller.getAllProducts(email: "sudeepa@onqanet.com", password: "123456")
     }
     
 }
+
+
+
+
+
