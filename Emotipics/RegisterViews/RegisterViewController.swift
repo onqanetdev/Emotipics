@@ -137,6 +137,7 @@ class RegisterViewController: UIViewController {
     
     
     var loginViewModel:LoginViewModel = LoginViewModel()
+    var registerViewModel:RegisterViewModel = RegisterViewModel()
     
     //let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     
@@ -196,6 +197,9 @@ class RegisterViewController: UIViewController {
         //            loginlbl.text = "Register"
         //        }
         updateUIForState()
+        
+        loginViewModel.delegate = self
+        
     }
     
     
@@ -310,7 +314,15 @@ class RegisterViewController: UIViewController {
             if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty , let passwordText = passwordTxtFld.text, !passwordText.isEmpty {
                 
                 guard isValidEmail(emailtext) else {
-                    AlertView.showAlert("Invalid Email!", message: "Please enter a valid email address.", okTitle: "OK")
+                    // AlertView.showAlert("Invalid Email!", message: "Please enter a valid email address.", okTitle: "OK")
+                    
+                    
+                    let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
+                    errorPopup.modalPresentationStyle = .overCurrentContext
+                    errorPopup.modalTransitionStyle = .crossDissolve
+                    errorPopup.msgViewVar = "Please Enter Valid Credentials"  // Pass error message if needed
+                    self.present(errorPopup, animated: true)
+                    
                     return
                 }
                 
@@ -346,10 +358,59 @@ class RegisterViewController: UIViewController {
                 //navigationController?.pushViewController(DashboardViewController(), animated: true)
                 //print("The register button tapped")
             } else {
-                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "Okay")
+//                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "Okay")
+                let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
+                errorPopup.modalPresentationStyle = .overCurrentContext
+                errorPopup.modalTransitionStyle = .crossDissolve
+                errorPopup.msgViewVar = "Please Fill All The Boxes"  // Pass error message if needed
+                self.present(errorPopup, animated: true)
+                
+                
+                
             }
+            
+            
+            
+            
         } else {
             print("This is my Register View")
+//            RegisterAPICaller.registerNewUser("Peeda", "bahihe9179@deenur.com", "9474427369", "123456")
+            
+            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty , let passwordText = passwordTxtFld.text, !passwordText.isEmpty, let nameText = fullNameTxtFld.text, !nameText.isEmpty, let phoneNumber = phnTxtFld.text, !phoneNumber.isEmpty {
+                
+                activityIndicator.startAnimating()
+                
+                // Disable button to prevent multiple taps
+                registerBtn.isEnabled = false
+                
+                registerViewModel.requestModel.email = emailtext
+                registerViewModel.requestModel.name = nameText
+                registerViewModel.requestModel.password = passwordText
+                registerViewModel.requestModel.phone = phoneNumber
+                
+                registerViewModel.registerNewUserViewModel(registerViewModel.requestModel) { result in
+                    DispatchQueue.main.async{
+                        self.activityIndicator.stopAnimating()
+                        self.registerBtn.isEnabled = true
+                    }
+                    
+                    switch result {
+                    case .goAhead:
+                        DispatchQueue.main.async {
+                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                        }
+                    case .heyStop:
+                        print("Something Went Wrong")
+                    }
+                } //result closure Ending
+                
+                
+            } else {
+                AlertView.showAlert("Warning!!!", message: "Please Fill All The Details", okTitle: "OK")
+            }
+            
+
+            
         }
         
         
@@ -367,5 +428,18 @@ class RegisterViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+}
+
+
+//MARK: Now this section is for delegate PopUpView
+
+extension RegisterViewController: LoginViewModelDelegate {
+    func presentPopup() {
+        let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.msgViewVar = "Please Enter Valid Credentials"  // Pass error message if needed
+        self.present(errorPopup, animated: true)
+    }
 }
 

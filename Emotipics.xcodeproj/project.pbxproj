@@ -88,6 +88,12 @@
 		8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */; };
 		8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */; };
 		8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */; };
+		8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */; };
+		8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */; };
+		8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */; };
+		8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */; };
+		8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */; };
+		8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -173,6 +179,12 @@
 		8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
+		8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPopUpVC.swift; sourceTree = "<group>"; };
+		8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPopUpVC.xib; sourceTree = "<group>"; };
+		8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPICaller.swift; sourceTree = "<group>"; };
+		8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponseModel.swift; sourceTree = "<group>"; };
+		8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequestModel.swift; sourceTree = "<group>"; };
+		8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -390,6 +402,7 @@
 			children = (
 				8A3C02752D9551A700DE941A /* NetworkConstants.swift */,
 				8A3C02772D9554F200DE941A /* APICaller.swift */,
+				8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -397,6 +410,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8AF792422D9BDC2000085FEC /* RegisterModels */,
 				8A3C027A2D955C1300DE941A /* LoginModels */,
 			);
 			path = Models;
@@ -415,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */,
+				8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -438,6 +453,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */,
 				8A6AB5F12D967C6000775D5C /* AlertView */,
 				8A3C027D2D9579A200DE941A /* View Models */,
 				8A3C02792D955C0300DE941A /* Models */,
@@ -627,6 +643,24 @@
 			path = "Profile Manager";
 			sourceTree = "<group>";
 		};
+		8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */ = {
+			isa = PBXGroup;
+			children = (
+				8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */,
+				8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */,
+			);
+			path = GlobalPopUpVC;
+			sourceTree = "<group>";
+		};
+		8AF792422D9BDC2000085FEC /* RegisterModels */ = {
+			isa = PBXGroup;
+			children = (
+				8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */,
+				8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */,
+			);
+			path = RegisterModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -708,6 +742,7 @@
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
 				8A3B824A2D88458F00CFFC37 /* NotificationViewCell.xib in Resources */,
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
+				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
 				8ABB968F2D8D39960032E6DA /* ProfileViewController.xib in Resources */,
@@ -748,13 +783,17 @@
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
+				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
+				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
+				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
+				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
@@ -772,6 +811,7 @@
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
+				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
