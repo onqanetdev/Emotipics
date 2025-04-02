@@ -14,6 +14,8 @@ class RegisterViewModel {
     var responseModel:RegisterResponseModel?
     var requestModel: RegisterRequestModel = RegisterRequestModel(name: "", email: "", phone: "", password: "")
     
+    weak var delegate: PopUpViewDelegate?
+    
     func registerNewUserViewModel(_ request: RegisterRequestModel, completion: @escaping(_ result: userDataDefination) -> Void) {
         RegisterAPICaller.registerNewUser(request.name,request.email,request.phone,request.password) { [weak self] result in
             switch result {
@@ -24,7 +26,8 @@ class RegisterViewModel {
                 print("Data recieving Failed", e)
                 completion(.heyStop)
                 DispatchQueue.main.async {
-                    AlertView.showAlert("Warning!!!", message: "Invalid Credentials!!!", okTitle: "OK")
+//                    AlertView.showAlert("Warning!!!", message: "Invalid Credentials!!!", okTitle: "OK")
+                    self?.delegate?.presentPopUp()
                 }
             }
         }

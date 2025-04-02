@@ -29,6 +29,7 @@
 		8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */; };
 		8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */; };
 		8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */; };
+		8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -119,6 +120,7 @@
 		8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailViewCell.xib; sourceTree = "<group>"; };
 		8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailViewController.xib; sourceTree = "<group>"; };
+		8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewDelegate.swift; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -338,6 +340,14 @@
 			path = "GroupDetailCell ";
 			sourceTree = "<group>";
 		};
+		8A2E51772D9CFA5000D4A023 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +463,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A2E51772D9CFA5000D4A023 /* Protocols */,
 				8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */,
 				8A6AB5F12D967C6000775D5C /* AlertView */,
 				8A3C027D2D9579A200DE941A /* View Models */,
@@ -814,6 +825,7 @@
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
+				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,

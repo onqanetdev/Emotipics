@@ -181,24 +181,10 @@ class RegisterViewController: UIViewController {
         phnTxtFld.attributedPlaceholder = NSAttributedString(string: "Phone Number", attributes: attributes)
         passwordTxtFld.attributedPlaceholder = NSAttributedString(string: "Password", attributes: attributes)
         
-        
-        //        if isSomeFieldsHidden {
-        //            fullNameTxtFld.isHidden = true
-        //            phnTxtFld.isHidden = true
-        //            //trying to minimizing the the height
-        //            fullNameHeight.constant = 0
-        //            phnNumberHeight.constant = 0
-        //            scrollView.isScrollEnabled = false
-        //          //  contentViewHeight.constant = -
-        //            welcomeLblSubOne.text = "Welcome back! Glad to see"
-        //            welcomeLblSubTwo.text = "you again!"
-        //            registerBtn.titleLabel?.text = "Login"
-        //            alreadyAccLbl.text = "Don't have an account?"
-        //            loginlbl.text = "Register"
-        //        }
         updateUIForState()
         
         loginViewModel.delegate = self
+        registerViewModel.delegate = self
         
     }
     
@@ -306,81 +292,64 @@ class RegisterViewController: UIViewController {
     
     
     @IBAction func registerBtnAction(_ sender: Any) {
-        
-        
-        
         if loginlbl.text == "Register" {
-            //print("Okay Tested")
-            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty , let passwordText = passwordTxtFld.text, !passwordText.isEmpty {
+            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty,
+               let passwordText = passwordTxtFld.text, !passwordText.isEmpty {
                 
                 guard isValidEmail(emailtext) else {
-                    // AlertView.showAlert("Invalid Email!", message: "Please enter a valid email address.", okTitle: "OK")
-                    
-                    
-                    let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
-                    errorPopup.modalPresentationStyle = .overCurrentContext
-                    errorPopup.modalTransitionStyle = .crossDissolve
-                    errorPopup.msgViewVar = "Please Enter Valid Credentials"  // Pass error message if needed
-                    self.present(errorPopup, animated: true)
-                    
+                    showErrorPopup(message: "Please Enter Valid Credentials")
                     return
                 }
                 
-                
                 activityIndicator.startAnimating()
-                
-                // Disable button to prevent multiple taps
                 registerBtn.isEnabled = false
                 
                 loginViewModel.requestModel.email = emailtext
                 loginViewModel.requestModel.password = passwordText
                 loginViewModel.getLoginData(loginViewModel.requestModel) { result in
-                    
-                    DispatchQueue.main.async{
-                        
+                    DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                         self.registerBtn.isEnabled = true
                         
-                        switch result { //result
+                        switch result {
                         case .goAhead:
-                            DispatchQueue.main.async {
-                                
-                                self.navigationController?.pushViewController(DashboardViewController(), animated: true)
-                            }
-                            
+                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                         case .heyStop:
                             print("Something Went Wrong!!!")
                         }
-                        //result
-                        
                     }
                 }
-                //navigationController?.pushViewController(DashboardViewController(), animated: true)
-                //print("The register button tapped")
             } else {
-//                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "Okay")
-                let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
-                errorPopup.modalPresentationStyle = .overCurrentContext
-                errorPopup.modalTransitionStyle = .crossDissolve
-                errorPopup.msgViewVar = "Please Fill All The Boxes"  // Pass error message if needed
-                self.present(errorPopup, animated: true)
-                
-                
-                
+                showErrorPopup(message: "Please Fill All The Boxes")
             }
-            
-            
-            
-            
         } else {
             print("This is my Register View")
-//            RegisterAPICaller.registerNewUser("Peeda", "bahihe9179@deenur.com", "9474427369", "123456")
-            
-            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty , let passwordText = passwordTxtFld.text, !passwordText.isEmpty, let nameText = fullNameTxtFld.text, !nameText.isEmpty, let phoneNumber = phnTxtFld.text, !phoneNumber.isEmpty {
+
+            if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty,
+               let passwordText = passwordTxtFld.text, !passwordText.isEmpty,
+               let nameText = fullNameTxtFld.text, !nameText.isEmpty,
+               let phoneNumber = phnTxtFld.text, !phoneNumber.isEmpty {
+                
+                guard isValidEmail(emailtext) else {
+                    showErrorPopup(message: "Please Enter A Valid Email ID")
+                    return
+                }
+                
+                // Name validation (only alphabets and spaces)
+                let nameRegex = "^[A-Za-z ]+$"
+                let namePredicate = NSPredicate(format: "SELF MATCHES %@", nameRegex)
+                guard namePredicate.evaluate(with: nameText) else {
+                    showErrorPopup(message: "Name must contain only alphabets and spaces")
+                    return
+                }
+                
+                // Phone number validation (must be exactly 10 digits)
+                guard phoneNumber.count == 10, phoneNumber.allSatisfy({ $0.isNumber }) else {
+                    showErrorPopup(message: "Phone number must be exactly 10 digits")
+                    return
+                }
                 
                 activityIndicator.startAnimating()
-                
-                // Disable button to prevent multiple taps
                 registerBtn.isEnabled = false
                 
                 registerViewModel.requestModel.email = emailtext
@@ -389,7 +358,7 @@ class RegisterViewController: UIViewController {
                 registerViewModel.requestModel.phone = phoneNumber
                 
                 registerViewModel.registerNewUserViewModel(registerViewModel.requestModel) { result in
-                    DispatchQueue.main.async{
+                    DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                         self.registerBtn.isEnabled = true
                     }
@@ -402,20 +371,21 @@ class RegisterViewController: UIViewController {
                     case .heyStop:
                         print("Something Went Wrong")
                     }
-                } //result closure Ending
-                
-                
+                }
             } else {
-                AlertView.showAlert("Warning!!!", message: "Please Fill All The Details", okTitle: "OK")
+                showErrorPopup(message: "Please Fill All The Details")
             }
-            
-
-            
         }
-        
-        
     }
     
+    
+    func showErrorPopup(message: String) {
+        let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.msgViewVar = message
+        self.present(errorPopup, animated: true)
+    }
     
     @IBAction func backBtnAction(_ sender: Any) {
         
@@ -443,3 +413,8 @@ extension RegisterViewController: LoginViewModelDelegate {
     }
 }
 
+extension RegisterViewController: PopUpViewDelegate {
+    func presentPopUp() {
+        showErrorPopup(message: "Invalid Credentials")
+    }
+}
