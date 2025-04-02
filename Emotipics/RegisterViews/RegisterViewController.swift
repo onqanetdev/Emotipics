@@ -366,7 +366,8 @@ class RegisterViewController: UIViewController {
                     switch result {
                     case .goAhead:
                         DispatchQueue.main.async {
-                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+//                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                            self.otpVerification()
                         }
                     case .heyStop:
                         print("Something Went Wrong")
@@ -384,6 +385,15 @@ class RegisterViewController: UIViewController {
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.msgViewVar = message
+        self.present(errorPopup, animated: true)
+    }
+    
+    func otpVerification() {
+        let errorPopup = OTPPopUPVC(nibName: "OTPPopUPVC", bundle: nil)
+        errorPopup.emailText = emailAddTxtFld.text!
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        //errorPopup.msgViewVar = message
         self.present(errorPopup, animated: true)
     }
     

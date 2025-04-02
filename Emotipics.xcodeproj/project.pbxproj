@@ -30,6 +30,12 @@
 		8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */; };
 		8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */; };
 		8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */; };
+		8A2E517D2D9D0B6F00D4A023 /* OTPPopUPVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A2E517C2D9D0B6F00D4A023 /* OTPPopUPVC.xib */; };
+		8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E517B2D9D0B6F00D4A023 /* OTPPopUPVC.swift */; };
+		8A2E51802D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */; };
+		8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51832D9D3A5500D4A023 /* RegistrationOTPModel.swift */; };
+		8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */; };
+		8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51872D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -121,6 +127,12 @@
 		8A2DED942D897B890057DFC0 /* GroupDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
 		8A2DED952D897B890057DFC0 /* GroupDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailViewController.xib; sourceTree = "<group>"; };
 		8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewDelegate.swift; sourceTree = "<group>"; };
+		8A2E517B2D9D0B6F00D4A023 /* OTPPopUPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPPopUPVC.swift; sourceTree = "<group>"; };
+		8A2E517C2D9D0B6F00D4A023 /* OTPPopUPVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OTPPopUPVC.xib; sourceTree = "<group>"; };
+		8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegOTPVerificationAPICaller.swift; sourceTree = "<group>"; };
+		8A2E51832D9D3A5500D4A023 /* RegistrationOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOTPModel.swift; sourceTree = "<group>"; };
+		8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
+		8A2E51872D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOTPRequestModel.swift; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -348,6 +360,24 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		8A2E517A2D9D049800D4A023 /* PopUps */ = {
+			isa = PBXGroup;
+			children = (
+				8A2E517B2D9D0B6F00D4A023 /* OTPPopUPVC.swift */,
+				8A2E517C2D9D0B6F00D4A023 /* OTPPopUPVC.xib */,
+			);
+			path = PopUps;
+			sourceTree = "<group>";
+		};
+		8A2E51822D9D3A2F00D4A023 /* RegistrationOTPModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A2E51832D9D3A5500D4A023 /* RegistrationOTPModel.swift */,
+				8A2E51872D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift */,
+			);
+			path = RegistrationOTPModel;
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +443,7 @@
 				8A3C02752D9551A700DE941A /* NetworkConstants.swift */,
 				8A3C02772D9554F200DE941A /* APICaller.swift */,
 				8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */,
+				8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -440,6 +471,7 @@
 			children = (
 				8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */,
 				8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */,
+				8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -463,6 +495,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A2E517A2D9D049800D4A023 /* PopUps */,
 				8A2E51772D9CFA5000D4A023 /* Protocols */,
 				8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */,
 				8A6AB5F12D967C6000775D5C /* AlertView */,
@@ -666,6 +699,7 @@
 		8AF792422D9BDC2000085FEC /* RegisterModels */ = {
 			isa = PBXGroup;
 			children = (
+				8A2E51822D9D3A2F00D4A023 /* RegistrationOTPModel */,
 				8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */,
 				8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */,
 			);
@@ -753,6 +787,7 @@
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
 				8A3B824A2D88458F00CFFC37 /* NotificationViewCell.xib in Resources */,
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
+				8A2E517D2D9D0B6F00D4A023 /* OTPPopUPVC.xib in Resources */,
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
@@ -803,12 +838,14 @@
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
+				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
+				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
 				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
@@ -816,6 +853,7 @@
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
+				8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
@@ -826,6 +864,7 @@
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
+				8A2E51802D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift in Sources */,
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
@@ -833,6 +872,7 @@
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
+				8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

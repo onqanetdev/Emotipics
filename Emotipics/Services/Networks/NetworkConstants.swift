@@ -13,6 +13,7 @@ import Foundation
 enum APIEndpoint: String {
     case login = "login"
     case register = "register"
+    case otpVerication = "otp-verification"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }
