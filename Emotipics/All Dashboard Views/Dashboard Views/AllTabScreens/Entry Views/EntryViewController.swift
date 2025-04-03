@@ -186,6 +186,8 @@ class EntryViewController: UIViewController {
         view.backgroundColor = .white
         // Setting Ups The font
         
+        userExists()
+        
         settingUpFonts()
 
         
@@ -218,6 +220,7 @@ class EntryViewController: UIViewController {
         
         
         sideMenuManager.setup(in: self)
+        
         
     }
     
@@ -332,7 +335,15 @@ class EntryViewController: UIViewController {
     }
     
     
-    
+    func userExists(){
+        let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
+        let accessToken = String(data: data, encoding: .utf8)!
+        print("Already Exists Access Token",accessToken)
+        
+        let dataUser = KeychainManager.standard.read(service: "com.Emotipics.service", account: "UUID")!
+        let UuidUser = String(data: dataUser, encoding: .utf8)!
+        print("Already Exists uuid is",UuidUser)
+    }
     
     
 }

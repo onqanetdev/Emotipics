@@ -368,6 +368,12 @@ class RegisterViewController: UIViewController {
                         DispatchQueue.main.async {
 //                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                             self.otpVerification()
+                            //If SuccessFul registration then save the access token into keychain
+                            
+                            
+//                            let accessToken = "another-dummy-access-token"
+//                            let data = Data(accessToken.utf8)
+//                          KeychainManager.standard.save(data, service: "access-token", account: "Emotipic")
                         }
                     case .heyStop:
                         print("Something Went Wrong")

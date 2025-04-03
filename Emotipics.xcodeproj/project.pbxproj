@@ -85,6 +85,7 @@
 		8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */; };
 		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
 		8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */; };
+		8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */; };
 		8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */; };
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
@@ -189,6 +190,7 @@
 		8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinRequestModel.swift; sourceTree = "<group>"; };
 		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
 		8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToNextView.swift; sourceTree = "<group>"; };
+		8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCatalogueViewController.swift; sourceTree = "<group>"; };
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A7F319C2D9E99E900288E29 /* KeyChainManager */,
 				8A2E517A2D9D049800D4A023 /* PopUps */,
 				8A2E51772D9CFA5000D4A023 /* Protocols */,
 				8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */,
@@ -637,6 +640,14 @@
 				8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */,
 			);
 			path = LoginPinModels;
+			sourceTree = "<group>";
+		};
+		8A7F319C2D9E99E900288E29 /* KeyChainManager */ = {
+			isa = PBXGroup;
+			children = (
+				8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */,
+			);
+			path = KeyChainManager;
 			sourceTree = "<group>";
 		};
 		8AA25B902D82A1920093F3F1 /* Shared Catalogues */ = {
@@ -849,6 +860,7 @@
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
+				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
