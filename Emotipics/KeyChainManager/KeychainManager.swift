@@ -33,7 +33,20 @@ class KeychainManager {
         }
         
         
-        
+        //Now trying to update the same data
+        if status == errSecDuplicateItem {
+            // Item already exist, thus update it.
+            let query = [
+                kSecAttrService: service,
+                kSecAttrAccount: account,
+                kSecClass: kSecClassGenericPassword,
+            ] as CFDictionary
+
+            let attributesToUpdate = [kSecValueData: data] as CFDictionary
+
+            // Update existing item
+            SecItemUpdate(query, attributesToUpdate)
+        }
         
         
     }
