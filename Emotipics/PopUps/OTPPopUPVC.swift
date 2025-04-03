@@ -52,6 +52,11 @@ class OTPPopUPVC: UIViewController {
     var otpViewModel: OTPViewModel = OTPViewModel()
     
     var emailText: String = ""
+    var isOtpScreen:Bool = false
+    
+    var loginPinViewModel: LoginSetPinViewModel = LoginSetPinViewModel()
+    
+    weak var delegate:MoveToNextView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +74,59 @@ class OTPPopUPVC: UIViewController {
         otpTextField.placeholder = "Enter Login PIN"
         nextbtn.setTitle("SUBMIT", for: .normal)
         otpTextField.text = ""
+        isOtpScreen = true
+    
+    }
+    
+    func showPinScreen() {
+        if let otptext = otpTextField.text,
+           !otptext.isEmpty {
+            print("MY PIN IS", otptext)
+            //LoginPinSetAPICaller.userPinSet(pin: otptext, email: emailText)
+            
+            
+            if otptext.count < 4 {
+                    AlertView.showAlert("Warning!!", message: "PIN must be at least 4 Digits", okTitle: "OK")
+                    return
+                }
+
+                if otptext.count > 4 {
+                    AlertView.showAlert("Warning!!", message: "PIN must not exceed 4 Digits", okTitle: "OK")
+                    return
+                }
+            
+            
+            
+            activityIndicator.startAnimating()
+            loginPinViewModel.requestModel.pin = otptext
+            loginPinViewModel.requestModel.email = emailText
+            loginPinViewModel.loginSetPinNew(request: loginPinViewModel.requestModel) { result in
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    
+                    switch result {
+                    case .goAhead:
+                        print("GO Ahead")
+                        DispatchQueue.main.async {
+                            //self.updateUI()
+                            //print("")
+                            self.delegate?.nextToMove()
+                            self.dismiss(animated: true)
+//                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                        }
+                    case .heyStop:
+                        print("Something Went Wrong")
+                    }
+                }
+            }
+            
+            
+            
+            
+        } else {
+            AlertView.showAlert("Warning!", message: "Please Fill The Field", okTitle: "OK")
+        }
     }
     
     
@@ -87,34 +145,55 @@ class OTPPopUPVC: UIViewController {
     
     
     @IBAction func verificationBtnAction(_ sender: Any) {
-        if let otptext = otpTextField.text,
-           !otptext.isEmpty {
-            activityIndicator.startAnimating()
+        
+        
+        if isOtpScreen == true {
+            showPinScreen()
+        } else {
             
-            otpViewModel.requestModel.email = emailText
-            otpViewModel.requestModel.otp = otptext
-            otpViewModel.otpVerification(request: otpViewModel.requestModel) { result in
+            
+            if let otptext = otpTextField.text,
+               !otptext.isEmpty {
                 
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
+                
+                if otptext.count < 4 {
+                        AlertView.showAlert("Warning!!", message: "OTP must be at least 4 characters long", okTitle: "OK")
+                        return
+                    }
+
+                    if otptext.count > 4 {
+                        AlertView.showAlert("Warning!!", message: "OTP must not exceed 4 characters", okTitle: "OK")
+                        return
+                    }
+                
+                
+                activityIndicator.startAnimating()
+                
+                otpViewModel.requestModel.email = emailText
+                otpViewModel.requestModel.otp = otptext
+                otpViewModel.otpVerification(request: otpViewModel.requestModel) { result in
                     
-                    switch result {
-                    case .goAhead:
-                        print("Success")
-                        DispatchQueue.main.async {
-                            self.updateUI()
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        
+                        switch result {
+                        case .goAhead:
+                            print("Success")
+                            DispatchQueue.main.async {
+                                self.updateUI()
+                            }
+                        case .heyStop:
+                            print("Something Went Wrong")
                         }
-                    case .heyStop:
-                        print("Something Went Wrong")
                     }
                 }
             }
-        } 
-        
-        else {
-            AlertView.showAlert("Warning!!", message: "Please Enter The OTP", okTitle: "OK")
+            
+            else {
+                AlertView.showAlert("Warning!!", message: "Please Enter The OTP", okTitle: "OK")
+            }
+            
         }
         
-        
-    }
+    } // Ib action
 }

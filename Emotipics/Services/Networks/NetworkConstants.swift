@@ -14,6 +14,7 @@ enum APIEndpoint: String {
     case login = "login"
     case register = "register"
     case otpVerication = "otp-verification"
+    case pinSet = "user-login-pin-set"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }

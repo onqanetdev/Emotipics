@@ -81,6 +81,10 @@
 		8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */; };
 		8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5EF2D966A7500775D5C /* LoginParamsStruct.swift */; };
 		8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5F22D967DFB00775D5C /* AlertView.swift */; };
+		8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */; };
+		8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */; };
+		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
+		8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */; };
 		8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */; };
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
@@ -95,6 +99,7 @@
 		8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */; };
 		8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */; };
 		8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */; };
+		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
 		8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */; };
 		8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */; };
 		8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */; };
@@ -180,6 +185,10 @@
 		8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8A6AB5EF2D966A7500775D5C /* LoginParamsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParamsStruct.swift; sourceTree = "<group>"; };
 		8A6AB5F22D967DFB00775D5C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinResponseModel.swift; sourceTree = "<group>"; };
+		8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinRequestModel.swift; sourceTree = "<group>"; };
+		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
+		8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToNextView.swift; sourceTree = "<group>"; };
 		8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCatalogueViewController.swift; sourceTree = "<group>"; };
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +202,7 @@
 		8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
+		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
 		8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPopUpVC.swift; sourceTree = "<group>"; };
 		8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPopUpVC.xib; sourceTree = "<group>"; };
 		8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPICaller.swift; sourceTree = "<group>"; };
@@ -356,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */,
+				8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -444,6 +455,7 @@
 				8A3C02772D9554F200DE941A /* APICaller.swift */,
 				8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */,
 				8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */,
+				8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -472,6 +484,7 @@
 				8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */,
 				8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */,
 				8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */,
+				8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -617,6 +630,15 @@
 			path = AlertView;
 			sourceTree = "<group>";
 		};
+		8A7F31932D9E4F2E00288E29 /* LoginPinModels */ = {
+			isa = PBXGroup;
+			children = (
+				8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */,
+				8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */,
+			);
+			path = LoginPinModels;
+			sourceTree = "<group>";
+		};
 		8AA25B902D82A1920093F3F1 /* Shared Catalogues */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +721,7 @@
 		8AF792422D9BDC2000085FEC /* RegisterModels */ = {
 			isa = PBXGroup;
 			children = (
+				8A7F31932D9E4F2E00288E29 /* LoginPinModels */,
 				8A2E51822D9D3A2F00D4A023 /* RegistrationOTPModel */,
 				8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */,
 				8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */,
@@ -841,9 +864,11 @@
 				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
+				8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
+				8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
 				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
@@ -852,7 +877,9 @@
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
+				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
+				8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */,
 				8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
@@ -861,6 +888,7 @@
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
+				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,

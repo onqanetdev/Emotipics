@@ -394,6 +394,7 @@ class RegisterViewController: UIViewController {
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
         //errorPopup.msgViewVar = message
+        errorPopup.delegate = self
         self.present(errorPopup, animated: true)
     }
     
@@ -428,3 +429,10 @@ extension RegisterViewController: PopUpViewDelegate {
         showErrorPopup(message: "Invalid Credentials")
     }
 }
+
+extension RegisterViewController: MoveToNextView {
+    func nextToMove() {
+        navigationController?.pushViewController(DashboardViewController(), animated: true)
+    }
+}
+
