@@ -43,4 +43,12 @@ class FloatingBtn: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    
+    
+    func setTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        plusViewBtn.addTarget(target, action: action, for: controlEvents)
+    }
+
+    
 }

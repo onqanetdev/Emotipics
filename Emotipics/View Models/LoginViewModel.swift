@@ -58,6 +58,29 @@ class LoginViewModel {
             case .success(let data):
                 self?.responseModel = data
                 print("My Response Model is", self?.responseModel as Any)
+                
+                
+                //Here Need to Save the Access Token
+                guard let tokenData = self?.responseModel?.login_data?[0].access_token  else {
+                    return
+                }
+                
+                guard let uuid = self?.responseModel?.login_data?[0].user?.uuid else {
+                    return
+                }
+                
+                //Here Saving the user token data
+                let accessToken = tokenData
+                let accessData = Data(accessToken.utf8)
+                KeychainManager.standard.save(accessData, service: "com.Emotipics.service", account: "access-token")
+                
+                print("Here is my access Token After login", accessToken)
+                //Here Saving User UUID
+                let uuidUser = uuid
+                let uuidData = Data(uuidUser.utf8)
+                KeychainManager.standard.save(uuidData, service: "com.Emotipics.service", account: "UUID")
+                
+                
                 completion(.goAhead)
             case .failure(let error):
                 print("Getting Error from View Model", error)

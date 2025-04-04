@@ -174,7 +174,9 @@ class EntryViewController: UIViewController {
     }()
     
     
+    //Add Contact View Model
     
+    var addContactViewModel: AddContactViewModel = AddContactViewModel()
    
     
     
@@ -310,6 +312,11 @@ class EntryViewController: UIViewController {
     
     
     @IBAction func viewAllContacts(_ sender: Any) {
+        
+        //AddContactApiCaller.addContactApiCaller(email: "kinode3436@buides.com")
+        
+        
+        
         navigationController?.pushViewController(ContactsViewController(), animated: true)
         print("This is my all contacts")
     }

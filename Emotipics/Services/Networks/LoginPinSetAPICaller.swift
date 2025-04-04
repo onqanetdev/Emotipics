@@ -11,6 +11,11 @@ import Foundation
 
 class LoginPinSetAPICaller {
     static func userPinSet(pin:String, email:String, CompletionHandler: @escaping(_ result: Result<LoginPinResponseModel, NetworkError>) -> Void){
+        
+        
+        
+        
+        
        let urlString = baseURL + APIEndpoint.pinSet.rawValue
        
        guard let url = URL(string: urlString) else {

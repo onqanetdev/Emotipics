@@ -33,6 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.isEnabled = true
         IQKeyboardManager.shared.resignOnTouchOutside = true
         
+        
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "hasLaunchedBefore")
+         if !hasLaunchedBefore {
+             KeychainManager.standard.delete(service: "com.Emotipics.service", account: "access-token")
+             KeychainManager.standard.delete(service: "com.Emotipics.service", account: "UUID")
+             print("Deleted Keychain items on first launch")
+
+             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+         }
+        
         return true
     }
 

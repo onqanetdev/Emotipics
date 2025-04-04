@@ -36,6 +36,12 @@
 		8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51832D9D3A5500D4A023 /* RegistrationOTPModel.swift */; };
 		8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */; };
 		8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E51872D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift */; };
+		8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128532D9F94A1003FA3B8 /* AddContactApiCaller.swift */; };
+		8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */; };
+		8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128572D9FB2CA003FA3B8 /* AddContactRequestModel.swift */; };
+		8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */; };
+		8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A31285B2D9FBEE2003FA3B8 /* AddContactViewController.swift */; };
+		8A31285E2D9FBEE2003FA3B8 /* AddContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A31285C2D9FBEE2003FA3B8 /* AddContactViewController.xib */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -139,6 +145,12 @@
 		8A2E51832D9D3A5500D4A023 /* RegistrationOTPModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOTPModel.swift; sourceTree = "<group>"; };
 		8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPViewModel.swift; sourceTree = "<group>"; };
 		8A2E51872D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOTPRequestModel.swift; sourceTree = "<group>"; };
+		8A3128532D9F94A1003FA3B8 /* AddContactApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactApiCaller.swift; sourceTree = "<group>"; };
+		8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactResponseModel.swift; sourceTree = "<group>"; };
+		8A3128572D9FB2CA003FA3B8 /* AddContactRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactRequestModel.swift; sourceTree = "<group>"; };
+		8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
+		8A31285B2D9FBEE2003FA3B8 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
+		8A31285C2D9FBEE2003FA3B8 /* AddContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddContactViewController.xib; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -297,6 +309,7 @@
 				8A241DE02D801952002D7BA8 /* Contacts HeaderView  */,
 				8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */,
 				8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */,
+				8A31285F2D9FBEF0003FA3B8 /* Add Contacts */,
 			);
 			path = "Contacts Views";
 			sourceTree = "<group>";
@@ -391,6 +404,15 @@
 			path = RegistrationOTPModel;
 			sourceTree = "<group>";
 		};
+		8A31285F2D9FBEF0003FA3B8 /* Add Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				8A31285B2D9FBEE2003FA3B8 /* AddContactViewController.swift */,
+				8A31285C2D9FBEE2003FA3B8 /* AddContactViewController.xib */,
+			);
+			path = "Add Contacts";
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -458,6 +480,7 @@
 				8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */,
 				8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */,
 				8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */,
+				8A3128532D9F94A1003FA3B8 /* AddContactApiCaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -467,6 +490,8 @@
 			children = (
 				8AF792422D9BDC2000085FEC /* RegisterModels */,
 				8A3C027A2D955C1300DE941A /* LoginModels */,
+				8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */,
+				8A3128572D9FB2CA003FA3B8 /* AddContactRequestModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,6 +512,7 @@
 				8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */,
 				8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */,
 				8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */,
+				8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -825,6 +851,7 @@
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
+				8A31285E2D9FBEE2003FA3B8 /* AddContactViewController.xib in Resources */,
 				8ABB968F2D8D39960032E6DA /* ProfileViewController.xib in Resources */,
 				8A4353B82D758F4700ABB7A0 /* lato_black.ttf in Resources */,
 				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
@@ -861,12 +888,15 @@
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
+				8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
+				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
+				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
@@ -908,10 +938,12 @@
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
+				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
 				8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

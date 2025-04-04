@@ -24,9 +24,10 @@ class ContactsViewController: UIViewController {
     
     
     
-    private var floatingBtn: UIView = {
+    private var floatingBtn: FloatingBtn = {
         let btn = FloatingBtn()
         btn.translatesAutoresizingMaskIntoConstraints = false
+      //  btn.setTarget(ContactsViewController.self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
         return btn
     }()
     
@@ -74,6 +75,9 @@ class ContactsViewController: UIViewController {
        // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
         
+        
+        floatingBtn.setTarget(self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
+        
         NSLayoutConstraint.activate([
             floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
             floatingBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -88,6 +92,13 @@ class ContactsViewController: UIViewController {
     @IBAction func backToPrev(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
+    @objc func handleFloatingBtnTap() {
+        print("Tapped floating btn")
+        navigationController?.pushViewController(AddContactViewController(), animated: true)
+    }
+    
     
 }
 
@@ -129,3 +140,13 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
            
        }
 }
+
+
+
+
+
+
+
+
+
+
