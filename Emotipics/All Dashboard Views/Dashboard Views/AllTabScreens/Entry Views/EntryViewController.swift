@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 
-class EntryViewController: UIViewController {
+class EntryViewController: UIViewController , UpdateUI{
     
     
     @IBOutlet weak var rotateBtn: UIButton!
@@ -268,6 +268,7 @@ class EntryViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        viewModel()
     }
     
     func setupActivityIndicator() {
@@ -401,4 +402,62 @@ class EntryViewController: UIViewController {
     }
     
     
+    
+    
+    
+    func deleteScreenPopUp(desiredCode: String) {
+        let errorPopup = DeletePopUpVC(nibName: "DeletePopUpVC", bundle: nil)
+        //errorPopup.emailText = emailAddTxtFld.text!
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.indexOk = desiredCode
+        errorPopup.deleteDelegate = self
+        //errorPopup.msgViewVar = message
+        //errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+    }
+    
+    @objc func popUpFromBottom(_ sender: UIButton) {
+        let rowIndex = sender.tag
+        guard let code =  contactsViewModel.responseModel?.data?[rowIndex].contactcode else {
+            return
+        }
+        deleteScreenPopUp(desiredCode: code)
+    }
+    
+    
+    func updateUI(){
+        print("Update UI is getting called")
+        viewModel()
+    }
+    
+    
+    
+    func viewModel(){
+        activityIndicator.startAnimating()
+        
+        contactsViewModel.allContactList { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("YO ✌🏽")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                        heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
+                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
+                        self.contactsTblView.reloadData()
+                        
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
 }

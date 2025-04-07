@@ -95,6 +95,7 @@ class AddContactViewController: UIViewController {
                     case .goAhead:
                         
                         print("Its Okay")
+                        self.emailTxtFld.text = ""
                         
                     case .heyStop:
                         print("SomeThing Went Wrong")
