@@ -42,6 +42,9 @@
 		8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */; };
 		8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A31285B2D9FBEE2003FA3B8 /* AddContactViewController.swift */; };
 		8A31285E2D9FBEE2003FA3B8 /* AddContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A31285C2D9FBEE2003FA3B8 /* AddContactViewController.xib */; };
+		8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */; };
+		8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */; };
+		8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -151,6 +154,9 @@
 		8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewModel.swift; sourceTree = "<group>"; };
 		8A31285B2D9FBEE2003FA3B8 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		8A31285C2D9FBEE2003FA3B8 /* AddContactViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddContactViewController.xib; sourceTree = "<group>"; };
+		8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllContactList.swift; sourceTree = "<group>"; };
+		8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactResponseModel.swift; sourceTree = "<group>"; };
+		8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllContactsViewModel.swift; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -413,6 +419,14 @@
 			path = "Add Contacts";
 			sourceTree = "<group>";
 		};
+		8A3128622D9FF9B5003FA3B8 /* GetContacts */ = {
+			isa = PBXGroup;
+			children = (
+				8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */,
+			);
+			path = GetContacts;
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,6 +495,7 @@
 				8A2E517F2D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift */,
 				8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */,
 				8A3128532D9F94A1003FA3B8 /* AddContactApiCaller.swift */,
+				8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -488,6 +503,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A3128622D9FF9B5003FA3B8 /* GetContacts */,
 				8AF792422D9BDC2000085FEC /* RegisterModels */,
 				8A3C027A2D955C1300DE941A /* LoginModels */,
 				8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */,
@@ -513,6 +529,7 @@
 				8A2E51852D9D4A0400D4A023 /* OTPViewModel.swift */,
 				8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */,
 				8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */,
+				8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -891,6 +908,7 @@
 				8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
+				8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
@@ -907,6 +925,7 @@
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
 				8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */,
+				8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
@@ -918,6 +937,7 @@
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
+				8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,

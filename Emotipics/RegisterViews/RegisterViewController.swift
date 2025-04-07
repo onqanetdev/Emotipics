@@ -307,13 +307,18 @@ class RegisterViewController: UIViewController {
                 loginViewModel.requestModel.email = emailtext
                 loginViewModel.requestModel.password = passwordText
                 loginViewModel.getLoginData(loginViewModel.requestModel) { result in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         self.activityIndicator.stopAnimating()
                         self.registerBtn.isEnabled = true
                         
                         switch result {
                         case .goAhead:
-                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                            if (loginViewModel.responseModel?.login_data?[0].user?.active == "Y") && (loginViewModel.responseModel?.login_data?[0].user?.verify == "Y") {
+                                self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                            } else {
+
+                                otpVerification()
+                            }
                         case .heyStop:
                             print("Something Went Wrong!!!")
                         }
@@ -404,6 +409,7 @@ class RegisterViewController: UIViewController {
         self.present(errorPopup, animated: true)
     }
     
+    
     @IBAction func backBtnAction(_ sender: Any) {
         
         navigationController?.popViewController(animated: true)
@@ -414,6 +420,9 @@ class RegisterViewController: UIViewController {
         
         navigationController?.popViewController(animated: true)
     }
+    
+    
+    
     
 }
 

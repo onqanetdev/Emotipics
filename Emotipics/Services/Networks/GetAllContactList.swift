@@ -1,5 +1,5 @@
 //
-//  AddContactApiCaller.swift
+//  GetAllContactList.swift
 //  Emotipics
 //
 //  Created by Onqanet on 04/04/25.
@@ -8,32 +8,25 @@
 import Foundation
 
 
-
-
-
-class AddContactApiCaller {
-
-    
-    static func addContactApiCaller(email: String, CompletionHandler: @escaping(_ result: Result<AddContactResponseModel, NetworkError>) -> Void) {
-        
+class GetAllContactList {
+   static func getAllContacts( CompletionHandler: @escaping(_ result: Result<GetContactResponseModel, NetworkError>) -> Void) {
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
         let accessToken = String(data: data, encoding: .utf8)!
-        print("Access Token from ADD Contacts Api--->",accessToken)
+        print("Access Token from Get All Contact List Api--->",accessToken)
         
         let dataUser = KeychainManager.standard.read(service: "com.Emotipics.service", account: "UUID")!
         let UuidUser = String(data: dataUser, encoding: .utf8)!
-        //print("Already Exists uuid is",UuidUser)
-        
-        let urlString = baseURL + APIEndpoint.userConAdded.rawValue
         
         
+        
+        
+        let urlString = baseURL + APIEndpoint.userContactList.rawValue
         
         guard let url = URL(string: urlString) else {
-            print("can not able to convert it into URL")
+            print("Not Able to Convert it into URL")
             return
         }
-        
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST" // Set HTTP method to POST
@@ -42,7 +35,7 @@ class AddContactApiCaller {
     
         
         let requestBody: [String : Any] = [
-            "email": email
+            "offset": "1"
         ]
         
         
@@ -60,15 +53,15 @@ class AddContactApiCaller {
             
             if error == nil ,
                let data = dataResponse,
-               let jsonResponse = try? JSONDecoder().decode(AddContactResponseModel.self, from: data) {
+               let jsonResponse = try? JSONDecoder().decode(GetContactResponseModel.self, from: data) {
                 print("My JSON Response is ", jsonResponse)
                 
                 
                 if jsonResponse.success == false {
-                    print("The Respons from", jsonResponse.message ?? "!")
+                   // print("The Respons from", jsonResponse.message ?? "!")
                     CompletionHandler(.success(jsonResponse))
                 } else {
-                    print("The success Response is", jsonResponse.message ?? "@")
+                  //  print("The success Response is", jsonResponse.message ?? "@")
                     CompletionHandler(.success(jsonResponse))
                 }
                 
@@ -79,7 +72,6 @@ class AddContactApiCaller {
             
         }.resume()
         
+        
     }
-    
-    
 }

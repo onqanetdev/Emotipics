@@ -31,9 +31,18 @@ class ContactsViewController: UIViewController {
         return btn
     }()
     
-    
+    var allContactsViewModel: AllContactsViewModel = AllContactsViewModel()
     
     //var notificationView:Bool = false
+    
+    
+    
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +61,30 @@ class ContactsViewController: UIViewController {
         
     
         addPlusIcon()
+        //GetAllContactList.getAllContacts(offset: "1")
+        setupActivityIndicator()
         
-        
+        activityIndicator.startAnimating()
+        allContactsViewModel.allContactList { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Success 👍🏽")
+                    //table View Reload Data
+                    DispatchQueue.main.async {
+                        self.contactsTblView.reloadData()
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
     }
     
     
@@ -69,6 +100,20 @@ class ContactsViewController: UIViewController {
                 }
             }
     }
+    
+    
+    func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
     
     
     func addPlusIcon(){
@@ -105,14 +150,14 @@ class ContactsViewController: UIViewController {
 
 extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return allContactsViewModel.responseModel?.data?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
-           
+        cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
             return cell
     }
     
