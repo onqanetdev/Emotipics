@@ -65,6 +65,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="cellView" destination="CL5-Yy-1eI" id="5co-KR-Pcb"/>
+                <outlet property="moreActionBtn" destination="EDk-0R-r4P" id="5Nw-PU-aPr"/>
                 <outlet property="profilePhoto" destination="I0y-U1-zUv" id="lQV-LM-YEj"/>
                 <outlet property="sarahLbl" destination="2zW-JW-JQQ" id="2Z4-6u-aem"/>
             </connections>

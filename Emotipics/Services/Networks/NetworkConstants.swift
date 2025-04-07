@@ -17,6 +17,7 @@ enum APIEndpoint: String {
     case pinSet = "user-login-pin-set"
     case userConAdded = "user-add-contact"
     case userContactList = "user-contact-list"
+    case deleteConatct = "user-contact-remove"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }

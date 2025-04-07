@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController {
+class ContactsViewController: UIViewController, UpdateUI {
     
     
     
@@ -63,7 +63,30 @@ class ContactsViewController: UIViewController {
         addPlusIcon()
         //GetAllContactList.getAllContacts(offset: "1")
         setupActivityIndicator()
+    
+        viewModel()
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+        //self.tabBarController?.editButtonItem.isHidden = true
+        if let tabBarController = self.tabBarController {
+                for subview in tabBarController.view.subviews {
+                    if let button = subview as? UIButton,
+                       button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
+                        button.isHidden = true
+                    }
+                }
+            }
+        
+        
+        viewModel()
+        
+    }
+    
+    func viewModel(){
         activityIndicator.startAnimating()
         allContactsViewModel.allContactList { result in
             DispatchQueue.main.async {
@@ -88,18 +111,6 @@ class ContactsViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-        //self.tabBarController?.editButtonItem.isHidden = true
-        if let tabBarController = self.tabBarController {
-                for subview in tabBarController.view.subviews {
-                    if let button = subview as? UIButton,
-                       button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
-                        button.isHidden = true
-                    }
-                }
-            }
-    }
     
     
     func setupActivityIndicator() {
@@ -133,6 +144,13 @@ class ContactsViewController: UIViewController {
     }
     
     
+    func updateUI(){
+        print("Update UI is getting called")
+        viewModel()
+    }
+    
+    
+    
     
     @IBAction func backToPrev(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -144,6 +162,25 @@ class ContactsViewController: UIViewController {
         navigationController?.pushViewController(AddContactViewController(), animated: true)
     }
     
+    func deleteScreenPopUp(desiredCode: String) {
+        let errorPopup = DeletePopUpVC(nibName: "DeletePopUpVC", bundle: nil)
+        //errorPopup.emailText = emailAddTxtFld.text!
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.indexOk = desiredCode
+        errorPopup.deleteDelegate = self
+        //errorPopup.msgViewVar = message
+        //errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+    }
+    
+    @objc func popUpFromBottom(_ sender: UIButton) {
+        let rowIndex = sender.tag
+        guard let code =  allContactsViewModel.responseModel?.data?[rowIndex].contactcode else {
+            return
+        }
+        deleteScreenPopUp(desiredCode: code)
+    }
     
 }
 
@@ -158,6 +195,9 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
         cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
+        
+        cell.moreActionBtn.tag = indexPath.row
+        cell.moreActionBtn.addTarget(self, action: #selector(popUpFromBottom(_:)), for: .touchUpInside)
             return cell
     }
     

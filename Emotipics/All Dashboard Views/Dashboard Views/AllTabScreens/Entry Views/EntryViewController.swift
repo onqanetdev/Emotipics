@@ -178,8 +178,15 @@ class EntryViewController: UIViewController {
     
     var addContactViewModel: AddContactViewModel = AddContactViewModel()
    
+    var contactsViewModel: AllContactsViewModel = AllContactsViewModel()
     
     
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -211,17 +218,48 @@ class EntryViewController: UIViewController {
        // contactsTblView.isHidden = true
         
         //Manipulating contentViewHeight
-        contentViewHeight.constant = 850
+        //contentViewHeight.constant = 850
+        
+        contentViewHeight.constant = 835
+        
         //heightsOfContactsiTblView.constant = 100
         heightsOfContactsiTblView.constant = 70
         contentViewHeight.constant += heightsOfContactsiTblView.constant
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         setupCircularView()
         setupPecentageLbl()
-       
-        
-        
+    
         sideMenuManager.setup(in: self)
+        setupActivityIndicator()
+        
+        activityIndicator.startAnimating() 
+        
+        contactsViewModel.allContactList { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("YO ✌🏽")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                        heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
+                        contentViewHeight.constant = contentViewHeight.constant + heightsOfContactsiTblView.constant
+                        self.contactsTblView.reloadData()
+                        
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+//        DispatchQueue.main.async {
+//            self.contactsTblView.reloadData()
+//        }
         
         
     }
@@ -232,7 +270,17 @@ class EntryViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    
+    func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
     
     
     //MARK: Font Family Settigs

@@ -69,6 +69,17 @@ class AddContactViewController: UIViewController {
         ])
     }
     
+    
+    
+    @IBAction func backBtnAction(_ sender: Any) {
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
+    
+    
 
     @IBAction func saveIntoDatabase(_ sender: Any) {
         

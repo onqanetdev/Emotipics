@@ -95,6 +95,13 @@
 		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
 		8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */; };
 		8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */; };
+		8A9E7D542DA39DA2007CE28A /* DeletePopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9E7D532DA39DA2007CE28A /* DeletePopUpVC.xib */; };
+		8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D522DA39DA2007CE28A /* DeletePopUpVC.swift */; };
+		8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D562DA3A425007CE28A /* DeleteContactApiCaller.swift */; };
+		8A9E7D5C2DA3A4B9007CE28A /* DeleteContactModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D5B2DA3A4B9007CE28A /* DeleteContactModel.swift */; };
+		8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D5D2DA3B4DB007CE28A /* DeleteContactViewModel.swift */; };
+		8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D5F2DA3C0B4007CE28A /* DeleteContactReqModel.swift */; };
+		8A9E7D622DA3CA87007CE28A /* UpdateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D612DA3CA87007CE28A /* UpdateUI.swift */; };
 		8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */; };
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
@@ -209,6 +216,13 @@
 		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
 		8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToNextView.swift; sourceTree = "<group>"; };
 		8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		8A9E7D522DA39DA2007CE28A /* DeletePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePopUpVC.swift; sourceTree = "<group>"; };
+		8A9E7D532DA39DA2007CE28A /* DeletePopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeletePopUpVC.xib; sourceTree = "<group>"; };
+		8A9E7D562DA3A425007CE28A /* DeleteContactApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactApiCaller.swift; sourceTree = "<group>"; };
+		8A9E7D5B2DA3A4B9007CE28A /* DeleteContactModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactModel.swift; sourceTree = "<group>"; };
+		8A9E7D5D2DA3B4DB007CE28A /* DeleteContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactViewModel.swift; sourceTree = "<group>"; };
+		8A9E7D5F2DA3C0B4007CE28A /* DeleteContactReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactReqModel.swift; sourceTree = "<group>"; };
+		8A9E7D612DA3CA87007CE28A /* UpdateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUI.swift; sourceTree = "<group>"; };
 		8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedCatalogueViewController.swift; sourceTree = "<group>"; };
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
@@ -388,6 +402,7 @@
 			children = (
 				8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */,
 				8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */,
+				8A9E7D612DA3CA87007CE28A /* UpdateUI.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -496,6 +511,7 @@
 				8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */,
 				8A3128532D9F94A1003FA3B8 /* AddContactApiCaller.swift */,
 				8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */,
+				8A9E7D562DA3A425007CE28A /* DeleteContactApiCaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -503,11 +519,11 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A9E7D5A2DA3A491007CE28A /* DeleteContactModel */,
 				8A3128622D9FF9B5003FA3B8 /* GetContacts */,
 				8AF792422D9BDC2000085FEC /* RegisterModels */,
 				8A3C027A2D955C1300DE941A /* LoginModels */,
-				8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */,
-				8A3128572D9FB2CA003FA3B8 /* AddContactRequestModel.swift */,
+				8A9E7D592DA3A47A007CE28A /* AddContactModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,6 +546,7 @@
 				8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */,
 				8A3128592D9FB2F8003FA3B8 /* AddContactViewModel.swift */,
 				8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */,
+				8A9E7D5D2DA3B4DB007CE28A /* DeleteContactViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -553,6 +570,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A9E7D512DA39D78007CE28A /* DeletePopUps */,
 				8A7F319C2D9E99E900288E29 /* KeyChainManager */,
 				8A2E517A2D9D049800D4A023 /* PopUps */,
 				8A2E51772D9CFA5000D4A023 /* Protocols */,
@@ -691,6 +709,33 @@
 				8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */,
 			);
 			path = KeyChainManager;
+			sourceTree = "<group>";
+		};
+		8A9E7D512DA39D78007CE28A /* DeletePopUps */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E7D522DA39DA2007CE28A /* DeletePopUpVC.swift */,
+				8A9E7D532DA39DA2007CE28A /* DeletePopUpVC.xib */,
+			);
+			path = DeletePopUps;
+			sourceTree = "<group>";
+		};
+		8A9E7D592DA3A47A007CE28A /* AddContactModels */ = {
+			isa = PBXGroup;
+			children = (
+				8A3128552D9F9D1A003FA3B8 /* AddContactResponseModel.swift */,
+				8A3128572D9FB2CA003FA3B8 /* AddContactRequestModel.swift */,
+			);
+			path = AddContactModels;
+			sourceTree = "<group>";
+		};
+		8A9E7D5A2DA3A491007CE28A /* DeleteContactModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A9E7D5B2DA3A4B9007CE28A /* DeleteContactModel.swift */,
+				8A9E7D5F2DA3C0B4007CE28A /* DeleteContactReqModel.swift */,
+			);
+			path = DeleteContactModel;
 			sourceTree = "<group>";
 		};
 		8AA25B902D82A1920093F3F1 /* Shared Catalogues */ = {
@@ -857,6 +902,7 @@
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
 				8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */,
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
+				8A9E7D542DA39DA2007CE28A /* DeletePopUpVC.xib in Resources */,
 				8A4353C02D758F4700ABB7A0 /* poppins_semi_bold.ttf in Resources */,
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
 				8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */,
@@ -902,6 +948,7 @@
 			files = (
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
+				8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */,
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
@@ -918,6 +965,7 @@
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
+				8A9E7D5C2DA3A4B9007CE28A /* DeleteContactModel.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
@@ -937,10 +985,12 @@
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
+				8A9E7D622DA3CA87007CE28A /* UpdateUI.swift in Sources */,
 				8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
+				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */,
 				8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
@@ -963,7 +1013,9 @@
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
+				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
+				8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */,
 				8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

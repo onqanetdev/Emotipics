@@ -39,6 +39,11 @@ class EntryTableViewCell: UITableViewCell {
     
     
 
+    
+    @IBOutlet weak var moreActionBtn: UIButton!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
