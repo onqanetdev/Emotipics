@@ -13,14 +13,26 @@ import UIKit
 
 extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        //return 4
+        catalogueListingViewModel.responseModel?.data?.count ?? 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
         cell.layer.cornerRadius = 25
-//        cell.layer.borderWidth = 2
-//        cell.layer.borderColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+
+        if let data = catalogueListingViewModel.responseModel?.data, indexPath.row < data.count {
+            let item = data[indexPath.row]
+            cell.projectFilesLbl.text = item.catalog_name ?? "Nil"
+            cell.noOfFiles.text = item.total_files ?? "Nil"
+            cell.fiveGbLbl.text = item.file_storage ?? "Nil"
+        } else {
+            // Default values for safety
+            cell.projectFilesLbl.text = "No Name"
+            cell.noOfFiles.text = "0 Files"
+            cell.fiveGbLbl.text = "0 GB"
+        }
+        
         return cell
     }
     

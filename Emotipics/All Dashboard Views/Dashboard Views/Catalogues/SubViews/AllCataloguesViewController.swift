@@ -51,9 +51,14 @@ class AllCataloguesViewController: UIViewController {
    
     var dynamicHeight: CGFloat = 0
     
+    var catalogueListingViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
-    
-    
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,19 +96,88 @@ class AllCataloguesViewController: UIViewController {
         } else {
             // print("Hello from viewDidload from image cell  false")
         }
+        
+        setupActivityIndicator()
+        reloadAllData()
+    
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        reloadAllData()
+    }
+    
+    func reloadAllData(){
+        catalogueListingViewModel.requestModel.limit = "10"
+        catalogueListingViewModel.requestModel.offset = "1"
+        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+        
+        activityIndicator.startAnimating()
+        
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
+            DispatchQueue.main.async { [self] in
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Catalogue View Model from AllCataloguesViewController")
+                    //table View Reload Data
+                    self.catalogueCollView.reloadData()
+                    var sumHeight = (120 * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                    
+                    if let countData = catalogueListingViewModel.responseModel?.data?.count {
+                        
+                        if countData % 2 == 0{
+                            let height:CGFloat = CGFloat(sumHeight)
+                            self.collectionViewHeight.constant = height
+                            scrollViewHeight.constant = collectionViewHeight.constant + 170
+                        } else {
+                            let height:CGFloat = CGFloat(sumHeight)
+                            self.collectionViewHeight.constant = height + 120
+                            scrollViewHeight.constant = collectionViewHeight.constant + 170
+                        }
+                        
+                    } else {
+                        
+                    }
+                    
+                    
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
 
     
     func updateScrollViewHeight() {
         // Force collectionView layout update
         catalogueCollView.layoutIfNeeded()
         
-//        var height:CGFloat = 180 * 13
-//        collectionViewHeight.constant = height
-//        scrollViewHeight.constant = collectionViewHeight.constant + 50
-//        print("The height of collection View", collectionViewHeight.constant)
-//        print("The Height of scroll View", scrollViewHeight.constant)
+
         
         
         var height:CGFloat = dynamicHeight * 13
@@ -234,7 +308,7 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
 //    
 //    // Your existing methods remain the same
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 23
+        return catalogueListingViewModel.responseModel?.data?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -247,6 +321,21 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
+            
+            if let data = catalogueListingViewModel.responseModel?.data, indexPath.row < data.count {
+                let item = data[indexPath.row]
+                cell.projectFilesLbl.text = item.catalog_name ?? "Nil"
+                cell.noOfFiles.text = item.total_files ?? "Nil"
+                cell.fiveGbLbl.text = item.file_storage ?? "Nil"
+            } else {
+                // Default values for safety
+                cell.projectFilesLbl.text = "No Name"
+                cell.noOfFiles.text = "0 Files"
+                cell.fiveGbLbl.text = "0 GB"
+            }
+            
+            
+            
             return cell
         }
     }

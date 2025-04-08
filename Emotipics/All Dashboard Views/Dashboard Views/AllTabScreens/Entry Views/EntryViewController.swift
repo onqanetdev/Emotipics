@@ -108,17 +108,6 @@ class EntryViewController: UIViewController , UpdateUI{
     
     @IBOutlet weak var sixGbLbl: UILabel!
     
-    //MARK: This is my table view
-    
-    
-    /**
-     - Basic Indea:
-                1. Table Height will be equal to (noOfCells * cellHeight)
-                2.If new cell is adding then tableView.ReloadData()
-                              call agian (noOfCells * cellHeight)
-                3. First a fixed height for scrollview then the time table view height will increase the
-                scroll view height will also increase
-     */
     
     
     
@@ -179,6 +168,8 @@ class EntryViewController: UIViewController , UpdateUI{
     var addContactViewModel: AddContactViewModel = AddContactViewModel()
    
     var contactsViewModel: AllContactsViewModel = AllContactsViewModel()
+    
+    var catalogueListingViewModel: CatalogueListingViewModel = CatalogueListingViewModel()
     
     
     var activityIndicator: UIActivityIndicatorView = {
@@ -261,7 +252,7 @@ class EntryViewController: UIViewController , UpdateUI{
 //            self.contactsTblView.reloadData()
 //        }
         
-        
+        allCatalogueView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -350,6 +341,7 @@ class EntryViewController: UIViewController , UpdateUI{
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
+//        CatalogueListingApiCaller.catalogueListingCaller(limit: "4", offset: "1", sortfolder: "DESC", typeOfList: "catalog_lists")
         navigationController?.pushViewController(CatalogueViewController(), animated: true)
         //print("The Navigation is not working")
     }
@@ -432,6 +424,45 @@ class EntryViewController: UIViewController , UpdateUI{
     }
     
     
+    func allCatalogueView() {
+        catalogueListingViewModel.requestModel.limit = "4"
+        catalogueListingViewModel.requestModel.offset = "1"
+        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+        
+        activityIndicator.startAnimating()
+        
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Catalogue View Model from Catalogue View Controller")
+                    //table View Reload Data
+                    
+                   if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
+                       self.fileColView.isHidden = true
+                    }
+                    
+                    
+                    DispatchQueue.main.async { [self] in
+                        fileColView.reloadData()
+                        
+                   }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
     
     func viewModel(){
         activityIndicator.startAnimating()
@@ -444,11 +475,19 @@ class EntryViewController: UIViewController , UpdateUI{
                 case .goAhead:
                     print("YO ✌🏽")
                     //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
-                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
-                        self.contactsTblView.reloadData()
+                    
+                    
+                    if self.contactsViewModel.responseModel?.data?.isEmpty == true {
+                        self.contactsTblView.isHidden = true
+                    } else {
                         
+                        
+                        DispatchQueue.main.async { [self] in
+                            heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
+                            contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
+                            self.contactsTblView.reloadData()
+                            
+                        }
                     }
                 case .heyStop:
                     print("Error")

@@ -85,6 +85,22 @@ class CatalogueViewController: UIViewController {
         return btn
     }()
     
+    
+    
+    var catalogueListingViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+    var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+    
+    var loginViewModel:LoginViewModel = LoginViewModel()
+    
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,6 +123,11 @@ class CatalogueViewController: UIViewController {
         heightOfContScrollView.constant = 825
         addPlusIcon()
         
+        setupActivityIndicator()
+        
+        allCatalogueList()
+        
+        sharedCatalogueList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,10 +141,31 @@ class CatalogueViewController: UIViewController {
                     }
                 }
             }
+        allCatalogueList()
+        sharedCatalogueList()
     }
+    
+    
+    
+    func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        allCatalogueList()
+        sharedCatalogueList()
     }
     
     func addPlusIcon(){
@@ -138,6 +180,80 @@ class CatalogueViewController: UIViewController {
         ])
         
     }
+    
+    
+    
+    
+    func allCatalogueList(){
+        catalogueListingViewModel.requestModel.limit = "4"
+        catalogueListingViewModel.requestModel.offset = "1"
+        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+        
+        activityIndicator.startAnimating()
+        
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Catalogue View Model from Catalogue View Controller")
+                    //table View Reload Data
+                    
+                    
+                    DispatchQueue.main.async { [self] in
+                        catalougeCollView.reloadData()
+                        
+                   }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    } // Add Catalogue Ending
+    
+    func sharedCatalogueList(){
+        sharedCatalogueViewModel.requestModel.limit = "4"
+        sharedCatalogueViewModel.requestModel.offset = "1"
+        sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
+        sharedCatalogueViewModel.requestModel.type_of_list = "share_all_catalog"
+        
+        activityIndicator.startAnimating()
+        
+        sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Shared Catalogue View Model 🫡 🫡 View Controller")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+
+                        sharedCatalogueCollView.reloadData()
+                        
+                   }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     @IBAction func previousPage(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -186,6 +302,12 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
             
 //            cell.backgroundColor = .red // Differentiate visually
             cell.layer.cornerRadius = 15
+            cell.projectFilesLbl.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_name ?? "Project Files"
+            cell.noOfFiles.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].total_files ?? "0"
+            cell.fiveGbLbl.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].file_storage ?? "0"
+            
+            
+            
             cell.clipsToBounds = true
             return cell
         } else { // sharedCatalogueCollView
@@ -193,6 +315,28 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
 //            cell.backgroundColor = .blue // Differentiate visually
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
+            
+            
+
+            print("Desired Mail id is", sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email)
+            
+            
+            guard let ownerMailId = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email else {
+                return cell
+            }
+            
+            guard let savedEmail = UserDefaults.standard.string(forKey: "userEmail") else {
+                return cell
+            }
+
+            if ownerMailId == savedEmail {
+                cell.sharedByLbl.text = "Share with other"
+            } else {
+                cell.sharedByLbl.text = "Share by " + (sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.name ?? "nil")
+            }
+            
+            cell.projectFilesLbl.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].catalog_name ?? "Nil"
+            cell.noOfFiles.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].total_files ?? "0"
             cell.sharedByLbl.isHidden = false
             cell.sharedImgView.isHidden = false
             return cell

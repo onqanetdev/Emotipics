@@ -57,8 +57,14 @@ class LoginViewModel {
             switch result {
             case .success(let data):
                 self?.responseModel = data
-                print("My Response Model is", self?.responseModel as Any)
+                print("User Logged in Email Id is ", self?.responseModel?.login_data?[0].user?.email)
                 
+                
+                if let userLoggedinEmail = self?.responseModel?.login_data?[0].user?.email {
+                    UserDefaults.standard.set(userLoggedinEmail, forKey: "userEmail")
+                } else {
+                    print("User Not Found")
+                }
                 
                 //Here Need to Save the Access Token
                 guard let tokenData = self?.responseModel?.login_data?[0].access_token  else {
