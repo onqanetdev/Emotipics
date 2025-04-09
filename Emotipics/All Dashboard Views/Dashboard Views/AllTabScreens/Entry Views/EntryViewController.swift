@@ -40,7 +40,11 @@ class EntryViewController: UIViewController , UpdateUI{
     }
     
     
-    @IBOutlet weak var fileColView: UICollectionView!
+    @IBOutlet weak var fileColView: UICollectionView!{
+        didSet{
+            fileColView.isHidden = true
+        }
+    }
     
     //MARK: 1500 height of the scroll view
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
@@ -111,8 +115,11 @@ class EntryViewController: UIViewController , UpdateUI{
     
     
     
-    @IBOutlet weak var contactsTblView: UITableView!
-    
+    @IBOutlet weak var contactsTblView: UITableView!{
+        didSet {
+            contactsTblView.isHidden = true
+        }
+    }
     
     @IBOutlet weak var heightsOfContactsiTblView: NSLayoutConstraint!
     
@@ -179,6 +186,18 @@ class EntryViewController: UIViewController , UpdateUI{
         return indicator
     }()
     
+    
+    let emptyView = EmptyCollView()
+    let emptyViewForContacts = EmptyCollView()
+    
+    @IBOutlet weak var catalogueTitleView: UIView!
+    
+    
+    @IBOutlet weak var contentView: UIView!
+    
+    
+    @IBOutlet weak var myContactsHeaderView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -222,37 +241,13 @@ class EntryViewController: UIViewController , UpdateUI{
     
         sideMenuManager.setup(in: self)
         setupActivityIndicator()
-        
-        activityIndicator.startAnimating() 
-        
-        contactsViewModel.allContactList { result in
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
-                switch result {
-                case .goAhead:
-                    print("YO ✌🏽")
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
-                        contentViewHeight.constant = contentViewHeight.constant + heightsOfContactsiTblView.constant
-                        self.contactsTblView.reloadData()
-                        
-                    }
-                case .heyStop:
-                    print("Error")
-                }
-                
-                
-            }
-            
-            
-        }
-//        DispatchQueue.main.async {
-//            self.contactsTblView.reloadData()
-//        }
-        
+    
         allCatalogueView()
+        
+        setupEmptyView()
+        
+        viewModel()
+        setupEmptyViewForContacts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -334,6 +329,43 @@ class EntryViewController: UIViewController , UpdateUI{
             pertentageLbl.centerYAnchor.constraint(equalTo: circularView.centerYAnchor)
         ])
         
+    }
+    
+    
+    
+    func setupEmptyView() {
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyView)
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyView.topAnchor.constraint(equalTo: catalogueTitleView.bottomAnchor),
+            emptyView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyView.heightAnchor.constraint(equalToConstant: 150) // adjust as needed
+        ])
+
+        // Call method to setup inner views
+        emptyView.settingUpConstraints()
+    }
+    
+    
+    func setupEmptyViewForContacts() {
+        
+        emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForContacts)
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyViewForContacts.topAnchor.constraint(equalTo: myContactsHeaderView.bottomAnchor),
+            emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForContacts.heightAnchor.constraint(equalToConstant: 200) // adjust as needed
+        ])
+
+        // Call method to setup inner views
+        emptyViewForContacts.settingUpConstraints()
     }
     
     
@@ -443,13 +475,17 @@ class EntryViewController: UIViewController , UpdateUI{
                     
                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
                        self.fileColView.isHidden = true
-                    }
-                    
-                    
-                    DispatchQueue.main.async { [self] in
-                        fileColView.reloadData()
-                        
+                       self.emptyView.isHidden = false
+                   } else {
+                       
+                       self.fileColView.isHidden = false
+                       self.emptyView.isHidden = true
+                       DispatchQueue.main.async { [self] in
+                           fileColView.reloadData()
+                           
+                       }
                    }
+                    
                 case .heyStop:
                     print("Error")
                 }
@@ -468,7 +504,7 @@ class EntryViewController: UIViewController , UpdateUI{
         activityIndicator.startAnimating()
         
         contactsViewModel.allContactList { result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.activityIndicator.stopAnimating()
                 
                 switch result {
@@ -479,8 +515,14 @@ class EntryViewController: UIViewController , UpdateUI{
                     
                     if self.contactsViewModel.responseModel?.data?.isEmpty == true {
                         self.contactsTblView.isHidden = true
-                    } else {
+                        self.emptyViewForContacts.isHidden = false
                         
+                        self.heightsOfContactsiTblView.constant = 150
+                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
+                        
+                    } else {
+                        self.contactsTblView.isHidden = false
+                        self.emptyViewForContacts.isHidden = true
                         
                         DispatchQueue.main.async { [self] in
                             heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))

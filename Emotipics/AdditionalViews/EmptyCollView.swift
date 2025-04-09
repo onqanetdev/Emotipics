@@ -13,6 +13,7 @@ class EmptyCollView: UIView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "uploadcata")
+        image.contentMode = .scaleToFill
         return image
     }()
 
@@ -21,7 +22,8 @@ class EmptyCollView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "No Catalogue Found!"
-        label.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 18)
+        label.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 14)
+        label.textAlignment = .center
         return label
     }()
     
@@ -31,8 +33,9 @@ class EmptyCollView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Add some catalogue to get start"
-        label.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
+        label.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 13)
         label.textColor = .gray
+        label.textAlignment = .center
         return label
     }()
     
@@ -45,6 +48,7 @@ class EmptyCollView: UIView {
         button.setTitleColor(.systemTeal, for: .normal)
         button.layer.borderWidth = 2
         button.layer.borderColor = UIColor.systemTeal.cgColor
+        button.layer.cornerRadius = 10
         button.clipsToBounds = true
         return button
     }()
@@ -77,26 +81,30 @@ class EmptyCollView: UIView {
     func settingUpConstraints() {
         NSLayoutConstraint.activate([
             imgPhoto.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
-            imgPhoto.widthAnchor.constraint(equalToConstant: 45),
-            imgPhoto.heightAnchor.constraint(equalToConstant: 45),
+            imgPhoto.widthAnchor.constraint(equalToConstant: 95),
+            imgPhoto.heightAnchor.constraint(equalToConstant: 75),
             imgPhoto.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             
             noCatLbl.topAnchor.constraint(equalTo: imgPhoto.bottomAnchor, constant: 2),
-            noCatLbl.widthAnchor.constraint(equalToConstant: 100),
-            noCatLbl.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            noCatLbl.widthAnchor.constraint(equalToConstant: 170),
+            noCatLbl.centerXAnchor.constraint(equalTo: imgPhoto.centerXAnchor),
             
             addSomeCat.topAnchor.constraint(equalTo: noCatLbl.bottomAnchor, constant: 2),
-            addSomeCat.widthAnchor.constraint(equalToConstant: 150),
-            addSomeCat.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            addSomeCat.widthAnchor.constraint(equalToConstant: 210),
+            addSomeCat.centerXAnchor.constraint(equalTo: imgPhoto.centerXAnchor),
             
             
             addBtn.topAnchor.constraint(equalTo: addSomeCat.bottomAnchor, constant: 10),
-            addBtn.widthAnchor.constraint(equalToConstant: 80),
-            addBtn.heightAnchor.constraint(equalToConstant: 50),
+            addBtn.heightAnchor.constraint(equalToConstant: 35),
+            addBtn.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
+            addBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20),
             addBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
 
         ])
     }
 }
+
+
+

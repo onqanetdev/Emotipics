@@ -16,8 +16,10 @@
                 <outlet property="bellIconOutlet" destination="dwP-QM-hIK" id="etG-5R-cMc"/>
                 <outlet property="blueCircle" destination="TfA-IS-yNb" id="sg7-FE-F6T"/>
                 <outlet property="cardView" destination="pSY-Ob-TBm" id="dZD-Fg-MgW"/>
+                <outlet property="catalogueTitleView" destination="4r5-bO-ytY" id="HL5-ZU-Gwa"/>
                 <outlet property="contactsTblView" destination="bXb-F7-f6T" id="GIA-FK-Dsz"/>
                 <outlet property="contactsViewAllLbl" destination="djq-yX-kUn" id="MUL-pF-FoI"/>
+                <outlet property="contentView" destination="g6B-ND-leQ" id="nOW-Xi-jga"/>
                 <outlet property="contentViewHeight" destination="urR-Ap-QA4" id="NXL-2g-daF"/>
                 <outlet property="fifteenGbLbl" destination="UkG-pc-N9j" id="AQG-2v-cT5"/>
                 <outlet property="fileColView" destination="j1D-J5-6EP" id="7CM-Lp-Tvd"/>
@@ -26,6 +28,7 @@
                 <outlet property="heightsOfContactsiTblView" destination="Efe-Pb-ruk" id="vFt-JR-exk"/>
                 <outlet property="lightBlueCircle" destination="w7k-HX-srr" id="7fB-6a-e8k"/>
                 <outlet property="moreBtnLbl" destination="yrf-Sg-DtA" id="6Nj-Yo-CuJ"/>
+                <outlet property="myContactsHeaderView" destination="GtA-ab-jMx" id="AMK-Cc-Vfv"/>
                 <outlet property="myContactsLbl" destination="BZU-I4-UPn" id="7Xj-dw-ul1"/>
                 <outlet property="nineGbLbl" destination="nnj-5i-Hva" id="zzs-3x-siZ"/>
                 <outlet property="photosLbl" destination="tfM-mk-w9y" id="DGc-Bv-glx"/>
@@ -305,7 +308,7 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ved-ki-pnP">
-                                    <rect key="frame" x="15" y="544" width="363" height="70"/>
+                                    <rect key="frame" x="15" y="554" width="363" height="70"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For $100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIi-Dr-psJ">
                                             <rect key="frame" x="80" y="36.333333333333371" width="69" height="17"/>
@@ -377,7 +380,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GtA-ab-jMx">
-                                    <rect key="frame" x="0.0" y="637" width="393" height="23"/>
+                                    <rect key="frame" x="0.0" y="636" width="393" height="23"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Contacts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BZU-I4-UPn">
                                             <rect key="frame" x="20.000000000000007" y="1.6666666666666288" width="96.666666666666686" height="20"/>
@@ -413,7 +416,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-F7-f6T">
-                                    <rect key="frame" x="10" y="669" width="373" height="200"/>
+                                    <rect key="frame" x="10" y="668" width="373" height="200"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="Efe-Pb-ruk"/>
@@ -422,7 +425,7 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="GtA-ab-jMx" firstAttribute="top" secondItem="ved-ki-pnP" secondAttribute="bottom" constant="23" id="41a-yA-Jwr"/>
+                                <constraint firstItem="GtA-ab-jMx" firstAttribute="top" secondItem="ved-ki-pnP" secondAttribute="bottom" constant="12" id="41a-yA-Jwr"/>
                                 <constraint firstAttribute="trailing" secondItem="GtA-ab-jMx" secondAttribute="trailing" id="7bu-zk-pNh"/>
                                 <constraint firstAttribute="trailing" secondItem="ved-ki-pnP" secondAttribute="trailing" constant="15" id="7n9-II-RKN"/>
                                 <constraint firstItem="GtA-ab-jMx" firstAttribute="leading" secondItem="g6B-ND-leQ" secondAttribute="leading" id="Azj-cB-ls3"/>
@@ -441,7 +444,7 @@
                                 <constraint firstItem="bXb-F7-f6T" firstAttribute="leading" secondItem="g6B-ND-leQ" secondAttribute="leading" constant="10" id="dsh-vL-fIP"/>
                                 <constraint firstItem="4r5-bO-ytY" firstAttribute="leading" secondItem="g6B-ND-leQ" secondAttribute="leading" id="iMI-hF-AqQ"/>
                                 <constraint firstItem="SeA-z6-J8E" firstAttribute="top" secondItem="H2F-1t-Vn3" secondAttribute="bottom" id="kiU-Kf-biH"/>
-                                <constraint firstItem="ved-ki-pnP" firstAttribute="top" secondItem="j1D-J5-6EP" secondAttribute="bottom" constant="15" id="lGz-Pz-nxb"/>
+                                <constraint firstItem="ved-ki-pnP" firstAttribute="top" secondItem="j1D-J5-6EP" secondAttribute="bottom" constant="25" id="lGz-Pz-nxb"/>
                                 <constraint firstItem="H2F-1t-Vn3" firstAttribute="top" secondItem="g6B-ND-leQ" secondAttribute="top" id="onB-Li-FRu"/>
                                 <constraint firstItem="SeA-z6-J8E" firstAttribute="leading" secondItem="g6B-ND-leQ" secondAttribute="leading" id="r9j-P1-PEo"/>
                                 <constraint firstAttribute="height" constant="1500" id="urR-Ap-QA4"/>
@@ -482,7 +485,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="tableCellBlueTextColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

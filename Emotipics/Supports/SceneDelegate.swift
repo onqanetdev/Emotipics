@@ -19,10 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let root = HomeViewController()
-        //let root = DashboardViewController()
-        window.rootViewController = UINavigationController(rootViewController: root)
-        self.window = window
-        window.makeKeyAndVisible()
+
+        let root2 = DashboardViewController()
+        
+        let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
+        let accessToken = String(data: data, encoding: .utf8)!
+        if accessToken.isEmpty {
+            window.rootViewController = UINavigationController(rootViewController: root)
+            self.window = window
+            window.makeKeyAndVisible()
+        } else {
+            window.rootViewController = UINavigationController(rootViewController: root2)
+            self.window = window
+            window.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
