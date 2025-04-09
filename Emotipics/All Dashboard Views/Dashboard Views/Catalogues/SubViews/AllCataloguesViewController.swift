@@ -29,7 +29,7 @@ class AllCataloguesViewController: UIViewController {
     
     @IBOutlet weak var sortByLbl: UILabel!
     
-    private var floatingBtn: UIView = {
+    private var floatingBtn: FloatingBtn = {
         let btn = FloatingBtn()
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -123,7 +123,10 @@ class AllCataloguesViewController: UIViewController {
                     print("Catalogue View Model from AllCataloguesViewController")
                     //table View Reload Data
                     self.catalogueCollView.reloadData()
-                    var sumHeight = (120 * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+//                    var sumHeight = (120 * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                    
+                    var sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                    
                     
                     if let countData = catalogueListingViewModel.responseModel?.data?.count {
                         
@@ -206,6 +209,10 @@ class AllCataloguesViewController: UIViewController {
         // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
         
+        
+        floatingBtn.setTarget(self, action: #selector(addWebView), for: .touchUpInside)
+        
+        
         NSLayoutConstraint.activate([
             floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
             floatingBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -214,97 +221,22 @@ class AllCataloguesViewController: UIViewController {
         ])
         
     }
+    
+    
+    
+    @objc func addWebView() {
+        let webView = WebViewController()
+        navigationController?.pushViewController(webView, animated: true)
+    }
+    
 }
 
 
-//extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 25
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//        
-//        if isImageCell {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as!ImageCatalogueViewCell
-//            cell.layer.cornerRadius = 15
-//            cell.clipsToBounds = true
-//            return cell
-//        } else {
-//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
-//            cell.layer.cornerRadius = 15
-//            cell.clipsToBounds = true
-//            return cell
-//        }
-//        
-//        
-//        // return UICollectionViewCell()
-//        
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//       // return CGSize(width: 180, height: 140)
-//        
-//        if isImageCell {
-//            return CGSize(width: 180, height: 160)
-//        } else {
-//            return CGSize(width: 180, height: 140)
-//        }
-//        
-//        //return CGSize(width: 180, height: 130)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        
-//        /* return UIEdgeInsets(top: 10, left: 0, bottom: 5, right: 5)*/ // Leading space for the first cell
-//        
-//        let totalCellWidth = 180 * 2 // Two cells per row, each 180 wide
-//        let totalSpacingWidth = 10 * 1 // One space between two cells
-//        let horizontalInset = (collectionView.frame.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
-//        return UIEdgeInsets(top: 10, left: horizontalInset, bottom: 10, right: horizontalInset)
-//    }
-//    
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10 // Adjust this value to decrease or increase spacing
-//    }
-//    
-//    
-//}
 
 
 
 extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
-    
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let numberOfItemsPerRow: CGFloat = 2
-//        let spacingBetweenCells: CGFloat = 10
-//
-//        let totalSpacing = (numberOfItemsPerRow - 1) * spacingBetweenCells // Spacing between items
-//        let availableWidth = collectionView.bounds.width - totalSpacing - 20 // Subtract section insets (left + right)
-//
-//        let cellWidth = availableWidth / numberOfItemsPerRow
-//        
-//        return CGSize(width: cellWidth, height: cellWidth * 1.1) // Adjust height if needed
-//    }
-//
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10 // Spacing between items in the same row
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 10 // Vertical spacing between rows
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-//    }
+
 //    
 //    // Your existing methods remain the same
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -366,9 +298,7 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
         
     }
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        return -4 // Reduce spacing between items
-//    }
+
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Reduce left & right insets

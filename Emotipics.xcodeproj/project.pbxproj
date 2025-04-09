@@ -121,6 +121,7 @@
 		8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */; };
 		8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
+		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
 		8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */; };
 		8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */; };
 		8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */; };
@@ -246,6 +247,7 @@
 		8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
+		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPopUpVC.swift; sourceTree = "<group>"; };
 		8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPopUpVC.xib; sourceTree = "<group>"; };
 		8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPICaller.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		8A241DEC2D80494E002D7BA8 /* Catalogues */ = {
 			isa = PBXGroup;
 			children = (
+				8AEADB522DA6435500BF187E /* WebView */,
 				8A1823562D87D315007A2E90 /* ImageCollectionView */,
 				8AA25B902D82A1920093F3F1 /* Shared Catalogues */,
 				8AA459302D81909E0004938B /* SubViews */,
@@ -831,6 +834,14 @@
 			path = "Profile Manager";
 			sourceTree = "<group>";
 		};
+		8AEADB522DA6435500BF187E /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				8AEADB532DA6449000BF187E /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1055,7 @@
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
