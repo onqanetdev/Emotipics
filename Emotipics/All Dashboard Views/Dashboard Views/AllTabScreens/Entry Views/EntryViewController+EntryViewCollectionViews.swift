@@ -48,6 +48,23 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let imageViewController = AllCataloguesViewController()
         imageViewController.isImageCell = true
     
+//        print("Tapped On The Cell",catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_name, "Catalogue id is", catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code)
+//        print("User Id is ", catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code)
+        
+        let catalogueId = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code
+            let userCode = catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code
+        
+        
+        
+        if let catalogueId = catalogueId {
+            UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
+        }
+
+        if let userCode = userCode {
+            UserDefaults.standard.set(userCode, forKey: "userCode")
+        }
+        
+        
         navigationController?.pushViewController(imageViewController, animated: true)
     }
 }

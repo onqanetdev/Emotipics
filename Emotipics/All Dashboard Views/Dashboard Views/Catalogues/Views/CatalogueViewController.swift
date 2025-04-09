@@ -79,7 +79,7 @@ class CatalogueViewController: UIViewController {
     
     
     
-    private var floatingBtn: UIView = {
+    private var floatingBtn: FloatingBtn = {
         let btn = FloatingBtn()
         btn.translatesAutoresizingMaskIntoConstraints = false
         return btn
@@ -91,6 +91,7 @@ class CatalogueViewController: UIViewController {
     var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     var loginViewModel:LoginViewModel = LoginViewModel()
+    var addCatalogueViewModel: AddCatalogueViewModel = AddCatalogueViewModel()
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -171,6 +172,7 @@ class CatalogueViewController: UIViewController {
     func addPlusIcon(){
        // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
+        floatingBtn.setTarget(self, action: #selector(createCatalogueList), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
@@ -251,7 +253,16 @@ class CatalogueViewController: UIViewController {
     
     
     
-    
+    @objc func createCatalogueList() {
+        let addCatalogueVC = AddContactViewController()
+        addCatalogueVC.isCatalogueView = true
+        
+        addCatalogueVC.txtFieldPlaceHolder = "Enter Catalogue Name"
+        addCatalogueVC.addCataText = "Create a Catalogue"
+        addCatalogueVC.createCataTxt = "Create a catalogue and add users to share your"
+        addCatalogueVC.favImgLbl = "favourite images"
+        navigationController?.pushViewController(addCatalogueVC, animated: true)
+    }
     
     
     

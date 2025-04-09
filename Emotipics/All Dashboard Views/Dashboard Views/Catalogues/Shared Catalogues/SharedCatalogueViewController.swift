@@ -55,6 +55,9 @@ class SharedCatalogueViewController: UIViewController {
     var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     
+    //var shareByMeViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+    //var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+    
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -242,13 +245,9 @@ class SharedCatalogueViewController: UIViewController {
     func updateContentForSelectedSegment(_ selectedIndex: Int) {
         // This is where you would update your UI based on which segment is selected
         if selectedIndex == 0 {
-            // "Shared with me" tab is selected
-            // Show files shared with the current user
-            loadSharedWithMeContent()
-        } else {
-            // "Share by Me" tab is selected
-            // Show files shared by the current user
             loadShareByMeContent()
+        } else {
+            loadSharedWithMeContent()
         }
     }
     
@@ -256,12 +255,78 @@ class SharedCatalogueViewController: UIViewController {
         // Implement your logic to display files shared with the user
         // For example, fetch and display files from your data source
         print("Loading 'Shared with me' content")
+        shareWithMe()
     }
     
     func loadShareByMeContent() {
         // Implement your logic to display files shared by the user
         // For example, fetch and display files from your data source
         print("Loading 'Share by Me' content")
+        shareByMe()
+    }
+    
+    func shareByMe(){
+        sharedCatalogueViewModel.requestModel.limit = "10"
+        sharedCatalogueViewModel.requestModel.offset = "1"
+        sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
+        sharedCatalogueViewModel.requestModel.type_of_list = "catalog_share_byme"
+        
+        activityIndicator.startAnimating()
+        
+        sharedCatalogueViewModel.catalogueListing(request:  sharedCatalogueViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Segment Change share by me")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                    self.sharedCollView.reloadData()
+                        
+                   }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    func shareWithMe(){
+        sharedCatalogueViewModel.requestModel.limit = "10"
+        sharedCatalogueViewModel.requestModel.offset = "1"
+        sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
+        sharedCatalogueViewModel.requestModel.type_of_list = "catalog_share_withme"
+        
+        activityIndicator.startAnimating()
+        
+        sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Segment changing share with me")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                        
+                        sharedCollView.reloadData()
+                        
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
     }
 }
 

@@ -133,11 +133,11 @@ class AllCataloguesViewController: UIViewController {
                         if countData % 2 == 0{
                             let height:CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height
-                            scrollViewHeight.constant = collectionViewHeight.constant + 170
+                            scrollViewHeight.constant = collectionViewHeight.constant + 370
                         } else {
                             let height:CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height + 120
-                            scrollViewHeight.constant = collectionViewHeight.constant + 170
+                            scrollViewHeight.constant = collectionViewHeight.constant + 370
                         }
                         
                     } else {
@@ -209,9 +209,11 @@ class AllCataloguesViewController: UIViewController {
         // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
         
-        
-        floatingBtn.setTarget(self, action: #selector(addWebView), for: .touchUpInside)
-        
+        if isImageCell {
+            floatingBtn.setTarget(self, action: #selector(addWebView), for: .touchUpInside)
+        } else {
+            floatingBtn.setTarget(self, action: #selector(addNewCatalogue), for: .touchUpInside)
+        }
         
         NSLayoutConstraint.activate([
             floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
@@ -229,6 +231,18 @@ class AllCataloguesViewController: UIViewController {
         navigationController?.pushViewController(webView, animated: true)
     }
     
+    @objc func addNewCatalogue() {
+        //AddCatalogueApiCaller.addCatalogueApiCaller(folderName: "Dev2 Catalogue")
+        let nextView = AddContactViewController()
+        nextView.isCatalogueView = true
+        nextView.txtFieldPlaceHolder = "Enter Catalogue Name"
+        nextView.addCataText = "Create a Catalogue"
+        nextView.createCataTxt = "Create a catalogue and add users to share your"
+        nextView.favImgLbl = "favourite images"
+        
+        navigationController?.pushViewController(nextView, animated: true)
+        
+    }
 }
 
 

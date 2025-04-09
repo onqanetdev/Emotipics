@@ -29,6 +29,7 @@ class AddContactViewController: UIViewController {
     
     var addConatctViewModel: AddContactViewModel = AddContactViewModel()
     
+    var addCatalogueViewModel: AddCatalogueViewModel = AddCatalogueViewModel()
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -48,12 +49,36 @@ class AddContactViewController: UIViewController {
     
     
     
+    @IBOutlet private weak var addCatLbl: UILabel!
+    @IBOutlet private weak var createCataLbl: UILabel!{
+        didSet {
+            createCataLbl.numberOfLines = 2
+            createCataLbl.textAlignment = .center
+        }
+    }
+    @IBOutlet private weak var favImagesLbl: UILabel!
+    
+    
+    //variables for updating  the texts
+    var addCataText = ""
+    var createCataTxt = ""
+    var favImgLbl = ""
+    var txtFieldPlaceHolder = ""
+    
+    var isCatalogueView:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupActivityIndicator()
+        if isCatalogueView {
+            addCatLbl.text = addCataText
+            createCataLbl.text = createCataTxt
+            favImagesLbl.text = favImgLbl
+            emailTxtFld.placeholder = txtFieldPlaceHolder
+            
+        }
     }
 
     
@@ -83,33 +108,76 @@ class AddContactViewController: UIViewController {
 
     @IBAction func saveIntoDatabase(_ sender: Any) {
         
-        
-        if let emailText = emailTxtFld.text , !emailText.isEmpty {
-            activityIndicator.startAnimating()
-            addConatctViewModel.requestModel.email = emailText
-            addConatctViewModel.addContactViewModelfunc(request: addConatctViewModel.requestModel) { result in
-                
-                DispatchQueue.main.async{
-                    self.activityIndicator.stopAnimating()
-                    switch result {
-                    case .goAhead:
+        if isCatalogueView {
+            
+//            if let emailText = emailTxtFld.text , !emailText.isEmpty {
+//                //AddCatalogueApiCaller.addCatalogueApiCaller(folderName: emailText)
+//            } else {
+//                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "OK")
+//            }
+            createNewCatalogue()
+            
+            
+        } else {
+            
+            if let emailText = emailTxtFld.text , !emailText.isEmpty {
+                activityIndicator.startAnimating()
+                addConatctViewModel.requestModel.email = emailText
+                addConatctViewModel.addContactViewModelfunc(request: addConatctViewModel.requestModel) { result in
+                    
+                    DispatchQueue.main.async{
+                        self.activityIndicator.stopAnimating()
+                        switch result {
+                        case .goAhead:
+                            
+                            print("Its Okay")
+                            self.emailTxtFld.text = ""
+                            
+                        case .heyStop:
+                            print("SomeThing Went Wrong")
+                        }
                         
-                        print("Its Okay")
-                        self.emailTxtFld.text = ""
-                        
-                    case .heyStop:
-                        print("SomeThing Went Wrong")
                     }
                     
                 }
                 
+            } else {
+                AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "OK")
             }
             
-        } else {
-            AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "OK")
-        }
+        } // else ending
         
     }
     
 
+    
+    func createNewCatalogue(){
+        if let emailText = emailTxtFld.text , !emailText.isEmpty {
+            addCatalogueViewModel.requestModel.folder_name = emailText
+            addCatalogueViewModel.addCatalogueVM(request: addCatalogueViewModel.requestModel) { result in
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    
+                    switch result {
+                    case .goAhead:
+                        print("Success Folder Creation")
+                        //table View Reload Data
+                        DispatchQueue.main.async {
+                            self.emailTxtFld.text = ""
+                        }
+                    case .heyStop:
+                        print("Error")
+                    }
+                    
+                    
+                }
+                
+                
+            }
+        } else {
+            AlertView.showAlert("Warning!", message: "Please Fill All The Details", okTitle: "OK")
+        }
+    }
+    
+    
 }

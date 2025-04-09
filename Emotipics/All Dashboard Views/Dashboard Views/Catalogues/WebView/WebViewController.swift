@@ -19,6 +19,11 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     let baseURL = "https://onqanet.net/dev_biltu01/emotipics/mediaupload"
     
     
+    let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId")
+    let savedUserCode = UserDefaults.standard.string(forKey: "userCode")
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -84,14 +89,31 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     private func loadWebsite() {
         
-        let fullURLString = baseURL+"/"+userCode+"/"+destinationId+"/"+"0"
+//        let fullURLString = baseURL + "/" + savedUserCode + "/" + savedCatalogueId  + "/" + "0"
+//        
+//        
+//           if let localFile = Bundle.main.url(forResource: "webview", withExtension: "html") {
+//               webView.loadFileURL(localFile, allowingReadAccessTo: localFile.deletingLastPathComponent())
+//           } else if let url = URL(string: fullURLString) {
+//               webView.load(URLRequest(url: url))
+//           }
         
         
-           if let localFile = Bundle.main.url(forResource: "webview", withExtension: "html") {
-               webView.loadFileURL(localFile, allowingReadAccessTo: localFile.deletingLastPathComponent())
-           } else if let url = URL(string: fullURLString) {
-               webView.load(URLRequest(url: url))
-           }
+        guard let userCode = savedUserCode, let catalogueId = savedCatalogueId else {
+             print("❌ Missing userCode or catalogueId")
+             return
+         }
+         
+         let fullURLString = "\(baseURL)/\(userCode)/\(catalogueId)/0"
+         print("🌐 Loading URL:", fullURLString)
+
+         if let url = URL(string: fullURLString) {
+             webView.load(URLRequest(url: url))
+         } else {
+             print("❌ Invalid URL")
+         }
+        
+        
        }
 
        // Receive JS message
@@ -104,7 +126,9 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
        deinit {
            webView.configuration.userContentController.removeScriptMessageHandler(forName: "buttonClicked")
        }
-    
-    
-    
 }
+
+
+
+
+

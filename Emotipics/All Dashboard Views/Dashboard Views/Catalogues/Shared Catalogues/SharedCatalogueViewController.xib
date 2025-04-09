@@ -208,8 +208,8 @@
                                 <constraint firstAttribute="height" constant="50" id="fm6-6I-VhO"/>
                             </constraints>
                             <segments>
-                                <segment title="Shared with me"/>
-                                <segment title="Shared by me"/>
+                                <segment title="Share by Me"/>
+                                <segment title="Share with Me"/>
                             </segments>
                             <color key="selectedSegmentTintColor" red="0.18823529410000001" green="0.69019607839999997" blue="0.78039215689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>

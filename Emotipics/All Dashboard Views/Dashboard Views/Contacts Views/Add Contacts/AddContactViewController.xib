@@ -10,8 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddContactViewController" customModule="Emotipics" customModuleProvider="target">
             <connections>
+                <outlet property="addCatLbl" destination="iM8-5Z-hFe" id="aXa-Sk-Rj4"/>
                 <outlet property="backgroundImageView" destination="Lxu-X4-g6p" id="gVS-2I-KI7"/>
+                <outlet property="createCataLbl" destination="7fl-Ek-c2v" id="Lfc-XL-5dF"/>
                 <outlet property="emailTxtFld" destination="gfv-tG-aF0" id="V76-2f-Roi"/>
+                <outlet property="favImagesLbl" destination="hCU-1D-5u9" id="rgd-X2-4RN"/>
                 <outlet property="submitBtn" destination="4dx-Uf-ToV" id="MVw-dW-QCe"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -62,8 +65,8 @@
                                         <constraint firstAttribute="width" constant="175" id="Wp1-Ax-5st"/>
                                     </constraints>
                                 </imageView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Ivr-rn-umQ">
-                                    <rect key="frame" x="30" y="246" width="333" height="75"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ivr-rn-umQ">
+                                    <rect key="frame" x="30" y="246" width="333" height="67"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Contact" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iM8-5Z-hFe">
                                             <rect key="frame" x="116.66666666666666" y="0.0" width="99.666666666666657" height="20.333333333333332"/>
@@ -72,13 +75,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search and add users by email address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fl-Ek-c2v">
-                                            <rect key="frame" x="17.666666666666657" y="27.333333333333314" width="298" height="20.333333333333329"/>
+                                            <rect key="frame" x="17.666666666666657" y="23.333333333333314" width="298" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="in the search bar" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCU-1D-5u9">
-                                            <rect key="frame" x="103" y="54.666666666666693" width="127.33333333333331" height="20.333333333333336"/>
+                                            <rect key="frame" x="103" y="46.666666666666686" width="127.33333333333331" height="20.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>

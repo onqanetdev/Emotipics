@@ -19,6 +19,7 @@ enum APIEndpoint: String {
     case userContactList = "user-contact-list"
     case deleteConatct = "user-contact-remove"
     case catalogueListing = "all-catalog-list"
+    case addCatalogue = "catalog-create"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }
