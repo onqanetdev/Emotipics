@@ -16,3 +16,8 @@ import Foundation
 protocol PopUpViewDelegate: AnyObject {
     func presentPopUp()
 }
+
+
+protocol DeleteCatalogDelegate: AnyObject {
+    func deletePopup()
+}

@@ -329,7 +329,7 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
             
             
 
-            print("Desired Mail id is", sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email)
+//            print("Desired Mail id is", sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email)
             
             
             guard let ownerMailId = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email else {

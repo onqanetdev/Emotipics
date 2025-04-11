@@ -49,7 +49,7 @@ class EntryViewController: UIViewController , UpdateUI{
     //MARK: 1500 height of the scroll view
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
- //MARK: current Plans Titles
+    //MARK: current Plans Titles
     
     @IBOutlet weak var CurrentPlanView: UIView!{
         didSet{
@@ -123,7 +123,7 @@ class EntryViewController: UIViewController , UpdateUI{
     
     @IBOutlet weak var heightsOfContactsiTblView: NSLayoutConstraint!
     
-
+    
     
     
     @IBOutlet weak var bellIconOutlet: UIButton!{
@@ -159,7 +159,7 @@ class EntryViewController: UIViewController , UpdateUI{
     
     var collectionHeight:Int = 110
     
-    
+    var indexNo:Int = 0
     
     private var pertentageLbl:UILabel = {
         let label = UILabel()
@@ -173,7 +173,7 @@ class EntryViewController: UIViewController , UpdateUI{
     //Add Contact View Model
     
     var addContactViewModel: AddContactViewModel = AddContactViewModel()
-   
+    
     var contactsViewModel: AllContactsViewModel = AllContactsViewModel()
     
     var catalogueListingViewModel: CatalogueListingViewModel = CatalogueListingViewModel()
@@ -198,6 +198,13 @@ class EntryViewController: UIViewController , UpdateUI{
     
     @IBOutlet weak var myContactsHeaderView: UIView!
     
+    
+    var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
+    
+    
+    var tempMemory:[DataM] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -208,7 +215,7 @@ class EntryViewController: UIViewController , UpdateUI{
         userExists()
         
         settingUpFonts()
-
+        
         
         
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
@@ -223,9 +230,9 @@ class EntryViewController: UIViewController , UpdateUI{
         // Table Views for contact Listing
         contactsTblView.dataSource = self
         contactsTblView.delegate = self
-       // contactsTblView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
+        // contactsTblView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
         contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
-       // contactsTblView.isHidden = true
+        // contactsTblView.isHidden = true
         
         //Manipulating contentViewHeight
         //contentViewHeight.constant = 850
@@ -238,10 +245,10 @@ class EntryViewController: UIViewController , UpdateUI{
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         setupCircularView()
         setupPecentageLbl()
-    
+        
         sideMenuManager.setup(in: self)
         setupActivityIndicator()
-    
+        
         allCatalogueView()
         
         setupEmptyView()
@@ -255,6 +262,12 @@ class EntryViewController: UIViewController , UpdateUI{
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         viewModel()
+        allCatalogueView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        viewModel()
+        allCatalogueView()
     }
     
     func setupActivityIndicator() {
@@ -273,31 +286,31 @@ class EntryViewController: UIViewController , UpdateUI{
     //MARK: Font Family Settigs
     private func settingUpFonts() {
         //         let inputFont = "Lato-Regular"
-                totalStorageLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 16)
-                usedFromLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
-                viewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
-                contactsViewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 17)
-                //setting Ups fonts  lato-bold
-                fifteenGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 28)
-                CatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
-                getHundredGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
-                myContactsLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
-                //setting ups for fonts poppins-regular
-                photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-                videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-                nineGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-                sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-                //settings ups for fonts poppins-medium
-                
-                priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
-                viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
+        totalStorageLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 16)
+        usedFromLbl.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 14)
+        viewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
+        contactsViewAllLbl.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 17)
+        //setting Ups fonts  lato-bold
+        fifteenGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 28)
+        CatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+        getHundredGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+        myContactsLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+        //setting ups for fonts poppins-regular
+        photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        nineGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+        //settings ups for fonts poppins-medium
+        
+        priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
+        viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
     }
     
     
     //Setting Up the Circular View
     
     private func setupCircularView() {
-
+        
         let sampleColor:UIColor = #colorLiteral(red: 0.6705882353, green: 0.8235294118, blue: 0.9843137255, alpha: 1)
         let percentages: [Double] = [40.00, 60.00] // Example data percentages
         let colors: [UIColor] = [ sampleColor, .systemBlue] // Example colors
@@ -306,7 +319,7 @@ class EntryViewController: UIViewController , UpdateUI{
         circularView = Circular(percentages: percentages, colors: colors)
         circularView.translatesAutoresizingMaskIntoConstraints = false
         
-       
+        
         cardView.addSubview(circularView)
         
         
@@ -317,7 +330,7 @@ class EntryViewController: UIViewController , UpdateUI{
             circularView.heightAnchor.constraint(equalToConstant: 90)
         ])
     }
-
+    
     
     private func setupPecentageLbl() {
         //cardView.addSubview(pertentageLbl)
@@ -345,7 +358,7 @@ class EntryViewController: UIViewController , UpdateUI{
             emptyView.widthAnchor.constraint(equalTo: view.widthAnchor),
             emptyView.heightAnchor.constraint(equalToConstant: 150) // adjust as needed
         ])
-
+        
         // Call method to setup inner views
         emptyView.settingUpConstraints()
     }
@@ -363,17 +376,17 @@ class EntryViewController: UIViewController , UpdateUI{
             emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
             emptyViewForContacts.heightAnchor.constraint(equalToConstant: 200) // adjust as needed
         ])
-
+        
         // Call method to setup inner views
         emptyViewForContacts.settingUpConstraints()
     }
     
     
-
+    
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
-//        CatalogueListingApiCaller.catalogueListingCaller(limit: "4", offset: "1", sortfolder: "DESC", typeOfList: "catalog_lists")
+        //        CatalogueListingApiCaller.catalogueListingCaller(limit: "4", offset: "1", sortfolder: "DESC", typeOfList: "catalog_lists")
         navigationController?.pushViewController(CatalogueViewController(), animated: true)
         //print("The Navigation is not working")
     }
@@ -387,9 +400,6 @@ class EntryViewController: UIViewController , UpdateUI{
     @IBAction func viewAllContacts(_ sender: Any) {
         
         //AddContactApiCaller.addContactApiCaller(email: "kinode3436@buides.com")
-        
-        
-        
         navigationController?.pushViewController(ContactsViewController(), animated: true)
         print("This is my all contacts")
     }
@@ -399,7 +409,7 @@ class EntryViewController: UIViewController , UpdateUI{
     @IBAction func notificationViewAction(_ sender: Any) {
         let notificationView = GroupListViewController()
         notificationView.notificationView = true
-       
+        
         navigationController?.pushViewController(notificationView, animated: true)
         
         
@@ -408,8 +418,6 @@ class EntryViewController: UIViewController , UpdateUI{
     
     
     @IBAction func myProfileView(_ sender: Any) {
-        
-        
         print("My Profile is Showing")
         sideMenuManager.toggleSideMenu()
     }
@@ -426,9 +434,6 @@ class EntryViewController: UIViewController , UpdateUI{
     }
     
     
-    
-    
-    
     func deleteScreenPopUp(desiredCode: String) {
         let errorPopup = DeletePopUpVC(nibName: "DeletePopUpVC", bundle: nil)
         //errorPopup.emailText = emailAddTxtFld.text!
@@ -440,6 +445,35 @@ class EntryViewController: UIViewController , UpdateUI{
         //errorPopup.delegate = self
         self.present(errorPopup, animated: true)
     }
+    
+    func deleteCatalogPopUp() {
+        let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
+        
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+       // errorPopup.delegate = self
+        errorPopup.onCompletion = { [weak self] result in
+            switch result {
+            case .YES:
+                print("✅ User confirmed delete!")
+                
+                // Wait for popup to finish dismissing before presenting the next one
+                errorPopup.dismiss(animated: true) {
+                   // self?.deleteCatalogPopUp()
+                    self?.deleteCatalogGlobalPopUp()
+                    print("Print Nothing")
+                }
+                
+            case .NO:
+                print("User canceled delete.")
+                errorPopup.dismiss(animated: true, completion: nil)
+            }
+        }
+    
+        self.present(errorPopup, animated: true)
+    }
+    
+    
     
     @objc func popUpFromBottom(_ sender: UIButton) {
         let rowIndex = sender.tag
@@ -473,18 +507,29 @@ class EntryViewController: UIViewController , UpdateUI{
                     print("Catalogue View Model from Catalogue View Controller")
                     //table View Reload Data
                     
-                   if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
-                       self.fileColView.isHidden = true
-                       self.emptyView.isHidden = false
-                   } else {
-                       
-                       self.fileColView.isHidden = false
-                       self.emptyView.isHidden = true
-                       DispatchQueue.main.async { [self] in
-                           fileColView.reloadData()
-                           
-                       }
-                   }
+                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
+                        self.fileColView.isHidden = true
+                        self.emptyView.isHidden = false
+                    } else {
+                        
+                        self.fileColView.isHidden = false
+                        self.emptyView.isHidden = true
+                        
+                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
+                            return
+                        }
+                        
+                        self.tempMemory = value
+                        
+//                        print("👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹", self.tempMemory)
+
+                        
+                        
+                        DispatchQueue.main.async { [self] in
+                            fileColView.reloadData()
+                            
+                        }
+                    }
                     
                 case .heyStop:
                     print("Error")
@@ -541,4 +586,62 @@ class EntryViewController: UIViewController , UpdateUI{
             
         }
     }
+    
+    
+    
+    func showErrorPopup(message: String) {
+        let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.msgViewVar = message
+        self.present(errorPopup, animated: true)
+    }
+    
+    func deleteCatalogGlobalPopUp() {
+        let errorPopup = DeleteCatalogueGlobalPopUp(nibName: "DeleteCatalogueGlobalPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.delegate = self
+        //errorPopup.msgViewVar = message
+        
+//        errorPopup.onCompletion = { [weak self] result in
+//            switch result {
+//            case .YES:
+//                print("✅ User confirmed delete!")
+//
+//                // Wait for popup to finish dismissing before presenting the next one
+//                errorPopup.dismiss(animated: true) {
+//                    self?.deleteCatalogPopUp()
+//                }
+//
+//            case .NO:
+//                print("User canceled delete.")
+//                errorPopup.dismiss(animated: true, completion: nil)
+//            }
+//        }
+        
+        self.present(errorPopup, animated: true)
+        
+   
+    }
+    
+    
+    @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
+
+        indexNo = sender.tag
+        
+        //deleteCatalogGlobalPopUp()
+        self.deleteCatalogPopUp()
+        
+//        AlertView.showAlert("Warning!", message: "Are Sure Want To Delete This File?", okTitle: "Yes", cancelTitle: "No") {
+//            self.deleteCatalogPopUp()
+//        }
+        
+    }//button action
+    
+    
+
+    
+    
+    
 }

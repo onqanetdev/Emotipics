@@ -14,25 +14,36 @@ import UIKit
 extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return 4
-        catalogueListingViewModel.responseModel?.data?.count ?? 4
+        //catalogueListingViewModel.responseModel?.data?.count ?? 4
+        return tempMemory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
         cell.layer.cornerRadius = 25
 
-        if let data = catalogueListingViewModel.responseModel?.data, indexPath.row < data.count {
-            let item = data[indexPath.row]
-            cell.projectFilesLbl.text = item.catalog_name ?? "Nil"
-            cell.noOfFiles.text = item.total_files ?? "Nil"
-            cell.fiveGbLbl.text = item.file_storage ?? "Nil"
-        } else {
-            // Default values for safety
-            cell.projectFilesLbl.text = "No Name"
-            cell.noOfFiles.text = "0 Files"
-            cell.fiveGbLbl.text = "0 GB"
-        }
+//        if let data = catalogueListingViewModel.responseModel?.data, indexPath.row < data.count {
+//            let item = data[indexPath.row]
+//            cell.projectFilesLbl.text = item.catalog_name ?? "Nil"
+//            cell.noOfFiles.text = item.total_files ?? "Nil"
+//            cell.fiveGbLbl.text = item.file_storage ?? "Nil"
+//            cell.moreFeaturesBtn.tag = indexPath.row
+//            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+//            
+//        } else {
+//            // Default values for safety
+//            cell.projectFilesLbl.text = "No Name"
+//            cell.noOfFiles.text = "0 Files"
+//            cell.fiveGbLbl.text = "0 GB"
+//        }
         
+        
+        cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
+        cell.noOfFiles.text = tempMemory[indexPath.row].total_files
+        cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
+        
+        cell.moreFeaturesBtn.tag = indexPath.row
+        cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
         return cell
     }
     
@@ -48,13 +59,11 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let imageViewController = AllCataloguesViewController()
         imageViewController.isImageCell = true
     
-//        print("Tapped On The Cell",catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_name, "Catalogue id is", catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code)
-//        print("User Id is ", catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code)
+//        let catalogueId = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code
+//            let userCode = catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code
         
-        let catalogueId = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code
-            let userCode = catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code
-        
-        
+        let catalogueId = tempMemory[indexPath.row].catalog_code
+        let userCode = tempMemory[indexPath.row].owner_detials?.code
         
         if let catalogueId = catalogueId {
             UserDefaults.standard.set(catalogueId, forKey: "catalogueId")

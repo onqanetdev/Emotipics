@@ -131,6 +131,13 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var circleImage: UIImageView!
     
     
+    @IBOutlet weak var forgotPasswordLbl: UILabel!
+    
+    
+    
+    @IBOutlet weak var eyeBtn: UIButton!
+    
+    
     
     
     var isSomeFieldsHidden: Bool = false
@@ -140,6 +147,9 @@ class RegisterViewController: UIViewController {
     var registerViewModel:RegisterViewModel = RegisterViewModel()
     
     //let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+    
+    var iconClick = true
+    
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -185,6 +195,11 @@ class RegisterViewController: UIViewController {
         
         loginViewModel.delegate = self
         registerViewModel.delegate = self
+        
+        forgotPasswordLbl.isUserInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
+        forgotPasswordLbl.addGestureRecognizer(tapGesture)
         
     }
     
@@ -240,6 +255,7 @@ class RegisterViewController: UIViewController {
             registerBtn.setTitle("Login", for: .normal)
             alreadyAccLbl.text = "Don't have an account?"
             loginlbl.text = "Register"
+            forgotPasswordLbl.isHidden = false
         } else {
             fullNameTxtFld.isHidden = false
             phnTxtFld.isHidden = false
@@ -251,6 +267,7 @@ class RegisterViewController: UIViewController {
             registerBtn.setTitle("Register", for: .normal)
             alreadyAccLbl.text = "Already have an account?"
             loginlbl.text = "Login"
+            forgotPasswordLbl.isHidden = true
         }
         
         // Apply layout changes
@@ -261,8 +278,6 @@ class RegisterViewController: UIViewController {
     
     
     @objc func tapAction(){
-        
-        
         let registerVC = RegisterViewController() // Create a new instance
         
         if loginlbl.text == "Register" {
@@ -272,12 +287,7 @@ class RegisterViewController: UIViewController {
         }
         
         //Call The API through view model
-        
-        
         navigationController?.pushViewController(registerVC, animated: true)
-        
-        
-        
     }
     
     //Calling for NSDataDetector for mail validation
@@ -288,6 +298,17 @@ class RegisterViewController: UIViewController {
         
         return matches?.contains(where: { $0.url?.scheme == "mailto" }) ?? false
     }
+    
+    
+    
+    @objc func forgotPasswordTapped() {
+        print("Forgot password label tapped")
+        // Navigate or perform action here
+    }
+
+    
+    
+    
     
     
     
@@ -316,7 +337,7 @@ class RegisterViewController: UIViewController {
                             if (loginViewModel.responseModel?.login_data?[0].user?.active == "Y") && (loginViewModel.responseModel?.login_data?[0].user?.verify == "Y") {
                                 self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                             } else {
-
+                                
                                 otpVerification()
                             }
                         case .heyStop:
@@ -329,7 +350,7 @@ class RegisterViewController: UIViewController {
             }
         } else {
             print("This is my Register View")
-
+            
             if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty,
                let passwordText = passwordTxtFld.text, !passwordText.isEmpty,
                let nameText = fullNameTxtFld.text, !nameText.isEmpty,
@@ -371,14 +392,14 @@ class RegisterViewController: UIViewController {
                     switch result {
                     case .goAhead:
                         DispatchQueue.main.async {
-//                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                            //                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                             self.otpVerification()
                             //If SuccessFul registration then save the access token into keychain
                             
                             
-//                            let accessToken = "another-dummy-access-token"
-//                            let data = Data(accessToken.utf8)
-//                          KeychainManager.standard.save(data, service: "access-token", account: "Emotipic")
+                            //                            let accessToken = "another-dummy-access-token"
+                            //                            let data = Data(accessToken.utf8)
+                            //                          KeychainManager.standard.save(data, service: "access-token", account: "Emotipic")
                         }
                     case .heyStop:
                         print("Something Went Wrong")
@@ -422,6 +443,17 @@ class RegisterViewController: UIViewController {
     }
     
     
+    @IBAction func eyeAction(_ sender: Any) {
+        if iconClick {
+                passwordTxtFld.isSecureTextEntry = false
+            eyeBtn.setBackgroundImage(UIImage(named: "eyeView"), for: .normal)
+            } else {
+                passwordTxtFld.isSecureTextEntry = true
+                eyeBtn.setBackgroundImage(UIImage(named: "eyeHidden"), for: .normal)
+            }
+            iconClick = !iconClick
+        
+    }
     
     
 }

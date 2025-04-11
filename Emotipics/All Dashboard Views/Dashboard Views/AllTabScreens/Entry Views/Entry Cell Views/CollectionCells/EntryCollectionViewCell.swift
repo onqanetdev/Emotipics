@@ -45,6 +45,12 @@ class EntryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
+    
+    @IBOutlet weak var moreFeaturesBtn: UIButton!
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
