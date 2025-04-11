@@ -14,8 +14,10 @@
                 <outlet property="borderHeight" destination="HuA-kc-7gE" id="qe2-gy-1iE"/>
                 <outlet property="catalogueLbl" destination="QUK-SD-n7M" id="P9I-xa-yk1"/>
                 <outlet property="catalougeCollView" destination="o3I-eS-gGV" id="jWM-T5-1jQ"/>
+                <outlet property="contentView" destination="Rlq-8k-ouY" id="Let-iW-dWc"/>
                 <outlet property="heightOfContScrollView" destination="7Hw-Lv-F9K" id="5Bm-Vg-CFm"/>
                 <outlet property="myCatalogueCollViewHeight" destination="TD6-Lc-Jnn" id="oUB-jO-MtO"/>
+                <outlet property="myCatalogueHeader" destination="Rfk-tp-7cF" id="opu-RE-SJw"/>
                 <outlet property="myCatalogueHeightConst" destination="TD6-Lc-Jnn" id="osY-mc-HIO"/>
                 <outlet property="myCatalogueLbl" destination="4Iz-JG-okd" id="XWh-Ng-W15"/>
                 <outlet property="myCatalogueViewAllBtn" destination="A3v-pp-63M" id="Wmi-cm-VYf"/>

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CatalogueViewController: UIViewController {
+class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     
     @IBOutlet weak var catalougeCollView: UICollectionView!
@@ -41,6 +41,13 @@ class CatalogueViewController: UIViewController {
             myCatalogueViewAllBtn.titleLabel?.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 15)
         }
     }
+    
+    
+    
+    @IBOutlet weak var contentView: UIView!
+    
+    
+    @IBOutlet weak var myCatalogueHeader: UIView!
     
     //MARK: Height contraints
     
@@ -95,13 +102,19 @@ class CatalogueViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
+        indicator.color = .systemGray
         indicator.hidesWhenStopped = true
         return indicator
     }()
     
     
+    let emptyViewForContacts = EmptyCollView()
     
+    
+    
+    var indexNo:Int = 0
+    var tempMemory:[DataM] = []
+    var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -129,6 +142,14 @@ class CatalogueViewController: UIViewController {
         allCatalogueList()
         
         sharedCatalogueList()
+        
+        emptyViewForContacts.isHidden = true
+        
+        setupEmptyViewForContacts()
+        
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -205,7 +226,19 @@ class CatalogueViewController: UIViewController {
                     
                     
                     DispatchQueue.main.async { [self] in
+                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
+                            return
+                        }
+                        
+                        self.tempMemory = value
                         catalougeCollView.reloadData()
+                        if tempMemory.isEmpty {
+                            emptyViewForContacts.isHidden = false
+                        } else {
+                            emptyViewForContacts.isHidden = true
+                        }
+                        
+                        
                         
                    }
                 case .heyStop:
@@ -295,6 +328,123 @@ class CatalogueViewController: UIViewController {
         
         
     }
+    
+  
+    
+    func deleteCatalogPopUp() {
+        let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
+        
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+       // errorPopup.delegate = self
+        errorPopup.onCompletion = { [weak self] result in
+            switch result {
+            case .YES:
+                print("✅ User confirmed delete!")
+                
+                // Wait for popup to finish dismissing before presenting the next one
+                errorPopup.dismiss(animated: true) {
+                   // self?.deleteCatalogPopUp()
+                    self?.deleteCatalogGlobalPopUp()
+                    print("Print Nothing")
+                }
+                
+            case .NO:
+                print("User canceled delete.")
+                errorPopup.dismiss(animated: true, completion: nil)
+            }
+        }
+    
+        self.present(errorPopup, animated: true)
+    }
+    
+    func deleteCatalogGlobalPopUp() {
+        let errorPopup = DeleteCatalogueGlobalPopUp(nibName: "DeleteCatalogueGlobalPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+        
+   
+    }
+
+    
+    @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
+
+        indexNo = sender.tag
+        
+        //deleteCatalogGlobalPopUp()
+        self.deleteCatalogPopUp()
+        
+//        AlertView.showAlert("Warning!", message: "Are Sure Want To Delete This File?", okTitle: "Yes", cancelTitle: "No") {
+//            self.deleteCatalogPopUp()
+//        }
+        
+    }
+    
+    
+    func deletePopup(){
+        print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
+        deleteCatalogueFunction(pin: indexNo)
+    }
+    
+    
+    func deleteCatalogueFunction(pin: Int){
+        guard let item = tempMemory[pin].catalogue_uuid else {
+            return
+        }
+        
+        
+        
+        self.activityIndicator.startAnimating()
+        deleteCatalogueViewModel.requestModel.UUID = item
+        deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Catalogue View Model from Catalogue View Controller")
+                    self.tempMemory.remove(at: pin)
+                    self.catalougeCollView.reloadData()
+
+                    if self.tempMemory.isEmpty {
+                        self.emptyViewForContacts.isHidden = false
+                        self.catalougeCollView.isHidden = true
+                    } else {
+                        self.emptyViewForContacts.isHidden = true
+                        self.catalougeCollView.isHidden = false
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    func setupEmptyViewForContacts() {
+        
+        emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForContacts)
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyViewForContacts.topAnchor.constraint(equalTo: myCatalogueHeader.bottomAnchor),
+            emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForContacts.heightAnchor.constraint(equalToConstant: 252) // adjust as needed
+        ])
+        
+        // Call method to setup inner views
+        emptyViewForContacts.settingUpConstraints()
+    }
+    
+    
 }
 
 
@@ -304,22 +454,30 @@ class CatalogueViewController: UIViewController {
 
 extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        //return 4
+        return tempMemory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == catalougeCollView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             
-//            cell.backgroundColor = .red // Differentiate visually
-            cell.layer.cornerRadius = 15
-            cell.projectFilesLbl.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_name ?? "Project Files"
-            cell.noOfFiles.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].total_files ?? "0"
-            cell.fiveGbLbl.text = catalogueListingViewModel.responseModel?.data?[indexPath.row].file_storage ?? "0"
-            
-            
-            
+
             cell.clipsToBounds = true
+            
+            
+            
+            cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
+            cell.noOfFiles.text = tempMemory[indexPath.row].total_files
+            cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
+            
+            cell.moreFeaturesBtn.tag = indexPath.row
+            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+            
+            
+            cell.moreFeaturesBtn.tag = indexPath.row
+            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+            
             return cell
         } else { // sharedCatalogueCollView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell

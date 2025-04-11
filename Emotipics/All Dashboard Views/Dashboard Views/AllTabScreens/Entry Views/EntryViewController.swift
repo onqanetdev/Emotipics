@@ -386,9 +386,9 @@ class EntryViewController: UIViewController , UpdateUI{
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
-        //        CatalogueListingApiCaller.catalogueListingCaller(limit: "4", offset: "1", sortfolder: "DESC", typeOfList: "catalog_lists")
+        
         navigationController?.pushViewController(CatalogueViewController(), animated: true)
-        //print("The Navigation is not working")
+        
     }
     
     @IBAction func bellIconAction(_ sender: Any) {
@@ -441,8 +441,6 @@ class EntryViewController: UIViewController , UpdateUI{
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.indexOk = desiredCode
         errorPopup.deleteDelegate = self
-        //errorPopup.msgViewVar = message
-        //errorPopup.delegate = self
         self.present(errorPopup, animated: true)
     }
     
@@ -521,7 +519,6 @@ class EntryViewController: UIViewController , UpdateUI{
                         
                         self.tempMemory = value
                         
-//                        print("👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹", self.tempMemory)
 
                         
                         

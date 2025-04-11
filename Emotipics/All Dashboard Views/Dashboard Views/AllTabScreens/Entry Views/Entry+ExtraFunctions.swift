@@ -44,7 +44,7 @@ extension EntryViewController: DeleteCatalogDelegate {
     
     
     func deletePopup(){
-        print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
+       // print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
         deleteCatalogueFunction(pin: indexNo)
     }
     
