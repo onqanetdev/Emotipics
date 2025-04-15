@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactsViewController" customModule="Emotipics" customModuleProvider="target">
             <connections>
                 <outlet property="contactsTblView" destination="BXn-jb-MWB" id="k4p-VR-sqy"/>
+                <outlet property="contentView" destination="VHP-sJ-pLE" id="WuJ-wi-D5f"/>
                 <outlet property="tableViewBackGround" destination="VHP-sJ-pLE" id="HNo-dg-J4k"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -174,7 +175,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

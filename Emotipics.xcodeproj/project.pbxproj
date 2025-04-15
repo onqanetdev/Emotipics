@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A0496422DAD064700ECF441 /* CatalogueUserAddResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496412DAD064700ECF441 /* CatalogueUserAddResModel.swift */; };
+		8A0496442DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496432DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift */; };
+		8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */; };
+		8A0496482DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496472DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift */; };
 		8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521622D7958F800AE5FC4 /* EntryViewController.swift */; };
 		8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A0521632D7958F800AE5FC4 /* EntryViewController.xib */; };
 		8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */; };
@@ -80,6 +84,8 @@
 		8A4353C62D75AA1200ABB7A0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4353C42D75AA1200ABB7A0 /* RegisterViewController.xib */; };
 		8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */; };
 		8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */; };
+		8A4616442DA91DCF00661A9C /* SharedInformationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */; };
+		8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */; };
 		8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */; };
 		8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */; };
 		8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */; };
@@ -95,6 +101,10 @@
 		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
 		8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */; };
 		8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */; };
+		8A9611FE2DA939E70026A1FC /* SharingContactListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9611FC2DA939E70026A1FC /* SharingContactListVC.swift */; };
+		8A9611FF2DA939E70026A1FC /* SharingContactListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9611FD2DA939E70026A1FC /* SharingContactListVC.xib */; };
+		8A9612032DA93F9C0026A1FC /* SharingContactListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9612012DA93F9C0026A1FC /* SharingContactListTVC.swift */; };
+		8A9612042DA93F9C0026A1FC /* SharingContactListTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9612022DA93F9C0026A1FC /* SharingContactListTVC.xib */; };
 		8A97F78F2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A97F78E2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift */; };
 		8A97F7922DA79D3300D53C9C /* DeleteCatalogResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A97F7912DA79D3300D53C9C /* DeleteCatalogResponseModel.swift */; };
 		8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A97F7932DA79E2E00D53C9C /* DeleteCatalogReqModel.swift */; };
@@ -119,6 +129,7 @@
 		8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA25B912D82A26F0093F3F1 /* SharedCatalogueViewController.swift */; };
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
 		8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA459322D8191D60004938B /* AllCataloguesViewController.xib */; };
+		8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */; };
 		8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */; };
 		8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */; };
 		8ABA8AB62D770848003D4727 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8ABA8AB52D770848003D4727 /* IQKeyboardManagerSwift */; };
@@ -130,6 +141,8 @@
 		8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB96922D8D3B660032E6DA /* SideMenuCell.swift */; };
 		8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
+		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
+		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
 		8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */; };
 		8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */; };
@@ -145,6 +158,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A0496412DAD064700ECF441 /* CatalogueUserAddResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddResModel.swift; sourceTree = "<group>"; };
+		8A0496432DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddReqModel.swift; sourceTree = "<group>"; };
+		8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddApiCaller.swift; sourceTree = "<group>"; };
+		8A0496472DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddViewModel.swift; sourceTree = "<group>"; };
 		8A0521622D7958F800AE5FC4 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		8A0521632D7958F800AE5FC4 /* EntryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EntryViewController.xib; sourceTree = "<group>"; };
 		8A0521682D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntryViewController+EntryViewCollectionViews.swift"; sourceTree = "<group>"; };
@@ -220,6 +237,8 @@
 		8A4353C42D75AA1200ABB7A0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScrollViewController.swift; sourceTree = "<group>"; };
 		8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestScrollViewController.xib; sourceTree = "<group>"; };
+		8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationVC.swift; sourceTree = "<group>"; };
+		8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationVC.xib; sourceTree = "<group>"; };
 		8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardView+extension.swift"; sourceTree = "<group>"; };
 		8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountDetailsVC.swift; sourceTree = "<group>"; };
 		8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountDetailsVC.xib; sourceTree = "<group>"; };
@@ -235,6 +254,10 @@
 		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
 		8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoveToNextView.swift; sourceTree = "<group>"; };
 		8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		8A9611FC2DA939E70026A1FC /* SharingContactListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingContactListVC.swift; sourceTree = "<group>"; };
+		8A9611FD2DA939E70026A1FC /* SharingContactListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharingContactListVC.xib; sourceTree = "<group>"; };
+		8A9612012DA93F9C0026A1FC /* SharingContactListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingContactListTVC.swift; sourceTree = "<group>"; };
+		8A9612022DA93F9C0026A1FC /* SharingContactListTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharingContactListTVC.xib; sourceTree = "<group>"; };
 		8A97F78E2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDeleteAPICaller.swift; sourceTree = "<group>"; };
 		8A97F7912DA79D3300D53C9C /* DeleteCatalogResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCatalogResponseModel.swift; sourceTree = "<group>"; };
 		8A97F7932DA79E2E00D53C9C /* DeleteCatalogReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCatalogReqModel.swift; sourceTree = "<group>"; };
@@ -259,6 +282,7 @@
 		8AA25B922D82A26F0093F3F1 /* SharedCatalogueViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedCatalogueViewController.xib; sourceTree = "<group>"; };
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
 		8AA459322D8191D60004938B /* AllCataloguesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllCataloguesViewController.xib; sourceTree = "<group>"; };
+		8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationProtocol.swift; sourceTree = "<group>"; };
 		8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
 		8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +293,8 @@
 		8ABB96932D8D3B660032E6DA /* SideMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
 		8ABB969F2D8D702B0032E6DA /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
+		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
+		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueResponseModel.swift; sourceTree = "<group>"; };
 		8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueRqModel.swift; sourceTree = "<group>"; };
@@ -295,6 +321,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A0496402DAD05DD00ECF441 /* Catalogue-User-Add */ = {
+			isa = PBXGroup;
+			children = (
+				8A0496412DAD064700ECF441 /* CatalogueUserAddResModel.swift */,
+				8A0496432DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift */,
+			);
+			path = "Catalogue-User-Add";
+			sourceTree = "<group>";
+		};
 		8A0521612D79588700AE5FC4 /* AllTabScreens */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +478,7 @@
 				8A2E51782D9CFC7800D4A023 /* PopUpViewDelegate.swift */,
 				8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */,
 				8A9E7D612DA3CA87007CE28A /* UpdateUI.swift */,
+				8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -555,6 +591,7 @@
 				8A9E7D682DA3E6B2007CE28A /* CatalogueListingApiCaller.swift */,
 				8AEADB5A2DA6537A00BF187E /* AddCatalogueApiCaller.swift */,
 				8A97F78E2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift */,
+				8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -562,6 +599,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A0496402DAD05DD00ECF441 /* Catalogue-User-Add */,
 				8A97F7902DA79C8F00D53C9C /* DeleteCatalogMoel */,
 				8AEADB552DA64FC000BF187E /* Add Catalogue Model */,
 				8A9E7D632DA3E12C007CE28A /* Catalouge Listing */,
@@ -596,6 +634,7 @@
 				8A9E7D6A2DA3F78B007CE28A /* CatalogueListingViewModel.swift */,
 				8AEADB5C2DA66C6500BF187E /* AddCatalogueViewModel.swift */,
 				8A97F7992DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift */,
+				8A0496472DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -619,6 +658,8 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A9611FB2DA939030026A1FC /* Sharing List Contacts */,
+				8A4616412DA91CC400661A9C /* Shared Catalog */,
 				8AFDE6422DA532FF005AA235 /* AdditionalViews */,
 				8A9E7D512DA39D78007CE28A /* DeletePopUps */,
 				8A7F319C2D9E99E900288E29 /* KeyChainManager */,
@@ -691,6 +732,17 @@
 			path = SampleScrollView;
 			sourceTree = "<group>";
 		};
+		8A4616412DA91CC400661A9C /* Shared Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */,
+				8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */,
+				8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */,
+				8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */,
+			);
+			path = "Shared Catalog";
+			sourceTree = "<group>";
+		};
 		8A48815A2D78249700EAB64B /* All Dashboard Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +811,25 @@
 				8A7F319D2D9E9A2E00288E29 /* KeychainManager.swift */,
 			);
 			path = KeyChainManager;
+			sourceTree = "<group>";
+		};
+		8A9611FB2DA939030026A1FC /* Sharing List Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				8A9612002DA93F580026A1FC /* Sharing List Contacts Cell */,
+				8A9611FC2DA939E70026A1FC /* SharingContactListVC.swift */,
+				8A9611FD2DA939E70026A1FC /* SharingContactListVC.xib */,
+			);
+			path = "Sharing List Contacts";
+			sourceTree = "<group>";
+		};
+		8A9612002DA93F580026A1FC /* Sharing List Contacts Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8A9612012DA93F9C0026A1FC /* SharingContactListTVC.swift */,
+				8A9612022DA93F9C0026A1FC /* SharingContactListTVC.xib */,
+			);
+			path = "Sharing List Contacts Cell";
 			sourceTree = "<group>";
 		};
 		8A97F7902DA79C8F00D53C9C /* DeleteCatalogMoel */ = {
@@ -995,6 +1066,8 @@
 				8A4353B52D758F4700ABB7A0 /* jost_medium.ttf in Resources */,
 				8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */,
 				8A4353982D75760900ABB7A0 /* Base in Resources */,
+				8A9611FF2DA939E70026A1FC /* SharingContactListVC.xib in Resources */,
+				8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */,
 				8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
 				8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */,
@@ -1024,8 +1097,10 @@
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
 				8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */,
 				8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */,
+				8A4616442DA91DCF00661A9C /* SharedInformationVC.xib in Resources */,
 				8A4353B32D758F4700ABB7A0 /* jost_bold.ttf in Resources */,
 				8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */,
+				8A9612042DA93F9C0026A1FC /* SharingContactListTVC.xib in Resources */,
 				8A4353BA2D758F4700ABB7A0 /* lato_light.ttf in Resources */,
 				8A4353B92D758F4700ABB7A0 /* lato_bold.ttf in Resources */,
 				8A05216F2D7996FD00AE5FC4 /* EntryTableViewCell.xib in Resources */,
@@ -1056,6 +1131,7 @@
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
 				8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */,
+				8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
@@ -1084,18 +1160,22 @@
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
+				8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */,
 				8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
 				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
+				8A9611FE2DA939E70026A1FC /* SharingContactListVC.swift in Sources */,
 				8A4353C52D75AA1200ABB7A0 /* RegisterViewController.swift in Sources */,
 				8A9E7D672DA3E19F007CE28A /* CatalogueListingDataModel.swift in Sources */,
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
+				8A0496442DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A9E7D622DA3CA87007CE28A /* UpdateUI.swift in Sources */,
 				8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
+				8A0496422DAD064700ECF441 /* CatalogueUserAddResModel.swift in Sources */,
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
@@ -1108,6 +1188,7 @@
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
+				8A0496482DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
 				8A97F79F2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
@@ -1120,13 +1201,16 @@
 				8A2E51802D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift in Sources */,
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
+				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
+				8A9612032DA93F9C0026A1FC /* SharingContactListTVC.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A97F7922DA79D3300D53C9C /* DeleteCatalogResponseModel.swift in Sources */,
+				8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,

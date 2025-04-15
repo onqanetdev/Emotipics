@@ -13,6 +13,7 @@ import UIKit
 enum completeCases {
     case YES
     case NO
+    case SHARE
 }
 
 

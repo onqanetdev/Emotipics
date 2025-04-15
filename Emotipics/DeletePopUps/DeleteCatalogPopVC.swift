@@ -23,6 +23,8 @@ class DeleteCatalogPopVC: UIViewController {
     //weak var delegate: DeleteCatalogDelegate?
     
     
+    var catalogData:[DataM] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,10 +43,7 @@ class DeleteCatalogPopVC: UIViewController {
         }
     }
 
-    
-   // delegate?.deletePopup()
-    //        print("Tapped on Delete Button Action")
-    //        self.dismiss(animated: true)
+ 
     
     @IBAction func deleteBtnAction(_ sender: Any) {
         print("✅ YES button tapped")
@@ -57,4 +56,41 @@ class DeleteCatalogPopVC: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    
+    func deleteCatalogGlobalPopUp() {
+        let errorPopup = SharedInformationVC(nibName: "SharedInformationVC", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+        
+   
+    }
+    
+    
+    
+    
+    @IBAction func shareThis(_ sender: Any) {
+
+        print("The Catalogue Data", catalogData)
+        self.onCompletion?(.SHARE)
+        
+    }
+    
+    
+}
+
+
+extension DeleteCatalogPopVC: SharedInformationDelegate {
+    func didTapProceed() {
+        
+        
+        
+        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        
+        
+    }
 }

@@ -35,7 +35,7 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     //var notificationView:Bool = false
     
-    
+    let emptyViewForContacts = EmptyCollView()
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
@@ -43,6 +43,12 @@ class ContactsViewController: UIViewController, UpdateUI {
         indicator.hidesWhenStopped = true
         return indicator
     }()
+    
+    
+    
+    
+    @IBOutlet weak var contentView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +71,8 @@ class ContactsViewController: UIViewController, UpdateUI {
         setupActivityIndicator()
     
         viewModel()
+        
+        setupEmptyContactView()
         
     }
     
@@ -149,6 +157,30 @@ class ContactsViewController: UIViewController, UpdateUI {
         viewModel()
     }
     
+    
+    func setupEmptyContactView(){
+        
+        emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForContacts)
+        
+        emptyViewForContacts.noCatLbl.text = "No Contacts!"
+        emptyViewForContacts.addSomeCat.text = "Add Some Contact to Share"
+        
+        emptyViewForContacts.addBtn.setTitle("Add New Contact", for: .normal)
+        
+        emptyViewForContacts.addBtn.addTarget(self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyViewForContacts.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 100),
+            emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForContacts.heightAnchor.constraint(equalToConstant: 250) // adjust as needed
+        ])
+        
+        // Call method to setup inner views
+        emptyViewForContacts.settingUpConstraints()
+    }
     
     
     

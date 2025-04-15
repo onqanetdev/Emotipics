@@ -18,7 +18,7 @@ class EmptyCollView: UIView {
     }()
 
     
-    private var noCatLbl:UILabel = {
+    public var noCatLbl:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "No Catalogue Found!"
@@ -29,7 +29,7 @@ class EmptyCollView: UIView {
     
     
     
-    private var addSomeCat:UILabel = {
+    public var addSomeCat:UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Add some catalogue to get start"
@@ -41,7 +41,7 @@ class EmptyCollView: UIView {
     
     
     
-    private var addBtn: UIButton = {
+    public var addBtn: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Add Catalogue", for: .normal)

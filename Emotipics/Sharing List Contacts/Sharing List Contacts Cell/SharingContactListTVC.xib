@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SharingListTVC" rowHeight="95" id="KGk-i7-Jjw" customClass="SharingContactListTVC" customModule="Emotipics" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="388" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="388" height="95"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0x9-ou-OCL">
+                        <rect key="frame" x="10" y="5" width="368" height="85"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact" translatesAutoresizingMaskIntoConstraints="NO" id="459-VT-KSM">
+                                <rect key="frame" x="15" y="17.666666666666671" width="35" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="VgF-yB-2zI"/>
+                                    <constraint firstAttribute="height" constant="50" id="etg-gC-4Q0"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTS-OX-b9p">
+                                <rect key="frame" x="65" y="32.333333333333336" width="114" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cc8-ci-hKt">
+                                <rect key="frame" x="327" y="31.333333333333329" width="26" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="Q0c-X2-aIT"/>
+                                    <constraint firstAttribute="width" constant="26" id="rWY-UD-Gbs"/>
+                                </constraints>
+                                <color key="tintColor" red="0.0" green="0.1647058824" blue="0.34509803919999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="square" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81960784310000001" green="0.90588235289999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="459-VT-KSM" firstAttribute="centerY" secondItem="0x9-ou-OCL" secondAttribute="centerY" id="PcO-iq-OuY"/>
+                            <constraint firstItem="nTS-OX-b9p" firstAttribute="centerY" secondItem="0x9-ou-OCL" secondAttribute="centerY" id="QCK-Zl-NTu"/>
+                            <constraint firstItem="cc8-ci-hKt" firstAttribute="centerY" secondItem="0x9-ou-OCL" secondAttribute="centerY" id="Zv0-Ka-d9J"/>
+                            <constraint firstItem="459-VT-KSM" firstAttribute="leading" secondItem="0x9-ou-OCL" secondAttribute="leading" constant="15" id="gQW-ag-2gb"/>
+                            <constraint firstAttribute="trailing" secondItem="cc8-ci-hKt" secondAttribute="trailing" constant="15" id="kPz-du-wI0"/>
+                            <constraint firstItem="nTS-OX-b9p" firstAttribute="leading" secondItem="459-VT-KSM" secondAttribute="trailing" constant="15" id="wGJ-TL-Tlb"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0x9-ou-OCL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="G03-o9-X8e"/>
+                    <constraint firstAttribute="trailing" secondItem="0x9-ou-OCL" secondAttribute="trailing" constant="10" id="GTn-BS-SaP"/>
+                    <constraint firstItem="0x9-ou-OCL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="JKA-Y9-5PY"/>
+                    <constraint firstAttribute="bottom" secondItem="0x9-ou-OCL" secondAttribute="bottom" constant="5" id="j5b-ti-YCS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cellView" destination="0x9-ou-OCL" id="esi-6m-DSL"/>
+                <outlet property="checkboxBtn" destination="cc8-ci-hKt" id="U7o-na-P1z"/>
+                <outlet property="contactLbl" destination="nTS-OX-b9p" id="7nc-xq-btr"/>
+                <outlet property="contactPhoto" destination="459-VT-KSM" id="QeZ-2D-gf0"/>
+            </connections>
+            <point key="canvasLocation" x="181.67938931297709" y="6.6901408450704229"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="contact" width="128" height="128"/>
+        <image name="square" catalog="system" width="128" height="114"/>
+    </resources>
+</document>

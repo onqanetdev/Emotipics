@@ -13,6 +13,8 @@
                 <outlet property="backGroundView" destination="nR2-BQ-0IJ" id="phe-f8-HxZ"/>
                 <outlet property="catalogueCollView" destination="Spg-Im-MRy" id="LdI-mM-ee3"/>
                 <outlet property="collectionViewHeight" destination="Ts0-LR-Umk" id="vMT-RN-xVA"/>
+                <outlet property="contentView" destination="9uX-mN-iFL" id="DqA-AN-bi5"/>
+                <outlet property="headerView" destination="puj-Np-IKw" id="aAG-Kl-BOK"/>
                 <outlet property="myCatalogueLbl" destination="OI6-Q3-fEw" id="x4l-z5-LQj"/>
                 <outlet property="myCatalogueSubLbl" destination="GtO-kP-A67" id="ulv-1H-tRX"/>
                 <outlet property="scrollViewHeight" destination="bTC-wd-Iic" id="r9M-HZ-qAb"/>
@@ -280,7 +282,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

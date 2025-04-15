@@ -9,7 +9,7 @@ import UIKit
 import Charts
 
 
-class EntryViewController: UIViewController , UpdateUI{
+class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate{
     
     
     @IBOutlet weak var rotateBtn: UIButton!
@@ -221,7 +221,7 @@ class EntryViewController: UIViewController , UpdateUI{
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         fileColView.delegate = self
         fileColView.dataSource = self
-        //fileColView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        
         fileColView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         
@@ -230,16 +230,13 @@ class EntryViewController: UIViewController , UpdateUI{
         // Table Views for contact Listing
         contactsTblView.dataSource = self
         contactsTblView.delegate = self
-        // contactsTblView.register(UITableViewCell.self, forCellReuseIdentifier: "TableCell")
-        contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
-        // contactsTblView.isHidden = true
         
-        //Manipulating contentViewHeight
-        //contentViewHeight.constant = 850
+        contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
+        
         
         contentViewHeight.constant = 835
         
-        //heightsOfContactsiTblView.constant = 100
+        
         heightsOfContactsiTblView.constant = 70
         contentViewHeight.constant += heightsOfContactsiTblView.constant
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -351,6 +348,10 @@ class EntryViewController: UIViewController , UpdateUI{
         emptyView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(emptyView)
         
+        
+        emptyView.addBtn.addTarget(self, action: #selector(createCatalogueList), for: .touchUpInside)
+        
+        
         // Set constraints
         NSLayoutConstraint.activate([
             emptyView.topAnchor.constraint(equalTo: catalogueTitleView.bottomAnchor),
@@ -369,6 +370,12 @@ class EntryViewController: UIViewController , UpdateUI{
         emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(emptyViewForContacts)
         
+        emptyViewForContacts.addBtn.setTitle("Add Contacts", for: .normal)
+        emptyViewForContacts.noCatLbl.text = "No Contacts Found"
+        emptyViewForContacts.addSomeCat.text = "Add Some Contacts to Share"
+        
+        emptyViewForContacts.addBtn.addTarget(self, action: #selector(addNewContact), for: .touchUpInside)
+        
         // Set constraints
         NSLayoutConstraint.activate([
             emptyViewForContacts.topAnchor.constraint(equalTo: myContactsHeaderView.bottomAnchor),
@@ -381,6 +388,19 @@ class EntryViewController: UIViewController , UpdateUI{
         emptyViewForContacts.settingUpConstraints()
     }
     
+    
+    
+    
+    @objc func createCatalogueList() {
+        let addCatalogueVC = AddContactViewController()
+        addCatalogueVC.isCatalogueView = true
+        
+        addCatalogueVC.txtFieldPlaceHolder = "Enter Catalogue Name"
+        addCatalogueVC.addCataText = "Create a Catalogue"
+        addCatalogueVC.createCataTxt = "Create a catalogue and add users to share your"
+        addCatalogueVC.favImgLbl = "favourite images"
+        navigationController?.pushViewController(addCatalogueVC, animated: true)
+    }
     
     
     
@@ -449,6 +469,11 @@ class EntryViewController: UIViewController , UpdateUI{
         
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
+        guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
+            AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
+            return
+        }
+        errorPopup.catalogData = catalogDataGet
        // errorPopup.delegate = self
         errorPopup.onCompletion = { [weak self] result in
             switch result {
@@ -465,6 +490,11 @@ class EntryViewController: UIViewController , UpdateUI{
             case .NO:
                 print("User canceled delete.")
                 errorPopup.dismiss(animated: true, completion: nil)
+            case .SHARE:
+                  print("User tapped Share.")
+                  errorPopup.dismiss(animated: true) {
+                      self?.presentShareScreen()
+                  }
             }
         }
     
@@ -497,13 +527,17 @@ class EntryViewController: UIViewController , UpdateUI{
         activityIndicator.startAnimating()
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self.activityIndicator.stopAnimating()
                 
                 switch result {
                 case .goAhead:
-                    print("Catalogue View Model from Catalogue View Controller")
+                   // print("View Controller updated index", )
                     //table View Reload Data
+                    
+//                    print("Catalogue Listing View model Shared Contact data", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog?.count as Any)
+                    
+                    
                     
                     if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
                         self.fileColView.isHidden = true
@@ -599,23 +633,7 @@ class EntryViewController: UIViewController , UpdateUI{
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.delegate = self
-        //errorPopup.msgViewVar = message
-        
-//        errorPopup.onCompletion = { [weak self] result in
-//            switch result {
-//            case .YES:
-//                print("✅ User confirmed delete!")
-//
-//                // Wait for popup to finish dismissing before presenting the next one
-//                errorPopup.dismiss(animated: true) {
-//                    self?.deleteCatalogPopUp()
-//                }
-//
-//            case .NO:
-//                print("User canceled delete.")
-//                errorPopup.dismiss(animated: true, completion: nil)
-//            }
-//        }
+
         
         self.present(errorPopup, animated: true)
         
@@ -630,15 +648,55 @@ class EntryViewController: UIViewController , UpdateUI{
         //deleteCatalogGlobalPopUp()
         self.deleteCatalogPopUp()
         
-//        AlertView.showAlert("Warning!", message: "Are Sure Want To Delete This File?", okTitle: "Yes", cancelTitle: "No") {
-//            self.deleteCatalogPopUp()
-//        }
+
+        print( "All Shared Information", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog)
+        
         
     }//button action
     
     
-
+    func presentShareScreen() {
+        
+        let shareInfo = SharedInformationVC(nibName: "SharedInformationVC", bundle: nil)
+        shareInfo.modalPresentationStyle = .overCurrentContext
+        shareInfo.modalTransitionStyle = .crossDissolve
+        shareInfo.delegate = self
+        
+        if let sharedList = catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog,
+           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name{
+            
+            shareInfo.temporaryMemory = sharedList
+            shareInfo.catalogueNameText = catalogName
+            
+        } else {
+            AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
+        }
+        self.present(shareInfo, animated: true, completion: nil)
+        
+        
+    }
     
+    func didTapProceed() {
+                let shareVC = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+                shareVC.modalPresentationStyle = .fullScreen
+                guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
+                    AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
+                    return
+                }
+                shareVC.catalogData = catalogDataGet
+                shareVC.shareIndex = indexNo
+                self.present(shareVC, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
+    
+    @objc func addNewContact(){
+       // print("Tapped floating btn")
+        navigationController?.pushViewController(AddContactViewController(), animated: true)
+    }
     
     
 }

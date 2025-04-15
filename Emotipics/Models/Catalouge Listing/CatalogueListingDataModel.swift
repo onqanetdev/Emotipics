@@ -97,7 +97,7 @@ struct Sharedcatalog : Codable {
     let status : String?
     let created_at : String?
     let updated_at : String?
-   // let contactlist : String?
+    let contactlist : Contactlist?
 
     enum CodingKeys: String, CodingKey {
 
@@ -107,7 +107,7 @@ struct Sharedcatalog : Codable {
         case status = "status"
         case created_at = "created_at"
         case updated_at = "updated_at"
-       // case contactlist = "contactlist"
+        case contactlist = "contactlist"
     }
 
     init(from decoder: Decoder) throws {
@@ -118,7 +118,7 @@ struct Sharedcatalog : Codable {
         status = try values.decodeIfPresent(String.self, forKey: .status)
         created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
         updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
-        //contactlist = try values.decodeIfPresent(String.self, forKey: .contactlist)
+        contactlist = try values.decodeIfPresent(Contactlist.self, forKey: .contactlist)
     }
 
 }
@@ -146,3 +146,19 @@ struct Owner_detials : Codable {
 
 }
 
+
+
+//trying contactlist
+
+struct Contactlist: Codable {
+    let id: Int
+    let contactcode, ownerID, contactID: String
+    let contactdetails: Contactdetails?
+
+    enum CodingKeys: String, CodingKey {
+        case id, contactcode
+        case ownerID = "owner_id"
+        case contactID = "contact_id"
+        case contactdetails
+    }
+}

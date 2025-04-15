@@ -22,6 +22,7 @@
                 <outlet property="myCatalogueLbl" destination="4Iz-JG-okd" id="XWh-Ng-W15"/>
                 <outlet property="myCatalogueViewAllBtn" destination="A3v-pp-63M" id="Wmi-cm-VYf"/>
                 <outlet property="myCatalogueViewHeight" destination="sQM-tw-qmb" id="Jgx-a6-Oh5"/>
+                <outlet property="sharedCatalogHeaderView" destination="pn8-gp-5vY" id="Y5i-fb-lNZ"/>
                 <outlet property="sharedCatalogueCollView" destination="Wue-Mm-Fa7" id="WXH-UH-iss"/>
                 <outlet property="sharedCatalogueLbl" destination="ttp-1K-uGj" id="Ms1-Wc-ABp"/>
                 <outlet property="sharedCatalogueViewHeight" destination="SaN-3T-fbC" id="tr0-Ve-p4D"/>

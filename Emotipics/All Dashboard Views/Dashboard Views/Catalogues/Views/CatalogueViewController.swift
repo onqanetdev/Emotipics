@@ -49,6 +49,12 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     @IBOutlet weak var myCatalogueHeader: UIView!
     
+    
+    
+    
+    @IBOutlet weak var sharedCatalogHeaderView: UIView!
+    
+    
     //MARK: Height contraints
     
     
@@ -108,13 +114,16 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     }()
     
     
-    let emptyViewForContacts = EmptyCollView()
+    let emptyViewForCatalogueView = EmptyCollView()
     
-    
+    let emptyViewForSharedCatalogue = EmptyCollView()
     
     var indexNo:Int = 0
     var tempMemory:[DataM] = []
     var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
+    var tempMemoryForSharedCat:[DataM] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,10 +139,10 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         
         catalougeCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
-//        sharedCatalogueCollView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Demo")
+        //        sharedCatalogueCollView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Demo")
         
         sharedCatalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-       // var heightOfTotalComponents:CGFloat = 28 + 252 + 28 + 330 + 1
+        // var heightOfTotalComponents:CGFloat = 28 + 252 + 28 + 330 + 1
         heightOfContScrollView.constant = 825
         addPlusIcon()
         
@@ -143,10 +152,11 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         
         sharedCatalogueList()
         
-        emptyViewForContacts.isHidden = true
+        emptyViewForCatalogueView.isHidden = true
+        emptyViewForSharedCatalogue.isHidden = true
         
-        setupEmptyViewForContacts()
-        
+        setupEmptyViewForCatalogues()
+        setupEmptyViewForSharedCatalogue()
         
         
         
@@ -156,13 +166,13 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         self.tabBarController?.tabBar.isHidden = true
         //self.tabBarController?.editButtonItem.isHidden = true
         if let tabBarController = self.tabBarController {
-                for subview in tabBarController.view.subviews {
-                    if let button = subview as? UIButton,
-                       button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
-                        button.isHidden = true
-                    }
+            for subview in tabBarController.view.subviews {
+                if let button = subview as? UIButton,
+                   button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
+                    button.isHidden = true
                 }
             }
+        }
         allCatalogueList()
         sharedCatalogueList()
     }
@@ -191,7 +201,7 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     }
     
     func addPlusIcon(){
-       // floatingBtn.addSubview(Flo)
+        // floatingBtn.addSubview(Flo)
         view.addSubview(floatingBtn)
         floatingBtn.setTarget(self, action: #selector(createCatalogueList), for: .touchUpInside)
         
@@ -232,15 +242,17 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                         
                         self.tempMemory = value
                         catalougeCollView.reloadData()
-                        if tempMemory.isEmpty {
-                            emptyViewForContacts.isHidden = false
+                        
+                        
+                        if tempMemory.isEmpty || tempMemory.count == 0 {
+                            emptyViewForCatalogueView.isHidden = false
                         } else {
-                            emptyViewForContacts.isHidden = true
+                            emptyViewForCatalogueView.isHidden = true
                         }
                         
                         
                         
-                   }
+                    }
                 case .heyStop:
                     print("Error")
                 }
@@ -269,10 +281,30 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                     print("Shared Catalogue View Model 🫡 🫡 View Controller")
                     //table View Reload Data
                     DispatchQueue.main.async { [self] in
-
+                        
                         sharedCatalogueCollView.reloadData()
                         
-                   }
+//                        if let sharedData = sharedCatalogueViewModel.responseModel?.data {
+//                            tempMemoryForSharedCat = sharedData
+//                            
+//                            share
+//                            
+//                            
+//                        } else {
+//                            
+//                        }
+                        
+                        if sharedCatalogueViewModel.responseModel?.data?.count == 0  {
+                            emptyViewForSharedCatalogue.isHidden = false
+                            sharedCatalogueCollView.isHidden = true
+                            print("🤡")
+                        } else {
+                            emptyViewForSharedCatalogue.isHidden = true
+                            sharedCatalogueCollView.isHidden = false
+                            print("👾👾👾")
+                        }
+                        
+                    }
                 case .heyStop:
                     print("Error")
                 }
@@ -329,14 +361,14 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         
     }
     
-  
+    
     
     func deleteCatalogPopUp() {
         let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
         
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
-       // errorPopup.delegate = self
+        // errorPopup.delegate = self
         errorPopup.onCompletion = { [weak self] result in
             switch result {
             case .YES:
@@ -344,7 +376,7 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                 
                 // Wait for popup to finish dismissing before presenting the next one
                 errorPopup.dismiss(animated: true) {
-                   // self?.deleteCatalogPopUp()
+                    // self?.deleteCatalogPopUp()
                     self?.deleteCatalogGlobalPopUp()
                     print("Print Nothing")
                 }
@@ -352,9 +384,14 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
             case .NO:
                 print("User canceled delete.")
                 errorPopup.dismiss(animated: true, completion: nil)
+            case .SHARE:
+                //print("Sharing Catalog from DeleteCatalogPopVC")
+                errorPopup.dismiss(animated: true) {
+                    self?.presentShareScreen()
+                }
             }
         }
-    
+        
         self.present(errorPopup, animated: true)
     }
     
@@ -365,20 +402,18 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         errorPopup.delegate = self
         self.present(errorPopup, animated: true)
         
-   
+        
     }
-
+    
     
     @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
-
+        
         indexNo = sender.tag
         
         //deleteCatalogGlobalPopUp()
         self.deleteCatalogPopUp()
         
-//        AlertView.showAlert("Warning!", message: "Are Sure Want To Delete This File?", okTitle: "Yes", cancelTitle: "No") {
-//            self.deleteCatalogPopUp()
-//        }
+        
         
     }
     
@@ -407,12 +442,12 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                     print("Catalogue View Model from Catalogue View Controller")
                     self.tempMemory.remove(at: pin)
                     self.catalougeCollView.reloadData()
-
+                    
                     if self.tempMemory.isEmpty {
-                        self.emptyViewForContacts.isHidden = false
+                        self.emptyViewForCatalogueView.isHidden = false
                         self.catalougeCollView.isHidden = true
                     } else {
-                        self.emptyViewForContacts.isHidden = true
+                        self.emptyViewForCatalogueView.isHidden = true
                         self.catalougeCollView.isHidden = false
                     }
                 case .heyStop:
@@ -427,21 +462,93 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     }
     
     
-    func setupEmptyViewForContacts() {
+    func setupEmptyViewForCatalogues() {
         
-        emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(emptyViewForContacts)
+        emptyViewForCatalogueView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForCatalogueView)
+        
+        
+        
+        emptyViewForCatalogueView.addBtn.addTarget(self, action: #selector(createCatalogueList), for: .touchUpInside)
         
         // Set constraints
         NSLayoutConstraint.activate([
-            emptyViewForContacts.topAnchor.constraint(equalTo: myCatalogueHeader.bottomAnchor),
-            emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
-            emptyViewForContacts.heightAnchor.constraint(equalToConstant: 252) // adjust as needed
+            emptyViewForCatalogueView.topAnchor.constraint(equalTo: myCatalogueHeader.bottomAnchor),
+            emptyViewForCatalogueView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForCatalogueView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForCatalogueView.heightAnchor.constraint(equalToConstant: 250) // adjust as needed
         ])
         
         // Call method to setup inner views
-        emptyViewForContacts.settingUpConstraints()
+        emptyViewForCatalogueView.settingUpConstraints()
+    }
+    
+    
+    func setupEmptyViewForSharedCatalogue() {
+        
+        emptyViewForSharedCatalogue.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForSharedCatalogue)
+        
+        
+        
+        emptyViewForSharedCatalogue.noCatLbl.text = "Nothing Has Shared Yet!"
+        emptyViewForSharedCatalogue.addSomeCat.isHidden = true
+        emptyViewForSharedCatalogue.addBtn.isHidden = true
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyViewForSharedCatalogue.topAnchor.constraint(equalTo: sharedCatalogHeaderView.bottomAnchor),
+            emptyViewForSharedCatalogue.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForSharedCatalogue.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForSharedCatalogue.heightAnchor.constraint(equalToConstant: 250) // adjust as needed
+        ])
+        
+        // Call method to setup inner views
+        emptyViewForSharedCatalogue.settingUpConstraints()
+    }
+    
+    
+    
+    
+    func presentShareScreen() {
+        
+        let shareInfo = SharedInformationVC(nibName: "SharedInformationVC", bundle: nil)
+        shareInfo.modalPresentationStyle = .overCurrentContext
+        shareInfo.modalTransitionStyle = .crossDissolve
+        shareInfo.delegate = self
+        
+        if let sharedList = catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog,
+           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name{
+            
+            shareInfo.temporaryMemory = sharedList
+            shareInfo.catalogueNameText = catalogName
+            
+        } else {
+            AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
+        }
+        
+        
+        
+        self.present(shareInfo, animated: true, completion: nil)
+    }
+    
+}
+
+
+extension CatalogueViewController: SharedInformationDelegate {
+    func didTapProceed() {
+        let shareVC = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        shareVC.modalPresentationStyle = .fullScreen
+        guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
+            AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
+            return
+        }
+        shareVC.catalogData = catalogDataGet
+        shareVC.shareIndex = indexNo
+        
+        
+        
+        self.present(shareVC, animated: true, completion: nil)
     }
     
     
@@ -449,20 +556,22 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
 
 
 
-
-
-
 extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return 4
-        return tempMemory.count
+        //return tempMemory.count
+        if collectionView == catalougeCollView {
+            return tempMemory.count
+        } else {
+            return tempMemoryForSharedCat.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == catalougeCollView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             
-
+            
             cell.clipsToBounds = true
             
             
@@ -475,41 +584,50 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
             cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
             
             
-            cell.moreFeaturesBtn.tag = indexPath.row
-            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+            
             
             return cell
         } else { // sharedCatalogueCollView
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
-//            cell.backgroundColor = .blue // Differentiate visually
-            cell.layer.cornerRadius = 25
-            cell.clipsToBounds = true
             
-            
-
-//            print("Desired Mail id is", sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email)
-            
-            
-            guard let ownerMailId = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email else {
+//            
+//            
+//            if tempMemoryForSharedCat.count == 0 || tempMemoryForSharedCat.isEmpty {
+//                
+//                
+//                
+//                
+//            } else {
+                
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
+                //            cell.backgroundColor = .blue // Differentiate visually
+                cell.layer.cornerRadius = 25
+                cell.clipsToBounds = true
+                
+                
+                guard let ownerMailId = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.email else {
+                    return cell
+                }
+                
+                guard let savedEmail = UserDefaults.standard.string(forKey: "userEmail") else {
+                    return cell
+                }
+                
+                if ownerMailId == savedEmail {
+                    cell.sharedByLbl.text = "Share with other"
+                } else {
+                    cell.sharedByLbl.text = "Share by " + (sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.name ?? "nil")
+                }
+                
+                cell.projectFilesLbl.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].catalog_name ?? "Nil"
+                cell.noOfFiles.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].total_files ?? "0"
+                cell.sharedByLbl.isHidden = false
+                cell.sharedImgView.isHidden = false
                 return cell
             }
             
-            guard let savedEmail = UserDefaults.standard.string(forKey: "userEmail") else {
-                return cell
-            }
-
-            if ownerMailId == savedEmail {
-                cell.sharedByLbl.text = "Share with other"
-            } else {
-                cell.sharedByLbl.text = "Share by " + (sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.name ?? "nil")
-            }
             
-            cell.projectFilesLbl.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].catalog_name ?? "Nil"
-            cell.noOfFiles.text = sharedCatalogueViewModel.responseModel?.data?[indexPath.row].total_files ?? "0"
-            cell.sharedByLbl.isHidden = false
-            cell.sharedImgView.isHidden = false
-            return cell
-        }
+  
+        
         
     }
     

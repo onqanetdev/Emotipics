@@ -11,6 +11,12 @@ import Foundation
 
 extension EntryViewController: DeleteCatalogDelegate {
     func deleteCatalogueFunction(pin: Int){
+        
+        if tempMemory.isEmpty {
+            
+        }
+        
+        
         guard let item = tempMemory[pin].catalogue_uuid else {
             return
         }

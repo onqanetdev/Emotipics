@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllCataloguesViewController: UIViewController {
+class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     
     @IBOutlet weak var backGroundView: UIView! {
@@ -55,10 +55,26 @@ class AllCataloguesViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
+        indicator.color = .systemBlue
         indicator.hidesWhenStopped = true
         return indicator
     }()
+    
+    
+    
+    
+    @IBOutlet weak var contentView: UIView!
+    
+    
+    @IBOutlet weak var headerView: UIView!
+    
+    
+    var indexNo:Int = 0
+    var tempMemory:[DataM] = []
+    var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
+    
+   let emptyViewForContacts = EmptyCollView()
+   // let emptyViewForCatalogueView = EmptyCollView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +116,9 @@ class AllCataloguesViewController: UIViewController {
         setupActivityIndicator()
         reloadAllData()
     
+        emptyViewForContacts.isHidden = true
+        
+        setupEmptyViewForContacts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -123,9 +142,27 @@ class AllCataloguesViewController: UIViewController {
                     print("Catalogue View Model from AllCataloguesViewController")
                     //table View Reload Data
                     self.catalogueCollView.reloadData()
-//                    var sumHeight = (120 * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+
+                    DispatchQueue.main.async { [self] in
+                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
+                            return
+                        }
+                        
+                        self.tempMemory = value
+                        catalogueCollView.reloadData()
+                        if tempMemory.isEmpty {
+                            emptyViewForContacts.isHidden = false
+                        } else {
+                            emptyViewForContacts.isHidden = true
+                        }
+                        
+                        
+                        
+                   }
                     
-                    var sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                    
+                    
+                    let sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
                     
                     
                     if let countData = catalogueListingViewModel.responseModel?.data?.count {
@@ -139,6 +176,11 @@ class AllCataloguesViewController: UIViewController {
                             self.collectionViewHeight.constant = height + 120
                             scrollViewHeight.constant = collectionViewHeight.constant + 370
                         }
+                        
+                        
+                        
+                        
+                        
                         
                     } else {
                         
@@ -157,12 +199,6 @@ class AllCataloguesViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
     func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -180,24 +216,15 @@ class AllCataloguesViewController: UIViewController {
         // Force collectionView layout update
         catalogueCollView.layoutIfNeeded()
         
-
-        
-        
         var height:CGFloat = dynamicHeight * 13
         collectionViewHeight.constant = height
         scrollViewHeight.constant = collectionViewHeight.constant + 170
         
         print("The Dynamic height is ", dynamicHeight)
-//        print("The height of collection View", collectionViewHeight.constant)
-//        print("The Height of scroll View", scrollViewHeight.constant)
+
         
-        
-       
     }
 
-    
-    
-    
     
     @IBAction func backToCatalogue(_ sender: Any) {
         
@@ -243,6 +270,192 @@ class AllCataloguesViewController: UIViewController {
         navigationController?.pushViewController(nextView, animated: true)
         
     }
+    
+    
+    func deleteCatalogueFunction(pin: Int){
+        guard let item = tempMemory[pin].catalogue_uuid else {
+            return
+        }
+        
+        
+        
+        self.activityIndicator.startAnimating()
+        deleteCatalogueViewModel.requestModel.UUID = item
+        deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Catalogue View Model from Catalogue View Controller")
+                    self.tempMemory.remove(at: pin)
+                    self.catalogueCollView.reloadData()
+
+                    if self.tempMemory.isEmpty {
+                        self.emptyViewForContacts.isHidden = false
+                        self.catalogueCollView.isHidden = true
+                    } else {
+                        self.emptyViewForContacts.isHidden = true
+                        self.catalogueCollView.isHidden = false
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
+    func setupEmptyViewForContacts() {
+        
+        emptyViewForContacts.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(emptyViewForContacts)
+        
+        
+        emptyViewForContacts.addBtn.addTarget(self, action: #selector(addNewCatalogue), for: .touchUpInside)
+        
+        // Set constraints
+        NSLayoutConstraint.activate([
+            emptyViewForContacts.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
+            emptyViewForContacts.heightAnchor.constraint(equalToConstant: 252) // adjust as needed
+        ])
+        
+        // Call method to setup inner views
+        emptyViewForContacts.settingUpConstraints()
+    }
+
+    
+    @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
+
+        indexNo = sender.tag
+        
+        //deleteCatalogGlobalPopUp()
+        self.deleteCatalogPopUp()
+        
+
+        
+    }
+    
+    func deleteCatalogPopUp() {
+        let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
+        
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+       // errorPopup.delegate = self
+        errorPopup.onCompletion = { [weak self] result in
+            switch result {
+            case .YES:
+                print("✅ User confirmed delete!")
+                
+                // Wait for popup to finish dismissing before presenting the next one
+                errorPopup.dismiss(animated: true) {
+                   // self?.deleteCatalogPopUp()
+                    self?.deleteCatalogGlobalPopUp()
+                    print("Print Nothing")
+                }
+                
+            case .NO:
+                print("User canceled delete.")
+                errorPopup.dismiss(animated: true, completion: nil)
+            case .SHARE:
+                print("Sharing from Catalog")
+                
+                errorPopup.dismiss(animated: true) {
+                    self?.presentShareScreen()
+                }
+            }
+            
+            
+        }
+    
+        self.present(errorPopup, animated: true)
+    }
+    
+    func deleteCatalogGlobalPopUp() {
+        let errorPopup = DeleteCatalogueGlobalPopUp(nibName: "DeleteCatalogueGlobalPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+        
+   
+    }
+    
+    
+    func deletePopup(){
+        deleteCatalogueFunction(pin: indexNo)
+    }
+    
+    
+    func presentShareScreen() {
+        
+        let shareInfo = SharedInformationVC(nibName: "SharedInformationVC", bundle: nil)
+        shareInfo.modalPresentationStyle = .overCurrentContext
+        shareInfo.modalTransitionStyle = .crossDissolve
+        shareInfo.delegate = self
+        if let sharedList = catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog,
+           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name{
+            
+            shareInfo.temporaryMemory = sharedList
+            shareInfo.catalogueNameText = catalogName
+            
+        } else {
+            AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
+        } 
+        
+        
+        self.present(shareInfo, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+//    func setupEmptyViewForCatalogues() {
+//        
+//        emptyViewForCatalogueView.translatesAutoresizingMaskIntoConstraints = false
+//        contentView.addSubview(emptyViewForCatalogueView)
+//        
+//        // Set constraints
+//        NSLayoutConstraint.activate([
+//            emptyViewForCatalogueView.topAnchor.constraint(equalTo: sharedCatalogHeaderView.bottomAnchor),
+//            emptyViewForCatalogueView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            emptyViewForCatalogueView.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            emptyViewForCatalogueView.heightAnchor.constraint(equalToConstant: 300) // adjust as needed
+//        ])
+//        
+//        // Call method to setup inner views
+//        emptyViewForCatalogueView.settingUpConstraints()
+//    }
+//    
+    
+}
+
+
+
+
+
+
+extension AllCataloguesViewController: SharedInformationDelegate {
+    func didTapProceed() {
+        let shareVC = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        shareVC.modalPresentationStyle = .fullScreen
+        guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
+            AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
+            return
+        }
+        shareVC.catalogData = catalogDataGet
+        shareVC.shareIndex = indexNo
+        self.present(shareVC, animated: true, completion: nil)
+    }
+    
+    
 }
 
 
@@ -251,10 +464,10 @@ class AllCataloguesViewController: UIViewController {
 
 extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-//    
-//    // Your existing methods remain the same
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return catalogueListingViewModel.responseModel?.data?.count ?? 0
+        //return catalogueListingViewModel.responseModel?.data?.count ?? 0
+        return tempMemory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -268,18 +481,13 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             
-            if let data = catalogueListingViewModel.responseModel?.data, indexPath.row < data.count {
-                let item = data[indexPath.row]
-                cell.projectFilesLbl.text = item.catalog_name ?? "Nil"
-                cell.noOfFiles.text = item.total_files ?? "Nil"
-                cell.fiveGbLbl.text = item.file_storage ?? "Nil"
-            } else {
-                // Default values for safety
-                cell.projectFilesLbl.text = "No Name"
-                cell.noOfFiles.text = "0 Files"
-                cell.fiveGbLbl.text = "0 GB"
-            }
+
+            cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
+            cell.noOfFiles.text = tempMemory[indexPath.row].total_files
+            cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
             
+            cell.moreFeaturesBtn.tag = indexPath.row
+            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
             
             
             return cell
@@ -325,10 +533,6 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
         }
     }
 
-    
-    
-    
-    
 }
 
 
