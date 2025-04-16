@@ -19,7 +19,7 @@ class DashboardViewController: UIViewController {
         
     }()
     
-    
+    var name = ""
     
     
     override func viewDidLoad() {
@@ -29,7 +29,7 @@ class DashboardViewController: UIViewController {
         view.backgroundColor = .white
         let testViewController = EntryViewController()
 
-       
+        testViewController.userName = name
         setupTabBarController()
     }
     

@@ -180,6 +180,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
         // Create empty view controllers for the tab bar items
         let homeTab = EntryViewController()
        // self.navigationController?.pushViewController(homeTab, animated: true)
+        homeTab.userName = name
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "HomeDash"), tag: 0)
         homeTab.tabBarItem = UITabBarItem(
             title: nil,
@@ -190,15 +191,18 @@ extension DashboardViewController: UITabBarControllerDelegate {
         
        // let catalogueTab = UIViewController()
         let catalogueTab = EntryViewController()
+        catalogueTab.userName = name
         catalogueTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "folder"), tag: 1)
         
         let plusTab = UIViewController()
         plusTab.tabBarItem = UITabBarItem(title: nil, image: nil, tag: 2)
         
         let contactsTab = EntryViewController()
+        contactsTab.userName = name
         contactsTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), tag: 3)
         
         let groupsTab = EntryViewController()
+        groupsTab.userName = name
         groupsTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.3"), tag: 4)
         
         // Set up the floating plus button

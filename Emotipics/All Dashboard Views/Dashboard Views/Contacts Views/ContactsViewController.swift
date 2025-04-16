@@ -104,6 +104,15 @@ class ContactsViewController: UIViewController, UpdateUI {
                 case .goAhead:
                     print("Success 👍🏽")
                     //table View Reload Data
+                    if let contactsViewCount = self.allContactsViewModel.responseModel?.data?.count {
+                        if contactsViewCount == 0 {
+                            self.emptyViewForContacts.isHidden = false
+                        } else {
+                            self.emptyViewForContacts.isHidden = true
+                        }
+                    } else {
+                        
+                    }
                     DispatchQueue.main.async {
                         self.contactsTblView.reloadData()
                     }

@@ -48,7 +48,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
-   
+    
     var dynamicHeight: CGFloat = 0
     
     var catalogueListingViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
@@ -73,9 +73,15 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     var tempMemory:[DataM] = []
     var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     
-   let emptyViewForContacts = EmptyCollView()
-   // let emptyViewForCatalogueView = EmptyCollView()
+    let emptyViewForContacts = EmptyCollView()
+    // let emptyViewForCatalogueView = EmptyCollView()
     
+    var catalogueImageListViewModel: CatalogueImageListViewModel = CatalogueImageListViewModel()
+    
+    var receivedCatalogueCode = ""
+    var imageCount:[ImageData] = []
+    
+    var imagePathName = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,7 +100,6 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
             myCatalogueSubLbl.isHidden = true
         }
         
-        //        catalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
         
         myCatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
@@ -103,26 +108,41 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         
         
         
-        updateScrollViewHeight()
+        
         
         
         if isImageCell {
-           // print("Hello From ViewDidLoad from Image Cell True")
+            // print("Hello From ViewDidLoad from Image Cell True")
+            
+            if let catalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+                print("Catalogue ID: \(catalogueId)")
+                imagelistViewModel(catalogueCode: catalogueId)
+            }
             
         } else {
-            // print("Hello from viewDidload from image cell  false")
+            
+            reloadAllData()
+            updateScrollViewHeight()
         }
         
         setupActivityIndicator()
-        reloadAllData()
-    
         emptyViewForContacts.isHidden = true
         
         setupEmptyViewForContacts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        reloadAllData()
+        if isImageCell{
+            
+            if let catalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+                print("Catalogue ID: \(catalogueId)")
+                imagelistViewModel(catalogueCode: catalogueId)
+            }
+            
+            
+        } else {
+            reloadAllData()
+        }
     }
     
     func reloadAllData(){
@@ -142,7 +162,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                     print("Catalogue View Model from AllCataloguesViewController")
                     //table View Reload Data
                     self.catalogueCollView.reloadData()
-
+                    
                     DispatchQueue.main.async { [self] in
                         guard let value = self.catalogueListingViewModel.responseModel?.data else {
                             return
@@ -158,9 +178,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                         
                         
                         
-                   }
-                    
-                    
+                    }
                     
                     let sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
                     
@@ -176,11 +194,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                             self.collectionViewHeight.constant = height + 120
                             scrollViewHeight.constant = collectionViewHeight.constant + 370
                         }
-                        
-                        
-                        
-                        
-                        
+                    
                         
                     } else {
                         
@@ -199,6 +213,83 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         }
     }
     
+    
+    
+    func imagelistViewModel(catalogueCode: String){
+        
+        catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
+        catalogueImageListViewModel.requestModel.limit = "10"
+        catalogueImageListViewModel.requestModel.offset = "1"
+        
+        activityIndicator.startAnimating()
+        
+        catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { result in
+            DispatchQueue.main.async { [self] in
+                self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                
+                    print("Image Catalogue Listing from all catalogue View model")
+                    //table View Reload Data
+                    self.catalogueCollView.reloadData()
+                    
+                    DispatchQueue.main.async { [self] in
+                        guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                            return
+                        }
+                        
+                        self.imageCount = value
+                        catalogueCollView.reloadData()
+                        if imageCount.isEmpty || imageCount.count == 0{
+                            emptyViewForContacts.isHidden = false
+                            catalogueCollView.isHidden = true
+                            
+                            //calculation of cell size
+                            
+                            let sumHeight = (Int(dynamicHeight) * (imageCount.count)) / 2
+                            if let countData = catalogueImageListViewModel.responseModel?.data?.count {
+                                
+                                if countData % 2 == 0{
+                                    let height:CGFloat = CGFloat(sumHeight)
+                                    self.collectionViewHeight.constant = height
+                                    scrollViewHeight.constant = collectionViewHeight.constant + 370
+                                } else {
+                                    let height:CGFloat = CGFloat(sumHeight)
+                                    self.collectionViewHeight.constant = height + 120
+                                    scrollViewHeight.constant = collectionViewHeight.constant + 370
+                                }
+                                
+                                
+                            } else {
+                                
+                            }
+                            
+                            //Ending of calculation of Cell Size
+                        } else {
+                            emptyViewForContacts.isHidden = true
+                            catalogueCollView.isHidden = false
+                        }
+                        
+                        
+                        
+                    }
+                    
+        
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
     func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -210,7 +301,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-
+    
     
     func updateScrollViewHeight() {
         // Force collectionView layout update
@@ -221,10 +312,10 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         scrollViewHeight.constant = collectionViewHeight.constant + 170
         
         print("The Dynamic height is ", dynamicHeight)
-
+        
         
     }
-
+    
     
     @IBAction func backToCatalogue(_ sender: Any) {
         
@@ -290,7 +381,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                     print("Catalogue View Model from Catalogue View Controller")
                     self.tempMemory.remove(at: pin)
                     self.catalogueCollView.reloadData()
-
+                    
                     if self.tempMemory.isEmpty {
                         self.emptyViewForContacts.isHidden = false
                         self.catalogueCollView.isHidden = true
@@ -330,16 +421,16 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         // Call method to setup inner views
         emptyViewForContacts.settingUpConstraints()
     }
-
+    
     
     @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
-
+        
         indexNo = sender.tag
         
         //deleteCatalogGlobalPopUp()
         self.deleteCatalogPopUp()
         
-
+        
         
     }
     
@@ -348,7 +439,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
-       // errorPopup.delegate = self
+        // errorPopup.delegate = self
         errorPopup.onCompletion = { [weak self] result in
             switch result {
             case .YES:
@@ -356,7 +447,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 
                 // Wait for popup to finish dismissing before presenting the next one
                 errorPopup.dismiss(animated: true) {
-                   // self?.deleteCatalogPopUp()
+                    // self?.deleteCatalogPopUp()
                     self?.deleteCatalogGlobalPopUp()
                     print("Print Nothing")
                 }
@@ -374,7 +465,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
             
             
         }
-    
+        
         self.present(errorPopup, animated: true)
     }
     
@@ -385,7 +476,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         errorPopup.delegate = self
         self.present(errorPopup, animated: true)
         
-   
+        
     }
     
     
@@ -408,33 +499,13 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
             
         } else {
             AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
-        } 
+        }
         
         
         self.present(shareInfo, animated: true, completion: nil)
     }
     
-    
-    
-    
-//    func setupEmptyViewForCatalogues() {
-//        
-//        emptyViewForCatalogueView.translatesAutoresizingMaskIntoConstraints = false
-//        contentView.addSubview(emptyViewForCatalogueView)
-//        
-//        // Set constraints
-//        NSLayoutConstraint.activate([
-//            emptyViewForCatalogueView.topAnchor.constraint(equalTo: sharedCatalogHeaderView.bottomAnchor),
-//            emptyViewForCatalogueView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            emptyViewForCatalogueView.widthAnchor.constraint(equalTo: view.widthAnchor),
-//            emptyViewForCatalogueView.heightAnchor.constraint(equalToConstant: 300) // adjust as needed
-//        ])
-//        
-//        // Call method to setup inner views
-//        emptyViewForCatalogueView.settingUpConstraints()
-//    }
-//    
-    
+
 }
 
 
@@ -463,11 +534,16 @@ extension AllCataloguesViewController: SharedInformationDelegate {
 
 
 extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return catalogueListingViewModel.responseModel?.data?.count ?? 0
-        return tempMemory.count
+        if isImageCell {
+            //return 5
+            return imageCount.count
+        } else {
+            return tempMemory.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -475,13 +551,76 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
+            
+//            if let imgPath = imageCount[indexPath.row].path , let imgName = imageCount[indexPath.row].img_name{
+//                imagePath = imgPath + imgName
+//            }
+//            
+//            //Calling Image urlsession for Showing the image
+//            print("My Image Path", imagePath)
+            
+//            guard let urlImage = URL(string: imagePath) else {
+//                return cell
+//            }
+//            
+//           // activityIndicator.startAnimating()
+//            URLSession.shared.dataTask(with: urlImage) { data, _, _ in
+//                if let newData = data {
+//                  
+//                    
+//                    DispatchQueue.main.async {
+//                        cell.imgViewColl.image = UIImage(data: newData)
+//                       // self.activityIndicator.stopAnimating()
+//                    }
+//                    
+//                } else {
+//                    DispatchQueue.main.async {
+//                        cell.imgViewColl.image = UIImage(systemName: "person")
+//                       // self.activityIndicator.stopAnimating()
+//                    }
+//                }
+//            }.resume()
+            
+            
+            
+            if let imgPath = imageCount[indexPath.row].path,
+               let imgName = imageCount[indexPath.row].img_name {
+                let imagePath = imgPath + imgName
+                print("Image Path:", imagePath)
+
+                //imagePathName = imagePath
+                
+                guard let urlImage = URL(string: imagePath) else { return cell }
+
+                
+                cell.activityIndicator.startAnimating()
+                
+                
+                URLSession.shared.dataTask(with: urlImage) { data, _, _ in
+                    guard let data = data, let image = UIImage(data: data) else { return }
+
+                    DispatchQueue.main.async {
+                        // Check if the cell is still displaying the correct indexPath
+                        cell.activityIndicator.stopAnimating()
+                        
+                        if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
+                            currentCell.imgViewColl.image = image
+                        }
+                    }
+                }.resume()
+            }
+            
+            
+            
+            
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             
-
+            
             cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
             cell.noOfFiles.text = tempMemory[indexPath.row].total_files
             cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
@@ -500,39 +639,52 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
         let numberOfItemsPerRow: CGFloat = 2
         let spacingBetweenCells: CGFloat = 10
         let sectionInsets: CGFloat = 10 // Reduced from 20 to avoid width issues
-
+        
         let totalSpacing = (numberOfItemsPerRow - 1) * spacingBetweenCells + (sectionInsets * 2)
         let availableWidth = collectionView.bounds.width - totalSpacing
-
+        
         let cellWidth = availableWidth / numberOfItemsPerRow
-
         
         
-                if isImageCell {
-                    //print("Image Cell is true")
-                    dynamicHeight = cellWidth * 1.0
-                    return CGSize(width: max(0, cellWidth), height: cellWidth * 1.0)
-                } else {
-                    //print("Image cell is false")
-                    dynamicHeight = 120
-                    return CGSize(width: max(0, cellWidth), height: 120)
-                }
+        
+        if isImageCell {
+            //print("Image Cell is true")
+            dynamicHeight = cellWidth * 1.0
+            return CGSize(width: max(0, cellWidth), height: cellWidth * 1.0)
+        } else {
+            //print("Image cell is false")
+            dynamicHeight = 120
+            return CGSize(width: max(0, cellWidth), height: 120)
+        }
         
     }
-
-
-
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10) // Reduce left & right insets
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let layout = catalogueCollView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.invalidateLayout() // Ensure the layout updates
         }
     }
-
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //print("Image Path is ", imagePathName)
+        if isImageCell {
+            if let imgPath = imageCount[indexPath.row].path,
+               let imgName = imageCount[indexPath.row].img_name {
+                let imagePath = imgPath + imgName
+                print("Selected Image Path: \(imagePath)")
+            }
+        } else {
+            print("Selected entry cell at index: \(indexPath.row)")
+        }
+    }
 }
 
 

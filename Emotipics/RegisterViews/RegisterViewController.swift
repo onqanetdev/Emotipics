@@ -335,7 +335,16 @@ class RegisterViewController: UIViewController {
                         switch result {
                         case .goAhead:
                             if (loginViewModel.responseModel?.login_data?[0].user?.active == "Y") && (loginViewModel.responseModel?.login_data?[0].user?.verify == "Y") {
-                                self.navigationController?.pushViewController(DashboardViewController(), animated: true)
+                                
+                                let dashboard = DashboardViewController()
+                                
+                                guard let userName = loginViewModel.responseModel?.login_data?[0].user?.name else{
+                                    return
+                                }
+                                UserDefaults.standard.set(userName, forKey: "userName")
+
+                               // dashboard.name = userName
+                                self.navigationController?.pushViewController(dashboard, animated: true)
                             } else {
                                 
                                 otpVerification()
@@ -355,6 +364,11 @@ class RegisterViewController: UIViewController {
                let passwordText = passwordTxtFld.text, !passwordText.isEmpty,
                let nameText = fullNameTxtFld.text, !nameText.isEmpty,
                let phoneNumber = phnTxtFld.text, !phoneNumber.isEmpty {
+                
+                
+               // UserDefaults.standard.set(nameText, forKey: "userName")
+
+                
                 
                 guard isValidEmail(emailtext) else {
                     showErrorPopup(message: "Please Enter A Valid Email ID")
@@ -394,6 +408,7 @@ class RegisterViewController: UIViewController {
                         DispatchQueue.main.async {
                             //                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                             self.otpVerification()
+                            UserDefaults.standard.set(nameText, forKey: "userName")
                             //If SuccessFul registration then save the access token into keychain
                             
                             

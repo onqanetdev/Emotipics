@@ -1,26 +1,21 @@
 //
-//  CatalogueUserAddApiCaller.swift
+//  CatalogueImageListApiCaller.swift
 //  Emotipics
 //
-//  Created by Onqanet on 14/04/25.
+//  Created by Onqanet on 16/04/25.
 //
 
 import Foundation
 
 
-
-
-class CatalogueUserAddApiCaller {
-    static func catalogueUserAddApiCaller(catalogCode: String, contactCode: String, CompletionHandler: @escaping(_ result: Result<CatalogueUserAddResModel, NetworkError>) -> Void ) {
-        
+class CatalogueImageListApiCaller {
+    static func catalogueImageListApiCaller(limit:String, offset:String,  catalogCode: String, CompletionHandler: @escaping(_ result: Result<CatalogueImageListResModel, NetworkError>) -> Void) {
+        let urlString = baseURL + APIEndpoint.catalogImageList.rawValue
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
         let accessToken = String(data: data, encoding: .utf8)!
         print("Access Token from ADD Contacts Api--->",accessToken)
         
-        
-        
-        let urlString = baseURL + APIEndpoint.catalogueUserAdd.rawValue
         guard let url = URL(string: urlString) else {
             print("can not able to convert it into URL")
             return
@@ -31,13 +26,12 @@ class CatalogueUserAddApiCaller {
         request.httpMethod = "POST" // Set HTTP method to POST
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer " + accessToken, forHTTPHeaderField: "Authorization")
-        
-
+    
         
         let requestBody: [String : Any] = [
-            "catalogcode": catalogCode,
-            "contact_code": contactCode
-            
+            "limit": limit,
+            "offset": offset,
+            "catalog_code": catalogCode
         ]
         
         
@@ -55,8 +49,8 @@ class CatalogueUserAddApiCaller {
             
             if error == nil ,
                let data = dataResponse,
-               let jsonResponse = try? JSONDecoder().decode(CatalogueUserAddResModel.self, from: data) {
-                print("My JSON Response for Adding user into a catalog-->", jsonResponse)
+               let jsonResponse = try? JSONDecoder().decode(CatalogueImageListResModel.self, from: data) {
+                print("My JSON Response from Catalogue ViewController", jsonResponse)
                 
                 
                 if jsonResponse.success == false {
@@ -64,7 +58,7 @@ class CatalogueUserAddApiCaller {
                     CompletionHandler(.success(jsonResponse))
                 } else {
                     print("The success Response is", jsonResponse.message ?? "@")
-                     CompletionHandler(.success(jsonResponse))
+                    CompletionHandler(.success(jsonResponse))
                 }
                 
             } else {
@@ -73,6 +67,6 @@ class CatalogueUserAddApiCaller {
             }
             
         }.resume()
+        
     }
 }
-

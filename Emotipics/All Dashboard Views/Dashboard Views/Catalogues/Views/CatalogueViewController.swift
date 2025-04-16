@@ -124,6 +124,8 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     var tempMemoryForSharedCat:[DataM] = []
     
     
+    var selectedCatalogueCode = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -297,11 +299,11 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                         if sharedCatalogueViewModel.responseModel?.data?.count == 0  {
                             emptyViewForSharedCatalogue.isHidden = false
                             sharedCatalogueCollView.isHidden = true
-                            print("🤡")
+                            //print("🤡")
                         } else {
                             emptyViewForSharedCatalogue.isHidden = true
                             sharedCatalogueCollView.isHidden = false
-                            print("👾👾👾")
+                            //print("👾👾👾")
                         }
                         
                     }
@@ -338,7 +340,14 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     @IBAction func myCatalogueViewAction(_ sender: Any) {
         
-        navigationController?.pushViewController(AllCataloguesViewController(), animated: true)
+        var allCatalogueViewController = AllCataloguesViewController()
+        
+//        if let catalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+//            print("Catalogue ID: \(catalogueId)")
+//            allCatalogueViewController.receivedCatalogueCode = catalogueId
+            navigationController?.pushViewController(allCatalogueViewController, animated: true)
+     //   }
+
         
         print("Moving to Next View Controller")
     }

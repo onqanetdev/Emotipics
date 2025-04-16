@@ -205,12 +205,25 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     var tempMemory:[DataM] = []
     
     
+    
+    var userName = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         // Setting Ups The font
+        
+        
+        if let savedName = UserDefaults.standard.string(forKey: "userName") {
+           // print("Welcome, \(savedName)")
+            userName = savedName
+        }
+
+        
+        welcomeBackLbl.text = "Welcome Back, " + userName
         
         userExists()
         
