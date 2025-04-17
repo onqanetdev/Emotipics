@@ -26,8 +26,8 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
         
         
         cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
-        cell.noOfFiles.text = tempMemory[indexPath.row].total_files
-        cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
+        cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
+        cell.fiveGbLbl.text = tempMemory[indexPath.row].catalogimagesize
         
         cell.moreFeaturesBtn.tag = indexPath.row
         cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)

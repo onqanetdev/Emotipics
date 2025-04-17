@@ -237,7 +237,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 switch result {
                 case .goAhead:
                 
-                    print("Image Catalogue Listing from all catalogue View model")
+//                    print("Image Catalogue Listing from all catalogue View model")
                     
                     
                     DispatchQueue.main.async { [self] in
@@ -634,8 +634,8 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             
             
             cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
-            cell.noOfFiles.text = tempMemory[indexPath.row].total_files
-            cell.fiveGbLbl.text = tempMemory[indexPath.row].file_storage
+            cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
+            cell.fiveGbLbl.text = tempMemory[indexPath.row].catalogimagesize
             
             cell.moreFeaturesBtn.tag = indexPath.row
             cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)

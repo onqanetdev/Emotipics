@@ -52,6 +52,10 @@ struct DataM: Codable {
     let modify : String?
     let datetime : String?
     let members : Int?
+    //
+    let catalogimagesize : String?
+    let totalcatalogfile : Int?
+    
     let owner_detials : Owner_detials?
     let sharedcatalog : [Sharedcatalog]?
 
@@ -67,6 +71,9 @@ struct DataM: Codable {
         case modify = "modify"
         case datetime = "datetime"
         case members = "members"
+        //
+        case catalogimagesize = "catalogimagesize"
+        case totalcatalogfile = "totalcatalogfile"
         case owner_detials = "owner_detials"
         case sharedcatalog = "sharedcatalog"
     }
@@ -83,6 +90,10 @@ struct DataM: Codable {
         modify = try values.decodeIfPresent(String.self, forKey: .modify)
         datetime = try values.decodeIfPresent(String.self, forKey: .datetime)
         members = try values.decodeIfPresent(Int.self, forKey: .members)
+        //
+        catalogimagesize = try values.decodeIfPresent(String.self, forKey: .catalogimagesize)
+        totalcatalogfile = try values.decodeIfPresent(Int.self, forKey: .totalcatalogfile)
+        
         owner_detials = try values.decodeIfPresent(Owner_detials.self, forKey: .owner_detials)
         sharedcatalog = try values.decodeIfPresent([Sharedcatalog].self, forKey: .sharedcatalog)
     }
