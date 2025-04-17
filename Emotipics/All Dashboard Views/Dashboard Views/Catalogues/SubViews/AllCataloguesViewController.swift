@@ -82,6 +82,11 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     var imageCount:[ImageData] = []
     
     var imagePathName = ""
+    
+    
+    var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
+    var imageCode = 0
+    var imageIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -170,7 +175,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                         
                         self.tempMemory = value
                         catalogueCollView.reloadData()
-                        if tempMemory.isEmpty {
+                        if tempMemory.isEmpty || tempMemory.count == 0{
                             emptyViewForContacts.isHidden = false
                         } else {
                             emptyViewForContacts.isHidden = true
@@ -180,6 +185,8 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                         
                     }
                     
+                    
+                    //Calculating the height of catalogue cell
                     let sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
                     
                     
@@ -199,7 +206,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                     } else {
                         
                     }
-                    
+                    //Ending of the calculation of the cell
                     
                     
                 case .heyStop:
@@ -218,7 +225,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     func imagelistViewModel(catalogueCode: String){
         
         catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
-        catalogueImageListViewModel.requestModel.limit = "10"
+        catalogueImageListViewModel.requestModel.limit = "50"
         catalogueImageListViewModel.requestModel.offset = "1"
         
         activityIndicator.startAnimating()
@@ -231,19 +238,31 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 case .goAhead:
                 
                     print("Image Catalogue Listing from all catalogue View model")
-                    //table View Reload Data
-                    self.catalogueCollView.reloadData()
+                    
                     
                     DispatchQueue.main.async { [self] in
                         guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                            
+                            emptyViewForContacts.isHidden = false
+                            emptyViewForContacts.addBtn.isHidden = true
+                            emptyViewForContacts.addSomeCat.text = "Add Some Images"
+                            emptyViewForContacts.noCatLbl.text = "No Image to Show"
+                            catalogueCollView.isHidden = true
                             return
                         }
-                        
+                       
                         self.imageCount = value
-                        catalogueCollView.reloadData()
+                        //catalogueCollView.reloadData()
                         if imageCount.isEmpty || imageCount.count == 0{
+                            print("my image count is 0 💀 💀 💀 💀")
                             emptyViewForContacts.isHidden = false
+                            emptyViewForContacts.addBtn.isHidden = true
                             catalogueCollView.isHidden = true
+                            
+                        } else {
+                            print("Image count is there", imageCount.count)
+                            emptyViewForContacts.isHidden = true
+                            catalogueCollView.isHidden = false
                             
                             //calculation of cell size
                             
@@ -252,11 +271,11 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                                 
                                 if countData % 2 == 0{
                                     let height:CGFloat = CGFloat(sumHeight)
-                                    self.collectionViewHeight.constant = height
+                                    self.collectionViewHeight.constant = height + 100
                                     scrollViewHeight.constant = collectionViewHeight.constant + 370
                                 } else {
                                     let height:CGFloat = CGFloat(sumHeight)
-                                    self.collectionViewHeight.constant = height + 120
+                                    self.collectionViewHeight.constant = height + 120 + 70
                                     scrollViewHeight.constant = collectionViewHeight.constant + 370
                                 }
                                 
@@ -264,14 +283,10 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                             } else {
                                 
                             }
-                            
-                            //Ending of calculation of Cell Size
-                        } else {
-                            emptyViewForContacts.isHidden = true
-                            catalogueCollView.isHidden = false
+                            //Ending Of calculation of cell
                         }
                         
-                        
+                        self.catalogueCollView.reloadData()
                         
                     }
                     
@@ -388,6 +403,31 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                     } else {
                         self.emptyViewForContacts.isHidden = true
                         self.catalogueCollView.isHidden = false
+                        
+                        
+                        //Calculating the height of catalogue cell
+                        let sumHeight = (Int(self.dynamicHeight) * (self.catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                        
+                        
+                        if let countData = self.catalogueListingViewModel.responseModel?.data?.count {
+                            
+                            if countData % 2 == 0{
+                                let height:CGFloat = CGFloat(sumHeight)
+                                self.collectionViewHeight.constant = height
+                                self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
+                            } else {
+                                let height:CGFloat = CGFloat(sumHeight)
+                                self.collectionViewHeight.constant = height + 120
+                                self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
+                            }
+                        
+                            
+                        } else {
+                            
+                        }
+                        //Ending of the calculation of the cell
+                        
+                        
                     }
                 case .heyStop:
                     print("Error")
@@ -552,36 +592,8 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             
-//            if let imgPath = imageCount[indexPath.row].path , let imgName = imageCount[indexPath.row].img_name{
-//                imagePath = imgPath + imgName
-//            }
-//            
-//            //Calling Image urlsession for Showing the image
-//            print("My Image Path", imagePath)
-            
-//            guard let urlImage = URL(string: imagePath) else {
-//                return cell
-//            }
-//            
-//           // activityIndicator.startAnimating()
-//            URLSession.shared.dataTask(with: urlImage) { data, _, _ in
-//                if let newData = data {
-//                  
-//                    
-//                    DispatchQueue.main.async {
-//                        cell.imgViewColl.image = UIImage(data: newData)
-//                       // self.activityIndicator.stopAnimating()
-//                    }
-//                    
-//                } else {
-//                    DispatchQueue.main.async {
-//                        cell.imgViewColl.image = UIImage(systemName: "person")
-//                       // self.activityIndicator.stopAnimating()
-//                    }
-//                }
-//            }.resume()
-            
-            
+            cell.imageBtnDelete.tag = indexPath.row
+            cell.imageBtnDelete.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
             
             if let imgPath = imageCount[indexPath.row].path,
                let imgName = imageCount[indexPath.row].img_name {
@@ -683,6 +695,27 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             }
         } else {
             print("Selected entry cell at index: \(indexPath.row)")
+            
+            let imageViewController = AllCataloguesViewController()
+            imageViewController.isImageCell = true
+        
+            
+            let catalogueId = tempMemory[indexPath.row].catalog_code
+            let userCode = tempMemory[indexPath.row].owner_detials?.code
+            //Temp catalogue
+            let tappedCatalogueName = tempMemory[indexPath.row].catalog_name
+            
+            
+            if let catalogueId = catalogueId {
+                UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
+            }
+
+            if let userCode = userCode {
+                UserDefaults.standard.set(userCode, forKey: "userCode")
+            }
+            
+            
+            navigationController?.pushViewController(imageViewController, animated: true)
         }
     }
 }

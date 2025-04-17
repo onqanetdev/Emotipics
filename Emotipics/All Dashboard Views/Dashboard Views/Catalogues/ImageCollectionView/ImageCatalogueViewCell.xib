@@ -90,6 +90,7 @@
             </constraints>
             <size key="customSize" width="282" height="208"/>
             <connections>
+                <outlet property="imageBtnDelete" destination="Zar-ZF-FiC" id="Rn9-3L-qgE"/>
                 <outlet property="imageTitle" destination="gOz-B8-4wa" id="EC0-wG-yjY"/>
                 <outlet property="imgViewColl" destination="ct3-CK-H6J" id="HBp-gT-gLW"/>
             </connections>

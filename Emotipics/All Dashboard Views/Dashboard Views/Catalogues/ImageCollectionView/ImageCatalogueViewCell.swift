@@ -25,6 +25,9 @@ class ImageCatalogueViewCell: UICollectionViewCell {
     }
     
     
+    @IBOutlet weak var imageBtnDelete: UIButton!
+    
+    
     
     var activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .large)

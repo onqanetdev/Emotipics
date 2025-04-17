@@ -63,6 +63,14 @@
 		8A3ED25D2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED25C2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift */; };
 		8A3ED25F2DAF663F002C3129 /* CatalogueImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED25E2DAF663F002C3129 /* CatalogueImageListViewModel.swift */; };
 		8A3ED2612DAF6695002C3129 /* CatalogueImageListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2602DAF6695002C3129 /* CatalogueImageListReqModel.swift */; };
+		8A3ED2642DAFADF3002C3129 /* DeleteImageReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2632DAFADF3002C3129 /* DeleteImageReqModel.swift */; };
+		8A3ED2662DAFAE11002C3129 /* DeleteImageResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2652DAFAE11002C3129 /* DeleteImageResModel.swift */; };
+		8A3ED2682DAFB059002C3129 /* DeleteImageApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2672DAFB059002C3129 /* DeleteImageApiCaller.swift */; };
+		8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2692DAFB295002C3129 /* DeleteImageViewModel.swift */; };
+		8A3ED26C2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED26B2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift */; };
+		8A3ED2702DAFBD61002C3129 /* ImageDeletePopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3ED26F2DAFBD61002C3129 /* ImageDeletePopUpVC.xib */; };
+		8A3ED2712DAFBD61002C3129 /* ImageDeletePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED26E2DAFBD61002C3129 /* ImageDeletePopUpVC.swift */; };
+		8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3ED2722DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift */; };
 		8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538B2D75760600ABB7A0 /* AppDelegate.swift */; };
 		8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */; };
 		8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A43538F2D75760600ABB7A0 /* ViewController.swift */; };
@@ -218,6 +226,14 @@
 		8A3ED25C2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueImageListApiCaller.swift; sourceTree = "<group>"; };
 		8A3ED25E2DAF663F002C3129 /* CatalogueImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueImageListViewModel.swift; sourceTree = "<group>"; };
 		8A3ED2602DAF6695002C3129 /* CatalogueImageListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueImageListReqModel.swift; sourceTree = "<group>"; };
+		8A3ED2632DAFADF3002C3129 /* DeleteImageReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImageReqModel.swift; sourceTree = "<group>"; };
+		8A3ED2652DAFAE11002C3129 /* DeleteImageResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImageResModel.swift; sourceTree = "<group>"; };
+		8A3ED2672DAFB059002C3129 /* DeleteImageApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImageApiCaller.swift; sourceTree = "<group>"; };
+		8A3ED2692DAFB295002C3129 /* DeleteImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImageViewModel.swift; sourceTree = "<group>"; };
+		8A3ED26B2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AllCataloguesViewController+ExtraFunctions.swift"; sourceTree = "<group>"; };
+		8A3ED26E2DAFBD61002C3129 /* ImageDeletePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDeletePopUpVC.swift; sourceTree = "<group>"; };
+		8A3ED26F2DAFBD61002C3129 /* ImageDeletePopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDeletePopUpVC.xib; sourceTree = "<group>"; };
+		8A3ED2722DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteImagePopUpDelegate.swift; sourceTree = "<group>"; };
 		8A4353882D75760600ABB7A0 /* Emotipics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Emotipics.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A43538B2D75760600ABB7A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A43538D2D75760600ABB7A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -487,6 +503,7 @@
 				8A7F319A2D9E64C500288E29 /* MoveToNextView.swift */,
 				8A9E7D612DA3CA87007CE28A /* UpdateUI.swift */,
 				8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */,
+				8A3ED2722DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -601,6 +618,7 @@
 				8A97F78E2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift */,
 				8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */,
 				8A3ED25C2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift */,
+				8A3ED2672DAFB059002C3129 /* DeleteImageApiCaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -608,6 +626,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A3ED2622DAFAD91002C3129 /* DeleteImageModel */,
 				8A3ED2592DAF60D0002C3129 /* ImageListingCalling */,
 				8A0496402DAD05DD00ECF441 /* Catalogue-User-Add */,
 				8A97F7902DA79C8F00D53C9C /* DeleteCatalogMoel */,
@@ -646,6 +665,7 @@
 				8A97F7992DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift */,
 				8A0496472DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift */,
 				8A3ED25E2DAF663F002C3129 /* CatalogueImageListViewModel.swift */,
+				8A3ED2692DAFB295002C3129 /* DeleteImageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -657,6 +677,24 @@
 				8A3ED2602DAF6695002C3129 /* CatalogueImageListReqModel.swift */,
 			);
 			path = ImageListingCalling;
+			sourceTree = "<group>";
+		};
+		8A3ED2622DAFAD91002C3129 /* DeleteImageModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A3ED2632DAFADF3002C3129 /* DeleteImageReqModel.swift */,
+				8A3ED2652DAFAE11002C3129 /* DeleteImageResModel.swift */,
+			);
+			path = DeleteImageModel;
+			sourceTree = "<group>";
+		};
+		8A3ED26D2DAFBD11002C3129 /* ImageDeletePopUp */ = {
+			isa = PBXGroup;
+			children = (
+				8A3ED26E2DAFBD61002C3129 /* ImageDeletePopUpVC.swift */,
+				8A3ED26F2DAFBD61002C3129 /* ImageDeletePopUpVC.xib */,
+			);
+			path = ImageDeletePopUp;
 			sourceTree = "<group>";
 		};
 		8A43537F2D75760600ABB7A0 = {
@@ -678,6 +716,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A3ED26D2DAFBD11002C3129 /* ImageDeletePopUp */,
 				8A9611FB2DA939030026A1FC /* Sharing List Contacts */,
 				8A4616412DA91CC400661A9C /* Shared Catalog */,
 				8AFDE6422DA532FF005AA235 /* AdditionalViews */,
@@ -913,6 +952,7 @@
 			children = (
 				8AA459312D8191D60004938B /* AllCataloguesViewController.swift */,
 				8AA459322D8191D60004938B /* AllCataloguesViewController.xib */,
+				8A3ED26B2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -1089,6 +1129,7 @@
 				8A9611FF2DA939E70026A1FC /* SharingContactListVC.xib in Resources */,
 				8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */,
 				8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */,
+				8A3ED2702DAFBD61002C3129 /* ImageDeletePopUpVC.xib in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
 				8ABB96942D8D3B660032E6DA /* SideMenuCell.xib in Resources */,
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
@@ -1158,12 +1199,14 @@
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
+				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
 				8A9E7D5C2DA3A4B9007CE28A /* DeleteContactModel.swift in Sources */,
+				8A3ED2682DAFB059002C3129 /* DeleteImageApiCaller.swift in Sources */,
 				8A9E7D692DA3E6B2007CE28A /* CatalogueListingApiCaller.swift in Sources */,
 				8AFDE6462DA5336A005AA235 /* EmptyCollView.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
@@ -1201,6 +1244,7 @@
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
+				8A3ED2712DAFBD61002C3129 /* ImageDeletePopUpVC.swift in Sources */,
 				8A97F78F2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift in Sources */,
 				8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */,
 				8A3ED2612DAF6695002C3129 /* CatalogueImageListReqModel.swift in Sources */,
@@ -1208,6 +1252,7 @@
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
+				8A3ED26C2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift in Sources */,
 				8A3ED25D2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
@@ -1219,6 +1264,7 @@
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
 				8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */,
+				8A3ED2662DAFAE11002C3129 /* DeleteImageResModel.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
@@ -1227,6 +1273,7 @@
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */,
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
 				8A9612032DA93F9C0026A1FC /* SharingContactListTVC.swift in Sources */,
@@ -1235,6 +1282,7 @@
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A97F7922DA79D3300D53C9C /* DeleteCatalogResponseModel.swift in Sources */,
 				8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */,
+				8A3ED2642DAFADF3002C3129 /* DeleteImageReqModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,

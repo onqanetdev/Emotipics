@@ -46,8 +46,6 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
         let imageViewController = AllCataloguesViewController()
         imageViewController.isImageCell = true
     
-//        let catalogueId = catalogueListingViewModel.responseModel?.data?[indexPath.row].catalog_code
-//            let userCode = catalogueListingViewModel.responseModel?.data?[indexPath.row].owner_detials?.code
         
         let catalogueId = tempMemory[indexPath.row].catalog_code
         let userCode = tempMemory[indexPath.row].owner_detials?.code

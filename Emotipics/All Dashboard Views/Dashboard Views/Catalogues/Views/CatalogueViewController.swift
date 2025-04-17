@@ -580,7 +580,7 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
         if collectionView == catalougeCollView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             
-            
+            cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
             
             
@@ -665,5 +665,27 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
         return 10 // Adjust this value to decrease or increase spacing
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let imageViewController = AllCataloguesViewController()
+        imageViewController.isImageCell = true
     
+        
+        let catalogueId = tempMemory[indexPath.row].catalog_code
+        let userCode = tempMemory[indexPath.row].owner_detials?.code
+        //Temp catalogue
+        let tappedCatalogueName = tempMemory[indexPath.row].catalog_name
+        
+        print("RequireMents from CatalogueViewController \(catalogueId ?? "No String") Catalogue Name \(tappedCatalogueName)")
+        
+        if let catalogueId = catalogueId {
+            UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
+        }
+
+        if let userCode = userCode {
+            UserDefaults.standard.set(userCode, forKey: "userCode")
+        }
+        
+        
+        navigationController?.pushViewController(imageViewController, animated: true)
+    }
 }
