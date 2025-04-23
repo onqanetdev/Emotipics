@@ -25,6 +25,7 @@ enum APIEndpoint: String {
     case catalogImageList = "catalog-images"
     case catalogueImageDelete = "image-delete"
     case imageCopyOrMove = "catalogaction"
+    case imageShareWithUser = "share-image"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }

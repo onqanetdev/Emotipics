@@ -75,6 +75,20 @@ extension AllCataloguesViewController: DeleteImagePopUpDelegate {
             self?.navigationController?.pushViewController(copyVC, animated: true)
         }
         
+        
+        
+        errorPopup.onShareConfirmed = { [weak self] in
+            guard let self = self else { return }
+            let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+            vc.modalPresentationStyle = .fullScreen
+            vc.catalogueName = "Demo"
+            vc.shareImage = true
+            vc.imgId = errorPopup.imageId
+//            vc.userCode =
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
         self.present(errorPopup, animated: true)
     }
     

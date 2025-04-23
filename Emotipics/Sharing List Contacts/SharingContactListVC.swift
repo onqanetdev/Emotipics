@@ -29,7 +29,11 @@ class SharingContactListVC: UIViewController {
     
     
     
-    @IBOutlet weak var catalogueNameLbl: UILabel!
+    @IBOutlet weak var catalogueNameLbl: UILabel!{
+        didSet{
+            catalogueNameLbl.isHidden = true
+        }
+    }
     
     
     
@@ -45,18 +49,27 @@ class SharingContactListVC: UIViewController {
     var shareIndex = 0
     var selectedContacts:[String] = []
     
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemOrange
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
+
+    
+    var  selectedContactsForShare:[String] = []
     
     
     var catalogueUserAddViewModel:CatalogueUserAddViewModel = CatalogueUserAddViewModel()
     
     
     private var loaderView: ImageLoaderView?
+    
+    var shareImgViewModel: ImageShareViewModel = ImageShareViewModel()
+    
+    var catalogueName = ""
+    
+    var shareImage:Bool = false
+    
+    var imageShareViewModel: ImageShareViewModel = ImageShareViewModel()
+    
+    
+    var imgId: Int = 0
+    var userCode: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,62 +80,49 @@ class SharingContactListVC: UIViewController {
 
         contactListTblView.register(UINib(nibName: "SharingContactListTVC", bundle: nil), forCellReuseIdentifier: "SharingListTVC" )
         
-        
+        catalogueNameLbl.text = catalogueName
        // setupActivityIndicator()
         loadAllContacts()
         selectedContacts = []
+        
+        
+        
 //        print("The Catalog data is ", catalogData[shareIndex].)
     }
 
     
     
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-//    
-    
-    
     @IBAction func btnAction(_ sender: Any) {
-        
-        print("Submitted List Will Be", catalogData[shareIndex].catalog_code )
-       // print("Selcted Contacts will be", selectedContacts)
-        
-        let modifiedString = selectedContacts.joined(separator: ",")
-        
-        print("Modified String: \(modifiedString)")
-        
-        
-        
-        //activityIndicator.startAnimating()
-        
-        if let catalogCode = catalogData[shareIndex].catalog_code{
+    
+        if shareImage {
+            let modifiedStringForShare = selectedContactsForShare.joined(separator: ",")
+            print("Modified String for share Image: \(modifiedStringForShare)")
             
             
-            catalogueUserAddViewModel.requestModel.catalogcode = catalogCode
-            catalogueUserAddViewModel.requestModel.contact_code = modifiedString
+            imageShareViewModel.requestModel.image_id = imgId
+            imageShareViewModel.requestModel.user_code = modifiedStringForShare
             
-            catalogueUserAddViewModel.catalogueUserAddViewModel(request:catalogueUserAddViewModel.requestModel, viewController: self ) { result in
+            imageShareViewModel.imageShareViewModel(request:imageShareViewModel.requestModel, viewController: self ) { result in
                 DispatchQueue.main.async {
                     //self.activityIndicator.stopAnimating()
                     
                     switch result {
                     case .goAhead:
                         print("Success from SharingContactListVC")
-                        //table View Reload Data
-                        DispatchQueue.main.async {
-                            //self.contactsTblView.reloadData()
-                           // self.dismiss(animated: true )
-                            //self.deleteDelegate?.updateUI()
+                        
+                        
+                        // UIWindow reset logic
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                              let window = windowScene.windows.first else {
+                            return
                         }
+
+                        let dashboardVC = DashboardViewController()
+                        let navController = UINavigationController(rootViewController: dashboardVC)
+                        window.rootViewController = navController
+                        window.makeKeyAndVisible()
+
                     case .heyStop:
                         print("Error")
                     }
@@ -131,12 +131,49 @@ class SharingContactListVC: UIViewController {
                 }
             }
             
-           
+            
         } else {
-            AlertView.showAlert("Warning!", message: "Catalog Code is not valid", okTitle: "OK")
-        }
-        
-        
+            print("Submitted List Will Be", catalogData[shareIndex].catalog_code )
+            // print("Selcted Contacts will be", selectedContacts)
+            let modifiedString = selectedContacts.joined(separator: ",")
+            print("Modified String: \(modifiedString)")
+            //activityIndicator.startAnimating()
+            if let catalogCode = catalogData[shareIndex].catalog_code{
+                
+                
+                catalogueUserAddViewModel.requestModel.catalogcode = catalogCode
+                catalogueUserAddViewModel.requestModel.contact_code = modifiedString
+                
+                catalogueUserAddViewModel.catalogueUserAddViewModel(request:catalogueUserAddViewModel.requestModel, viewController: self ) { result in
+                    DispatchQueue.main.async {
+                        //self.activityIndicator.stopAnimating()
+                        
+                        switch result {
+                        case .goAhead:
+                            print("Success from SharingContactListVC")
+                            //table View Reload Data
+                            DispatchQueue.main.async {
+                                //self.contactsTblView.reloadData()
+                                // self.dismiss(animated: true )
+                                //self.deleteDelegate?.updateUI()
+                            }
+                        case .heyStop:
+                            print("Error")
+                        }
+                        
+                        
+                    }
+                }
+                
+                
+            } else {
+                AlertView.showAlert("Warning!", message: "Catalog Code is not valid", okTitle: "OK")
+            }
+            
+            
+            
+            
+        }//Is shareImage false
         
     }
     
@@ -162,7 +199,11 @@ class SharingContactListVC: UIViewController {
                     DispatchQueue.main.async {
                         if let latestData = self.conatactViewModel.responseModel?.data {
                             self.data = latestData
-                            self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                            if self.shareImage {
+                                self.catalogueNameLbl.text = self.catalogueName
+                            } else {
+                                self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                            }
                            // print("The Catalog data is ", self.catalogData[self.shareIndex].catalog_name)
                         } else {
                             AlertView.showAlert("Alert!", message: "There is no data", okTitle: "OK")
@@ -185,24 +226,45 @@ class SharingContactListVC: UIViewController {
         if sender.currentBackgroundImage == UIImage(systemName: "square"){
             sender.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
             //selectedContacts.append(data[sender.tag].contactcode ?? "No Contacts")
-            print("The contact code is", data[sender.tag].contactcode)
-            print("The Catalog code is", catalogData[shareIndex].catalog_code)
-            print("The Catalog Name is", catalogData[shareIndex].catalog_name)
-            print("----------------------------------------------------------")
+//            print("The contact code is", data[sender.tag].contactcode)
+//            print("The Catalog code is", catalogData[shareIndex].catalog_code)
+//            print("The Catalog Name is", catalogData[shareIndex].catalog_name)
+//            print("----------------------------------------------------------")
             
-            if let contactCode = data[sender.tag].contactcode {
-                selectedContacts.append(contactCode)
-                print("✅ Added: \(contactCode)")
+            if shareImage {
+                
+                if let userCode = data[sender.tag].contactdetails?.code {
+                    selectedContactsForShare.append(userCode)
+                    print("✅✅✅✅✅✅Added: \(userCode)")
+                }
+                
+            } else {
+                if let contactCode = data[sender.tag].contactcode {
+                    selectedContacts.append(contactCode)
+                    print("✅ Added: \(contactCode)")
+                }
             }
-            
             
         } else {
             sender.setBackgroundImage(UIImage(systemName: "square"), for: .normal)
             
-            if let contactCode = data[sender.tag].contactcode,
-               let index = selectedContacts.firstIndex(of: contactCode) {
-                selectedContacts.remove(at: index)
-                print("❌ Removed: \(contactCode)")
+            if shareImage {
+                
+                if let userCode = data[sender.tag].contactdetails?.code,
+                   let index = selectedContactsForShare.firstIndex(of: userCode) {
+                    selectedContactsForShare.remove(at: index)
+                    print("❌❌❌❌❌❌Removed: \(userCode)")
+                }
+                
+                
+            } else {
+                
+                if let contactCode = data[sender.tag].contactcode,
+                   let index = selectedContacts.firstIndex(of: contactCode) {
+                    selectedContacts.remove(at: index)
+                    print("❌ Removed: \(contactCode)")
+                }
+                
             }
         }
     }
@@ -235,6 +297,9 @@ class SharingContactListVC: UIViewController {
         
         
     }
+    
+    
+    
     
     
     

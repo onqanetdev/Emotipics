@@ -31,13 +31,9 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("Current height of the view is ", heightsOfContactsiTblView.constant)
-//        let height:CGFloat = 70
-//        heightsOfContactsiTblView.constant += height
-//        contentViewHeight.constant = contentViewHeight.constant + height // this 100 is the height of the cell
-//        tableView.reloadData()
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("user code", contactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.code)
+    }
     
     
     

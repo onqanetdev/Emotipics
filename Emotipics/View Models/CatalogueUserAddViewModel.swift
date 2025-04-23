@@ -20,9 +20,7 @@ class CatalogueUserAddViewModel {
             case .success(let data):
                 self?.responseModel = data
                 completion(.goAhead)
-//                DispatchQueue.main.async {
-//                    AlertView.showAlert("Alert!", message: data.message ?? "User Added", okTitle: "OK")
-//                }
+
                 
                 
                 DispatchQueue.main.async {

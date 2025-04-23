@@ -26,7 +26,7 @@ class ImageDeletePopUpVC: UIViewController {
 
     
     var onMoveImageConfirmed: (() -> Void)?
-    
+    var onShareConfirmed: (() -> Void)?
     var delegate: DeleteImagePopUpDelegate?
     
     
@@ -107,6 +107,16 @@ class ImageDeletePopUpVC: UIViewController {
     }
     
     
+    
+    
+    @IBAction func shareImgAction(_ sender: Any) {
+        
+
+        self.dismiss(animated: true) { [weak self] in
+            self?.onShareConfirmed?()
+        }
+        
+    }
     
     
 }

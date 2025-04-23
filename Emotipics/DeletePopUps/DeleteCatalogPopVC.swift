@@ -84,9 +84,6 @@ class DeleteCatalogPopVC: UIViewController {
 
 extension DeleteCatalogPopVC: SharedInformationDelegate {
     func didTapProceed() {
-        
-        
-        
         let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
