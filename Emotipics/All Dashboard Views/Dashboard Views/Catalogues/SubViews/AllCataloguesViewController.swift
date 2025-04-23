@@ -53,13 +53,13 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     var catalogueListingViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemBlue
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
-    
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemBlue
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
+//    
     
     
     
@@ -87,6 +87,15 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
     var imageCode = 0
     var imageIndex = 0
+    
+    
+    private var loaderView: ImageLoaderView?
+    
+    
+    
+    var imageCache = [String: UIImage]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,7 +139,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
             updateScrollViewHeight()
         }
         
-        setupActivityIndicator()
+        //setupActivityIndicator()
         emptyViewForContacts.isHidden = true
         
         setupEmptyViewForContacts()
@@ -156,12 +165,13 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-        activityIndicator.startAnimating()
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
             DispatchQueue.main.async { [self] in
-                self.activityIndicator.stopAnimating()
-                
+               // self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from AllCataloguesViewController")
@@ -228,18 +238,16 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         catalogueImageListViewModel.requestModel.limit = "50"
         catalogueImageListViewModel.requestModel.offset = "1"
         
-        activityIndicator.startAnimating()
-        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
         catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { result in
             DispatchQueue.main.async { [self] in
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                 
-//                    print("Image Catalogue Listing from all catalogue View model")
-                    
-                    
+
                     DispatchQueue.main.async { [self] in
                         guard let value = self.catalogueImageListViewModel.responseModel?.data else {
                             
@@ -304,19 +312,47 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     }
     
     
-    
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
         
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
         
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
     }
     
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
+//    
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
+//    
     
     func updateScrollViewHeight() {
         // Force collectionView layout update
@@ -385,12 +421,13 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         
         
         
-        self.activityIndicator.startAnimating()
+       // self.activityIndicator.startAnimating()
+        startCustomLoader()
         deleteCatalogueViewModel.requestModel.UUID = item
         deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from Catalogue View Controller")
@@ -602,31 +639,52 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
 
                 //imagePathName = imagePath
                 
-                guard let urlImage = URL(string: imagePath) else { return cell }
-
-                
-                cell.activityIndicator.startAnimating()
-                
-                
-                URLSession.shared.dataTask(with: urlImage) { data, _, _ in
-                    guard let data = data, let image = UIImage(data: data) else { return }
-
-                    DispatchQueue.main.async {
-                        // Check if the cell is still displaying the correct indexPath
-                        cell.activityIndicator.stopAnimating()
-                        
-                        if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
-                            currentCell.imgViewColl.image = image
-                        }
+//                guard let urlImage = URL(string: imagePath) else { return cell }
+//
+//                
+//               // cell.activityIndicator.startAnimating()
+//                cell.startCustomLoader()
+//                
+//                URLSession.shared.dataTask(with: urlImage) { data, _, _ in
+//                    guard let data = data, let image = UIImage(data: data) else { return }
+//
+//                    DispatchQueue.main.async {
+//                        // Check if the cell is still displaying the correct indexPath
+//                        //cell.activityIndicator.stopAnimating()
+//                        cell.stopCustomLoader()
+//                        if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
+//                            currentCell.imgViewColl.image = image
+//                        }
+//                    }
+//                }.resume()
+//                
+                if let cachedImage = imageCache[imagePath] {
+                        cell.imgViewColl.image = cachedImage
+                        cell.stopCustomLoader()
+                } else {
+                    cell.imgViewColl.image = nil // Optional: clear image to avoid showing old image in reused cell
+                    cell.startCustomLoader()
+                    
+                    if let urlImage = URL(string: imagePath) {
+                        URLSession.shared.dataTask(with: urlImage) { data, _, _ in
+                            guard let data = data, let image = UIImage(data: data) else { return }
+                            
+                            DispatchQueue.main.async {
+                                self.imageCache[imagePath] = image // Cache the image
+                                if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
+                                    currentCell.imgViewColl.image = image
+                                    currentCell.stopCustomLoader()
+                                }
+                            }
+                        }.resume()
                     }
-                }.resume()
+                }
+                
             }
-            
-            
-            
-            
-            
+
             return cell
+            
+        
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             cell.layer.cornerRadius = 15

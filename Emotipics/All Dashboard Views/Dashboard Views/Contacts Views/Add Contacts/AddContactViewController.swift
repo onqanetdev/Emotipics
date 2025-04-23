@@ -31,12 +31,12 @@ class AddContactViewController: UIViewController {
     
     var addCatalogueViewModel: AddCatalogueViewModel = AddCatalogueViewModel()
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
     
     
     
@@ -67,11 +67,15 @@ class AddContactViewController: UIViewController {
     
     var isCatalogueView:Bool = false
     
+    
+    
+    private var loaderView: ImageLoaderView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupActivityIndicator()
+       // setupActivityIndicator()
         if isCatalogueView {
             addCatLbl.text = addCataText
             createCataLbl.text = createCataTxt
@@ -82,17 +86,17 @@ class AddContactViewController: UIViewController {
     }
 
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     
@@ -121,12 +125,14 @@ class AddContactViewController: UIViewController {
         } else {
             
             if let emailText = emailTxtFld.text , !emailText.isEmpty {
-                activityIndicator.startAnimating()
+                //activityIndicator.startAnimating()
+                startCustomLoader()
                 addConatctViewModel.requestModel.email = emailText
                 addConatctViewModel.addContactViewModelfunc(request: addConatctViewModel.requestModel) { result in
                     
                     DispatchQueue.main.async{
-                        self.activityIndicator.stopAnimating()
+                        //self.activityIndicator.stopAnimating()
+                        self.stopCustomLoader()
                         switch result {
                         case .goAhead:
                             
@@ -156,8 +162,8 @@ class AddContactViewController: UIViewController {
             addCatalogueViewModel.requestModel.folder_name = emailText
             addCatalogueViewModel.addCatalogueVM(request: addCatalogueViewModel.requestModel) { result in
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    
+                   // self.activityIndicator.stopAnimating()
+                    self.stopCustomLoader()
                     switch result {
                     case .goAhead:
                         print("Success Folder Creation")
@@ -179,5 +185,31 @@ class AddContactViewController: UIViewController {
         }
     }
     
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
     
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
 }

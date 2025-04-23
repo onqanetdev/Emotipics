@@ -22,34 +22,38 @@ class DeletePopUpVC: UIViewController {
     var deleteContactViewModel: DeleteContactViewModel = DeleteContactViewModel()
     
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
     
     
     weak var deleteDelegate: UpdateUI?
+    
+    
+    private var loaderView: ImageLoaderView?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setupActivityIndicator()
+       // setupActivityIndicator()
     }
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     
@@ -57,12 +61,16 @@ class DeletePopUpVC: UIViewController {
         print("Here the desired Contact contact code", indexOk)
         
         //DeleteContactApiCaller.deleteContactApiCaller(contactCode: indexOk)
-        activityIndicator.startAnimating()
+       // activityIndicator.startAnimating()
+        
+        startCustomLoader()
+        
+        
         deleteContactViewModel.requestModel.contactCode = indexOk
         deleteContactViewModel.deleteContact(request: deleteContactViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+              //  self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Success 👍🏽")
@@ -87,6 +95,35 @@ class DeletePopUpVC: UIViewController {
     @IBAction func exitDeleteView(_ sender: Any) {
        // print("exits")
         self.dismiss(animated: true)
+    }
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
     }
     
 }

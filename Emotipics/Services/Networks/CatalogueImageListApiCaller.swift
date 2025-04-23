@@ -50,7 +50,7 @@ class CatalogueImageListApiCaller {
             if error == nil ,
                let data = dataResponse,
                let jsonResponse = try? JSONDecoder().decode(CatalogueImageListResModel.self, from: data) {
-                print("My JSON Response from Catalogue ViewController", jsonResponse)
+                print("My JSON Response from Catalogue Image Listing ", jsonResponse)
                 
                 
                 if jsonResponse.success == false {

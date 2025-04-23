@@ -96,6 +96,12 @@
 		8A4353C62D75AA1200ABB7A0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4353C42D75AA1200ABB7A0 /* RegisterViewController.xib */; };
 		8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */; };
 		8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */; };
+		8A44CD6E2DB626DD0044E904 /* CopyOrMoveImgResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44CD6D2DB626DD0044E904 /* CopyOrMoveImgResModel.swift */; };
+		8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44CD6F2DB62B720044E904 /* CopyOrMoveReqModel.swift */; };
+		8A44CD722DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44CD712DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift */; };
+		8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44CD732DB63D080044E904 /* ImageCopyOrMoveViewModel.swift */; };
+		8A44CD782DB64C500044E904 /* CopyMoveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A44CD762DB64C500044E904 /* CopyMoveViewController.swift */; };
+		8A44CD792DB64C500044E904 /* CopyMoveViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A44CD772DB64C500044E904 /* CopyMoveViewController.xib */; };
 		8A4616442DA91DCF00661A9C /* SharedInformationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */; };
 		8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */; };
 		8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */; };
@@ -160,6 +166,7 @@
 		8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */; };
 		8AEADB5B2DA6537A00BF187E /* AddCatalogueApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB5A2DA6537A00BF187E /* AddCatalogueApiCaller.swift */; };
 		8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB5C2DA66C6500BF187E /* AddCatalogueViewModel.swift */; };
+		8AED694B2DB10431006F7289 /* ImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED694A2DB10431006F7289 /* ImageLoaderView.swift */; };
 		8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */; };
 		8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */; };
 		8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */; };
@@ -261,6 +268,12 @@
 		8A4353C42D75AA1200ABB7A0 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		8A4353C82D75BEBC00ABB7A0 /* TestScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestScrollViewController.swift; sourceTree = "<group>"; };
 		8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestScrollViewController.xib; sourceTree = "<group>"; };
+		8A44CD6D2DB626DD0044E904 /* CopyOrMoveImgResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyOrMoveImgResModel.swift; sourceTree = "<group>"; };
+		8A44CD6F2DB62B720044E904 /* CopyOrMoveReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyOrMoveReqModel.swift; sourceTree = "<group>"; };
+		8A44CD712DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCopyOrMoveApiCaller.swift; sourceTree = "<group>"; };
+		8A44CD732DB63D080044E904 /* ImageCopyOrMoveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCopyOrMoveViewModel.swift; sourceTree = "<group>"; };
+		8A44CD762DB64C500044E904 /* CopyMoveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyMoveViewController.swift; sourceTree = "<group>"; };
+		8A44CD772DB64C500044E904 /* CopyMoveViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyMoveViewController.xib; sourceTree = "<group>"; };
 		8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationVC.swift; sourceTree = "<group>"; };
 		8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationVC.xib; sourceTree = "<group>"; };
 		8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardView+extension.swift"; sourceTree = "<group>"; };
@@ -324,6 +337,7 @@
 		8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueRqModel.swift; sourceTree = "<group>"; };
 		8AEADB5A2DA6537A00BF187E /* AddCatalogueApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueApiCaller.swift; sourceTree = "<group>"; };
 		8AEADB5C2DA66C6500BF187E /* AddCatalogueViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueViewModel.swift; sourceTree = "<group>"; };
+		8AED694A2DB10431006F7289 /* ImageLoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderView.swift; sourceTree = "<group>"; };
 		8AF7923E2D9BA36E00085FEC /* GlobalPopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPopUpVC.swift; sourceTree = "<group>"; };
 		8AF7923F2D9BA36E00085FEC /* GlobalPopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPopUpVC.xib; sourceTree = "<group>"; };
 		8AF792432D9BDF0B00085FEC /* RegisterAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAPICaller.swift; sourceTree = "<group>"; };
@@ -619,6 +633,7 @@
 				8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */,
 				8A3ED25C2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift */,
 				8A3ED2672DAFB059002C3129 /* DeleteImageApiCaller.swift */,
+				8A44CD712DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -626,6 +641,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A44CD6C2DB626610044E904 /* MoveOrCopy Image Model */,
 				8A3ED2622DAFAD91002C3129 /* DeleteImageModel */,
 				8A3ED2592DAF60D0002C3129 /* ImageListingCalling */,
 				8A0496402DAD05DD00ECF441 /* Catalogue-User-Add */,
@@ -666,6 +682,7 @@
 				8A0496472DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift */,
 				8A3ED25E2DAF663F002C3129 /* CatalogueImageListViewModel.swift */,
 				8A3ED2692DAFB295002C3129 /* DeleteImageViewModel.swift */,
+				8A44CD732DB63D080044E904 /* ImageCopyOrMoveViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -716,6 +733,8 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A44CD752DB64BE80044E904 /* CopyMoveCatalogueListing */,
+				8AED69492DB103F4006F7289 /* LoaderView */,
 				8A3ED26D2DAFBD11002C3129 /* ImageDeletePopUp */,
 				8A9611FB2DA939030026A1FC /* Sharing List Contacts */,
 				8A4616412DA91CC400661A9C /* Shared Catalog */,
@@ -789,6 +808,24 @@
 				8A4353C92D75BEBC00ABB7A0 /* TestScrollViewController.xib */,
 			);
 			path = SampleScrollView;
+			sourceTree = "<group>";
+		};
+		8A44CD6C2DB626610044E904 /* MoveOrCopy Image Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A44CD6D2DB626DD0044E904 /* CopyOrMoveImgResModel.swift */,
+				8A44CD6F2DB62B720044E904 /* CopyOrMoveReqModel.swift */,
+			);
+			path = "MoveOrCopy Image Model";
+			sourceTree = "<group>";
+		};
+		8A44CD752DB64BE80044E904 /* CopyMoveCatalogueListing */ = {
+			isa = PBXGroup;
+			children = (
+				8A44CD762DB64C500044E904 /* CopyMoveViewController.swift */,
+				8A44CD772DB64C500044E904 /* CopyMoveViewController.xib */,
+			);
+			path = CopyMoveCatalogueListing;
 			sourceTree = "<group>";
 		};
 		8A4616412DA91CC400661A9C /* Shared Catalog */ = {
@@ -1026,6 +1063,14 @@
 			path = "Add Catalogue Model";
 			sourceTree = "<group>";
 		};
+		8AED69492DB103F4006F7289 /* LoaderView */ = {
+			isa = PBXGroup;
+			children = (
+				8AED694A2DB10431006F7289 /* ImageLoaderView.swift */,
+			);
+			path = LoaderView;
+			sourceTree = "<group>";
+		};
 		8AF7923D2D9BA32E00085FEC /* GlobalPopUpVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -1120,6 +1165,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A44CD792DB64C500044E904 /* CopyMoveViewController.xib in Resources */,
 				8ABA8AC02D771B69003D4727 /* DashboardViewController.xib in Resources */,
 				8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */,
 				8A0521652D7958F800AE5FC4 /* EntryViewController.xib in Resources */,
@@ -1198,8 +1244,10 @@
 				8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
+				8A44CD6E2DB626DD0044E904 /* CopyOrMoveImgResModel.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
 				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
+				8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
@@ -1241,6 +1289,7 @@
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8A0496422DAD064700ECF441 /* CatalogueUserAddResModel.swift in Sources */,
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
+				8AED694B2DB10431006F7289 /* ImageLoaderView.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
@@ -1270,6 +1319,7 @@
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
 				8A2E51802D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift in Sources */,
 				8A3C02782D9554F200DE941A /* APICaller.swift in Sources */,
+				8A44CD722DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift in Sources */,
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
@@ -1277,6 +1327,7 @@
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
 				8A9612032DA93F9C0026A1FC /* SharingContactListTVC.swift in Sources */,
+				8A44CD782DB64C500044E904 /* CopyMoveViewController.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
@@ -1285,6 +1336,7 @@
 				8A3ED2642DAFADF3002C3129 /* DeleteImageReqModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
+				8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
 				8A97F7972DA7A06400D53C9C /* DeleteCatalogPopVC.swift in Sources */,
 				8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */,

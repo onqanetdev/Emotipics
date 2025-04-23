@@ -46,9 +46,9 @@ struct CatalogueImageListResModel: Codable {
 struct ImageData: Codable {
     let id : Int?
     let img_type : String?
-    let group_code : Int?
-    let catalog_code : Int?
-    let user_code : Int?
+    let group_code : String?
+    let catalog_code : String?
+    let user_code : String?
     let img_name : String?
     let img_size : String?
     let status : String?
@@ -85,9 +85,9 @@ struct ImageData: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         img_type = try values.decodeIfPresent(String.self, forKey: .img_type)
-        group_code = try values.decodeIfPresent(Int.self, forKey: .group_code)
-        catalog_code = try values.decodeIfPresent(Int.self, forKey: .catalog_code)
-        user_code = try values.decodeIfPresent(Int.self, forKey: .user_code)
+        group_code = try values.decodeIfPresent(String.self, forKey: .group_code)
+        catalog_code = try values.decodeIfPresent(String.self, forKey: .catalog_code)
+        user_code = try values.decodeIfPresent(String.self, forKey: .user_code)
         img_name = try values.decodeIfPresent(String.self, forKey: .img_name)
         img_size = try values.decodeIfPresent(String.self, forKey: .img_size)
         status = try values.decodeIfPresent(String.self, forKey: .status)

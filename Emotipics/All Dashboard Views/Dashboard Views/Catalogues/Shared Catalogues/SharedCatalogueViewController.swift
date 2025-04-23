@@ -59,12 +59,15 @@ class SharedCatalogueViewController: UIViewController {
     //var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
+    
+    
+    private var loaderView: ImageLoaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +83,7 @@ class SharedCatalogueViewController: UIViewController {
         addPlusIcon()
         
         
-        setupActivityIndicator()
+       // setupActivityIndicator()
         sharedCatalogueList()
         
     }
@@ -88,17 +91,17 @@ class SharedCatalogueViewController: UIViewController {
     
     
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     
@@ -159,12 +162,14 @@ class SharedCatalogueViewController: UIViewController {
         sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
         sharedCatalogueViewModel.requestModel.type_of_list = "share_all_catalog"
         
-        activityIndicator.startAnimating()
+      //  activityIndicator.startAnimating()
+        
+        startCustomLoader()
         
         sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
@@ -271,12 +276,12 @@ class SharedCatalogueViewController: UIViewController {
         sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
         sharedCatalogueViewModel.requestModel.type_of_list = "catalog_share_byme"
         
-        activityIndicator.startAnimating()
-        
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         sharedCatalogueViewModel.catalogueListing(request:  sharedCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+               // self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Segment Change share by me")
@@ -303,12 +308,13 @@ class SharedCatalogueViewController: UIViewController {
         sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
         sharedCatalogueViewModel.requestModel.type_of_list = "catalog_share_withme"
         
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
+        startCustomLoader()
         
         sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Segment changing share with me")
@@ -328,6 +334,37 @@ class SharedCatalogueViewController: UIViewController {
             
         }
     }
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
+    
 }
 
 

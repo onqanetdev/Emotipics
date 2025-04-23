@@ -179,13 +179,13 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     var catalogueListingViewModel: CatalogueListingViewModel = CatalogueListingViewModel()
     
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
-    
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
+//    
     
     let emptyView = EmptyCollView()
     let emptyViewForContacts = EmptyCollView()
@@ -208,6 +208,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     var userName = ""
     
+    private var loaderView: ImageLoaderView?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,10 +221,10 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         
         if let savedName = UserDefaults.standard.string(forKey: "userName") {
-           // print("Welcome, \(savedName)")
+            // print("Welcome, \(savedName)")
             userName = savedName
         }
-
+        
         
         welcomeBackLbl.text = "Welcome Back, " + userName
         
@@ -257,7 +260,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         setupPecentageLbl()
         
         sideMenuManager.setup(in: self)
-        setupActivityIndicator()
+       // setupActivityIndicator()
         
         allCatalogueView()
         
@@ -280,17 +283,17 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         allCatalogueView()
     }
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     //MARK: Font Family Settigs
@@ -487,7 +490,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
             return
         }
         errorPopup.catalogData = catalogDataGet
-       // errorPopup.delegate = self
+        // errorPopup.delegate = self
         errorPopup.onCompletion = { [weak self] result in
             switch result {
             case .YES:
@@ -495,7 +498,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 
                 // Wait for popup to finish dismissing before presenting the next one
                 errorPopup.dismiss(animated: true) {
-                   // self?.deleteCatalogPopUp()
+                    // self?.deleteCatalogPopUp()
                     self?.deleteCatalogGlobalPopUp()
                     print("Print Nothing")
                 }
@@ -504,13 +507,13 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 print("User canceled delete.")
                 errorPopup.dismiss(animated: true, completion: nil)
             case .SHARE:
-                  print("User tapped Share.")
-                  errorPopup.dismiss(animated: true) {
-                      self?.presentShareScreen()
-                  }
+                print("User tapped Share.")
+                errorPopup.dismiss(animated: true) {
+                    self?.presentShareScreen()
+                }
             }
         }
-    
+        
         self.present(errorPopup, animated: true)
     }
     
@@ -537,18 +540,19 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
+        startCustomLoader()
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
             DispatchQueue.main.async { [self] in
-                self.activityIndicator.stopAnimating()
-                
+                // self.activityIndicator.stopAnimating()
+                stopCustomLoader()
                 switch result {
                 case .goAhead:
-                   // print("View Controller updated index", )
+                    // print("View Controller updated index", )
                     //table View Reload Data
                     
-//                    print("Catalogue Listing View model Shared Contact data", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog?.count as Any)
+                    //                    print("Catalogue Listing View model Shared Contact data", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog?.count as Any)
                     
                     
                     
@@ -566,7 +570,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                         
                         self.tempMemory = value
                         
-
+                        
                         
                         
                         DispatchQueue.main.async { [self] in
@@ -590,12 +594,13 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     func viewModel(){
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
+        startCustomLoader()
         
         contactsViewModel.allContactList { result in
             DispatchQueue.main.async { [self] in
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("YO ✌🏽")
@@ -646,22 +651,22 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.delegate = self
-
+        
         
         self.present(errorPopup, animated: true)
         
-   
+        
     }
     
     
     @objc func deleteCatalogueBtnAction(_ sender: UIButton) {
-
+        
         indexNo = sender.tag
         
         //deleteCatalogGlobalPopUp()
         self.deleteCatalogPopUp()
         
-
+        
         print( "All Shared Information", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog)
         
         
@@ -690,15 +695,15 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     }
     
     func didTapProceed() {
-                let shareVC = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
-                shareVC.modalPresentationStyle = .fullScreen
-                guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
-                    AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
-                    return
-                }
-                shareVC.catalogData = catalogDataGet
-                shareVC.shareIndex = indexNo
-                self.present(shareVC, animated: true, completion: nil)
+        let shareVC = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        shareVC.modalPresentationStyle = .fullScreen
+        guard let catalogDataGet = catalogueListingViewModel.responseModel?.data else {
+            AlertView.showAlert("Warning!", message: "There is No data in catalogue", okTitle: "OK")
+            return
+        }
+        shareVC.catalogData = catalogDataGet
+        shareVC.shareIndex = indexNo
+        self.present(shareVC, animated: true, completion: nil)
     }
     
     
@@ -707,8 +712,38 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     @objc func addNewContact(){
-       // print("Tapped floating btn")
+        // print("Tapped floating btn")
         navigationController?.pushViewController(AddContactViewController(), animated: true)
+    }
+    
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
     }
     
     

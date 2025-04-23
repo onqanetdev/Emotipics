@@ -24,6 +24,7 @@ class AllContactsViewModel {
             case .failure(let error):
                 completion(.heyStop)
                 DispatchQueue.main.async {
+                    print("🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️")
                     AlertView.showAlert("Alert!", message: "Something Went Wrong", okTitle: "OK")
                 }
             }

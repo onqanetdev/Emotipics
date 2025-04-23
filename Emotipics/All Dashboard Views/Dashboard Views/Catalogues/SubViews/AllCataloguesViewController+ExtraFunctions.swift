@@ -18,6 +18,9 @@ extension AllCataloguesViewController: DeleteImagePopUpDelegate {
         } else {
            print("There is no image Code ")
         }
+        
+        
+        
         deleteImagePopUp()
     }
     
@@ -27,8 +30,51 @@ extension AllCataloguesViewController: DeleteImagePopUpDelegate {
         
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
-       // errorPopup.indexOk = desiredCode
+    
         errorPopup.delegate = self
+        
+        
+//        print("Image id-->", imageCount[imageIndex].id)
+//        print("Image Name-->", imageCount[imageIndex].img_name)
+//        print("Image Size--->", imageCount[imageIndex].image_size)
+        
+        
+        if let imageIde = imageCount[imageIndex].id, let imageName = imageCount[imageIndex].img_name, let imageSize = imageCount[imageIndex].image_size {
+            
+            
+            errorPopup.imageId = imageIde
+            errorPopup.imageName = imageName
+            errorPopup.imageSize = imageSize
+            
+            
+            
+        } else {
+            
+        }
+        
+        errorPopup.onCopyConfirmed = { [weak self] in
+            // Navigate or handle logic when "Copy" is tapped
+            let copyVC = CopyMoveViewController()
+            copyVC.imageId = errorPopup.imageId
+            copyVC.imageName = errorPopup.imageName
+            copyVC.imageSize = errorPopup.imageSize
+            copyVC.typeOfAction = "copy"
+            
+            self?.navigationController?.pushViewController(copyVC, animated: true)
+        }
+        
+        
+        errorPopup.onMoveImageConfirmed = { [weak self] in
+            // Navigate or handle logic when "Copy" is tapped
+            let copyVC = CopyMoveViewController()
+            copyVC.imageId = errorPopup.imageId
+            copyVC.imageName = errorPopup.imageName
+            copyVC.imageSize = errorPopup.imageSize
+            copyVC.typeOfAction = "move"
+            
+            self?.navigationController?.pushViewController(copyVC, animated: true)
+        }
+        
         self.present(errorPopup, animated: true)
     }
     
@@ -36,12 +82,13 @@ extension AllCataloguesViewController: DeleteImagePopUpDelegate {
     
     
     func deleteImage() {
-        activityIndicator.startAnimating()
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         imageDeleteViewModel.requestModel.image_id = imageCode
         imageDeleteViewModel.deleteImage(request:imageDeleteViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+               // self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Success for Deleting the photo")
@@ -63,7 +110,7 @@ extension AllCataloguesViewController: DeleteImagePopUpDelegate {
                                 self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
                             } else {
                                 let height:CGFloat = CGFloat(sumHeight)
-                                self.collectionViewHeight.constant = height + 120 + 70
+                                self.collectionViewHeight.constant = height + 120 + 90
                                 self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
                             }
                             

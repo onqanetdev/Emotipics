@@ -151,12 +151,14 @@ class RegisterViewController: UIViewController {
     var iconClick = true
     
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
+    
+    private var loaderView: ImageLoaderView?
     
     
     override func viewDidLoad() {
@@ -168,7 +170,7 @@ class RegisterViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         
-        setupActivityIndicator()
+        //setupActivityIndicator()
         
         if let inputFont = UIFont(name: "Poppins-Regular", size: 16) {
             fullNameTxtFld.font = inputFont
@@ -211,17 +213,17 @@ class RegisterViewController: UIViewController {
     
     
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     
@@ -322,14 +324,16 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 
-                activityIndicator.startAnimating()
+               // activityIndicator.startAnimating()
+                startCustomLoader()
                 registerBtn.isEnabled = false
                 
                 loginViewModel.requestModel.email = emailtext
                 loginViewModel.requestModel.password = passwordText
                 loginViewModel.getLoginData(loginViewModel.requestModel) { result in
                     DispatchQueue.main.async { [self] in
-                        self.activityIndicator.stopAnimating()
+                       // self.activityIndicator.stopAnimating()
+                        stopCustomLoader()
                         self.registerBtn.isEnabled = true
                         
                         switch result {
@@ -389,7 +393,8 @@ class RegisterViewController: UIViewController {
                     return
                 }
                 
-                activityIndicator.startAnimating()
+               // activityIndicator.startAnimating()
+                startCustomLoader()
                 registerBtn.isEnabled = false
                 
                 registerViewModel.requestModel.email = emailtext
@@ -399,7 +404,8 @@ class RegisterViewController: UIViewController {
                 
                 registerViewModel.registerNewUserViewModel(registerViewModel.requestModel) { result in
                     DispatchQueue.main.async {
-                        self.activityIndicator.stopAnimating()
+                        //self.activityIndicator.stopAnimating()
+                        self.stopCustomLoader()
                         self.registerBtn.isEnabled = true
                     }
                     
@@ -469,6 +475,36 @@ class RegisterViewController: UIViewController {
             iconClick = !iconClick
         
     }
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
     
     
 }

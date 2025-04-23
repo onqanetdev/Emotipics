@@ -45,16 +45,18 @@ class SharingContactListVC: UIViewController {
     var shareIndex = 0
     var selectedContacts:[String] = []
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemOrange
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemOrange
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
     
     
     var catalogueUserAddViewModel:CatalogueUserAddViewModel = CatalogueUserAddViewModel()
     
+    
+    private var loaderView: ImageLoaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +68,7 @@ class SharingContactListVC: UIViewController {
         contactListTblView.register(UINib(nibName: "SharingContactListTVC", bundle: nil), forCellReuseIdentifier: "SharingListTVC" )
         
         
-        setupActivityIndicator()
+       // setupActivityIndicator()
         loadAllContacts()
         selectedContacts = []
 //        print("The Catalog data is ", catalogData[shareIndex].)
@@ -75,18 +77,18 @@ class SharingContactListVC: UIViewController {
     
     
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
-    
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
+//    
     
     
     @IBAction func btnAction(_ sender: Any) {
@@ -100,7 +102,7 @@ class SharingContactListVC: UIViewController {
         
         
         
-        activityIndicator.startAnimating()
+        //activityIndicator.startAnimating()
         
         if let catalogCode = catalogData[shareIndex].catalog_code{
             
@@ -110,7 +112,7 @@ class SharingContactListVC: UIViewController {
             
             catalogueUserAddViewModel.catalogueUserAddViewModel(request:catalogueUserAddViewModel.requestModel, viewController: self ) { result in
                 DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
+                    //self.activityIndicator.stopAnimating()
                     
                     switch result {
                     case .goAhead:
@@ -148,12 +150,12 @@ class SharingContactListVC: UIViewController {
     
     func loadAllContacts(){
         
-        activityIndicator.startAnimating()
-        
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         conatactViewModel.allContactList { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+             //   self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
              
@@ -204,6 +206,38 @@ class SharingContactListVC: UIViewController {
             }
         }
     }
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
+    
+    
 }
 
 extension SharingContactListVC: UITableViewDelegate, UITableViewDataSource {

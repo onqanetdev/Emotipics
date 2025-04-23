@@ -22,8 +22,19 @@ class ImageDeletePopUpVC: UIViewController {
     @IBOutlet weak var imgDeleteBtn: UIButton!
     
 
+    var onCopyConfirmed: (() -> Void)?
+
+    
+    var onMoveImageConfirmed: (() -> Void)?
     
     var delegate: DeleteImagePopUpDelegate?
+    
+    
+    
+    
+    var imageId = 0
+    var imageName = ""
+    var imageSize = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +43,20 @@ class ImageDeletePopUpVC: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped(_:)))
         view.addGestureRecognizer(tapGesture)
+        
+       
+        
     }
 
     
     
     @IBAction func deleteImgDelete(_ sender: Any) {
         
-        //print("Hello")
-        delegate?.deleteImage()
+        
+        //delegate?.deleteImage()
+        self.dismiss(animated: true) { [weak self] in
+            self?.delegate?.deleteImage()
+        }
     }
     
 
@@ -53,4 +70,46 @@ class ImageDeletePopUpVC: UIViewController {
     }
     
     
+    
+    @IBAction func copyBtnAction(_ sender: Any) {
+        
+        if let button = sender as? UIButton {
+            let title = button.title(for: .normal) ?? "No title"
+            print("Button Title:", title)
+            
+            print("Action Type", title.lowercased())
+            print("Image Id", imageId)
+            print("Image Name", imageName )
+            print("Image Size", imageSize)
+        }
+        
+        
+        self.dismiss(animated: true) { [weak self] in
+
+            self?.onCopyConfirmed?()
+            
+        }
+        
+        
+    }
+    
+    
+    
+    
+    @IBAction func moveImage(_ sender: Any) {
+        
+        self.dismiss(animated: true) { [weak self] in
+
+            self?.onMoveImageConfirmed?()
+            
+        }
+        
+    }
+    
+    
+    
+    
 }
+
+
+

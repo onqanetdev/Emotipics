@@ -106,12 +106,12 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     var loginViewModel:LoginViewModel = LoginViewModel()
     var addCatalogueViewModel: AddCatalogueViewModel = AddCatalogueViewModel()
     
-    var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .large)
-        indicator.color = .systemGray
-        indicator.hidesWhenStopped = true
-        return indicator
-    }()
+//    var activityIndicator: UIActivityIndicatorView = {
+//        let indicator = UIActivityIndicatorView(style: .large)
+//        indicator.color = .systemGray
+//        indicator.hidesWhenStopped = true
+//        return indicator
+//    }()
     
     
     let emptyViewForCatalogueView = EmptyCollView()
@@ -125,6 +125,9 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     
     var selectedCatalogueCode = ""
+    
+    
+    private var loaderView: ImageLoaderView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +151,7 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         heightOfContScrollView.constant = 825
         addPlusIcon()
         
-        setupActivityIndicator()
+       // setupActivityIndicator()
         
         allCatalogueList()
         
@@ -181,17 +184,17 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     
     
-    func setupActivityIndicator() {
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-        
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
+//    func setupActivityIndicator() {
+//        view.addSubview(activityIndicator)
+//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+//        
+//        NSLayoutConstraint.activate([
+//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
+//    }
     
     
     
@@ -225,12 +228,12 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-        activityIndicator.startAnimating()
-        
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from Catalogue View Controller")
@@ -272,12 +275,12 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
         sharedCatalogueViewModel.requestModel.type_of_list = "share_all_catalog"
         
-        activityIndicator.startAnimating()
-        
+       // activityIndicator.startAnimating()
+        startCustomLoader()
         sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model 🫡 🫡 View Controller")
@@ -428,7 +431,7 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
     
     
     func deletePopup(){
-        print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
+        //print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
         deleteCatalogueFunction(pin: indexNo)
     }
     
@@ -440,12 +443,13 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         
         
         
-        self.activityIndicator.startAnimating()
+        //self.activityIndicator.startAnimating()
+        startCustomLoader()
         deleteCatalogueViewModel.requestModel.UUID = item
         deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from Catalogue View Controller")
@@ -540,6 +544,36 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         
         self.present(shareInfo, animated: true, completion: nil)
     }
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
     
 }
 

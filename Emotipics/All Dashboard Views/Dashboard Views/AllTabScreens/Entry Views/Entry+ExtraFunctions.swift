@@ -23,12 +23,13 @@ extension EntryViewController: DeleteCatalogDelegate {
         
         
         
-        self.activityIndicator.startAnimating()
+        //self.activityIndicator.startAnimating()
+        startCustomLoader()
         deleteCatalogueViewModel.requestModel.UUID = item
         deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
             DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-                
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from Catalogue View Controller")

@@ -26,17 +26,21 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+//        view.backgroundColor = #colorLiteral(red: 0, green: 0.1647058824, blue: 0.3450980392, alpha: 1)
+      //  webView.scrollView.contentInsetAdjustmentBehavior = .never
         setupWebView()
         loadWebsite()
+        view.backgroundColor = .white
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.backgroundColor = #colorLiteral(red: 0, green: 0.1647058824, blue: 0.3450980392, alpha: 1)
+    }
+    
+    
     private func setupWebView() {
-//        webView = WKWebView(frame: .zero)
-//        webView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(webView)
-        
-        
+
         // 1. Create a content controller
         let contentController = WKUserContentController()
         contentController.add(self, name: "buttonClicked")
@@ -60,44 +64,28 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         webView = WKWebView(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.navigationDelegate = self
+        webView.scrollView.contentInsetAdjustmentBehavior = .never // ✅ important!
         view.addSubview(webView)
         
         
         
         
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 25),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
-//    private func loadWebsite() {
-//        //let fullURLString = "\(baseURL)/\(userCode)/\(destinationId)/\(destinationType)"
-//        let fullURLString = baseURL+"/"+userCode+"/"+destinationId+"/"+"0"
-//        
-//        if let url = URL(string: fullURLString) {
-//            let request = URLRequest(url: url)
-//            webView.load(request)
-//        }
-//    }
-//    
-    
+
     
     
     
     private func loadWebsite() {
         
-//        let fullURLString = baseURL + "/" + savedUserCode + "/" + savedCatalogueId  + "/" + "0"
-//        
-//        
-//           if let localFile = Bundle.main.url(forResource: "webview", withExtension: "html") {
-//               webView.loadFileURL(localFile, allowingReadAccessTo: localFile.deletingLastPathComponent())
-//           } else if let url = URL(string: fullURLString) {
-//               webView.load(URLRequest(url: url))
-//           }
-        
+
         
         guard let userCode = savedUserCode, let catalogueId = savedCatalogueId else {
              print("❌ Missing userCode or catalogueId")

@@ -52,7 +52,7 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
         //Temp catalogue
         let tappedCatalogueName = tempMemory[indexPath.row].catalog_name
         
-        print("Requirements👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾catalogue Code \(catalogueId ?? "No String") Catalogue Name \(tappedCatalogueName)")
+//        print("Requirements👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾👉🏾catalogue Code \(catalogueId ?? "No String") Catalogue Name \(tappedCatalogueName)")
         
         if let catalogueId = catalogueId {
             UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
