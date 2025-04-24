@@ -26,12 +26,6 @@ class ImageShareViewModel {
                 
                 completion(.goAhead)
                 
-//                DispatchQueue.main.async {
-//                    //AlertView.showAlert("Alert!", message: data.message ?? "ContactsCon", okTitle: "OK")
-//                    print("Response from Image Share View Model")
-//                }
-                
-                
                 DispatchQueue.main.async {
                     // 👇 Dismiss first, then show alert
                     viewController.dismiss(animated: true) {

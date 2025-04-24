@@ -86,6 +86,16 @@ class LoginViewModel {
                 let uuidData = Data(uuidUser.utf8)
                 KeychainManager.standard.save(uuidData, service: "com.Emotipics.service", account: "UUID")
                 
+                //Saving user code into Database
+                if let userLoggedinCode = self?.responseModel?.login_data?[0].user?.code {
+                    print("user logged in code -->",userLoggedinCode )
+                    UserDefaults.standard.set(userLoggedinCode, forKey: "userCode")
+                } else {
+                    print("User Logged In Code Not Found")
+                }
+                
+                
+                
                 
                 completion(.goAhead)
             case .failure(let error):

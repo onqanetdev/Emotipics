@@ -27,9 +27,9 @@ class ProfileViewController: UIViewController {
     
     
     
-    var contentsTitle = ["Home", "My Account", "Catalogue", "Contact List", "Groups", "About Us", "Terms & Conditions", "Support", "Logout"]
+    var contentsTitle = ["Home", "My Account", "Catalogue", "Contact List","Shared Image List", "Groups", "About Us", "Terms & Conditions", "Support", "Logout"]
     
-    var respectiveImg = ["Home","MyAccount", "Catalogue", "ContactList", "Group", "About Us", "Terms", "Support", "Logout"]
+    var respectiveImg = ["Home","MyAccount", "Catalogue", "ContactList", "sharedImageList", "Group", "About Us", "Terms", "Support", "Logout"]
     
     
     
@@ -120,7 +120,10 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
             navigationController?.pushViewController(CatalogueViewController(), animated: true)
         } else if contentsTitle[indexPath.row] == "Contact List" {
             navigationController?.pushViewController(ContactsViewController(), animated: true)
-        } else if contentsTitle[indexPath.row] == "Groups" {
+        } else if contentsTitle[indexPath.row] == "Shared Image List" {
+            navigationController?.pushViewController(SharedImageByMeVC(), animated: true)
+            
+        }else if contentsTitle[indexPath.row] == "Groups" {
             navigationController?.pushViewController(GroupListViewController(), animated: true)
         }
     }

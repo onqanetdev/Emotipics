@@ -637,26 +637,7 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
                 let imagePath = imgPath + imgName
                 print("Image Path:", imagePath)
 
-                //imagePathName = imagePath
-                
-//                guard let urlImage = URL(string: imagePath) else { return cell }
-//
-//                
-//               // cell.activityIndicator.startAnimating()
-//                cell.startCustomLoader()
-//                
-//                URLSession.shared.dataTask(with: urlImage) { data, _, _ in
-//                    guard let data = data, let image = UIImage(data: data) else { return }
-//
-//                    DispatchQueue.main.async {
-//                        // Check if the cell is still displaying the correct indexPath
-//                        //cell.activityIndicator.stopAnimating()
-//                        cell.stopCustomLoader()
-//                        if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
-//                            currentCell.imgViewColl.image = image
-//                        }
-//                    }
-//                }.resume()
+
 //                
                 if let cachedImage = imageCache[imagePath] {
                         cell.imgViewColl.image = cachedImage

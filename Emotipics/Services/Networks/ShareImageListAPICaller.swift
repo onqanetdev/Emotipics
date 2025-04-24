@@ -1,15 +1,16 @@
 //
-//  AddImageShareAPICaller.swift
+//  ShareImageListAPICaller.swift
 //  Emotipics
 //
-//  Created by Onqanet on 23/04/25.
+//  Created by Onqanet on 24/04/25.
 //
 
 import Foundation
 
 
-class AddImageShareAPICaller {
-    static func addImageShareAPICaller(image_id: Int, user_code: String ,CompletionHandler: @escaping(_ result: Result<ShareImageResModel, NetworkError>) -> Void){
+
+class ShareImageListAPICaller {
+    static func shareImageListAPICaller(sharetype: String, userCode: String, limit: String, offset: String, CompletionHandler: @escaping(_ result: Result<SharedImgResModel, NetworkError>) -> Void){
         
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
@@ -18,7 +19,7 @@ class AddImageShareAPICaller {
         
         
         
-        let urlString = baseURL + APIEndpoint.imageShareWithUser.rawValue
+        let urlString = baseURL + APIEndpoint.sharedImageList.rawValue
         guard let url = URL(string: urlString) else {
             print("can not able to convert it into URL")
             return
@@ -32,8 +33,10 @@ class AddImageShareAPICaller {
     
         
         let requestBody: [String : Any] = [
-            "image_id": image_id,
-            "user_code": user_code
+            "sharetype": sharetype,
+            "usercode": userCode,
+            "limit": limit,
+            "offset": offset
         ]
         
         
@@ -51,8 +54,8 @@ class AddImageShareAPICaller {
             
             if error == nil ,
                let data = dataResponse,
-               let jsonResponse = try? JSONDecoder().decode(ShareImageResModel.self, from: data) {
-                print("My JSON Response for Add Image Share Api caller is  ", jsonResponse)
+               let jsonResponse = try? JSONDecoder().decode(SharedImgResModel.self, from: data) {
+                print("My JSON Response for Shared Image Res Model is  ", jsonResponse)
                 
                 
                 if jsonResponse.success == false {

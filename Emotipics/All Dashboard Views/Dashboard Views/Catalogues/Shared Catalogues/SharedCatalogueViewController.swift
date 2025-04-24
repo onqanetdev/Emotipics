@@ -223,8 +223,7 @@ class SharedCatalogueViewController: UIViewController {
     
     
     func addUnderlineForSelectedSegment(_ segmentedControl: UISegmentedControl) {
-        // Remove any existing underline
-        //segmentedControl.subviews.filter { $0.tag == 999 }.forEach { $0.removeFromSuperview() }
+
         
         // Create underline view
         let underlineHeight: CGFloat = 4.0
