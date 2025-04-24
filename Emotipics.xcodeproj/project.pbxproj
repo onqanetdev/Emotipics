@@ -23,6 +23,9 @@
 		8A075C992DB9F029004554E2 /* SharedImageByMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075C982DB9F029004554E2 /* SharedImageByMeViewModel.swift */; };
 		8A075C9D2DB9FE11004554E2 /* SharedImageByMeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A075C9C2DB9FE11004554E2 /* SharedImageByMeVC.xib */; };
 		8A075C9E2DB9FE11004554E2 /* SharedImageByMeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075C9B2DB9FE11004554E2 /* SharedImageByMeVC.swift */; };
+		8A075CA12DBA34FB004554E2 /* DashboardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA02DBA34FB004554E2 /* DashboardResModel.swift */; };
+		8A075CA32DBA3640004554E2 /* DashboardAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */; };
+		8A075CA52DBA38F6004554E2 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
 		8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91C2D7AC96800F358FD /* Circular.swift */; };
@@ -203,6 +206,9 @@
 		8A075C982DB9F029004554E2 /* SharedImageByMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImageByMeViewModel.swift; sourceTree = "<group>"; };
 		8A075C9B2DB9FE11004554E2 /* SharedImageByMeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImageByMeVC.swift; sourceTree = "<group>"; };
 		8A075C9C2DB9FE11004554E2 /* SharedImageByMeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedImageByMeVC.xib; sourceTree = "<group>"; };
+		8A075CA02DBA34FB004554E2 /* DashboardResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardResModel.swift; sourceTree = "<group>"; };
+		8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAPICaller.swift; sourceTree = "<group>"; };
+		8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
 		8A22D91C2D7AC96800F358FD /* Circular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circular.swift; sourceTree = "<group>"; };
@@ -447,6 +453,14 @@
 			path = "Shared Image List";
 			sourceTree = "<group>";
 		};
+		8A075C9F2DBA34DB004554E2 /* DashBoardModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A075CA02DBA34FB004554E2 /* DashboardResModel.swift */,
+			);
+			path = DashBoardModel;
+			sourceTree = "<group>";
+		};
 		8A1823562D87D315007A2E90 /* ImageCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -665,6 +679,7 @@
 				8A44CD712DB6379C0044E904 /* ImageCopyOrMoveApiCaller.swift */,
 				8AC269482DB8CE5B00B4EEDF /* AddImageShareAPICaller.swift */,
 				8A075C962DB9EC19004554E2 /* ShareImageListAPICaller.swift */,
+				8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -672,6 +687,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A075C9F2DBA34DB004554E2 /* DashBoardModel */,
 				8AC2694C2DB9105000B4EEDF /* SharedImageListModel */,
 				8AC269432DB8C1D000B4EEDF /* Share Image Model */,
 				8A44CD6C2DB626610044E904 /* MoveOrCopy Image Model */,
@@ -718,6 +734,7 @@
 				8A44CD732DB63D080044E904 /* ImageCopyOrMoveViewModel.swift */,
 				8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */,
 				8A075C982DB9F029004554E2 /* SharedImageByMeViewModel.swift */,
+				8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1351,6 +1368,7 @@
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
+				8A075CA32DBA3640004554E2 /* DashboardAPICaller.swift in Sources */,
 				8A3ED2712DAFBD61002C3129 /* ImageDeletePopUpVC.swift in Sources */,
 				8A97F78F2DA78C6300D53C9C /* CatalogDeleteAPICaller.swift in Sources */,
 				8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */,
@@ -1359,6 +1377,7 @@
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
+				8A075CA12DBA34FB004554E2 /* DashboardResModel.swift in Sources */,
 				8A3ED26C2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift in Sources */,
 				8A3ED25D2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
@@ -1391,6 +1410,7 @@
 				8A44CD782DB64C500044E904 /* CopyMoveViewController.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
 				8ABA8ABF2D771B69003D4727 /* DashboardViewController.swift in Sources */,
+				8A075CA52DBA38F6004554E2 /* DashboardViewModel.swift in Sources */,
 				8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */,
 				8A97F7922DA79D3300D53C9C /* DeleteCatalogResponseModel.swift in Sources */,
 				8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */,

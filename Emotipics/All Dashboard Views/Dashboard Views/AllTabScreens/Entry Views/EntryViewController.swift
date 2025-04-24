@@ -106,11 +106,11 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     @IBOutlet weak var photosLbl: UILabel!
     
-    @IBOutlet weak var videosLbl: UILabel!
+    //@IBOutlet weak var videosLbl: UILabel!
     
     @IBOutlet weak var nineGbLbl: UILabel!
     
-    @IBOutlet weak var sixGbLbl: UILabel!
+   // @IBOutlet weak var sixGbLbl: UILabel!
     
     
     
@@ -178,14 +178,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     var catalogueListingViewModel: CatalogueListingViewModel = CatalogueListingViewModel()
     
-    
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemOrange
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
-//    
+
     
     let emptyView = EmptyCollView()
     let emptyViewForContacts = EmptyCollView()
@@ -210,6 +203,18 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     private var loaderView: ImageLoaderView?
     
+    
+    var dashboardViewModel: DashboardViewModel = DashboardViewModel()
+    
+    
+
+    
+    private var totalStorageGB:  Double = .zero
+    private var remainingStorageGB: Double = .zero
+    private var usedPercent: Double {
+        guard totalStorageGB > 0 else { return 0 }
+        return (totalStorageGB - remainingStorageGB) / totalStorageGB * 100
+    }
     
     
     override func viewDidLoad() {
@@ -268,6 +273,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         viewModel()
         setupEmptyViewForContacts()
+        
+        dashboardStorageDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -283,19 +290,108 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         allCatalogueView()
     }
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
+
+    
+
     
     
+    /// Keeps only 0‑9 and decimal point, so "24.94 GB" → "24.94"
+    private func numericString(from raw: String) -> String {
+        let allowed = CharacterSet(charactersIn: "0123456789.")
+        return String(raw.unicodeScalars.filter { allowed.contains($0) })
+    }
+
+    
+    
+    func dashboardStorageDetails() {
+        dashboardViewModel.dashboardViewModel { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.stopCustomLoader()
+
+                switch result {
+                case .goAhead:
+                    // 1. Read raw strings
+                    guard
+                        let totalRaw     = self.dashboardViewModel.responseModel?.total_size,
+                        let remainingRaw = self.dashboardViewModel.responseModel?.remaining_size
+                    else {
+                        print("❌ API did not return total_size / remaining_size")
+                        return
+                    }
+
+                    // 2. Clean them → numeric strings
+                    let totalClean     = self.numericString(from: totalRaw)
+                    let remainingClean = self.numericString(from: remainingRaw)
+
+                    // 3. Convert to Double
+                    guard
+                        let total = Double(totalClean),
+                        let remaining = Double(remainingClean)
+                    else {
+                        print("❌ Could not convert '\(totalClean)' or '\(remainingClean)' to Double")
+                        return
+                    }
+
+                    // 4. Store
+                    self.totalStorageGB     = total
+                    self.remainingStorageGB = remaining
+                    
+                    print("Total Storage 🦠🦠🦠🦠🦠", self.totalStorageGB)
+                    print("Remaining Storage 🦠🦠🦠🦠🦠🦠", self.remainingStorageGB )
+
+                    
+                    let usedGB = self.totalStorageGB  - self.remainingStorageGB
+                    
+                    self.fifteenGbLbl.text = String(format: "%.2f", usedGB) + "%"
+                    self.nineGbLbl.text = String(format: "%.2f", self.remainingStorageGB) + "%"
+                    // 5. Update UI
+                    self.setupCircularView(usedPercent: self.usedPercent)
+
+                   // self.setupPecentageLbl()
+                case .heyStop:
+                    print("Error")
+                }
+            }
+        }
+    }
+    
+    
+    
+    private func setupCircularView(usedPercent: Double) {
+        let freePercent = 100 - usedPercent
+        let sampleColor = UIColor(#colorLiteral(red: 0.67, green: 0.82, blue: 0.98, alpha: 1))
+
+        
+        
+        let circularView = Circular(
+            percentages: [usedPercent, freePercent],
+            colors: [sampleColor, .systemBlue]
+        )
+        circularView.translatesAutoresizingMaskIntoConstraints = false
+        cardView.addSubview(circularView)
+
+        NSLayoutConstraint.activate([
+            circularView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 20),
+            circularView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 27),
+            circularView.widthAnchor.constraint(equalToConstant: 90),
+            circularView.heightAnchor.constraint(equalToConstant: 90)
+        ])
+        
+        pertentageLbl.text = String(format: "%.2f", freePercent) + "%"
+        // 2. Now the label can be attached safely
+           setupPecentageLbl()
+       // print("Free Percent Storage is🦠🦠🦠🦠", freePercent)
+        print("Percentage label is 🦠🦠🦠🦠", usedPercent)
+        
+    }
+
+    
+    
+
+    
+    
+
     //MARK: Font Family Settigs
     private func settingUpFonts() {
         //         let inputFont = "Lato-Regular"
@@ -310,9 +406,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         myContactsLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         //setting ups for fonts poppins-regular
         photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-        videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+//        videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
         nineGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-        sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
+//        sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
         //settings ups for fonts poppins-medium
         
         priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
@@ -347,8 +443,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     private func setupPecentageLbl() {
         //cardView.addSubview(pertentageLbl)
+        pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         circularView.addSubview(pertentageLbl)
-        
+
         
         NSLayoutConstraint.activate([
             pertentageLbl.centerXAnchor.constraint(equalTo: circularView.centerXAnchor),
@@ -549,11 +646,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 stopCustomLoader()
                 switch result {
                 case .goAhead:
-                    // print("View Controller updated index", )
-                    //table View Reload Data
-                    
-                    //                    print("Catalogue Listing View model Shared Contact data", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog?.count as Any)
-                    
+
                     
                     
                     if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
