@@ -177,6 +177,10 @@
 		8ACDCBC42DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */; };
 		8ACDCBC72DBB604B00A9B3EE /* CatalogueRenameReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC62DBB604B00A9B3EE /* CatalogueRenameReqModel.swift */; };
 		8ACDCBC92DBB606500A9B3EE /* CatalogueRenameResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC82DBB606500A9B3EE /* CatalogueRenameResModel.swift */; };
+		8ACDCBCD2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBCB2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift */; };
+		8ACDCBCE2DBB6DAE00A9B3EE /* RenameCatalogueVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ACDCBCC2DBB6DAE00A9B3EE /* RenameCatalogueVC.xib */; };
+		8ACDCBD02DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBCF2DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift */; };
+		8ACDCBD22DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
@@ -367,6 +371,10 @@
 		8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserDeleteViewModel.swift; sourceTree = "<group>"; };
 		8ACDCBC62DBB604B00A9B3EE /* CatalogueRenameReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameReqModel.swift; sourceTree = "<group>"; };
 		8ACDCBC82DBB606500A9B3EE /* CatalogueRenameResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameResModel.swift; sourceTree = "<group>"; };
+		8ACDCBCB2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameCatalogueVC.swift; sourceTree = "<group>"; };
+		8ACDCBCC2DBB6DAE00A9B3EE /* RenameCatalogueVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RenameCatalogueVC.xib; sourceTree = "<group>"; };
+		8ACDCBCF2DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameAPICaller.swift; sourceTree = "<group>"; };
+		8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameViewModel.swift; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
@@ -693,6 +701,7 @@
 				8A075C962DB9EC19004554E2 /* ShareImageListAPICaller.swift */,
 				8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */,
 				8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */,
+				8ACDCBCF2DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -751,6 +760,7 @@
 				8A075C982DB9F029004554E2 /* SharedImageByMeViewModel.swift */,
 				8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */,
 				8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */,
+				8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -801,6 +811,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8ACDCBCA2DBB6D7100A9B3EE /* RenameCataloguePopUp */,
 				8A44CD752DB64BE80044E904 /* CopyMoveCatalogueListing */,
 				8AED69492DB103F4006F7289 /* LoaderView */,
 				8A3ED26D2DAFBD11002C3129 /* ImageDeletePopUp */,
@@ -1151,6 +1162,15 @@
 			path = CatalogueRenameModel;
 			sourceTree = "<group>";
 		};
+		8ACDCBCA2DBB6D7100A9B3EE /* RenameCataloguePopUp */ = {
+			isa = PBXGroup;
+			children = (
+				8ACDCBCB2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift */,
+				8ACDCBCC2DBB6DAE00A9B3EE /* RenameCatalogueVC.xib */,
+			);
+			path = RenameCataloguePopUp;
+			sourceTree = "<group>";
+		};
 		8AEADB522DA6435500BF187E /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1320,7 @@
 				8ABB968F2D8D39960032E6DA /* ProfileViewController.xib in Resources */,
 				8A4353B82D758F4700ABB7A0 /* lato_black.ttf in Resources */,
 				8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */,
+				8ACDCBCE2DBB6DAE00A9B3EE /* RenameCatalogueVC.xib in Resources */,
 				8A97F7982DA7A06400D53C9C /* DeleteCatalogPopVC.xib in Resources */,
 				8A075C9D2DB9FE11004554E2 /* SharedImageByMeVC.xib in Resources */,
 				8A0521732D79A83A00AE5FC4 /* EntryCollectionViewCell.xib in Resources */,
@@ -1341,6 +1362,7 @@
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A3ED25B2DAF6330002C3129 /* CatalogueImageListResModel.swift in Sources */,
+				8ACDCBCD2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift in Sources */,
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
@@ -1371,12 +1393,14 @@
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
 				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8A9E7D6B2DA3F78B007CE28A /* CatalogueListingViewModel.swift in Sources */,
+				8ACDCBD22DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift in Sources */,
 				8A075C9E2DB9FE11004554E2 /* SharedImageByMeVC.swift in Sources */,
 				8A97F79A2DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift in Sources */,
 				8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
 				8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */,
+				8ACDCBD02DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift in Sources */,
 				8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */,
 				8AEADB5B2DA6537A00BF187E /* AddCatalogueApiCaller.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,

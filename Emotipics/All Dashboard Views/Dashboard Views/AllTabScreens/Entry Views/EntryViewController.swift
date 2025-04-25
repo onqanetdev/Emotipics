@@ -610,7 +610,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 }
                 
             case .RENAME:
-                print("l")
+                errorPopup.dismiss(animated: true) {
+                    self?.presentRenameCatalogueScreen()
+                }
             }
         }
         

@@ -41,7 +41,7 @@ class CopyMoveViewController: UIViewController {
     
     var imageId = 0
     var imageName = ""
-    var imageSize = 0
+    var imageSize = ""
     var typeOfAction = ""
     
     var imageCopyOrMoveViewModel: ImageCopyOrMoveViewModel = ImageCopyOrMoveViewModel()
@@ -143,7 +143,7 @@ class CopyMoveViewController: UIViewController {
     
     
 
-    func imageCopy(actionType:String, imgId: Int, catalogCode: String, imgSize: Int, imageName: String ){
+    func imageCopy(actionType:String, imgId: Int, catalogCode: String, imgSize: String, imageName: String ){
         imageCopyOrMoveViewModel.requestModel.actiontype = actionType
         imageCopyOrMoveViewModel.requestModel.imgid = imgId
         imageCopyOrMoveViewModel.requestModel.catalog_code = catalogCode

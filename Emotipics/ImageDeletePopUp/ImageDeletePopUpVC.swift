@@ -34,7 +34,7 @@ class ImageDeletePopUpVC: UIViewController {
     
     var imageId = 0
     var imageName = ""
-    var imageSize = 0
+    var imageSize = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

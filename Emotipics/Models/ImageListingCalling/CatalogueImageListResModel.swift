@@ -56,7 +56,7 @@ struct ImageData: Codable {
     let updated_at : String?
     let datetime : String?
     let members : Int?
-    let image_size : Int?
+    let image_size : String?
     let imagesize : String?
     let path : String?
     let user : ImageUser?
@@ -95,7 +95,7 @@ struct ImageData: Codable {
         updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
         datetime = try values.decodeIfPresent(String.self, forKey: .datetime)
         members = try values.decodeIfPresent(Int.self, forKey: .members)
-        image_size = try values.decodeIfPresent(Int.self, forKey: .image_size)
+        image_size = try values.decodeIfPresent(String.self, forKey: .image_size)
         imagesize = try values.decodeIfPresent(String.self, forKey: .imagesize)
         path = try values.decodeIfPresent(String.self, forKey: .path)
         user = try values.decodeIfPresent(ImageUser.self, forKey: .user)

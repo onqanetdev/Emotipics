@@ -55,5 +55,18 @@ extension EntryViewController: DeleteCatalogDelegate {
         deleteCatalogueFunction(pin: indexNo)
     }
     
+    
+    func presentRenameCatalogueScreen() {
+        print("folder name is ", tempMemory[indexNo].catalog_name)
+        print("folder uuid is ", tempMemory[indexNo].catalogue_uuid)
+        let renameCatalogue = RenameCatalogueVC(nibName: "RenameCatalogueVC", bundle: nil)
+        renameCatalogue.modalPresentationStyle = .overCurrentContext
+        renameCatalogue.modalTransitionStyle = .crossDissolve
+        guard let catalogUUID = tempMemory[indexNo].catalogue_uuid else {
+            return
+        }
+        renameCatalogue.folder_UUID = catalogUUID
+        self.present(renameCatalogue, animated: true, completion: nil)
+    }
 }
 

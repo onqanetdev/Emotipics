@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+
+
+struct CatalogueRenameReqModel {
+    var catUUID: String
+    var newName: String
+}

@@ -540,6 +540,9 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 }
             case .RENAME:
                 print("RENAME")
+                errorPopup.dismiss(animated: true){
+                    self?.presentRenameCatalogueScreen()
+                }
             }
             
             

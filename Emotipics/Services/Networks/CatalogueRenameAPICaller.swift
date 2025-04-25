@@ -1,15 +1,16 @@
 //
-//  ImageCopyOrMoveApiCaller.swift
+//  CatalogueRenameAPICaller.swift
 //  Emotipics
 //
-//  Created by Onqanet on 21/04/25.
+//  Created by Onqanet on 25/04/25.
 //
 
 import Foundation
 
 
-class ImageCopyOrMoveApiCaller {
-    static func imageCopyOrMoveApiCaller(imageCode: Int, actionType: String, catalogCode: String, imgSize: String, imgName: String,CompletionHandler: @escaping(_ result: Result<CopyOrMoveImgResModel, NetworkError>) -> Void){
+
+class CatalogueRenameAPICaller {
+    static func catalogueRenameAPICaller( catUUID: String, newFolderName: String , CompletionHandler: @escaping(_ result: Result<CatalogueRenameResModel, NetworkError>) -> Void){
         
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
@@ -18,7 +19,7 @@ class ImageCopyOrMoveApiCaller {
         
         
         
-        let urlString = baseURL + APIEndpoint.imageCopyOrMove.rawValue
+        let urlString = baseURL + APIEndpoint.catalogueRename.rawValue
         guard let url = URL(string: urlString) else {
             print("can not able to convert it into URL")
             return
@@ -32,11 +33,8 @@ class ImageCopyOrMoveApiCaller {
     
         
         let requestBody: [String : Any] = [
-            "imgid": imageCode,
-            "actiontype": actionType,
-            "catalog_code": catalogCode,
-            "img_size": imgSize,
-            "img_name": imgName
+            "folder_uuid": catUUID,
+            "newfoldername": newFolderName
         ]
         
         
@@ -54,12 +52,12 @@ class ImageCopyOrMoveApiCaller {
             
             if error == nil ,
                let data = dataResponse,
-               let jsonResponse = try? JSONDecoder().decode(CopyOrMoveImgResModel.self, from: data) {
-                print("My JSON Response for delete Image is", jsonResponse)
+               let jsonResponse = try? JSONDecoder().decode(CatalogueRenameResModel.self, from: data) {
+                print("My JSON Response for Rename Catalogue✅✅✅✅✅ ", jsonResponse)
                 
                 
                 if jsonResponse.success == false {
-                    print("The Respons from", jsonResponse.message)
+                    print("Add Image Share", jsonResponse.message)
                     CompletionHandler(.success(jsonResponse))
                 } else {
                     print("The success Response is", jsonResponse.message)
@@ -76,3 +74,5 @@ class ImageCopyOrMoveApiCaller {
         }.resume()
     }
 }
+
+

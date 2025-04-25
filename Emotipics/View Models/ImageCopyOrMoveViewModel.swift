@@ -11,7 +11,7 @@ import Foundation
 
 class ImageCopyOrMoveViewModel {
     var responseModel:CopyOrMoveImgResModel?
-    var requestModel: CopyOrMoveReqModel = CopyOrMoveReqModel(actiontype: "", imgid: 0, catalog_code: "", img_size: 0, img_name: "")
+    var requestModel: CopyOrMoveReqModel = CopyOrMoveReqModel(actiontype: "", imgid: 0, catalog_code: "", img_size: "", img_name: "")
     
 
     func copyOrMoveImg(request: CopyOrMoveReqModel, completion: @escaping(_ result: userDataDefination) -> Void ) {
