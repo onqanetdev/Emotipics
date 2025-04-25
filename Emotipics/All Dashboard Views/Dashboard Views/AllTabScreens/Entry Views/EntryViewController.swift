@@ -337,8 +337,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                     self.totalStorageGB     = total
                     self.remainingStorageGB = remaining
                     
-                    print("Total Storage 🦠🦠🦠🦠🦠", self.totalStorageGB)
-                    print("Remaining Storage 🦠🦠🦠🦠🦠🦠", self.remainingStorageGB )
+//                    print("Total Storage 🦠🦠🦠🦠🦠", self.totalStorageGB)
+//                    print("Remaining Storage 🦠🦠🦠🦠🦠🦠", self.remainingStorageGB )
 
                     
                     let usedGB = self.totalStorageGB  - self.remainingStorageGB
@@ -382,7 +382,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         // 2. Now the label can be attached safely
            setupPecentageLbl()
        // print("Free Percent Storage is🦠🦠🦠🦠", freePercent)
-        print("Percentage label is 🦠🦠🦠🦠", usedPercent)
+        //print("Percentage label is 🦠🦠🦠🦠", usedPercent)
         
     }
 
@@ -608,6 +608,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 errorPopup.dismiss(animated: true) {
                     self?.presentShareScreen()
                 }
+                
+            case .RENAME:
+                print("l")
             }
         }
         

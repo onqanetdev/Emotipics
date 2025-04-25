@@ -79,6 +79,14 @@ class DeleteCatalogPopVC: UIViewController {
     }
     
     
+    
+    @IBAction func catalogueRename(_ sender: Any) {
+        
+        //print("Catalogue details-->", catalogData)
+        self.onCompletion?(.RENAME)
+        
+    }
+    
 }
 
 

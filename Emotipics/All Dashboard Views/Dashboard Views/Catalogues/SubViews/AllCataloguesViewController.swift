@@ -538,6 +538,8 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 errorPopup.dismiss(animated: true) {
                     self?.presentShareScreen()
                 }
+            case .RENAME:
+                print("RENAME")
             }
             
             

@@ -401,6 +401,10 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                 errorPopup.dismiss(animated: true) {
                     self?.presentShareScreen()
                 }
+            case .RENAME:
+                errorPopup.dismiss(animated: true) {
+                    print("Rename Catalogue uuid", self?.tempMemory[self!.indexNo].catalogue_uuid )
+                }
             }
         }
         

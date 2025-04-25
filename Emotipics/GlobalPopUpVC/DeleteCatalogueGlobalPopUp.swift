@@ -14,6 +14,7 @@ enum completeCases {
     case YES
     case NO
     case SHARE
+    case RENAME
 }
 
 

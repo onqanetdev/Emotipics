@@ -171,6 +171,12 @@
 		8AC2694B2DB8DF3700B4EEDF /* ImageShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */; };
 		8AC2694E2DB910AB00B4EEDF /* SharedImgResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694D2DB910AB00B4EEDF /* SharedImgResModel.swift */; };
 		8AC269502DB910C300B4EEDF /* SharedImgReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694F2DB910C300B4EEDF /* SharedImgReqModel.swift */; };
+		8ACDCBBE2DBB455100A9B3EE /* CatalogueUserRmResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBBD2DBB455100A9B3EE /* CatalogueUserRmResModel.swift */; };
+		8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBBF2DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift */; };
+		8ACDCBC22DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */; };
+		8ACDCBC42DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */; };
+		8ACDCBC72DBB604B00A9B3EE /* CatalogueRenameReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC62DBB604B00A9B3EE /* CatalogueRenameReqModel.swift */; };
+		8ACDCBC92DBB606500A9B3EE /* CatalogueRenameResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC82DBB606500A9B3EE /* CatalogueRenameResModel.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
@@ -355,6 +361,12 @@
 		8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageShareViewModel.swift; sourceTree = "<group>"; };
 		8AC2694D2DB910AB00B4EEDF /* SharedImgResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgResModel.swift; sourceTree = "<group>"; };
 		8AC2694F2DB910C300B4EEDF /* SharedImgReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgReqModel.swift; sourceTree = "<group>"; };
+		8ACDCBBD2DBB455100A9B3EE /* CatalogueUserRmResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmResModel.swift; sourceTree = "<group>"; };
+		8ACDCBBF2DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmReqModel.swift; sourceTree = "<group>"; };
+		8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmAPICaller.swift; sourceTree = "<group>"; };
+		8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserDeleteViewModel.swift; sourceTree = "<group>"; };
+		8ACDCBC62DBB604B00A9B3EE /* CatalogueRenameReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameReqModel.swift; sourceTree = "<group>"; };
+		8ACDCBC82DBB606500A9B3EE /* CatalogueRenameResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameResModel.swift; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
@@ -680,6 +692,7 @@
 				8AC269482DB8CE5B00B4EEDF /* AddImageShareAPICaller.swift */,
 				8A075C962DB9EC19004554E2 /* ShareImageListAPICaller.swift */,
 				8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */,
+				8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -687,6 +700,8 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8ACDCBC52DBB5FE500A9B3EE /* CatalogueRenameModel */,
+				8ACDCBBC2DBB411E00A9B3EE /* CatalogueUserRmModel */,
 				8A075C9F2DBA34DB004554E2 /* DashBoardModel */,
 				8AC2694C2DB9105000B4EEDF /* SharedImageListModel */,
 				8AC269432DB8C1D000B4EEDF /* Share Image Model */,
@@ -735,6 +750,7 @@
 				8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */,
 				8A075C982DB9F029004554E2 /* SharedImageByMeViewModel.swift */,
 				8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */,
+				8ACDCBC32DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1117,6 +1133,24 @@
 			path = SharedImageListModel;
 			sourceTree = "<group>";
 		};
+		8ACDCBBC2DBB411E00A9B3EE /* CatalogueUserRmModel */ = {
+			isa = PBXGroup;
+			children = (
+				8ACDCBBD2DBB455100A9B3EE /* CatalogueUserRmResModel.swift */,
+				8ACDCBBF2DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift */,
+			);
+			path = CatalogueUserRmModel;
+			sourceTree = "<group>";
+		};
+		8ACDCBC52DBB5FE500A9B3EE /* CatalogueRenameModel */ = {
+			isa = PBXGroup;
+			children = (
+				8ACDCBC62DBB604B00A9B3EE /* CatalogueRenameReqModel.swift */,
+				8ACDCBC82DBB606500A9B3EE /* CatalogueRenameResModel.swift */,
+			);
+			path = CatalogueRenameModel;
+			sourceTree = "<group>";
+		};
 		8AEADB522DA6435500BF187E /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1299,9 +1333,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8ACDCBC92DBB606500A9B3EE /* CatalogueRenameResModel.swift in Sources */,
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
+				8ACDCBBE2DBB455100A9B3EE /* CatalogueUserRmResModel.swift in Sources */,
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
 				8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */,
+				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A3ED25B2DAF6330002C3129 /* CatalogueImageListResModel.swift in Sources */,
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
@@ -1363,6 +1400,7 @@
 				8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */,
 				8A241DF12D804994002D7BA8 /* CatalogueViewController.swift in Sources */,
 				8A0496422DAD064700ECF441 /* CatalogueUserAddResModel.swift in Sources */,
+				8ACDCBC22DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift in Sources */,
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8AED694B2DB10431006F7289 /* ImageLoaderView.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
@@ -1379,6 +1417,7 @@
 				8A43538E2D75760600ABB7A0 /* SceneDelegate.swift in Sources */,
 				8A075CA12DBA34FB004554E2 /* DashboardResModel.swift in Sources */,
 				8A3ED26C2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift in Sources */,
+				8ACDCBC72DBB604B00A9B3EE /* CatalogueRenameReqModel.swift in Sources */,
 				8A3ED25D2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
@@ -1422,6 +1461,7 @@
 				8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
 				8A97F7972DA7A06400D53C9C /* DeleteCatalogPopVC.swift in Sources */,
+				8ACDCBC42DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift in Sources */,
 				8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */,
 				8AC2694B2DB8DF3700B4EEDF /* ImageShareViewModel.swift in Sources */,
 				8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */,
