@@ -30,6 +30,7 @@ enum APIEndpoint: String {
     case dashboard = "dashboard"
     case userDeleteCatalogue = "catalog-user-remove"
     case catalogueRename = "catalog-rename"
+    case catalogueUserExit = "catalog-user-exit"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
 }

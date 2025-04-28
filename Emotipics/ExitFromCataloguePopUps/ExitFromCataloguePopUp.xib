@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExitFromCataloguePopUp" customModule="Emotipics" customModuleProvider="target">
+            <connections>
+                <outlet property="exitFromCatalogueBtn" destination="b4c-ev-ZzZ" id="pqc-jJ-Jfx"/>
+                <outlet property="shareCatBtn" destination="0hb-N5-QWP" id="Xf4-YO-sQA"/>
+                <outlet property="sharedCatInformationView" destination="mta-tC-809" id="JCZ-nJ-u7r"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mta-tC-809">
+                    <rect key="frame" x="0.0" y="583" width="393" height="284"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared Catalogue Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-4t-Hc6">
+                            <rect key="frame" x="22" y="40" width="304" height="23"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22s-hS-vy2">
+                            <rect key="frame" x="358" y="25" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="25" id="7HA-3B-yej"/>
+                                <constraint firstAttribute="height" constant="25" id="bob-Td-xZB"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                            <connections>
+                                <action selector="dismissViewAction:" destination="-1" eventType="touchUpInside" id="FMg-NX-3CC"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="SK8-Q1-mCU">
+                            <rect key="frame" x="28" y="88" width="337" height="122.33333333333331"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzS-lA-nKe">
+                                    <rect key="frame" x="0.0" y="0.0" width="76.333333333333329" height="22"/>
+                                    <color key="tintColor" name="171717"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-30" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Details" image="exclamationmark.octagon" catalog="system">
+                                        <color key="titleColor" name="171717"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4c-ev-ZzZ">
+                                    <rect key="frame" x="0.0" y="50" width="171.33333333333334" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-30" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Exit From Catalogue" image="xmark" catalog="system">
+                                        <color key="titleColor" name="171717"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="exitCatalogue:" destination="-1" eventType="touchUpInside" id="SPz-FN-KRa"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-N5-QWP">
+                                    <rect key="frame" x="0.0" y="99" width="63" height="23.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="tintColor" name="171717"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="0.0" maxX="-30" maxY="0.0"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Share" image="square.and.arrow.up" catalog="system">
+                                        <color key="titleColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="SK8-Q1-mCU" firstAttribute="top" secondItem="I4M-4t-Hc6" secondAttribute="bottom" constant="25" id="3B2-iv-XpP"/>
+                        <constraint firstItem="22s-hS-vy2" firstAttribute="top" secondItem="mta-tC-809" secondAttribute="top" constant="25" id="EYR-hs-ZhZ"/>
+                        <constraint firstItem="I4M-4t-Hc6" firstAttribute="leading" secondItem="mta-tC-809" secondAttribute="leading" constant="22" id="Ffp-RH-EXz"/>
+                        <constraint firstAttribute="trailing" secondItem="SK8-Q1-mCU" secondAttribute="trailing" constant="28" id="OJb-i6-AMD"/>
+                        <constraint firstItem="22s-hS-vy2" firstAttribute="leading" secondItem="I4M-4t-Hc6" secondAttribute="trailing" constant="32" id="VAb-gd-IbQ"/>
+                        <constraint firstItem="I4M-4t-Hc6" firstAttribute="top" secondItem="mta-tC-809" secondAttribute="top" constant="40" id="XtX-BB-5bz"/>
+                        <constraint firstItem="SK8-Q1-mCU" firstAttribute="leading" secondItem="mta-tC-809" secondAttribute="leading" constant="28" id="YWe-WF-UJE"/>
+                        <constraint firstAttribute="trailing" secondItem="22s-hS-vy2" secondAttribute="trailing" constant="10" id="e4H-Iq-5Lq"/>
+                        <constraint firstAttribute="height" constant="284" id="xo7-WP-Qtd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mta-tC-809" secondAttribute="bottom" constant="-15" id="GCp-ts-ROP"/>
+                <constraint firstAttribute="trailing" secondItem="mta-tC-809" secondAttribute="trailing" id="ZFq-cP-uoP"/>
+                <constraint firstItem="mta-tC-809" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="b8i-bq-gVc"/>
+            </constraints>
+            <point key="canvasLocation" x="101.5267175572519" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="exclamationmark.octagon" catalog="system" width="128" height="112"/>
+        <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="171717">
+            <color red="0.090196078431372548" green="0.090196078431372548" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

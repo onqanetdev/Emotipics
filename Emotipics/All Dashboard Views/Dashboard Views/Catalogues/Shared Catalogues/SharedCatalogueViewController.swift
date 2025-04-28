@@ -55,16 +55,9 @@ class SharedCatalogueViewController: UIViewController {
     var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     
-    //var shareByMeViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
-    //var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+
     
-    
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemOrange
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
+    var catalogueUserExitViewModel: CatalogueUserExitViewModel = CatalogueUserExitViewModel()
     
     
     private var loaderView: ImageLoaderView?
@@ -91,17 +84,7 @@ class SharedCatalogueViewController: UIViewController {
     
     
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
+
     
     
     
@@ -199,6 +182,52 @@ class SharedCatalogueViewController: UIViewController {
     }
     
     
+    
+    
+    @objc func exitCatalogue(_ sender: UIButton){
+        let errorPopup = ExitFromCataloguePopUp(nibName: "ExitFromCataloguePopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+       // errorPopup.delegate = self
+        
+        errorPopup.onExitFromCatalogue = { [weak self] in
+            
+            guard let self = self else { return }
+            
+            if let catalogCode = self.sharedCatalogueViewModel.responseModel?.data?[sender.tag].catalog_code {
+                self.catalogueUserExitViewModel.requestModel.catalogeCode = catalogCode
+                //print("Exit from catalogue tapped. Sender tag is \(sender.tag)")
+                // Handle exit logic here
+                self.startCustomLoader()
+                catalogueUserExitViewModel.catalogueUserExitViewModel(request: catalogueUserExitViewModel.requestModel) { result in
+                    DispatchQueue.main.async {
+                       // self.activityIndicator.stopAnimating()
+                        self.stopCustomLoader()
+                        switch result {
+                        case .goAhead:
+                            DispatchQueue.main.async {
+                                self.shareWithMe()
+                            self.sharedCollView.reloadData()
+                                
+                           }
+                        case .heyStop:
+                            print("Error")
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            } else {
+                print("Catalog code not found for sender tag \(sender.tag)")
+            }
+            }
+        
+        
+        self.present(errorPopup, animated: true)
+    }
     
     
     @IBAction func changingSegments(_ sender: Any) {
@@ -400,7 +429,14 @@ extension SharedCatalogueViewController: UICollectionViewDelegate, UICollectionV
             if ownerMailId == savedEmail {
                 cell.sharedByLbl.text = "Share with other"
             } else {
+                //MARK: Here the exit from catalogue will get implemented
+                
                 cell.sharedByLbl.text = "Share by " + (sharedCatalogueViewModel.responseModel?.data?[indexPath.row].owner_detials?.name ?? "nil")
+                
+                cell.moreFeaturesBtn.tag = indexPath.row
+                
+                cell.moreFeaturesBtn.addTarget(self, action: #selector(exitCatalogue(_ :)), for: .touchUpInside)
+                
             }
             
             
@@ -446,6 +482,9 @@ extension SharedCatalogueViewController: UICollectionViewDelegate, UICollectionV
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Catalogue Code is ", sharedCatalogueViewModel.responseModel?.data?[indexPath.row].catalog_code )
+    }
     
 }
 
