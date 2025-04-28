@@ -33,6 +33,8 @@ enum APIEndpoint: String {
     case catalogueUserExit = "catalog-user-exit"
 //    case register = "/auth/register"
 //    case userProfile = "/user/profile"
+    
+    case grpCreate = "user-create-group"
 }
 
 let baseURL = "https://onqanet.net/dev_biltu01/emotipics/api/"

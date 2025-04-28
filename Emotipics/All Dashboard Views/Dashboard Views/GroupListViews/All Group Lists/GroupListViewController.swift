@@ -33,6 +33,27 @@ class GroupListViewController: UIViewController {
     
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
+    
+    
+ 
+    
+    
+    private var submitButton: SubmitButton = {
+        let btn = SubmitButton()
+        btn.plusViewBtn.setTitle("Create Group", for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.plusViewBtn.addTarget(self, action: #selector(groupCreate), for: .touchUpInside)
+        return btn
+    }()
+    
+    
+    
+  //  var createGroupViewModel: CreateGroupViewModel = CreateGroupViewModel()
+    
+    
+    private var loaderView: ImageLoaderView?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,15 +72,7 @@ class GroupListViewController: UIViewController {
             tblViewForGroups.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
             tblViewForGroups.separatorStyle = .none
             
-            //7tblViewForGroups.sel
-            
-//            let backgroundImage = UIImage(named: "TableViewBackground")
-//                let backgroundImageView = UIImageView(image: backgroundImage)
-//                backgroundImageView.contentMode = .scaleAspectFill
-//                tblViewForGroups.backgroundView = backgroundImageView
-//                
-//                // Make table view background transparent so image shows through cells
-//                tblViewForGroups.backgroundColor = .clear
+
             
         } else {
             
@@ -77,7 +90,7 @@ class GroupListViewController: UIViewController {
         }
         
 
-        
+        addPlusIcon()
     }
     
     
@@ -96,8 +109,66 @@ class GroupListViewController: UIViewController {
     }
     
     
+    
+    
+    func addPlusIcon(){
+        // floatingBtn.addSubview(Flo)
+        view.addSubview(submitButton)
+        
+        NSLayoutConstraint.activate([
+            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            submitButton.heightAnchor.constraint(equalToConstant: 60)
+            
+        ])
+        
+    }
+    
+    
     @IBAction func backToPreVious(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+        
+    }
+    
+    
+    @objc func groupCreate(){
+       // print("Test 123")
+        navigationController?.pushViewController(CreateNewViewController(), animated: true)
+    }
+    
+    
+    
+ 
+    
+    
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
         
     }
     

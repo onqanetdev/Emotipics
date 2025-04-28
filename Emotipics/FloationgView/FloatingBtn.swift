@@ -12,7 +12,7 @@ class FloatingBtn: UIView {
     
     
     
-    private var plusViewBtn: UIButton = {
+    public var plusViewBtn: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
         btn.setBackgroundImage(UIImage(named: "PlusIcon"), for: .normal)
@@ -29,8 +29,7 @@ class FloatingBtn: UIView {
         self.addSubview(plusViewBtn)
         
         NSLayoutConstraint.activate([
-            //            plusViewBtn.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 30),
-            //            plusViewBtn.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 40),
+     
             plusViewBtn.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             plusViewBtn.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             plusViewBtn.heightAnchor.constraint(equalToConstant: 60),
