@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="catNameTxtFld" destination="Gkx-lz-bQU" id="87j-VB-b8A"/>
                 <outlet property="renameCatalogueView" destination="39S-ft-Vcw" id="7ta-n5-2dQ"/>
+                <outlet property="renameLbl" destination="P3u-mb-iPI" id="FMw-sc-sc6"/>
                 <outlet property="submitBtn" destination="TYe-WS-pA2" id="mR5-e2-MCi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -114,4 +114,13 @@ class CreateNewViewController: UIViewController {
         print("✔️ Done")
         
     }
+    
+    
+    
+    
+    @IBAction func backAction(_ sender: Any) {
+        
+    
+        navigationController?.popViewController(animated: true)
+    }
 }

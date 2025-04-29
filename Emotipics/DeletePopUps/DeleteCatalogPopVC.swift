@@ -64,8 +64,6 @@ class DeleteCatalogPopVC: UIViewController {
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.delegate = self
         self.present(errorPopup, animated: true)
-        
-   
     }
     
     

@@ -35,6 +35,9 @@ enum APIEndpoint: String {
 //    case userProfile = "/user/profile"
     
     case grpCreate = "user-create-group"
+    case grpList = "user-list-group"
+    case grpDelete = "user-remove-group"
+    case grpRename = "user-rename-group"
 }
 
 let baseURL = "https://onqanet.net/dev_biltu01/emotipics/api/"

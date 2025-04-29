@@ -28,7 +28,7 @@ class GroupTableViewCell: UITableViewCell {
     }
     
     
-    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var grpName: UILabel!
 
     @IBOutlet weak var noOfUsers: UILabel!
     
@@ -51,7 +51,7 @@ class GroupTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        userName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+        grpName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         noOfUsers.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
         daysLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
         noOfCounts.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 12)

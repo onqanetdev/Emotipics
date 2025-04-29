@@ -21,6 +21,15 @@ class RenameCatalogueVC: UIViewController {
     
     
     
+    
+    
+    
+    
+    @IBOutlet weak var renameLbl: UILabel!
+    
+    
+    
+    
     @IBOutlet weak var catNameTxtFld: UITextField!{
         didSet{
             catNameTxtFld.layer.cornerRadius = 8
@@ -47,14 +56,28 @@ class RenameCatalogueVC: UIViewController {
     
     let catalogueRenameViewModel:CatalogueRenameViewModel = CatalogueRenameViewModel()
     
+    let groupRenameViewModel: GroupRenameViewModel = GroupRenameViewModel()
     
     private var loaderView: ImageLoaderView?
     
+    
+    var groupCode: String = ""
+    var renameGrp: Bool = false
+    
+    
+    var onDismiss: (() -> Void)?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        
+        if renameGrp {
+            renameLbl.text = "Rename Group"
+            catNameTxtFld.placeholder = "Enter A New Group Name"
+        }
     }
     
     
@@ -69,6 +92,51 @@ class RenameCatalogueVC: UIViewController {
     
     
     @IBAction func submitNewName(_ sender: Any) {
+        
+//        guard let newName = catNameTxtFld.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newName.isEmpty else {
+//            AlertView.showAlert("Warning!", message: "Enter A Valid Name", okTitle: "OK")
+//            return
+//        }
+//        
+//        catalogueRenameViewModel.requestModel.catUUID = folder_UUID
+//        catalogueRenameViewModel.requestModel.newName = newName
+//        
+//        startCustomLoader()
+//        catalogueRenameViewModel.catalogueRenameViewModel(request: catalogueRenameViewModel.requestModel) { result in
+//            DispatchQueue.main.async {
+//                //self.activityIndicator.stopAnimating()
+//                self.stopCustomLoader()
+//                switch result {
+//                case .goAhead:
+//                    print("Shared Catalogue View Model 🫡 🫡 View Controller")
+//                    //table View Reload Data
+//                    DispatchQueue.main.async { [self] in
+//                        
+//                        self.dismiss(animated: true)
+//                        
+//                    }
+//                case .heyStop:
+//                    print("Error")
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
+        
+        
+        if renameGrp {
+           // self.dismiss(animated: true)
+            renameGroup()
+        } else {
+            renameCatalogue()
+        }
+        
+        
+    }
+    
+    func renameCatalogue(){
         
         guard let newName = catNameTxtFld.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newName.isEmpty else {
             AlertView.showAlert("Warning!", message: "Enter A Valid Name", okTitle: "OK")
@@ -92,6 +160,49 @@ class RenameCatalogueVC: UIViewController {
                         self.dismiss(animated: true)
                         
                     }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    func renameGroup(){
+        
+        guard let newName = catNameTxtFld.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newName.isEmpty else {
+            AlertView.showAlert("Warning!", message: "Enter A Valid Name", okTitle: "OK")
+            return
+        }
+        
+        groupRenameViewModel.requestModel.groupCode = groupCode
+        groupRenameViewModel.requestModel.groupName = newName
+        
+        startCustomLoader()
+        groupRenameViewModel.groupRenameViewModel(request: groupRenameViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                   print("Renamed Successful✅")
+                    //table View Reload Data
+                    
+//                    DispatchQueue.main.async { [self] in
+//                        
+//                        self.dismiss(animated: true)
+//                        
+//                    }
+                    
+                    DispatchQueue.main.async { [self] in
+                            self.onDismiss?()
+                            self.dismiss(animated: true)
+                        }
+                    
                 case .heyStop:
                     print("Error")
                 }

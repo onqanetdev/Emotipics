@@ -29,7 +29,7 @@
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="semibold"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudeepa Pal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L89-oB-MUP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sudeepa Pal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L89-oB-MUP">
                                 <rect key="frame" x="81" y="70" width="98" height="19.333333333333329"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="PoC-lQ-ti7"/>
@@ -110,10 +110,10 @@
                 <outlet property="aboutBtn" destination="9ne-0l-40v" id="Umb-Ri-yTb"/>
                 <outlet property="backGrdView" destination="itz-HH-x4T" id="uJj-qW-7cc"/>
                 <outlet property="daysLbl" destination="fMF-DE-ciQ" id="dc5-ha-EPP"/>
+                <outlet property="grpName" destination="L89-oB-MUP" id="AA3-Iy-thb"/>
                 <outlet property="imageViewGroup" destination="uDO-QE-BN3" id="e3Z-8J-yIJ"/>
                 <outlet property="noOfCounts" destination="lwV-KR-nVe" id="5QV-m5-PeX"/>
                 <outlet property="noOfUsers" destination="ACH-Gs-a2b" id="gsv-7x-owU"/>
-                <outlet property="userName" destination="L89-oB-MUP" id="l9w-gs-7CQ"/>
             </connections>
             <point key="canvasLocation" x="238.1679389312977" y="73.943661971830991"/>
         </tableViewCell>

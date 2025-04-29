@@ -7,10 +7,9 @@
 
 import UIKit
 
-class GroupListViewController: UIViewController {
+class GroupListViewController: UIViewController, DeleteCatalogDelegate {
 
-    
-    
+
     @IBOutlet weak var groupHeadingLbl: UILabel!{
         didSet {
             groupHeadingLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 25)
@@ -35,7 +34,7 @@ class GroupListViewController: UIViewController {
     
     
     
- 
+    
     
     
     private var submitButton: SubmitButton = {
@@ -48,20 +47,30 @@ class GroupListViewController: UIViewController {
     
     
     
-  //  var createGroupViewModel: CreateGroupViewModel = CreateGroupViewModel()
+    //  var createGroupViewModel: CreateGroupViewModel = CreateGroupViewModel()
+    
+    var  groupListingView: GroupListViewModel = GroupListViewModel()
     
     
     private var loaderView: ImageLoaderView?
     
     
+    var newResultArray:[GroupData] = []
+    
+    var indexNo: Int = 0
+    
+    
+    var groupDeleteViewModel: GroupDeleteViewModel = GroupDeleteViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         tblViewForGroups.dataSource = self
         tblViewForGroups.delegate = self
-
-    
+        
+        
         //Formation of the code if true
         
         if notificationView {
@@ -72,7 +81,7 @@ class GroupListViewController: UIViewController {
             tblViewForGroups.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
             tblViewForGroups.separatorStyle = .none
             
-
+            
             
         } else {
             
@@ -81,16 +90,17 @@ class GroupListViewController: UIViewController {
             tblViewForGroups.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "Group")
             
             let backgroundImage = UIImage(named: "TableViewBackground")
-                let backgroundImageView = UIImageView(image: backgroundImage)
-                backgroundImageView.contentMode = .scaleAspectFill
-                tblViewForGroups.backgroundView = backgroundImageView
-                
-                // Make table view background transparent so image shows through cells
-                tblViewForGroups.backgroundColor = .clear
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.contentMode = .scaleAspectFill
+            tblViewForGroups.backgroundView = backgroundImageView
+            
+            // Make table view background transparent so image shows through cells
+            tblViewForGroups.backgroundColor = .clear
         }
         
-
+        
         addPlusIcon()
+        loadingAllGroups()
     }
     
     
@@ -99,13 +109,15 @@ class GroupListViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
         //self.tabBarController?.editButtonItem.isHidden = true
         if let tabBarController = self.tabBarController {
-                for subview in tabBarController.view.subviews {
-                    if let button = subview as? UIButton,
-                       button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
-                        button.isHidden = true
-                    }
+            for subview in tabBarController.view.subviews {
+                if let button = subview as? UIButton,
+                   button.backgroundImage(for: .normal) == UIImage(named: "PlusIcon") {
+                    button.isHidden = true
                 }
             }
+        }
+        
+        loadingAllGroups()
     }
     
     
@@ -133,13 +145,45 @@ class GroupListViewController: UIViewController {
     
     
     @objc func groupCreate(){
-       // print("Test 123")
+        // print("Test 123")
         navigationController?.pushViewController(CreateNewViewController(), animated: true)
     }
     
     
     
- 
+    
+    func loadingAllGroups() {
+        groupListingView.requestModel.limit = "10"
+        groupListingView.requestModel.offset = "1"
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        
+        groupListingView.groupListViewModelFunc(request: groupListingView.requestModel) { result in
+            DispatchQueue.main.async { [self] in
+                // self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("✅ Data received successfully!")
+                    guard let resultArray = groupListingView.responseModel?.data else {
+                        return
+                    }
+                    
+                    newResultArray = resultArray
+                    self.tblViewForGroups.reloadData()
+                    
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
     
     
     
@@ -162,14 +206,106 @@ class GroupListViewController: UIViewController {
         // Stop and remove after 5 seconds
     }
     
+    
     func stopCustomLoader(){
         print("Trying to stop loader:", loaderView != nil)
         loaderView?.stopAnimating()
         loaderView?.removeFromSuperview()
         
         loaderView = nil
+    }
+    
+    
+    @objc func deleteUser(_ sender: UIButton){
+        print("Desired Group is ", newResultArray[sender.tag].group_code)
+        indexNo = sender.tag
+        let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
+        
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        // errorPopup.delegate = self
+        errorPopup.onCompletion = { [weak self] result in
+            switch result {
+            case .YES:
+                print("✅ User confirmed delete!")
+                
+                // Wait for popup to finish dismissing before presenting the next one
+                errorPopup.dismiss(animated: true) {
+                    // self?.deleteCatalogPopUp()
+                    self?.deleteCatalogGlobalPopUp()
+                    
+                }
+                
+            case .NO:
+                print("User canceled delete.")
+                errorPopup.dismiss(animated: true, completion: nil)
+            case .SHARE:
+                print("Sharing from Catalog")
+                
+//                errorPopup.dismiss(animated: true) {
+//                    self?.presentShareScreen()
+//                }
+            case .RENAME:
+                print("RENAME")
+                errorPopup.dismiss(animated: true){
+                    self?.presentRenameGroupScreen()
+                }
+            }
+            
+            
+        }
+        
+        self.present(errorPopup, animated: true)
+    }
+    
+    
+    
+    func deleteCatalogGlobalPopUp() {
+        let errorPopup = DeleteCatalogueGlobalPopUp(nibName: "DeleteCatalogueGlobalPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
         
         
+    }
+    
+    
+    
+    func deletePopup() {
+        //Implement the delete function
+        
+       print("Hello --> ", indexNo)
+        
+       deleteGroup(groupIndex: indexNo)
+        
+        
+    }
+    
+    func deleteGroup(groupIndex: Int){
+        groupDeleteViewModel.requestModel.groupCode = newResultArray[groupIndex].group_code ?? "0"
+        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        
+        groupDeleteViewModel.groupDeleteViewModel(request: groupDeleteViewModel.requestModel) { result in
+            DispatchQueue.main.async { [self] in
+                // self.activityIndicator.stopAnimating()
+                stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("Hello")
+                    newResultArray.remove(at: groupIndex)
+                    tblViewForGroups.reloadData()
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
     }
     
     
@@ -179,26 +315,31 @@ class GroupListViewController: UIViewController {
 
 extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return newResultArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         
         if notificationView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! NotificationViewCell
-//           cell.backgroundColor = .clear
-//            cell.layer.cornerRadius = 25
-//            cell.clipsToBounds = true
             cell.selectionStyle = .none
             
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! GroupTableViewCell
-           cell.backgroundColor = .clear
+            cell.backgroundColor = .clear
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
             cell.selectionStyle = .none
+            
+            cell.grpName.text = newResultArray[indexPath.row].groupname
+            cell.noOfUsers.text = String(newResultArray[indexPath.row].members ?? 0) + " users"
+            
+            cell.aboutBtn.tag = indexPath.row
+            cell.aboutBtn.addTarget(self, action: #selector(deleteUser(_ :)), for: .touchUpInside)
+            
+            
             return cell
         }
         

@@ -18,6 +18,10 @@
 		8A00BA252DBF712900513C44 /* SubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA242DBF712900513C44 /* SubmitButton.swift */; };
 		8A00BA292DBF86D700513C44 /* CreateNewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A00BA282DBF86D700513C44 /* CreateNewViewController.xib */; };
 		8A00BA2A2DBF86D700513C44 /* CreateNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA272DBF86D700513C44 /* CreateNewViewController.swift */; };
+		8A00BA2D2DBF94E400513C44 /* GroupListAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA2C2DBF94E400513C44 /* GroupListAPICaller.swift */; };
+		8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA2F2DBF964900513C44 /* GroupListResModel.swift */; };
+		8A00BA322DBF965F00513C44 /* GroupListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */; };
+		8A00BA342DBF9EAF00513C44 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA332DBF9EAF00513C44 /* GroupListViewModel.swift */; };
 		8A0496422DAD064700ECF441 /* CatalogueUserAddResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496412DAD064700ECF441 /* CatalogueUserAddResModel.swift */; };
 		8A0496442DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496432DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift */; };
 		8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */; };
@@ -39,6 +43,15 @@
 		8A075CA52DBA38F6004554E2 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
+		8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */; };
+		8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */; };
+		8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */; };
+		8A1B0E962DC099BD00A3CCA5 /* GroupDeleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E952DC099BD00A3CCA5 /* GroupDeleteViewModel.swift */; };
+		8A1B0E982DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E972DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift */; };
+		8A1B0E9B2DC0A89500A3CCA5 /* GroupRenameReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E9A2DC0A89500A3CCA5 /* GroupRenameReqModel.swift */; };
+		8A1B0E9D2DC0A8A700A3CCA5 /* GroupRenameResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E9C2DC0A8A700A3CCA5 /* GroupRenameResModel.swift */; };
+		8A1B0E9F2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E9E2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift */; };
+		8A1B0EA12DC0AC6200A3CCA5 /* GroupRenameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0EA02DC0AC6200A3CCA5 /* GroupRenameViewModel.swift */; };
 		8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91C2D7AC96800F358FD /* Circular.swift */; };
 		8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A22D91E2D7B19C300F358FD /* TextEnums.swift */; };
 		8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A241DDD2D7FFA19002D7BA8 /* ContactsViewController.xib */; };
@@ -224,6 +237,10 @@
 		8A00BA242DBF712900513C44 /* SubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitButton.swift; sourceTree = "<group>"; };
 		8A00BA272DBF86D700513C44 /* CreateNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewViewController.swift; sourceTree = "<group>"; };
 		8A00BA282DBF86D700513C44 /* CreateNewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateNewViewController.xib; sourceTree = "<group>"; };
+		8A00BA2C2DBF94E400513C44 /* GroupListAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListAPICaller.swift; sourceTree = "<group>"; };
+		8A00BA2F2DBF964900513C44 /* GroupListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListResModel.swift; sourceTree = "<group>"; };
+		8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListReqModel.swift; sourceTree = "<group>"; };
+		8A00BA332DBF9EAF00513C44 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
 		8A0496412DAD064700ECF441 /* CatalogueUserAddResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddResModel.swift; sourceTree = "<group>"; };
 		8A0496432DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddReqModel.swift; sourceTree = "<group>"; };
 		8A0496452DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserAddApiCaller.swift; sourceTree = "<group>"; };
@@ -245,6 +262,15 @@
 		8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
+		8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteResModel.swift; sourceTree = "<group>"; };
+		8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteReqModel.swift; sourceTree = "<group>"; };
+		8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupAPICaller.swift; sourceTree = "<group>"; };
+		8A1B0E952DC099BD00A3CCA5 /* GroupDeleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteViewModel.swift; sourceTree = "<group>"; };
+		8A1B0E972DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroupListViewController+ExtraFunctions.swift"; sourceTree = "<group>"; };
+		8A1B0E9A2DC0A89500A3CCA5 /* GroupRenameReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRenameReqModel.swift; sourceTree = "<group>"; };
+		8A1B0E9C2DC0A8A700A3CCA5 /* GroupRenameResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRenameResModel.swift; sourceTree = "<group>"; };
+		8A1B0E9E2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameGroupAPICaller.swift; sourceTree = "<group>"; };
+		8A1B0EA02DC0AC6200A3CCA5 /* GroupRenameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRenameViewModel.swift; sourceTree = "<group>"; };
 		8A22D91C2D7AC96800F358FD /* Circular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circular.swift; sourceTree = "<group>"; };
 		8A22D91E2D7B19C300F358FD /* TextEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEnums.swift; sourceTree = "<group>"; };
 		8A241DDC2D7FFA19002D7BA8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
@@ -458,6 +484,15 @@
 			path = "Create New Group VIews";
 			sourceTree = "<group>";
 		};
+		8A00BA2E2DBF962C00513C44 /* GroupListModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A00BA2F2DBF964900513C44 /* GroupListResModel.swift */,
+				8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */,
+			);
+			path = GroupListModel;
+			sourceTree = "<group>";
+		};
 		8A0496402DAD05DD00ECF441 /* Catalogue-User-Add */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +576,24 @@
 				8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */,
 			);
 			path = ImageCollectionView;
+			sourceTree = "<group>";
+		};
+		8A1B0E8E2DC0965D00A3CCA5 /* GroupDeleteModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */,
+				8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */,
+			);
+			path = GroupDeleteModel;
+			sourceTree = "<group>";
+		};
+		8A1B0E992DC0A87B00A3CCA5 /* GroupRenameModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A1B0E9A2DC0A89500A3CCA5 /* GroupRenameReqModel.swift */,
+				8A1B0E9C2DC0A8A700A3CCA5 /* GroupRenameResModel.swift */,
+			);
+			path = GroupRenameModel;
 			sourceTree = "<group>";
 		};
 		8A22D9192D7AC75400F358FD /* Circular Views */ = {
@@ -678,7 +731,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3B82412D88205A00CFFC37 /* All Group Lists */,
-				8A3B82422D88207500CFFC37 /* GroupListTableView */,
+				8A3B82422D88207500CFFC37 /* GroupListTableViewCell */,
 			);
 			path = GroupListViews;
 			sourceTree = "<group>";
@@ -688,17 +741,18 @@
 			children = (
 				8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */,
 				8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */,
+				8A1B0E972DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift */,
 			);
 			path = "All Group Lists";
 			sourceTree = "<group>";
 		};
-		8A3B82422D88207500CFFC37 /* GroupListTableView */ = {
+		8A3B82422D88207500CFFC37 /* GroupListTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */,
 				8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */,
 			);
-			path = GroupListTableView;
+			path = GroupListTableViewCell;
 			sourceTree = "<group>";
 		};
 		8A3B82472D88455D00CFFC37 /* NotificationViews */ = {
@@ -758,6 +812,9 @@
 				8ACDCBCF2DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift */,
 				8A00BA172DBF45FF00513C44 /* CatalogueUserExitAPICaller.swift */,
 				8A00BA202DBF5E7B00513C44 /* GroupCreateAPICaller.swift */,
+				8A00BA2C2DBF94E400513C44 /* GroupListAPICaller.swift */,
+				8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */,
+				8A1B0E9E2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -765,6 +822,9 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A1B0E992DC0A87B00A3CCA5 /* GroupRenameModel */,
+				8A1B0E8E2DC0965D00A3CCA5 /* GroupDeleteModel */,
+				8A00BA2E2DBF962C00513C44 /* GroupListModel */,
 				8A00BA1B2DBF5ACE00513C44 /* GroupCreateModel */,
 				8A00BA122DBF3F1B00513C44 /* CatalogueUserExitModel */,
 				8ACDCBC52DBB5FE500A9B3EE /* CatalogueRenameModel */,
@@ -821,6 +881,9 @@
 				8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */,
 				8A00BA192DBF497900513C44 /* CatalogueUserExitViewModel.swift */,
 				8A00BA222DBF606700513C44 /* CreateGroupViewModel.swift */,
+				8A00BA332DBF9EAF00513C44 /* GroupListViewModel.swift */,
+				8A1B0E952DC099BD00A3CCA5 /* GroupDeleteViewModel.swift */,
+				8A1B0EA02DC0AC6200A3CCA5 /* GroupRenameViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1433,6 +1496,7 @@
 				8ACDCBBE2DBB455100A9B3EE /* CatalogueUserRmResModel.swift in Sources */,
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
 				8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */,
+				8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */,
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A00BA212DBF5E7B00513C44 /* GroupCreateAPICaller.swift in Sources */,
@@ -1442,8 +1506,12 @@
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
 				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
 				8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */,
+				8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */,
+				8A1B0E982DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift in Sources */,
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
+				8A1B0E9D2DC0A8A700A3CCA5 /* GroupRenameResModel.swift in Sources */,
 				8ACDCBD72DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift in Sources */,
+				8A00BA342DBF9EAF00513C44 /* GroupListViewModel.swift in Sources */,
 				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
 				8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */,
 				8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */,
@@ -1457,9 +1525,12 @@
 				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
 				8A00BA1A2DBF497900513C44 /* CatalogueUserExitViewModel.swift in Sources */,
 				8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */,
+				8A1B0E9F2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift in Sources */,
+				8A00BA2D2DBF94E400513C44 /* GroupListAPICaller.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
+				8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
 				8A9E7D5C2DA3A4B9007CE28A /* DeleteContactModel.swift in Sources */,
@@ -1485,6 +1556,7 @@
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */,
+				8A1B0E962DC099BD00A3CCA5 /* GroupDeleteViewModel.swift in Sources */,
 				8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
@@ -1506,6 +1578,7 @@
 				8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */,
 				8AED694B2DB10431006F7289 /* ImageLoaderView.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
+				8A1B0E9B2DC0A89500A3CCA5 /* GroupRenameReqModel.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
 				8A00BA2A2DBF86D700513C44 /* CreateNewViewController.swift in Sources */,
@@ -1529,6 +1602,7 @@
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
 				8A075C972DB9EC19004554E2 /* ShareImageListAPICaller.swift in Sources */,
 				8A3ED25F2DAF663F002C3129 /* CatalogueImageListViewModel.swift in Sources */,
+				8A00BA322DBF965F00513C44 /* GroupListReqModel.swift in Sources */,
 				8A97F79F2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.swift in Sources */,
 				8AC269452DB8C21100B4EEDF /* ShareImageReqModel.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
@@ -1536,6 +1610,7 @@
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
 				8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */,
 				8A3ED2662DAFAE11002C3129 /* DeleteImageResModel.swift in Sources */,
+				8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
@@ -1546,6 +1621,7 @@
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8A1B0EA12DC0AC6200A3CCA5 /* GroupRenameViewModel.swift in Sources */,
 				8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */,
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
