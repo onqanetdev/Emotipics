@@ -64,6 +64,10 @@ class SharedInformationVC: UIViewController {
     private var loaderView: ImageLoaderView?
     
     
+    var catalogCode = ""
+    
+    var catalogueUserListViewModel: CatalogueUserListViewModel = CatalogueUserListViewModel()
+    
     //Group sharing Information
     
     var groupSharingVC: Bool = false
@@ -77,6 +81,9 @@ class SharedInformationVC: UIViewController {
     
     
     var groupUserDeleteViewModel: GroupUserDeleteViewModel = GroupUserDeleteViewModel()
+    
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,6 +101,7 @@ class SharedInformationVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadingViewsAcc()
+        
     }
     
     

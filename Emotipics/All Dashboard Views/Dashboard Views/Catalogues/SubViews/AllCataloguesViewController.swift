@@ -574,10 +574,14 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         shareInfo.modalTransitionStyle = .crossDissolve
         shareInfo.delegate = self
         if let sharedList = catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog,
-           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name{
+           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name,
+           let catalogcode = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_code
+        {
             
             shareInfo.temporaryMemory = sharedList
             shareInfo.catalogueNameText = catalogName
+            
+            shareInfo.catalogCode = catalogcode
             
         } else {
             AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
