@@ -71,6 +71,14 @@ class SharingContactListVC: UIViewController {
     var imgId: Int = 0
     var userCode: String = ""
     
+    
+    //For All Groups
+    var contactListForGr: Bool = false
+    var groupData:[GroupData] = []
+    var groupAddUserViewModel:GroupAddUserViewModel = GroupAddUserViewModel()
+    var groupCode: String = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -95,68 +103,42 @@ class SharingContactListVC: UIViewController {
     
     @IBAction func btnAction(_ sender: Any) {
     
-        if shareImage {
-            let modifiedStringForShare = selectedContactsForShare.joined(separator: ",")
-            print("Modified String for share Image: \(modifiedStringForShare)")
+        if contactListForGr {
             
-            
-            imageShareViewModel.requestModel.image_id = imgId
-            imageShareViewModel.requestModel.user_code = modifiedStringForShare
-            
-            imageShareViewModel.imageShareViewModel(request:imageShareViewModel.requestModel, viewController: self ) { result in
-                DispatchQueue.main.async {
-                    //self.activityIndicator.stopAnimating()
-                    
-                    switch result {
-                    case .goAhead:
-                        print("Success from SharingContactListVC")
-                        
-                        
-                        // UIWindow reset logic
-                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                              let window = windowScene.windows.first else {
-                            return
-                        }
-
-                        let dashboardVC = DashboardViewController()
-                        let navController = UINavigationController(rootViewController: dashboardVC)
-                        window.rootViewController = navController
-                        window.makeKeyAndVisible()
-
-                    case .heyStop:
-                        print("Error")
-                    }
-                    
-                    
-                }
-            }
-            
+            addContactsToGrp()
             
         } else {
-            print("Submitted List Will Be", catalogData[shareIndex].catalog_code )
-            // print("Selcted Contacts will be", selectedContacts)
-            let modifiedString = selectedContacts.joined(separator: ",")
-            print("Modified String: \(modifiedString)")
-            //activityIndicator.startAnimating()
-            if let catalogCode = catalogData[shareIndex].catalog_code{
+            
+            //Group Adding true or false
+            
+            if shareImage {
+                let modifiedStringForShare = selectedContactsForShare.joined(separator: ",")
+                print("Modified String for share Image: \(modifiedStringForShare)")
                 
                 
-                catalogueUserAddViewModel.requestModel.catalogcode = catalogCode
-                catalogueUserAddViewModel.requestModel.contact_code = modifiedString
+                imageShareViewModel.requestModel.image_id = imgId
+                imageShareViewModel.requestModel.user_code = modifiedStringForShare
                 
-                catalogueUserAddViewModel.catalogueUserAddViewModel(request:catalogueUserAddViewModel.requestModel, viewController: self ) { result in
+                imageShareViewModel.imageShareViewModel(request:imageShareViewModel.requestModel, viewController: self ) { result in
                     DispatchQueue.main.async {
                         //self.activityIndicator.stopAnimating()
                         
                         switch result {
                         case .goAhead:
                             print("Success from SharingContactListVC")
-                            //table View Reload Data
-                            DispatchQueue.main.async {
-                                //self.contactsTblView.reloadData()
-                                // self.dismiss(animated: true )
-                                //self.deleteDelegate?.updateUI()
+                            
+                            
+                            // UIWindow reset logic
+                            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                  let window = windowScene.windows.first else {
+                                return
                             }
+                            
+                            let dashboardVC = DashboardViewController()
+                            let navController = UINavigationController(rootViewController: dashboardVC)
+                            window.rootViewController = navController
+                            window.makeKeyAndVisible()
+                            
                         case .heyStop:
                             print("Error")
                         }
@@ -166,14 +148,47 @@ class SharingContactListVC: UIViewController {
                 }
                 
                 
-            } else {
-                AlertView.showAlert("Warning!", message: "Catalog Code is not valid", okTitle: "OK")
-            }
-            
-            
-            
-            
-        }//Is shareImage false
+            } else 
+            {
+                print("Submitted List Will Be", catalogData[shareIndex].catalog_code )
+                // print("Selcted Contacts will be", selectedContacts)
+                let modifiedString = selectedContacts.joined(separator: ",")
+                print("Modified String: \(modifiedString)")
+                //activityIndicator.startAnimating()
+                if let catalogCode = catalogData[shareIndex].catalog_code{
+                    
+                    
+                    catalogueUserAddViewModel.requestModel.catalogcode = catalogCode
+                    catalogueUserAddViewModel.requestModel.contact_code = modifiedString
+                    
+                    catalogueUserAddViewModel.catalogueUserAddViewModel(request:catalogueUserAddViewModel.requestModel, viewController: self ) { result in
+                        DispatchQueue.main.async {
+                            //self.activityIndicator.stopAnimating()
+                            
+                            switch result {
+                            case .goAhead:
+                                print("Success from SharingContactListVC")
+                                //table View Reload Data
+                                DispatchQueue.main.async {
+                                    //self.contactsTblView.reloadData()
+                                    // self.dismiss(animated: true )
+                                    //self.deleteDelegate?.updateUI()
+                                }
+                            case .heyStop:
+                                print("Error")
+                            }
+                            
+                            
+                        }
+                    }
+                    
+                    
+                } else {
+                    AlertView.showAlert("Warning!", message: "Catalog Code is not valid", okTitle: "OK")
+                }
+            }//Is shareImage false
+            //Group Adding true or false
+        }
         
     }
     
@@ -197,18 +212,27 @@ class SharingContactListVC: UIViewController {
                 case .goAhead:
              
                     DispatchQueue.main.async {
+                        
                         if let latestData = self.conatactViewModel.responseModel?.data {
                             self.data = latestData
                             if self.shareImage {
                                 self.catalogueNameLbl.text = self.catalogueName
                             } else {
-                                self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                                if self.contactListForGr {
+                                    self.catalogueNameLbl.text = self.groupData[self.shareIndex].groupname
+                                    print("The Data", self.groupData[self.shareIndex].groupname)
+                                } else {
+                                    self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                                }
                             }
                            // print("The Catalog data is ", self.catalogData[self.shareIndex].catalog_name)
                         } else {
                             AlertView.showAlert("Alert!", message: "There is no data", okTitle: "OK")
                         }
                         self.contactListTblView.reloadData()
+                        
+                        
+                        
                     }
                 case .heyStop:
                     print("Error")
@@ -222,14 +246,52 @@ class SharingContactListVC: UIViewController {
     }
     
     
+    func addContactsToGrp() {
+        let modifiedStringForShare = selectedContacts.joined(separator: ",")
+        print("Modified String for share Image: \(modifiedStringForShare)")
+        
+        
+        groupAddUserViewModel.requestModel.groupCode = groupCode
+        groupAddUserViewModel.requestModel.contactCode = modifiedStringForShare
+        
+        groupAddUserViewModel.groupAddUserViewModel(request:groupAddUserViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                //self.activityIndicator.stopAnimating()
+                
+                switch result {
+                case .goAhead:
+                    print("Success from SharingContactListVC for adding contact✅")
+                    
+                    
+                    // UIWindow reset logic
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                          let window = windowScene.windows.first else {
+                        return
+                    }
+
+                    let dashboardVC = DashboardViewController()
+                    let navController = UINavigationController(rootViewController: dashboardVC)
+                    window.rootViewController = navController
+                    window.makeKeyAndVisible()
+
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+        }
+        
+        
+    }
+    
+    
+    
+    
     @objc func checkUncheck(_ sender: UIButton){
         if sender.currentBackgroundImage == UIImage(systemName: "square"){
             sender.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
-            //selectedContacts.append(data[sender.tag].contactcode ?? "No Contacts")
-//            print("The contact code is", data[sender.tag].contactcode)
-//            print("The Catalog code is", catalogData[shareIndex].catalog_code)
-//            print("The Catalog Name is", catalogData[shareIndex].catalog_name)
-//            print("----------------------------------------------------------")
+  
             
             if shareImage {
                 
@@ -323,6 +385,12 @@ extension SharingContactListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 75
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("All My Selected Contacts Are ", selectedContacts)
     }
 }
 

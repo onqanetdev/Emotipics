@@ -43,12 +43,6 @@ class SharedInformationVC: UIViewController {
     
     
     
-    
-    
-    
-    
-    
-    
     weak var delegate: SharedInformationDelegate?
     
     
@@ -69,6 +63,21 @@ class SharedInformationVC: UIViewController {
     
     private var loaderView: ImageLoaderView?
     
+    
+    //Group sharing Information
+    
+    var groupSharingVC: Bool = false
+    
+    var grpTempMemory:[ShareByMe] = []
+    
+    var grpUserListViewModel: GroupUserListViewModel = GroupUserListViewModel()
+    
+    var groupCode:String = ""
+    var groupUserList:[GroupUserListData] = []
+    
+    
+    var groupUserDeleteViewModel: GroupUserDeleteViewModel = GroupUserDeleteViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,17 +88,12 @@ class SharedInformationVC: UIViewController {
         sharedConListTblView.register(UINib(nibName: "SharedInformationTVC", bundle: nil), forCellReuseIdentifier: "SharingTVC")
         
         
-        if temporaryMemory.count == 0 {
-            emptyView.isHidden = false
-            sharedConListTblView.isHidden = true
-        } else {
-            emptyView.isHidden = true
-            sharedConListTblView.isHidden = false
-        }
+        loadingViewsAcc()
         
-        catalogueName.text = catalogueNameText
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadingViewsAcc()
     }
     
     
@@ -115,20 +119,70 @@ class SharedInformationVC: UIViewController {
     
     @objc func respectiveContactCode(_ sender: UIButton) {
         
-        print("Deleted Contact code would be", temporaryMemory[sender.tag].contactcode as Any)
-        
-        print("The folder code would be--->", temporaryMemory[sender.tag].catalogcode)
-        print("The User That Should be deleted", temporaryMemory[sender.tag].id)
-        
-        
-        guard let contactId = temporaryMemory[sender.tag].id else {
-            AlertView.showAlert("Warning!", message: "Not Able to Fetch Contact Id", okTitle: "OK")
-            return
+        if groupSharingVC {
+            print("Deleted Conatact would be", groupUserList[sender.tag].id)
+            
+            guard let groupUserId = groupUserList[sender.tag].id else {
+                return
+            }
+            
+            groupUserDelete(contactId: groupUserId, removeAt: sender.tag)
+            
         }
-        //Deleting user from respective folder
-        catalogueUserDelete(folderContactCode: contactId, removeAt: sender.tag)
-        
+        else
+        {
+            print("Deleted Contact code would be", temporaryMemory[sender.tag].contactcode as Any)
+            
+            print("The folder code would be--->", temporaryMemory[sender.tag].catalogcode)
+            print("The User That Should be deleted", temporaryMemory[sender.tag].id)
+            
+            
+            guard let contactId = temporaryMemory[sender.tag].id else {
+                AlertView.showAlert("Warning!", message: "Not Able to Fetch Contact Id", okTitle: "OK")
+                return
+            }
+            //Deleting user from respective folder
+            catalogueUserDelete(folderContactCode: contactId, removeAt: sender.tag)
+        }
     }
+    
+    func userListForGrp(){
+        grpUserListViewModel.requestModel.groupCode = groupCode
+        startCustomLoader()
+        grpUserListViewModel.groupAddUserViewModel(request: grpUserListViewModel.requestModel)
+        { result in
+            DispatchQueue.main.async {
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("Group User List Loaded✅")
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                        //                        self.groupUserList = grpUserListViewModel.responseModel?.data ?? <#default value#>
+                        
+                        guard let userGroup = grpUserListViewModel.responseModel?.data else {
+                        
+                           // AlertView.showAlert("Warning!", message: "", okTitle: <#T##String#>)
+                            
+                            return
+                        }
+                        self.groupUserList = userGroup
+                        
+                        self.sharedConListTblView.reloadData()
+                        
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
     
     func catalogueUserDelete(folderContactCode:Int, removeAt: Int){
         catalogueUserDeleteViewModel.requestModel.contactCode = folderContactCode
@@ -184,8 +238,6 @@ class SharedInformationVC: UIViewController {
         
         
     }
-    
-    
 }
 
 
@@ -195,18 +247,40 @@ class SharedInformationVC: UIViewController {
 extension SharedInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // return 2
-        return temporaryMemory.count
+        if groupSharingVC {
+            //return grpTempMemory.count
+            return groupUserList.count
+        } else {
+            return temporaryMemory.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
-        cell.sharedContactLbl.text = temporaryMemory[indexPath.row].contactlist?.contactdetails?.name
-        
-        cell.deleteSharedBtn.tag = indexPath.row
-        
-        cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
-        
-        return cell
+        if groupSharingVC {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
+            
+            //            cell.sharedContactLbl.text = grpTempMemory[indexPath.row].groupcontact?.contactdetails?.name
+            
+            cell.sharedContactLbl.text = groupUserList[indexPath.row].groupcontact?.contactdetails?.name
+            
+            cell.deleteSharedBtn.tag = indexPath.row
+            
+            cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
+            
+            return cell
+            
+            
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
+            cell.sharedContactLbl.text = temporaryMemory[indexPath.row].contactlist?.contactdetails?.name
+            
+            cell.deleteSharedBtn.tag = indexPath.row
+            
+            cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
+            
+            return cell
+            
+        }
     }
     
     

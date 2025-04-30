@@ -49,7 +49,8 @@ struct GroupData: Codable {
     let datetime : String?
     let members : Int?
     let owner_detials : folderOwner?
-    let sharebyme : [String]?
+    //let sharebyme : [String]?
+    let sharebyme : [ShareByMe]?
 
     enum CodingKeys: String, CodingKey {
 
@@ -80,7 +81,8 @@ struct GroupData: Codable {
         datetime = try values.decodeIfPresent(String.self, forKey: .datetime)
         members = try values.decodeIfPresent(Int.self, forKey: .members)
         owner_detials = try values.decodeIfPresent(folderOwner.self, forKey: .owner_detials)
-        sharebyme = try values.decodeIfPresent([String].self, forKey: .sharebyme)
+//        sharebyme = try values.decodeIfPresent([String].self, forKey: .sharebyme)
+        sharebyme = try values.decodeIfPresent([ShareByMe].self, forKey: .sharebyme)
     }
 
 }
@@ -106,3 +108,36 @@ struct folderOwner: Codable {
     }
 
 }
+
+
+struct ShareByMe:Codable {
+    let id: Int?
+    let groupcode: String?
+    let contactcode: String?
+    let status: String?
+    let groupcontact: Datam?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case groupcode = "groupcode"
+        case contactcode = "contactcode"
+        case status = "status"
+        case groupcontact = "groupcontact"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        groupcode = try values.decodeIfPresent(String.self, forKey: .groupcode)
+        contactcode = try values.decodeIfPresent(String.self, forKey: .contactcode)
+        
+        status = try values.decodeIfPresent(String.self, forKey: .status)
+        groupcontact = try values.decodeIfPresent(Datam.self, forKey: .groupcontact)
+    }
+    
+    
+}
+
+
+

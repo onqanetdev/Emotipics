@@ -240,11 +240,11 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
                 print("User canceled delete.")
                 errorPopup.dismiss(animated: true, completion: nil)
             case .SHARE:
-                print("Sharing from Catalog")
+                print("Group Share Tapped ✅")
                 
-//                errorPopup.dismiss(animated: true) {
-//                    self?.presentShareScreen()
-//                }
+                errorPopup.dismiss(animated: true) {
+                    self?.presentShareScreen()
+                }
             case .RENAME:
                 print("RENAME")
                 errorPopup.dismiss(animated: true){
