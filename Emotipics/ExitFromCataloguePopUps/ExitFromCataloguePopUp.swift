@@ -8,7 +8,7 @@
 import UIKit
 
 class ExitFromCataloguePopUp: UIViewController {
-
+    
     
     @IBOutlet weak var sharedCatInformationView: UIView!{
         didSet {
@@ -20,26 +20,24 @@ class ExitFromCataloguePopUp: UIViewController {
     
     
     @IBOutlet weak var exitFromCatalogueBtn: UIButton!
-    
-    
-    
-    
-    
     @IBOutlet weak var shareCatBtn: UIButton!
     
     
     
     var onExitFromCatalogue: (() -> Void)?
-        var onShareCatalogue: (() -> Void)?
+    var onShareCatalogue: (() -> Void)?
+    var onExitFromGroup: (() -> Void)?
     
+    
+    var isGroupViewCalling: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
     @IBAction func dismissViewAction(_ sender: Any) {
         
         dismiss(animated: true)
@@ -50,9 +48,13 @@ class ExitFromCataloguePopUp: UIViewController {
     
     @IBAction func exitCatalogue(_ sender: Any) {
         
-        onExitFromCatalogue?()
-        dismiss(animated: true)
-        
+        if isGroupViewCalling {
+            onExitFromGroup?()
+            dismiss(animated: true)
+        } else {
+            onExitFromCatalogue?()
+            dismiss(animated: true)
+        }
     }
     
 }

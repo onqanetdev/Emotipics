@@ -93,10 +93,7 @@ class LoginViewModel {
                 } else {
                     print("User Logged In Code Not Found")
                 }
-                
-                
-                
-                
+            
                 completion(.goAhead)
             case .failure(let error):
                 print("Getting Error from View Model", error)

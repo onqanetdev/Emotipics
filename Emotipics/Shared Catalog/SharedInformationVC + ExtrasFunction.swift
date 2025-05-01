@@ -9,6 +9,8 @@ import Foundation
 
 
 extension SharedInformationVC {
+    
+    
     func loadingViewsAcc(){
         if groupSharingVC {
             userListForGrp()
@@ -103,6 +105,8 @@ extension SharedInformationVC {
             
         }
     }
+    
+    
 }
 
 

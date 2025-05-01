@@ -54,6 +54,10 @@
 		8A075CA12DBA34FB004554E2 /* DashboardResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA02DBA34FB004554E2 /* DashboardResModel.swift */; };
 		8A075CA32DBA3640004554E2 /* DashboardAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */; };
 		8A075CA52DBA38F6004554E2 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */; };
+		8A09D3762DC326290050A3CA /* UserExitFromGrpAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */; };
+		8A09D3792DC3443E0050A3CA /* GroupUserExitReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3782DC3443E0050A3CA /* GroupUserExitReqModel.swift */; };
+		8A09D37B2DC3444F0050A3CA /* GroupUserExitResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */; };
+		8A09D37D2DC349700050A3CA /* GroupUserExitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
 		8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */; };
@@ -290,6 +294,10 @@
 		8A075CA02DBA34FB004554E2 /* DashboardResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardResModel.swift; sourceTree = "<group>"; };
 		8A075CA22DBA3640004554E2 /* DashboardAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardAPICaller.swift; sourceTree = "<group>"; };
 		8A075CA42DBA38F6004554E2 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExitFromGrpAPICaller.swift; sourceTree = "<group>"; };
+		8A09D3782DC3443E0050A3CA /* GroupUserExitReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitReqModel.swift; sourceTree = "<group>"; };
+		8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitResModel.swift; sourceTree = "<group>"; };
+		8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitViewModel.swift; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
 		8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteResModel.swift; sourceTree = "<group>"; };
@@ -630,6 +638,15 @@
 			path = DashBoardModel;
 			sourceTree = "<group>";
 		};
+		8A09D3772DC344080050A3CA /* GroupUserExitModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A09D3782DC3443E0050A3CA /* GroupUserExitReqModel.swift */,
+				8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */,
+			);
+			path = GroupUserExitModel;
+			sourceTree = "<group>";
+		};
 		8A1823562D87D315007A2E90 /* ImageCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -889,6 +906,7 @@
 				8A0368542DC1ECE900995B8E /* GroupUserListAPICaller.swift */,
 				8A03685F2DC201CC00995B8E /* GroupUserDeleteAPICaller.swift */,
 				8A0368632DC2285000995B8E /* CatalogueUserListAPICaller.swift */,
+				8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -896,6 +914,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A09D3772DC344080050A3CA /* GroupUserExitModel */,
 				8A0368652DC22A6A00995B8E /* CatalogueUserListModel */,
 				8A03685A2DC1FFC900995B8E /* GroupDeleteUserModel */,
 				8A03684F2DC1E90000995B8E /* GroupUserList */,
@@ -966,6 +985,7 @@
 				8A0368562DC1F2BB00995B8E /* GroupUserListViewModel.swift */,
 				8A0368612DC203C100995B8E /* GroupUserDeleteViewModel.swift */,
 				8A03686A2DC235E300995B8E /* CatalogueUserListViewModel.swift */,
+				8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1608,6 +1628,7 @@
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A0368622DC203C100995B8E /* GroupUserDeleteViewModel.swift in Sources */,
 				8A44CD6E2DB626DD0044E904 /* CopyOrMoveImgResModel.swift in Sources */,
+				8A09D37B2DC3444F0050A3CA /* GroupUserExitResModel.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
 				8A00BA142DBF3F7E00513C44 /* CatUserExitReqModel.swift in Sources */,
 				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
@@ -1620,6 +1641,7 @@
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */,
 				8A1B0EAA2DC0D6FF00A3CCA5 /* GroupAddUserViewModel.swift in Sources */,
+				8A09D3762DC326290050A3CA /* UserExitFromGrpAPICaller.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
 				8AF792442D9BDF0B00085FEC /* RegisterAPICaller.swift in Sources */,
 				8A1B0EA82DC0D4DD00A3CCA5 /* GroupAddUserAPICaller.swift in Sources */,
@@ -1672,7 +1694,9 @@
 				8A03685E2DC200BA00995B8E /* GroupUserDeleteResModel.swift in Sources */,
 				8AED694B2DB10431006F7289 /* ImageLoaderView.swift in Sources */,
 				8A22D91F2D7B19C300F358FD /* TextEnums.swift in Sources */,
+				8A09D37D2DC349700050A3CA /* GroupUserExitViewModel.swift in Sources */,
 				8A1B0E9B2DC0A89500A3CCA5 /* GroupRenameReqModel.swift in Sources */,
+				8A09D3792DC3443E0050A3CA /* GroupUserExitReqModel.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
 				8A03685C2DC1FFF600995B8E /* GroupUserDeleteReqModel.swift in Sources */,

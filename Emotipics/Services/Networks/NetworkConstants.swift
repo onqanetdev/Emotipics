@@ -42,6 +42,7 @@ enum APIEndpoint: String {
     case grpUserAdd = "group-user-add"
     case grpUserList = "group-user-lists"
     case grpUserDelete = "group-user-remove"
+    case userExitFromGrp = "group-user-exit"
     
 }
 

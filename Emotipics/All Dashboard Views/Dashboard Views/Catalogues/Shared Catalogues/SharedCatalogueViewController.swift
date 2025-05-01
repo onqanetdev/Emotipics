@@ -218,7 +218,7 @@ class SharedCatalogueViewController: UIViewController {
                     }
                     
                     
-                }
+                } // result ending
                 
             } else {
                 print("Catalog code not found for sender tag \(sender.tag)")

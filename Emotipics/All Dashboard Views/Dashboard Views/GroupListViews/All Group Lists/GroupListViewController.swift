@@ -63,6 +63,9 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
     var groupDeleteViewModel: GroupDeleteViewModel = GroupDeleteViewModel()
     
     
+    var groupUserExitViewModel: GroupUserExitViewModel = GroupUserExitViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -176,11 +179,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
     
@@ -217,45 +216,30 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
     
     
     @objc func deleteUser(_ sender: UIButton){
-        print("Desired Group is ", newResultArray[sender.tag].group_code)
-        indexNo = sender.tag
-        let errorPopup = DeleteCatalogPopVC(nibName: "DeleteCatalogPopVC", bundle: nil)
-        
-        errorPopup.modalPresentationStyle = .overCurrentContext
-        errorPopup.modalTransitionStyle = .crossDissolve
-        // errorPopup.delegate = self
-        errorPopup.onCompletion = { [weak self] result in
-            switch result {
-            case .YES:
-                print("✅ User confirmed delete!")
-                
-                // Wait for popup to finish dismissing before presenting the next one
-                errorPopup.dismiss(animated: true) {
-                    // self?.deleteCatalogPopUp()
-                    self?.deleteCatalogGlobalPopUp()
-                    
-                }
-                
-            case .NO:
-                print("User canceled delete.")
-                errorPopup.dismiss(animated: true, completion: nil)
-            case .SHARE:
-                print("Group Share Tapped ✅")
-                
-                errorPopup.dismiss(animated: true) {
-                    self?.presentShareScreen()
-                }
-            case .RENAME:
-                print("RENAME")
-                errorPopup.dismiss(animated: true){
-                    self?.presentRenameGroupScreen()
-                }
+
+        guard let userCode = UserDefaults.standard.string(forKey: "userCode") else {
+                return
             }
-            
-            
+        
+        guard let groupOwnerCode = groupListingView.responseModel?.data?[sender.tag].owner_detials?.code else {
+            return
         }
         
-        self.present(errorPopup, animated: true)
+
+        
+        if userCode == groupOwnerCode {
+            print("User Code : \(userCode) and Group Owner code is \(groupOwnerCode)")
+            detailsPopUp(index:sender.tag)
+        } else {
+            //print("Group Code")
+            exitFromGroupPopUp(index: sender.tag)
+        }
+        
+        
+//        print("User code is: \(userCode)")
+//        detailsPopUp(index:sender.tag)
+        
+        
     }
     
     
