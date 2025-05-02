@@ -71,7 +71,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 9
+        return contentsTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,9 +125,10 @@ extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {
             
         }else if contentsTitle[indexPath.row] == "Groups" {
             navigationController?.pushViewController(GroupListViewController(), animated: true)
+        } else if contentsTitle[indexPath.row] == "Logout" {
+            print("log Out")
+            SessionManager.shared.logoutUser()
         }
     }
-    
-    
     
 }

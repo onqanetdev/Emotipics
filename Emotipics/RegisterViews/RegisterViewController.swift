@@ -148,6 +148,8 @@ class RegisterViewController: UIViewController {
     
     //let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
     
+   
+    
     var iconClick = true
     
     
@@ -306,6 +308,7 @@ class RegisterViewController: UIViewController {
     @objc func forgotPasswordTapped() {
         print("Forgot password label tapped")
         // Navigate or perform action here
+        forgetPasswordfunction()
     }
 
     

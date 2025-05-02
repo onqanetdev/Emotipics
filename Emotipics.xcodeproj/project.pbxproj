@@ -58,6 +58,14 @@
 		8A09D3792DC3443E0050A3CA /* GroupUserExitReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3782DC3443E0050A3CA /* GroupUserExitReqModel.swift */; };
 		8A09D37B2DC3444F0050A3CA /* GroupUserExitResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */; };
 		8A09D37D2DC349700050A3CA /* GroupUserExitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */; };
+		8A09D3802DC3644F0050A3CA /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D37F2DC3644F0050A3CA /* SessionManager.swift */; };
+		8A09D3832DC371820050A3CA /* ForgetPasswordResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3822DC371820050A3CA /* ForgetPasswordResModel.swift */; };
+		8A09D3852DC3743A0050A3CA /* ForgetPasswordReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3842DC3743A0050A3CA /* ForgetPasswordReqModel.swift */; };
+		8A09D3882DC378390050A3CA /* ForgetPasswordAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3872DC378390050A3CA /* ForgetPasswordAPICaller.swift */; };
+		8A09D38A2DC37B350050A3CA /* ForgetUserPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D3892DC37B350050A3CA /* ForgetUserPasswordViewModel.swift */; };
+		8A09D38C2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D38B2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift */; };
+		8A09D3902DC394880050A3CA /* SetNewLoginPinVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */; };
+		8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
 		8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */; };
@@ -229,6 +237,11 @@
 		8ACDCBD62DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD52DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib */; };
 		8ACDCBD72DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD42DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
+		8AE113F02DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113EF2DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift */; };
+		8AE113F32DC48F0D00B8CBA5 /* ResetPasswordResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F22DC48F0D00B8CBA5 /* ResetPasswordResModel.swift */; };
+		8AE113F52DC48F2500B8CBA5 /* ResetPasswordReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F42DC48F2500B8CBA5 /* ResetPasswordReqModel.swift */; };
+		8AE113F72DC493F400B8CBA5 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */; };
+		8AE113F92DC4A24B00B8CBA5 /* ProfileAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F82DC4A24B00B8CBA5 /* ProfileAPICaller.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
@@ -298,6 +311,14 @@
 		8A09D3782DC3443E0050A3CA /* GroupUserExitReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitReqModel.swift; sourceTree = "<group>"; };
 		8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitResModel.swift; sourceTree = "<group>"; };
 		8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserExitViewModel.swift; sourceTree = "<group>"; };
+		8A09D37F2DC3644F0050A3CA /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8A09D3822DC371820050A3CA /* ForgetPasswordResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordResModel.swift; sourceTree = "<group>"; };
+		8A09D3842DC3743A0050A3CA /* ForgetPasswordReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordReqModel.swift; sourceTree = "<group>"; };
+		8A09D3872DC378390050A3CA /* ForgetPasswordAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordAPICaller.swift; sourceTree = "<group>"; };
+		8A09D3892DC37B350050A3CA /* ForgetUserPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetUserPasswordViewModel.swift; sourceTree = "<group>"; };
+		8A09D38B2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewController+Extra Functions.swift"; sourceTree = "<group>"; };
+		8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNewLoginPinVC.swift; sourceTree = "<group>"; };
+		8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetNewLoginPinVC.xib; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
 		8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteResModel.swift; sourceTree = "<group>"; };
@@ -470,6 +491,11 @@
 		8ACDCBD42DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitFromCataloguePopUp.swift; sourceTree = "<group>"; };
 		8ACDCBD52DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExitFromCataloguePopUp.xib; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
+		8AE113EF2DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordAPICaller.swift; sourceTree = "<group>"; };
+		8AE113F22DC48F0D00B8CBA5 /* ResetPasswordResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordResModel.swift; sourceTree = "<group>"; };
+		8AE113F42DC48F2500B8CBA5 /* ResetPasswordReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordReqModel.swift; sourceTree = "<group>"; };
+		8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		8AE113F82DC4A24B00B8CBA5 /* ProfileAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPICaller.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -645,6 +671,42 @@
 				8A09D37A2DC3444F0050A3CA /* GroupUserExitResModel.swift */,
 			);
 			path = GroupUserExitModel;
+			sourceTree = "<group>";
+		};
+		8A09D37E2DC35A330050A3CA /* Logout Functionality */ = {
+			isa = PBXGroup;
+			children = (
+				8A09D37F2DC3644F0050A3CA /* SessionManager.swift */,
+			);
+			path = "Logout Functionality";
+			sourceTree = "<group>";
+		};
+		8A09D3812DC36A730050A3CA /* Forget Password Model */ = {
+			isa = PBXGroup;
+			children = (
+				8A09D3822DC371820050A3CA /* ForgetPasswordResModel.swift */,
+				8A09D3842DC3743A0050A3CA /* ForgetPasswordReqModel.swift */,
+			);
+			path = "Forget Password Model";
+			sourceTree = "<group>";
+		};
+		8A09D3862DC377ED0050A3CA /* Profile API Caller */ = {
+			isa = PBXGroup;
+			children = (
+				8A09D3872DC378390050A3CA /* ForgetPasswordAPICaller.swift */,
+				8AE113EF2DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift */,
+				8AE113F82DC4A24B00B8CBA5 /* ProfileAPICaller.swift */,
+			);
+			path = "Profile API Caller";
+			sourceTree = "<group>";
+		};
+		8A09D38D2DC394180050A3CA /* New Login Password */ = {
+			isa = PBXGroup;
+			children = (
+				8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */,
+				8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */,
+			);
+			path = "New Login Password";
 			sourceTree = "<group>";
 		};
 		8A1823562D87D315007A2E90 /* ImageCollectionView */ = {
@@ -907,6 +969,7 @@
 				8A03685F2DC201CC00995B8E /* GroupUserDeleteAPICaller.swift */,
 				8A0368632DC2285000995B8E /* CatalogueUserListAPICaller.swift */,
 				8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */,
+				8A09D3862DC377ED0050A3CA /* Profile API Caller */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -914,6 +977,8 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8AE113F12DC48EF300B8CBA5 /* Reset Password Model */,
+				8A09D3812DC36A730050A3CA /* Forget Password Model */,
 				8A09D3772DC344080050A3CA /* GroupUserExitModel */,
 				8A0368652DC22A6A00995B8E /* CatalogueUserListModel */,
 				8A03685A2DC1FFC900995B8E /* GroupDeleteUserModel */,
@@ -986,6 +1051,8 @@
 				8A0368612DC203C100995B8E /* GroupUserDeleteViewModel.swift */,
 				8A03686A2DC235E300995B8E /* CatalogueUserListViewModel.swift */,
 				8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */,
+				8A09D3892DC37B350050A3CA /* ForgetUserPasswordViewModel.swift */,
+				8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1036,8 +1103,10 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A09D37E2DC35A330050A3CA /* Logout Functionality */,
 				8ACDCBD32DBBA4D800A9B3EE /* ExitFromCataloguePopUps */,
 				8ACDCBCA2DBB6D7100A9B3EE /* RenameCataloguePopUp */,
+				8A09D38D2DC394180050A3CA /* New Login Password */,
 				8A44CD752DB64BE80044E904 /* CopyMoveCatalogueListing */,
 				8AED69492DB103F4006F7289 /* LoaderView */,
 				8A3ED26D2DAFBD11002C3129 /* ImageDeletePopUp */,
@@ -1102,6 +1171,7 @@
 			children = (
 				8A4353C32D75AA1200ABB7A0 /* RegisterViewController.swift */,
 				8A4353C42D75AA1200ABB7A0 /* RegisterViewController.xib */,
+				8A09D38B2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift */,
 			);
 			path = RegisterViews;
 			sourceTree = "<group>";
@@ -1408,6 +1478,15 @@
 			path = ExitFromCataloguePopUps;
 			sourceTree = "<group>";
 		};
+		8AE113F12DC48EF300B8CBA5 /* Reset Password Model */ = {
+			isa = PBXGroup;
+			children = (
+				8AE113F22DC48F0D00B8CBA5 /* ResetPasswordResModel.swift */,
+				8AE113F42DC48F2500B8CBA5 /* ResetPasswordReqModel.swift */,
+			);
+			path = "Reset Password Model";
+			sourceTree = "<group>";
+		};
 		8AEADB522DA6435500BF187E /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1571,6 +1650,7 @@
 				8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */,
 				8A4616442DA91DCF00661A9C /* SharedInformationVC.xib in Resources */,
 				8A4353B32D758F4700ABB7A0 /* jost_bold.ttf in Resources */,
+				8A09D3902DC394880050A3CA /* SetNewLoginPinVC.xib in Resources */,
 				8A2DED972D897B890057DFC0 /* GroupDetailViewController.xib in Resources */,
 				8A9612042DA93F9C0026A1FC /* SharingContactListTVC.xib in Resources */,
 				8A4353BA2D758F4700ABB7A0 /* lato_light.ttf in Resources */,
@@ -1617,6 +1697,7 @@
 				8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */,
 				8A1B0E9D2DC0A8A700A3CCA5 /* GroupRenameResModel.swift in Sources */,
 				8ACDCBD72DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift in Sources */,
+				8AE113F72DC493F400B8CBA5 /* ResetPasswordViewModel.swift in Sources */,
 				8A00BA342DBF9EAF00513C44 /* GroupListViewModel.swift in Sources */,
 				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
 				8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */,
@@ -1636,8 +1717,10 @@
 				8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */,
 				8A1B0E9F2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift in Sources */,
 				8A00BA2D2DBF94E400513C44 /* GroupListAPICaller.swift in Sources */,
+				8AE113F52DC48F2500B8CBA5 /* ResetPasswordReqModel.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
+				8AE113F92DC4A24B00B8CBA5 /* ProfileAPICaller.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */,
 				8A1B0EAA2DC0D6FF00A3CCA5 /* GroupAddUserViewModel.swift in Sources */,
@@ -1649,18 +1732,22 @@
 				8A3ED2682DAFB059002C3129 /* DeleteImageApiCaller.swift in Sources */,
 				8A9E7D692DA3E6B2007CE28A /* CatalogueListingApiCaller.swift in Sources */,
 				8AFDE6462DA5336A005AA235 /* EmptyCollView.swift in Sources */,
+				8A09D38A2DC37B350050A3CA /* ForgetUserPasswordViewModel.swift in Sources */,
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
 				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8A9E7D6B2DA3F78B007CE28A /* CatalogueListingViewModel.swift in Sources */,
 				8ACDCBD22DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift in Sources */,
+				8A09D3802DC3644F0050A3CA /* SessionManager.swift in Sources */,
+				8A09D3882DC378390050A3CA /* ForgetPasswordAPICaller.swift in Sources */,
 				8A075C9E2DB9FE11004554E2 /* SharedImageByMeVC.swift in Sources */,
 				8A97F79A2DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift in Sources */,
 				8A03686B2DC235E300995B8E /* CatalogueUserListViewModel.swift in Sources */,
 				8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
+				8A09D38C2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift in Sources */,
 				8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */,
 				8ACDCBD02DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift in Sources */,
 				8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */,
@@ -1718,6 +1805,7 @@
 				8ACDCBC72DBB604B00A9B3EE /* CatalogueRenameReqModel.swift in Sources */,
 				8A3ED25D2DAF64AB002C3129 /* CatalogueImageListApiCaller.swift in Sources */,
 				8A05216B2D797CA700AE5FC4 /* EntryViewController+TableViewControllers.swift in Sources */,
+				8AE113F32DC48F0D00B8CBA5 /* ResetPasswordResModel.swift in Sources */,
 				8A241DE52D803C03002D7BA8 /* FloatingBtn.swift in Sources */,
 				8A0496482DAD27BE00ECF441 /* CatalogueUserAddViewModel.swift in Sources */,
 				8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */,
@@ -1729,6 +1817,7 @@
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
+				8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */,
 				8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */,
 				8A3ED2662DAFAE11002C3129 /* DeleteImageResModel.swift in Sources */,
 				8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */,
@@ -1746,6 +1835,7 @@
 				8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */,
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,
 				8A3128542D9F94A1003FA3B8 /* AddContactApiCaller.swift in Sources */,
+				8AE113F02DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift in Sources */,
 				8A00BA1D2DBF5AF900513C44 /* GroupCreateReqModel.swift in Sources */,
 				8A00BA1F2DBF5CA600513C44 /* GroupCreateResModel.swift in Sources */,
 				8A0368512DC1E92A00995B8E /* GroupUserListResModel.swift in Sources */,
@@ -1759,6 +1849,7 @@
 				8A0496462DAD089D00ECF441 /* CatalogueUserAddApiCaller.swift in Sources */,
 				8A00BA182DBF45FF00513C44 /* CatalogueUserExitAPICaller.swift in Sources */,
 				8A3ED2642DAFADF3002C3129 /* DeleteImageReqModel.swift in Sources */,
+				8A09D3852DC3743A0050A3CA /* ForgetPasswordReqModel.swift in Sources */,
 				8A075C992DB9F029004554E2 /* SharedImageByMeViewModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
@@ -1772,6 +1863,7 @@
 				8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */,
 				8AC2694B2DB8DF3700B4EEDF /* ImageShareViewModel.swift in Sources */,
 				8A2E517E2D9D0B6F00D4A023 /* OTPPopUPVC.swift in Sources */,
+				8A09D3832DC371820050A3CA /* ForgetPasswordResModel.swift in Sources */,
 				8A0368672DC22B0000995B8E /* CatalogueUserListReqModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -68,6 +68,14 @@ class RenameCatalogueVC: UIViewController {
     var onDismiss: (() -> Void)?
 
     
+    // Forget Password Labels
+    var isForgetPassWord: Bool = false
+    
+    var forgetPasswordViewModel: ForgetUserPasswordViewModel = ForgetUserPasswordViewModel()
+    
+    
+    var onForgetPassword: (() -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,6 +85,9 @@ class RenameCatalogueVC: UIViewController {
         if renameGrp {
             renameLbl.text = "Rename Group"
             catNameTxtFld.placeholder = "Enter A New Group Name"
+        } else if isForgetPassWord {
+            renameLbl.text = "Forgot Passowrd"
+            catNameTxtFld.placeholder = "Enter Email"
         }
     }
     
@@ -93,43 +104,14 @@ class RenameCatalogueVC: UIViewController {
     
     @IBAction func submitNewName(_ sender: Any) {
         
-//        guard let newName = catNameTxtFld.text?.trimmingCharacters(in: .whitespacesAndNewlines), !newName.isEmpty else {
-//            AlertView.showAlert("Warning!", message: "Enter A Valid Name", okTitle: "OK")
-//            return
-//        }
-//        
-//        catalogueRenameViewModel.requestModel.catUUID = folder_UUID
-//        catalogueRenameViewModel.requestModel.newName = newName
-//        
-//        startCustomLoader()
-//        catalogueRenameViewModel.catalogueRenameViewModel(request: catalogueRenameViewModel.requestModel) { result in
-//            DispatchQueue.main.async {
-//                //self.activityIndicator.stopAnimating()
-//                self.stopCustomLoader()
-//                switch result {
-//                case .goAhead:
-//                    print("Shared Catalogue View Model 🫡 🫡 View Controller")
-//                    //table View Reload Data
-//                    DispatchQueue.main.async { [self] in
-//                        
-//                        self.dismiss(animated: true)
-//                        
-//                    }
-//                case .heyStop:
-//                    print("Error")
-//                }
-//                
-//                
-//            }
-//            
-//            
-//        }
-        
         
         if renameGrp {
            // self.dismiss(animated: true)
             renameGroup()
-        } else {
+        } else if isForgetPassWord {
+            forgetPasswordConfirm()
+        }
+        else {
             renameCatalogue()
         }
         
@@ -244,4 +226,48 @@ class RenameCatalogueVC: UIViewController {
         
     }
     
+    
+    func forgetPasswordConfirm(){
+        
+        guard let emailText = catNameTxtFld.text?.trimmingCharacters(in: .whitespacesAndNewlines), !emailText.isEmpty else {
+            AlertView.showAlert("Warning!", message: "Enter An Email", okTitle: "OK")
+            return
+        }
+        
+        forgetPasswordViewModel.requestModel.email = emailText
+       
+        
+        startCustomLoader()
+        forgetPasswordViewModel.forgetUserPasswordViewModel(request: forgetPasswordViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                   print("Email Sent Successful✅")
+                    //table View Reload Data
+
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.dismiss(animated: true) {
+                            print("Dismiss complete")
+                            self?.onForgetPassword?()
+                        }
+                    }
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
 }
+
+
+
+
