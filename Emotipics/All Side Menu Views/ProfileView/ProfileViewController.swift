@@ -41,6 +41,10 @@ class ProfileViewController: UIViewController {
     weak var delegate: ProfileViewControllerDelegate?
    
     
+    private var loaderView: ImageLoaderView?
+    
+    var profileDetailsViewModel: ProfileDetailsViewModel = ProfileDetailsViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,7 +70,68 @@ class ProfileViewController: UIViewController {
         
         //sideMenuManager.setup(in: self)
 
+        loadAllProfileDetails()
     }
+    
+    
+    
+    func loadAllProfileDetails(){
+       // createGroupViewModel.requestModel.groupName = groupName
+        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        
+        profileDetailsViewModel.profileDetailsViewModel { result in
+            DispatchQueue.main.async { [weak self] in
+                // self.activityIndicator.stopAnimating()
+                self?.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("Profile Updated")
+                    self?.userName.text = self?.profileDetailsViewModel.responseModel?.user?.name
+                    self?.userEmail.text = self?.profileDetailsViewModel.responseModel?.user?.email
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+   
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
+    
 }
 
 extension ProfileViewController : UITableViewDelegate , UITableViewDataSource {

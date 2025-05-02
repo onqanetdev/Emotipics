@@ -242,6 +242,9 @@
 		8AE113F52DC48F2500B8CBA5 /* ResetPasswordReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F42DC48F2500B8CBA5 /* ResetPasswordReqModel.swift */; };
 		8AE113F72DC493F400B8CBA5 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */; };
 		8AE113F92DC4A24B00B8CBA5 /* ProfileAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F82DC4A24B00B8CBA5 /* ProfileAPICaller.swift */; };
+		8AE113FC2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113FB2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift */; };
+		8AE113FE2DC4A60A00B8CBA5 /* ProfileDetailsResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113FD2DC4A60A00B8CBA5 /* ProfileDetailsResModel.swift */; };
+		8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
@@ -496,6 +499,9 @@
 		8AE113F42DC48F2500B8CBA5 /* ResetPasswordReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordReqModel.swift; sourceTree = "<group>"; };
 		8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
 		8AE113F82DC4A24B00B8CBA5 /* ProfileAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPICaller.swift; sourceTree = "<group>"; };
+		8AE113FB2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsReqModel.swift; sourceTree = "<group>"; };
+		8AE113FD2DC4A60A00B8CBA5 /* ProfileDetailsResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsResModel.swift; sourceTree = "<group>"; };
+		8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewModel.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -977,6 +983,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8AE113FA2DC4A3F700B8CBA5 /* Profile Model */,
 				8AE113F12DC48EF300B8CBA5 /* Reset Password Model */,
 				8A09D3812DC36A730050A3CA /* Forget Password Model */,
 				8A09D3772DC344080050A3CA /* GroupUserExitModel */,
@@ -1053,6 +1060,7 @@
 				8A09D37C2DC349700050A3CA /* GroupUserExitViewModel.swift */,
 				8A09D3892DC37B350050A3CA /* ForgetUserPasswordViewModel.swift */,
 				8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */,
+				8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1487,6 +1495,15 @@
 			path = "Reset Password Model";
 			sourceTree = "<group>";
 		};
+		8AE113FA2DC4A3F700B8CBA5 /* Profile Model */ = {
+			isa = PBXGroup;
+			children = (
+				8AE113FB2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift */,
+				8AE113FD2DC4A60A00B8CBA5 /* ProfileDetailsResModel.swift */,
+			);
+			path = "Profile Model";
+			sourceTree = "<group>";
+		};
 		8AEADB522DA6435500BF187E /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1678,12 +1695,14 @@
 				8A0368572DC1F2BB00995B8E /* GroupUserListViewModel.swift in Sources */,
 				8A05216E2D7996FD00AE5FC4 /* EntryTableViewCell.swift in Sources */,
 				8A00BA232DBF606700513C44 /* CreateGroupViewModel.swift in Sources */,
+				8AE113FE2DC4A60A00B8CBA5 /* ProfileDetailsResModel.swift in Sources */,
 				8ACDCBBE2DBB455100A9B3EE /* CatalogueUserRmResModel.swift in Sources */,
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
 				8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */,
 				8A1B0EA62DC0D13300A3CCA5 /* GroupAddUserResModel.swift in Sources */,
 				8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */,
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
+				8AE113FC2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A00BA212DBF5E7B00513C44 /* GroupCreateAPICaller.swift in Sources */,
 				8A3ED25B2DAF6330002C3129 /* CatalogueImageListResModel.swift in Sources */,
@@ -1814,6 +1833,7 @@
 				8A00BA322DBF965F00513C44 /* GroupListReqModel.swift in Sources */,
 				8A97F79F2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.swift in Sources */,
 				8AC269452DB8C21100B4EEDF /* ShareImageReqModel.swift in Sources */,
+				8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,

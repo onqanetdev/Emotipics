@@ -35,10 +35,15 @@ class MyAccountDetailsVC: UIViewController {
     @IBOutlet weak var myAccountDetails: UITableView!
     
     
-    
     let contents = ["Account Details", "Catalogue", "Conatact List", "Groups", "Logout"]
     
     let contentsIcon = ["MyAccount", "Catalogue", "ContactList", "Group", "Logout"]
+    
+    
+    var profileDetailsViewModel: ProfileDetailsViewModel = ProfileDetailsViewModel()
+    
+    
+    private var loaderView: ImageLoaderView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +58,11 @@ class MyAccountDetailsVC: UIViewController {
         userTitleLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 22)
         userEmailLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 15)
         myAccountLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 19)
+        
+        
+        
+        loadAllProfileDetails()
+        
     }
     
     
@@ -63,6 +73,65 @@ class MyAccountDetailsVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    
+    func loadAllProfileDetails(){
+       // createGroupViewModel.requestModel.groupName = groupName
+        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        
+        profileDetailsViewModel.profileDetailsViewModel { result in
+            DispatchQueue.main.async { [weak self] in
+                // self.activityIndicator.stopAnimating()
+                self?.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("Profile Updated")
+                    self?.userTitleLbl.text = self?.profileDetailsViewModel.responseModel?.user?.name
+                    self?.userEmailLbl.text = self?.profileDetailsViewModel.responseModel?.user?.email
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
     
 }
 

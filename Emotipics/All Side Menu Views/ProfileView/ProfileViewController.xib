@@ -11,7 +11,7 @@
         <array key="Inter-Regular.ttf">
             <string>Inter-Regular</string>
         </array>
-        <array key="Poppins-Regular.ttf">
+        <array key="poppins_regular.ttf">
             <string>Poppins-Regular</string>
         </array>
     </customFonts>
@@ -52,13 +52,13 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H2l-bj-JoH">
                                     <rect key="frame" x="0.0" y="25.333333333333329" width="299" height="25.333333333333329"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biltu@onqanet.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZa-bf-v0e">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="biltu@onqanet.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vZa-bf-v0e">
                                             <rect key="frame" x="0.0" y="2" width="151" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="BTE-rj-4zz"/>
                                                 <constraint firstAttribute="width" constant="151" id="gRD-qU-Gyc"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                            <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="11"/>
                                             <color key="textColor" red="0.98823529480000005" green="0.98823529480000005" blue="0.98823529480000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <nil key="highlightedColor"/>
                                         </label>

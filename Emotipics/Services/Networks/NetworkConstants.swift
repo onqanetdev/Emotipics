@@ -46,7 +46,7 @@ enum APIEndpoint: String {
     // user profile
     case forgetPassword = "forget-password"
     case resetPassword = "reset-password"
-    
+    case profileDetails = "user-profile"
     
     
 }
