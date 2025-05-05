@@ -68,6 +68,7 @@
 		8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
+		8A192B6B2DC884C7007F5868 /* GroupImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */; };
 		8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */; };
 		8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */; };
 		8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */; };
@@ -109,6 +110,9 @@
 		8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */; };
 		8A3128642D9FF9FB003FA3B8 /* GetContactResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */; };
 		8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */; };
+		8A3431FC2DC87AAD005FE890 /* GroupImageListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FB2DC87AAD005FE890 /* GroupImageListResModel.swift */; };
+		8A3431FE2DC87F4C005FE890 /* GroupImageListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FD2DC87F4C005FE890 /* GroupImageListReqModel.swift */; };
+		8A3432002DC87FED005FE890 /* GroupImageListAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -324,6 +328,7 @@
 		8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetNewLoginPinVC.xib; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
+		8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListViewModel.swift; sourceTree = "<group>"; };
 		8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteResModel.swift; sourceTree = "<group>"; };
 		8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteReqModel.swift; sourceTree = "<group>"; };
 		8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupAPICaller.swift; sourceTree = "<group>"; };
@@ -365,6 +370,9 @@
 		8A3128602D9FF2AE003FA3B8 /* GetAllContactList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllContactList.swift; sourceTree = "<group>"; };
 		8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContactResponseModel.swift; sourceTree = "<group>"; };
 		8A3128652D9FFFB5003FA3B8 /* AllContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllContactsViewModel.swift; sourceTree = "<group>"; };
+		8A3431FB2DC87AAD005FE890 /* GroupImageListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListResModel.swift; sourceTree = "<group>"; };
+		8A3431FD2DC87F4C005FE890 /* GroupImageListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListReqModel.swift; sourceTree = "<group>"; };
+		8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListAPICaller.swift; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -882,6 +890,15 @@
 			path = GetContacts;
 			sourceTree = "<group>";
 		};
+		8A3431FA2DC87A56005FE890 /* GroupImageListModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A3431FB2DC87AAD005FE890 /* GroupImageListResModel.swift */,
+				8A3431FD2DC87F4C005FE890 /* GroupImageListReqModel.swift */,
+			);
+			path = GroupImageListModel;
+			sourceTree = "<group>";
+		};
 		8A3B823C2D881A8A00CFFC37 /* GroupListViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -976,6 +993,7 @@
 				8A0368632DC2285000995B8E /* CatalogueUserListAPICaller.swift */,
 				8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */,
 				8A09D3862DC377ED0050A3CA /* Profile API Caller */,
+				8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -983,6 +1001,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A3431FA2DC87A56005FE890 /* GroupImageListModel */,
 				8AE113FA2DC4A3F700B8CBA5 /* Profile Model */,
 				8AE113F12DC48EF300B8CBA5 /* Reset Password Model */,
 				8A09D3812DC36A730050A3CA /* Forget Password Model */,
@@ -1061,6 +1080,7 @@
 				8A09D3892DC37B350050A3CA /* ForgetUserPasswordViewModel.swift */,
 				8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */,
 				8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */,
+				8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1757,6 +1777,7 @@
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
 				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8A9E7D6B2DA3F78B007CE28A /* CatalogueListingViewModel.swift in Sources */,
+				8A3432002DC87FED005FE890 /* GroupImageListAPICaller.swift in Sources */,
 				8ACDCBD22DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift in Sources */,
 				8A09D3802DC3644F0050A3CA /* SessionManager.swift in Sources */,
 				8A09D3882DC378390050A3CA /* ForgetPasswordAPICaller.swift in Sources */,
@@ -1776,6 +1797,7 @@
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */,
 				8A1B0E962DC099BD00A3CCA5 /* GroupDeleteViewModel.swift in Sources */,
+				8A192B6B2DC884C7007F5868 /* GroupImageListViewModel.swift in Sources */,
 				8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
@@ -1788,6 +1810,7 @@
 				8A0521692D79625E00AE5FC4 /* EntryViewController+EntryViewCollectionViews.swift in Sources */,
 				8AC269502DB910C300B4EEDF /* SharedImgReqModel.swift in Sources */,
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
+				8A3431FC2DC87AAD005FE890 /* GroupImageListResModel.swift in Sources */,
 				8A0368552DC1ECE900995B8E /* GroupUserListAPICaller.swift in Sources */,
 				8A0496442DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
@@ -1803,6 +1826,7 @@
 				8A09D37D2DC349700050A3CA /* GroupUserExitViewModel.swift in Sources */,
 				8A1B0E9B2DC0A89500A3CCA5 /* GroupRenameReqModel.swift in Sources */,
 				8A09D3792DC3443E0050A3CA /* GroupUserExitReqModel.swift in Sources */,
+				8A3431FE2DC87F4C005FE890 /* GroupImageListReqModel.swift in Sources */,
 				8A9E7D5E2DA3B4DB007CE28A /* DeleteContactViewModel.swift in Sources */,
 				8A97F79C2DA7DB5400D53C9C /* Entry+ExtraFunctions.swift in Sources */,
 				8A03685C2DC1FFF600995B8E /* GroupUserDeleteReqModel.swift in Sources */,

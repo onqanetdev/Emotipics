@@ -351,6 +351,14 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
             
         } else {
             let groupDetailView = GroupDetailViewController()
+            
+            if let groupCode = newResultArray[indexPath.row].group_code {
+                groupDetailView.groupCode = groupCode
+            } else {
+                print("There is no data ")
+            }
+            
+            
             navigationController?.pushViewController(groupDetailView, animated: true)
         }
     }

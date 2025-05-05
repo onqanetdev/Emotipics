@@ -8,7 +8,7 @@
 import UIKit
 
 class GroupDetailViewController: UIViewController {
-
+    
     
     
     
@@ -31,11 +31,6 @@ class GroupDetailViewController: UIViewController {
     
     
     
-    
-    
-    
-    
-    
     @IBOutlet weak var roundedView: UIView!{
         didSet {
             roundedView.layer.cornerRadius = 35
@@ -46,7 +41,7 @@ class GroupDetailViewController: UIViewController {
     
     
     @IBOutlet weak var ContentView: UIView!
-
+    
     
     @IBOutlet weak var shareFilesBtn: UIButton!{
         didSet {
@@ -73,17 +68,18 @@ class GroupDetailViewController: UIViewController {
         }
     }
     
+    //Group Image List View Model
     
+    let groupImageListViewModel: GroupImageListViewModel = GroupImageListViewModel()
     
+    private var loaderView: ImageLoaderView?
     
+    var groupCode = ""
     
-    
-    
-    
-    
+    var groupImageData:[GroupImageData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         detailTblView.dataSource = self
         detailTblView.delegate = self
@@ -95,6 +91,8 @@ class GroupDetailViewController: UIViewController {
         
         setTableViewBackground()
         setTopViewBackground()
+        
+        imageListForGroup(groupCode: groupCode)
         
     }
     
@@ -120,7 +118,7 @@ class GroupDetailViewController: UIViewController {
         guard let roundedView = roundedView else { return }
         
         guard let contentView = ContentView else { return }
-
+        
         let backgroundImage = UIImage(named: "TableViewBackground") // Replace with your image name
         let backgroundImageView = UIImageView(frame: topView.bounds)
         backgroundImageView.image = backgroundImage
@@ -131,17 +129,64 @@ class GroupDetailViewController: UIViewController {
         
         
         let roundedBackgroundView = UIImageView(frame: roundedView.bounds)
-            roundedBackgroundView.image = backgroundImage
-            roundedBackgroundView.contentMode = .scaleAspectFill
-            roundedBackgroundView.clipsToBounds = true
-            roundedBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-
+        roundedBackgroundView.image = backgroundImage
+        roundedBackgroundView.contentMode = .scaleAspectFill
+        roundedBackgroundView.clipsToBounds = true
+        roundedBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         topView.insertSubview(backgroundImageView, at: 0) // Send it to the back
         roundedView.insertSubview(roundedBackgroundView, at: 0)
         contentView.insertSubview(backgroundImageView, at: 0)
     }
     
-    
+    func imageListForGroup(groupCode: String){
+        
+        groupImageListViewModel.requestModel.groupCode = groupCode
+        groupImageListViewModel.requestModel.limit = "50"
+        groupImageListViewModel.requestModel.offset = "1"
+        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { result in
+            DispatchQueue.main.async { [self] in
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        
+                        
+                        if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
+                            self?.groupImageData = imageGroupData
+                            
+                            self?.tblViewHeight.constant = CGFloat( 300*(imageGroupData.count) + 300)
+                            
+                            self?.scrollViewHeight.constant = self?.tblViewHeight.constant ?? 100
+                            
+                            print("scroll view height", self?.scrollViewHeight.constant)
+                        } else {
+                            self?.detailTblView.isHidden = true
+                        }
+                        
+                        
+                        self?.detailTblView.reloadData()
+                        
+                    } // DispatchQueue Closing
+                    
+                    
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
     
     
     
@@ -149,21 +194,89 @@ class GroupDetailViewController: UIViewController {
         
         navigationController?.popViewController(animated: true)
     }
+    
+    
+    
+    
+    
+    func startCustomLoader(){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+    
+    
+    
 }
 
 
 
 extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        print("Image Count -> ", groupImageData.count)
+        return groupImageData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailChat", for: indexPath) as! GroupDetailViewCell
         
         cell.backgroundColor = .clear
-         cell.layer.cornerRadius = 25
-         cell.clipsToBounds = true
+        cell.layer.cornerRadius = 25
+        cell.clipsToBounds = true
+//        var imageData = groupImageData[indexPath.row].path + groupImageData[indexPath.row].img_name
+        
+        if let imagePath = groupImageData[indexPath.row].path,
+           let imgName = groupImageData[indexPath.row].img_name,
+           let ownerName = groupImageData[indexPath.row].user?.name{
+            var fullImage = imagePath + imgName
+            
+            if let url = URL(string: fullImage) {
+                // Optional: show a placeholder image while loading
+                cell.partyImageView.image = UIImage(named: "TopBackGround")
+                
+                URLSession.shared.dataTask(with: url) { data, _, error in
+                    guard let data = data, error == nil else {
+                        print("Failed to load image from url: \(fullImage)")
+                        return
+                    }
+
+                    DispatchQueue.main.async {
+                        // Check if cell is still visible
+                        if let updateCell = tableView.cellForRow(at: indexPath) as? GroupDetailViewCell {
+                            updateCell.partyImageView.image = UIImage(data: data)
+                            updateCell.userName.text = ownerName
+                        }
+                    }
+                }.resume()
+                
+            }
+        } else {
+            
+        }
+        
+      //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
         return cell
     }
     
