@@ -22,6 +22,8 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId")
     let savedUserCode = UserDefaults.standard.string(forKey: "userCode")
 
+    var groupCode = ""
+    var isGrpPhotoSharing:Bool = false
     
     
     override func viewDidLoad() {
@@ -29,7 +31,14 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
 //        view.backgroundColor = #colorLiteral(red: 0, green: 0.1647058824, blue: 0.3450980392, alpha: 1)
       //  webView.scrollView.contentInsetAdjustmentBehavior = .never
         setupWebView()
-        loadWebsite()
+        
+        if isGrpPhotoSharing {
+            loadWebsiteForGroup()
+        } else {
+            loadWebsite()
+        }
+        
+        //loadWebsite()
         view.backgroundColor = .white
     }
     
@@ -103,6 +112,25 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
         
         
        }
+    
+    
+    
+    private func loadWebsiteForGroup(){
+        guard let userCode = savedUserCode else {
+            return
+        }
+        
+        let fullURLString = "\(baseURL)/\(userCode)/\(groupCode)/1"
+        print("🌐 Loading URL:", fullURLString)
+
+        if let url = URL(string: fullURLString) {
+            webView.load(URLRequest(url: url))
+        } else {
+            print("❌ Invalid URL")
+        }
+        
+    }
+    
 
        // Receive JS message
        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {

@@ -69,6 +69,10 @@
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
 		8A192B6B2DC884C7007F5868 /* GroupImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */; };
+		8A192B6D2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */; };
+		8A192B702DC8CEDB007F5868 /* GroupImageDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B6F2DC8CEDB007F5868 /* GroupImageDeleteResModel.swift */; };
+		8A192B722DC8CEF9007F5868 /* GroupImageDeleteReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B712DC8CEF9007F5868 /* GroupImageDeleteReqModel.swift */; };
+		8A192B742DC8DA7C007F5868 /* GroupDeleteImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */; };
 		8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */; };
 		8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */; };
 		8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */; };
@@ -329,6 +333,10 @@
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
 		8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListViewModel.swift; sourceTree = "<group>"; };
+		8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupImageAPICaller.swift; sourceTree = "<group>"; };
+		8A192B6F2DC8CEDB007F5868 /* GroupImageDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageDeleteResModel.swift; sourceTree = "<group>"; };
+		8A192B712DC8CEF9007F5868 /* GroupImageDeleteReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageDeleteReqModel.swift; sourceTree = "<group>"; };
+		8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteImageViewModel.swift; sourceTree = "<group>"; };
 		8A1B0E8F2DC0968200A3CCA5 /* GroupDeleteResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteResModel.swift; sourceTree = "<group>"; };
 		8A1B0E912DC0969800A3CCA5 /* GroupDeleteReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDeleteReqModel.swift; sourceTree = "<group>"; };
 		8A1B0E932DC097E400A3CCA5 /* DeleteGroupAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteGroupAPICaller.swift; sourceTree = "<group>"; };
@@ -732,6 +740,15 @@
 			path = ImageCollectionView;
 			sourceTree = "<group>";
 		};
+		8A192B6E2DC8CEAD007F5868 /* GroupImageDeleteModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A192B6F2DC8CEDB007F5868 /* GroupImageDeleteResModel.swift */,
+				8A192B712DC8CEF9007F5868 /* GroupImageDeleteReqModel.swift */,
+			);
+			path = GroupImageDeleteModel;
+			sourceTree = "<group>";
+		};
 		8A1B0E8E2DC0965D00A3CCA5 /* GroupDeleteModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -994,6 +1011,7 @@
 				8A09D3752DC326290050A3CA /* UserExitFromGrpAPICaller.swift */,
 				8A09D3862DC377ED0050A3CA /* Profile API Caller */,
 				8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */,
+				8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -1001,6 +1019,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A192B6E2DC8CEAD007F5868 /* GroupImageDeleteModel */,
 				8A3431FA2DC87A56005FE890 /* GroupImageListModel */,
 				8AE113FA2DC4A3F700B8CBA5 /* Profile Model */,
 				8AE113F12DC48EF300B8CBA5 /* Reset Password Model */,
@@ -1081,6 +1100,7 @@
 				8AE113F62DC493F400B8CBA5 /* ResetPasswordViewModel.swift */,
 				8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */,
 				8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */,
+				8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1744,6 +1764,7 @@
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */,
 				8A0368692DC22B1C00995B8E /* CatalogueUserListResModel.swift in Sources */,
+				8A192B6D2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A0368622DC203C100995B8E /* GroupUserDeleteViewModel.swift in Sources */,
@@ -1762,6 +1783,7 @@
 				8AE113F92DC4A24B00B8CBA5 /* ProfileAPICaller.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */,
+				8A192B702DC8CEDB007F5868 /* GroupImageDeleteResModel.swift in Sources */,
 				8A1B0EAA2DC0D6FF00A3CCA5 /* GroupAddUserViewModel.swift in Sources */,
 				8A09D3762DC326290050A3CA /* UserExitFromGrpAPICaller.swift in Sources */,
 				8A22D91D2D7AC96800F358FD /* Circular.swift in Sources */,
@@ -1775,6 +1797,7 @@
 				8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */,
 				8AA25B942D82A26F0093F3F1 /* SharedCatalogueViewController.swift in Sources */,
 				8A53333B2D913AAC00B524A7 /* AboutUsVC.swift in Sources */,
+				8A192B722DC8CEF9007F5868 /* GroupImageDeleteReqModel.swift in Sources */,
 				8A2E51882D9D4C4600D4A023 /* RegistrationOTPRequestModel.swift in Sources */,
 				8A9E7D6B2DA3F78B007CE28A /* CatalogueListingViewModel.swift in Sources */,
 				8A3432002DC87FED005FE890 /* GroupImageListAPICaller.swift in Sources */,
@@ -1786,6 +1809,7 @@
 				8A03686B2DC235E300995B8E /* CatalogueUserListViewModel.swift in Sources */,
 				8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
+				8A192B742DC8DA7C007F5868 /* GroupDeleteImageViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
 				8A09D38C2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift in Sources */,
 				8A7F319B2D9E64C500288E29 /* MoveToNextView.swift in Sources */,

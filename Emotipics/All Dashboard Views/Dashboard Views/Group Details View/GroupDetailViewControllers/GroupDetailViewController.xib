@@ -281,6 +281,9 @@
                         <imageReference key="image" image="plus.circle.fill" catalog="system" variableValue="0.0"/>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="light"/>
                     </state>
+                    <connections>
+                        <action selector="shareFilesBtn:" destination="-1" eventType="touchUpInside" id="gNx-k0-xW3"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

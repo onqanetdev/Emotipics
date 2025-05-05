@@ -86,6 +86,16 @@ class GroupDetailViewCell: UITableViewCell {
     
     
     
+    @IBOutlet weak var deleteBtnAction: UIButton!
+    
+    
+    
+    @IBOutlet weak var backGroundDeleteImgView: UIView!{
+        didSet{
+            backGroundDeleteImgView.layer.cornerRadius = 5
+            backGroundDeleteImgView.clipsToBounds = true
+        }
+    }
     
     
     

@@ -46,7 +46,7 @@ enum APIEndpoint: String {
     //Group Image List
     
     case groupImageList = "group-images"
-    
+    case groupImgDelete = "group-image-delete"
     // user profile
     case forgetPassword = "forget-password"
     case resetPassword = "reset-password"

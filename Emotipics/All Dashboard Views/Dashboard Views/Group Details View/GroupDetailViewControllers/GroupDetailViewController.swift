@@ -77,6 +77,10 @@ class GroupDetailViewController: UIViewController {
     var groupCode = ""
     
     var groupImageData:[GroupImageData] = []
+    
+    var groupDeleteImageViewModel: GroupDeleteImageViewModel = GroupDeleteImageViewModel()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,6 +98,11 @@ class GroupDetailViewController: UIViewController {
         
         imageListForGroup(groupCode: groupCode)
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        imageListForGroup(groupCode: groupCode)
     }
     
     //MARK: Setting Background for Table View Background
@@ -198,6 +207,16 @@ class GroupDetailViewController: UIViewController {
     
     
     
+    @IBAction func shareFilesBtn(_ sender: Any) {
+        
+        let webView = WebViewController()
+        webView.isGrpPhotoSharing = true
+        webView.groupCode = groupCode
+        navigationController?.pushViewController(webView, animated: true)
+    }
+    
+    
+    
     
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
@@ -227,7 +246,64 @@ class GroupDetailViewController: UIViewController {
         
     }
     
-    
+    @objc func deletingImage(_ sender: UIButton){
+        var indexPath = sender.tag
+        
+
+        print("My Image Code is", groupImageData[indexPath].id, "My group code is", groupCode  )
+        
+        guard let imageID = groupImageData[indexPath].id else {
+            return
+        }
+        
+        groupDeleteImageViewModel.requestModel.groupCode = groupCode
+        groupDeleteImageViewModel.requestModel.imageId = imageID
+        
+        
+        //activityIndicator.startAnimating()
+        startCustomLoader()
+        groupDeleteImageViewModel.groupDeleteImageViewModel(request: groupDeleteImageViewModel.requestModel) { result in
+            DispatchQueue.main.async { [weak self] in
+                //self.activityIndicator.stopAnimating()
+                self?.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        
+                        
+                        if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
+                            self?.groupImageData = imageGroupData
+                            
+                            self?.tblViewHeight.constant = CGFloat( 300*(imageGroupData.count) + 300)
+                            
+                            self?.scrollViewHeight.constant = self?.tblViewHeight.constant ?? 100
+                            
+                            print("scroll view height", self?.scrollViewHeight.constant as Any)
+                        } else {
+                            self?.detailTblView.isHidden = true
+                        }
+                        
+                        self?.groupImageData.remove(at: indexPath)
+                        self?.detailTblView.reloadData()
+                        
+                    } // DispatchQueue Closing
+                    
+                    
+                    
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+        
+        
+    }
     
 }
 
@@ -245,7 +321,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.backgroundColor = .clear
         cell.layer.cornerRadius = 25
         cell.clipsToBounds = true
-//        var imageData = groupImageData[indexPath.row].path + groupImageData[indexPath.row].img_name
+
         
         if let imagePath = groupImageData[indexPath.row].path,
            let imgName = groupImageData[indexPath.row].img_name,
@@ -277,12 +353,17 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         }
         
       //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
+        
+        cell.deleteBtnAction.tag = indexPath.row
+        cell.deleteBtnAction.addTarget(self, action: #selector(deletingImage), for: .touchUpInside)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
+    
+    
 }
 
 

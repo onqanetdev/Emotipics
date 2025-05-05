@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,7 +21,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qe-8Q-G1Q">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jhon Doe" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQN-mS-WJa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jhon Doe" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQN-mS-WJa">
                                 <rect key="frame" x="253" y="14.333333333333336" width="67" height="15.666666666666664"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="NOC-Ho-4f5"/>
@@ -62,28 +63,41 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rop-On-lHT">
-                                        <rect key="frame" x="22" y="153.33333333333334" width="30" height="25.333333333333343"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOI-EB-64G">
+                                        <rect key="frame" x="19" y="138" width="45" height="45"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Maa-pS-T07">
+                                                <rect key="frame" x="8" y="10" width="29" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="aiv-as-3Om"/>
+                                                    <constraint firstAttribute="width" constant="29" id="alc-ck-nJf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="deleteIcon">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default" weight="light"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="0jx-U4-zAx"/>
-                                            <constraint firstAttribute="width" constant="30" id="cit-LW-GKa"/>
+                                            <constraint firstItem="Maa-pS-T07" firstAttribute="centerX" secondItem="cOI-EB-64G" secondAttribute="centerX" id="AoV-xn-fYv"/>
+                                            <constraint firstAttribute="width" constant="45" id="RXb-Le-EPG"/>
+                                            <constraint firstAttribute="height" constant="45" id="czl-CB-5Wb"/>
+                                            <constraint firstItem="Maa-pS-T07" firstAttribute="centerY" secondItem="cOI-EB-64G" secondAttribute="centerY" id="yZc-Kb-5wP"/>
                                         </constraints>
-                                        <imageReference key="image" image="photo" catalog="system" symbolScale="small"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" scale="small" weight="light"/>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cOI-EB-64G" secondAttribute="bottom" constant="17" id="1l4-jx-OjF"/>
                                     <constraint firstAttribute="trailing" secondItem="g8l-9Q-wHT" secondAttribute="trailing" constant="17" id="7cn-FS-Hnx"/>
-                                    <constraint firstAttribute="bottom" secondItem="rop-On-lHT" secondAttribute="bottom" constant="19" id="A7J-fA-E4y"/>
                                     <constraint firstItem="oYq-0q-2b5" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" constant="10" id="BUn-k9-3bR"/>
-                                    <constraint firstItem="rop-On-lHT" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" constant="22" id="GuL-jn-7Lo"/>
                                     <constraint firstAttribute="bottom" secondItem="oYq-0q-2b5" secondAttribute="bottom" constant="10" id="VQb-ae-YVs"/>
                                     <constraint firstAttribute="height" constant="200" id="WBl-0Q-kLC"/>
                                     <constraint firstItem="oYq-0q-2b5" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="top" constant="10" id="WXs-TD-VhX"/>
                                     <constraint firstAttribute="width" constant="300" id="hpX-AJ-YpS"/>
+                                    <constraint firstItem="cOI-EB-64G" firstAttribute="leading" secondItem="R8N-5b-EPS" secondAttribute="leading" constant="19" id="htt-Wg-42z"/>
                                     <constraint firstAttribute="trailing" secondItem="oYq-0q-2b5" secondAttribute="trailing" constant="10" id="mx5-hb-kQi"/>
                                     <constraint firstAttribute="bottom" secondItem="g8l-9Q-wHT" secondAttribute="bottom" constant="21" id="r3o-o4-dYh"/>
                                 </constraints>
@@ -150,10 +164,11 @@
             <connections>
                 <outlet property="ImageViewBackground" destination="R8N-5b-EPS" id="upL-8K-Iwr"/>
                 <outlet property="allEmojiBtn" destination="oCF-bK-ww1" id="0Jq-0r-pR5"/>
+                <outlet property="backGroundDeleteImgView" destination="cOI-EB-64G" id="AdJ-yP-53e"/>
+                <outlet property="deleteBtnAction" destination="Maa-pS-T07" id="r0M-8u-X4o"/>
                 <outlet property="downLoadBtn" destination="g8l-9Q-wHT" id="k0s-sc-R3c"/>
                 <outlet property="partyImageView" destination="oYq-0q-2b5" id="kRv-bg-t5X"/>
                 <outlet property="partyImgPhoto" destination="oYq-0q-2b5" id="TCQ-Uq-N8Z"/>
-                <outlet property="photoIcon" destination="rop-On-lHT" id="vaY-Sk-zqP"/>
                 <outlet property="selectEmojiBtn" destination="OE7-KU-2NO" id="lmO-5g-wWg"/>
                 <outlet property="sendingTime" destination="wiU-Hg-Nqj" id="VhD-EY-UE5"/>
                 <outlet property="userName" destination="fQN-mS-WJa" id="rC8-6V-SHH"/>
@@ -168,6 +183,9 @@
         <image name="LongEmoji" width="204" height="72"/>
         <image name="Party" width="1000" height="667"/>
         <image name="ProfilePhotobg" width="108" height="108"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="deleteIcon" width="61" height="61"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
