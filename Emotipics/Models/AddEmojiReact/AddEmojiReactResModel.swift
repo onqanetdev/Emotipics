@@ -1,21 +1,21 @@
 //
-//  GroupImageListResModel.swift
+//  AddEmojiReactResModel.swift
 //  Emotipics
 //
-//  Created by Onqanet on 05/05/25.
+//  Created by Onqanet on 06/05/25.
 //
 
 import Foundation
 
 
 
-struct GroupImageListResModel:Codable {
+
+
+struct AddEmojiReactResModel: Codable {
     let status : Int?
     let success : Bool?
     let message : String?
-    let data : [GroupImageData]?
-    let currentpage : Int?
-    let totalpage : Int?
+    let data : EmojiReactData?
 
     enum CodingKeys: String, CodingKey {
 
@@ -23,8 +23,6 @@ struct GroupImageListResModel:Codable {
         case success = "success"
         case message = "message"
         case data = "data"
-        case currentpage = "currentpage"
-        case totalpage = "totalpage"
     }
 
     init(from decoder: Decoder) throws {
@@ -32,18 +30,13 @@ struct GroupImageListResModel:Codable {
         status = try values.decodeIfPresent(Int.self, forKey: .status)
         success = try values.decodeIfPresent(Bool.self, forKey: .success)
         message = try values.decodeIfPresent(String.self, forKey: .message)
-        data = try values.decodeIfPresent([GroupImageData].self, forKey: .data)
-        currentpage = try values.decodeIfPresent(Int.self, forKey: .currentpage)
-        totalpage = try values.decodeIfPresent(Int.self, forKey: .totalpage)
+        data = try values.decodeIfPresent(EmojiReactData.self, forKey: .data)
     }
 
 }
 
 
-
-
-
-struct GroupImageData:Codable {
+struct EmojiReactData: Codable {
     let id : Int?
     let img_type : String?
     let group_code : String?
@@ -54,14 +47,10 @@ struct GroupImageData:Codable {
     let status : String?
     let created_at : String?
     let updated_at : String?
-    let datetime : String?
-    let members : Int?
-    let image_size : String?
     let imagesize : String?
-    //let emoji : [String]?
+    let path : String?
     let emoji : [Emoji]?
     let emojicount : Int?
-    let path : String?
     let user : folderOwner?
 
     enum CodingKeys: String, CodingKey {
@@ -76,13 +65,10 @@ struct GroupImageData:Codable {
         case status = "status"
         case created_at = "created_at"
         case updated_at = "updated_at"
-        case datetime = "datetime"
-        case members = "members"
-        case image_size = "image_size"
         case imagesize = "imagesize"
+        case path = "path"
         case emoji = "emoji"
         case emojicount = "emojicount"
-        case path = "path"
         case user = "user"
     }
 
@@ -98,15 +84,27 @@ struct GroupImageData:Codable {
         status = try values.decodeIfPresent(String.self, forKey: .status)
         created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
         updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
-        datetime = try values.decodeIfPresent(String.self, forKey: .datetime)
-        members = try values.decodeIfPresent(Int.self, forKey: .members)
-        image_size = try values.decodeIfPresent(String.self, forKey: .image_size)
         imagesize = try values.decodeIfPresent(String.self, forKey: .imagesize)
-//        emoji = try values.decodeIfPresent([String].self, forKey: .emoji)
+        path = try values.decodeIfPresent(String.self, forKey: .path)
         emoji = try values.decodeIfPresent([Emoji].self, forKey: .emoji)
         emojicount = try values.decodeIfPresent(Int.self, forKey: .emojicount)
-        path = try values.decodeIfPresent(String.self, forKey: .path)
         user = try values.decodeIfPresent(folderOwner.self, forKey: .user)
+    }
+
+}
+
+
+struct Emoji: Codable {
+    let emoji_code : String?
+
+    enum CodingKeys: String, CodingKey {
+
+        case emoji_code = "emoji_code"
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        emoji_code = try values.decodeIfPresent(String.self, forKey: .emoji_code)
     }
 
 }

@@ -576,7 +576,7 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         //loader.layer.cornerRadius = 16
-        
+
         view.addSubview(loader)
         loader.startAnimating()
         
@@ -589,15 +589,9 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
         print("Trying to stop loader:", loaderView != nil)
         loaderView?.stopAnimating()
         loaderView?.removeFromSuperview()
-        
         loaderView = nil
-        
-        
     }
-    
-    
 }
-
 
 extension CatalogueViewController: SharedInformationDelegate {
     func didTapProceed() {
@@ -617,9 +611,6 @@ extension CatalogueViewController: SharedInformationDelegate {
     
     
 }
-
-
-
 extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return 4
@@ -637,31 +628,15 @@ extension CatalogueViewController: UICollectionViewDelegate, UICollectionViewDat
             
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
-            
-            
-            
             cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
             cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
             cell.fiveGbLbl.text = tempMemory[indexPath.row].catalogimagesize
             
             cell.moreFeaturesBtn.tag = indexPath.row
             cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
-            
-            
-            
-            
             return cell
         } else { // sharedCatalogueCollView
             
-//            
-//            
-//            if tempMemoryForSharedCat.count == 0 || tempMemoryForSharedCat.isEmpty {
-//                
-//                
-//                
-//                
-//            } else {
-                
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
                 //            cell.backgroundColor = .blue // Differentiate visually
                 cell.layer.cornerRadius = 25

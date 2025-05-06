@@ -182,6 +182,16 @@
 		8A6AB5EE2D96573200775D5C /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */; };
 		8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5EF2D966A7500775D5C /* LoginParamsStruct.swift */; };
 		8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6AB5F22D967DFB00775D5C /* AlertView.swift */; };
+		8A707E2A2DC9EB6600054756 /* GroupEmojiListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E292DC9EB6600054756 /* GroupEmojiListResModel.swift */; };
+		8A707E2C2DC9EB7F00054756 /* GroupEmojiListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E2B2DC9EB7F00054756 /* GroupEmojiListReqModel.swift */; };
+		8A707E342DCA03E700054756 /* EmojiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A707E332DCA03E700054756 /* EmojiListViewController.xib */; };
+		8A707E352DCA03E700054756 /* EmojiListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E322DCA03E700054756 /* EmojiListViewController.swift */; };
+		8A707E3A2DCA0FB900054756 /* EmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A707E392DCA0FB900054756 /* EmojiCell.xib */; };
+		8A707E3B2DCA0FB900054756 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E382DCA0FB900054756 /* EmojiCell.swift */; };
+		8A707E3E2DCA176A00054756 /* AddEmojiReactResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E3D2DCA176A00054756 /* AddEmojiReactResModel.swift */; };
+		8A707E402DCA178000054756 /* AddEmojiReactReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E3F2DCA178000054756 /* AddEmojiReactReqModel.swift */; };
+		8A707E422DCA18A300054756 /* GroupAddReactAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */; };
+		8A707E442DCA1E9800054756 /* AddEmojiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */; };
 		8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */; };
 		8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */; };
 		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
@@ -448,6 +458,16 @@
 		8A6AB5ED2D96573200775D5C /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		8A6AB5EF2D966A7500775D5C /* LoginParamsStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginParamsStruct.swift; sourceTree = "<group>"; };
 		8A6AB5F22D967DFB00775D5C /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
+		8A707E292DC9EB6600054756 /* GroupEmojiListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEmojiListResModel.swift; sourceTree = "<group>"; };
+		8A707E2B2DC9EB7F00054756 /* GroupEmojiListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEmojiListReqModel.swift; sourceTree = "<group>"; };
+		8A707E322DCA03E700054756 /* EmojiListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiListViewController.swift; sourceTree = "<group>"; };
+		8A707E332DCA03E700054756 /* EmojiListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiListViewController.xib; sourceTree = "<group>"; };
+		8A707E382DCA0FB900054756 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		8A707E392DCA0FB900054756 /* EmojiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiCell.xib; sourceTree = "<group>"; };
+		8A707E3D2DCA176A00054756 /* AddEmojiReactResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmojiReactResModel.swift; sourceTree = "<group>"; };
+		8A707E3F2DCA178000054756 /* AddEmojiReactReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmojiReactReqModel.swift; sourceTree = "<group>"; };
+		8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddReactAPICaller.swift; sourceTree = "<group>"; };
+		8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmojiViewModel.swift; sourceTree = "<group>"; };
 		8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinResponseModel.swift; sourceTree = "<group>"; };
 		8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinRequestModel.swift; sourceTree = "<group>"; };
 		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
@@ -1012,6 +1032,7 @@
 				8A09D3862DC377ED0050A3CA /* Profile API Caller */,
 				8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */,
 				8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */,
+				8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -1019,6 +1040,8 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A707E3C2DCA174400054756 /* AddEmojiReact */,
+				8A707E282DC9EB4600054756 /* GroupEmojiList */,
 				8A192B6E2DC8CEAD007F5868 /* GroupImageDeleteModel */,
 				8A3431FA2DC87A56005FE890 /* GroupImageListModel */,
 				8AE113FA2DC4A3F700B8CBA5 /* Profile Model */,
@@ -1101,6 +1124,7 @@
 				8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */,
 				8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */,
 				8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */,
+				8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1151,6 +1175,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A707E2D2DCA026A00054756 /* EmojiListView */,
 				8A09D37E2DC35A330050A3CA /* Logout Functionality */,
 				8ACDCBD32DBBA4D800A9B3EE /* ExitFromCataloguePopUps */,
 				8ACDCBCA2DBB6D7100A9B3EE /* RenameCataloguePopUp */,
@@ -1315,6 +1340,35 @@
 				8A6AB5F22D967DFB00775D5C /* AlertView.swift */,
 			);
 			path = AlertView;
+			sourceTree = "<group>";
+		};
+		8A707E282DC9EB4600054756 /* GroupEmojiList */ = {
+			isa = PBXGroup;
+			children = (
+				8A707E292DC9EB6600054756 /* GroupEmojiListResModel.swift */,
+				8A707E2B2DC9EB7F00054756 /* GroupEmojiListReqModel.swift */,
+			);
+			path = GroupEmojiList;
+			sourceTree = "<group>";
+		};
+		8A707E2D2DCA026A00054756 /* EmojiListView */ = {
+			isa = PBXGroup;
+			children = (
+				8A707E322DCA03E700054756 /* EmojiListViewController.swift */,
+				8A707E332DCA03E700054756 /* EmojiListViewController.xib */,
+				8A707E382DCA0FB900054756 /* EmojiCell.swift */,
+				8A707E392DCA0FB900054756 /* EmojiCell.xib */,
+			);
+			path = EmojiListView;
+			sourceTree = "<group>";
+		};
+		8A707E3C2DCA174400054756 /* AddEmojiReact */ = {
+			isa = PBXGroup;
+			children = (
+				8A707E3D2DCA176A00054756 /* AddEmojiReactResModel.swift */,
+				8A707E3F2DCA178000054756 /* AddEmojiReactReqModel.swift */,
+			);
+			path = AddEmojiReact;
 			sourceTree = "<group>";
 		};
 		8A7F31932D9E4F2E00288E29 /* LoginPinModels */ = {
@@ -1683,11 +1737,13 @@
 				8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */,
 				8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */,
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
+				8A707E3A2DCA0FB900054756 /* EmojiCell.xib in Resources */,
 				8A3B824A2D88458F00CFFC37 /* NotificationViewCell.xib in Resources */,
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
 				8ACDCBD62DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib in Resources */,
 				8A2E517D2D9D0B6F00D4A023 /* OTPPopUPVC.xib in Resources */,
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
+				8A707E342DCA03E700054756 /* EmojiListViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
 				8A31285E2D9FBEE2003FA3B8 /* AddContactViewController.xib in Resources */,
@@ -1749,6 +1805,7 @@
 				8ACDCBCD2DBB6DAE00A9B3EE /* RenameCatalogueVC.swift in Sources */,
 				8ABB96A02D8D702B0032E6DA /* SideMenuManager.swift in Sources */,
 				8A3B824B2D88458F00CFFC37 /* NotificationViewCell.swift in Sources */,
+				8A707E352DCA03E700054756 /* EmojiListViewController.swift in Sources */,
 				8A7F319E2D9E9A2E00288E29 /* KeychainManager.swift in Sources */,
 				8A31285D2D9FBEE2003FA3B8 /* AddContactViewController.swift in Sources */,
 				8A1B0E902DC0968200A3CCA5 /* GroupDeleteResModel.swift in Sources */,
@@ -1774,6 +1831,7 @@
 				8A00BA142DBF3F7E00513C44 /* CatUserExitReqModel.swift in Sources */,
 				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
 				8A00BA1A2DBF497900513C44 /* CatalogueUserExitViewModel.swift in Sources */,
+				8A707E402DCA178000054756 /* AddEmojiReactReqModel.swift in Sources */,
 				8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */,
 				8A1B0E9F2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift in Sources */,
 				8A00BA2D2DBF94E400513C44 /* GroupListAPICaller.swift in Sources */,
@@ -1805,6 +1863,7 @@
 				8A09D3802DC3644F0050A3CA /* SessionManager.swift in Sources */,
 				8A09D3882DC378390050A3CA /* ForgetPasswordAPICaller.swift in Sources */,
 				8A075C9E2DB9FE11004554E2 /* SharedImageByMeVC.swift in Sources */,
+				8A707E2A2DC9EB6600054756 /* GroupEmojiListResModel.swift in Sources */,
 				8A97F79A2DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift in Sources */,
 				8A03686B2DC235E300995B8E /* CatalogueUserListViewModel.swift in Sources */,
 				8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */,
@@ -1818,6 +1877,7 @@
 				8AEADB5B2DA6537A00BF187E /* AddCatalogueApiCaller.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
+				8A707E3B2DCA0FB900054756 /* EmojiCell.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */,
 				8A1B0E962DC099BD00A3CCA5 /* GroupDeleteViewModel.swift in Sources */,
@@ -1825,6 +1885,7 @@
 				8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */,
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
+				8A707E422DCA18A300054756 /* GroupAddReactAPICaller.swift in Sources */,
 				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
 				8A0368642DC2285000995B8E /* CatalogueUserListAPICaller.swift in Sources */,
 				8A9611FE2DA939E70026A1FC /* SharingContactListVC.swift in Sources */,
@@ -1836,6 +1897,8 @@
 				8ABB96902D8D39960032E6DA /* ProfileViewController.swift in Sources */,
 				8A3431FC2DC87AAD005FE890 /* GroupImageListResModel.swift in Sources */,
 				8A0368552DC1ECE900995B8E /* GroupUserListAPICaller.swift in Sources */,
+				8A707E442DCA1E9800054756 /* AddEmojiViewModel.swift in Sources */,
+				8A707E3E2DCA176A00054756 /* AddEmojiReactResModel.swift in Sources */,
 				8A0496442DAD06ED00ECF441 /* CatalogueUserAddReqModel.swift in Sources */,
 				8A0521722D79A83A00AE5FC4 /* EntryCollectionViewCell.swift in Sources */,
 				8A9E7D622DA3CA87007CE28A /* UpdateUI.swift in Sources */,
@@ -1926,6 +1989,7 @@
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
 				8A00BA252DBF712900513C44 /* SubmitButton.swift in Sources */,
 				8A97F7972DA7A06400D53C9C /* DeleteCatalogPopVC.swift in Sources */,
+				8A707E2C2DC9EB7F00054756 /* GroupEmojiListReqModel.swift in Sources */,
 				8A0368592DC1FB0E00995B8E /* SharedInformationVC + ExtrasFunction.swift in Sources */,
 				8ACDCBC42DBB546A00A9B3EE /* CatalogueUserDeleteViewModel.swift in Sources */,
 				8A9E7D602DA3C0B4007CE28A /* DeleteContactReqModel.swift in Sources */,

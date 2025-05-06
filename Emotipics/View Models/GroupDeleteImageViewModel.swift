@@ -9,8 +9,6 @@ import Foundation
 
 
 
-
-
 class GroupDeleteImageViewModel {
     var responseModel: GroupImageDeleteResModel?
     var requestModel: GroupImageDeleteReqModel = GroupImageDeleteReqModel(imageId: 0, groupCode: "")

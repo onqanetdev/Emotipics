@@ -246,6 +246,26 @@ class GroupDetailViewController: UIViewController {
         
     }
     
+    
+    
+    
+    @objc func showingImage(_ sender: UIButton){
+        var indexpath = sender.tag
+        
+        let errorPopup = EmojiListViewController(nibName: "EmojiListViewController", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        //errorPopup.delegate = self
+        errorPopup.groupCode = groupCode
+        if let imageID = groupImageData[indexpath].id {
+            errorPopup.imgId = imageID
+        }
+        self.present(errorPopup, animated: true)
+        
+    }
+    
+    
+    
     @objc func deletingImage(_ sender: UIButton){
         var indexPath = sender.tag
         
@@ -356,6 +376,9 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         cell.deleteBtnAction.tag = indexPath.row
         cell.deleteBtnAction.addTarget(self, action: #selector(deletingImage), for: .touchUpInside)
+        
+        cell.selectEmojiBtn.tag = indexPath.row
+        cell.selectEmojiBtn.addTarget(self, action: #selector(showingImage), for: .touchUpInside)
         return cell
     }
     
@@ -363,7 +386,12 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         return 300
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let updatedImageCode = groupImageData[indexPath.row].id {
+            print("the group code is", groupCode)
+            print("Upadted Image code -->", updatedImageCode)
+        }
+    }
 }
 
 
