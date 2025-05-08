@@ -121,6 +121,8 @@ extension ShowEmojiListPopUp: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EmojiCell", for: indexPath) as! ShowEmojiListPopUpTVC
         
+        
+        
         cell.emojiLbl.text =  emojiDetails[indexPath.row].emoji_code
         cell.reactorName.text = emojiDetails[indexPath.row].user?.name
         return cell

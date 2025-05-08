@@ -120,7 +120,35 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
             }
         }
         
+        
+        if notificationView {
+            groupHeadingLbl.text = "Notifications"
+            
+            topConstraint.constant = 20
+            
+            tblViewForGroups.register(UINib(nibName: "NotificationViewCell", bundle: nil), forCellReuseIdentifier: "NotificationCell")
+            tblViewForGroups.separatorStyle = .none
+            
+            
+            
+        } else {
+            
+            topConstraint.constant = 0
+            
+            tblViewForGroups.register(UINib(nibName: "GroupTableViewCell", bundle: nil), forCellReuseIdentifier: "Group")
+            
+            let backgroundImage = UIImage(named: "TableViewBackground")
+            let backgroundImageView = UIImageView(image: backgroundImage)
+            backgroundImageView.contentMode = .scaleAspectFill
+            tblViewForGroups.backgroundView = backgroundImageView
+            
+            // Make table view background transparent so image shows through cells
+            tblViewForGroups.backgroundColor = .clear
+        }
+        
+        
         loadingAllGroups()
+        
     }
     
     
@@ -352,8 +380,13 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
         } else {
             let groupDetailView = GroupDetailViewController()
             
-            if let groupCode = newResultArray[indexPath.row].group_code {
+            if let groupCode = newResultArray[indexPath.row].group_code,
+               let groupNm = newResultArray[indexPath.row].groupname  ,
+                let noOfUsers = newResultArray[indexPath.row].members
+            {
                 groupDetailView.groupCode = groupCode
+                groupDetailView.groupName = groupNm
+                groupDetailView.groupUsers = String(noOfUsers)
             } else {
                 print("There is no data ")
             }

@@ -64,7 +64,7 @@ class GroupImageListAPICaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE FROM GROUPIMAGE LIST API CALLER")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

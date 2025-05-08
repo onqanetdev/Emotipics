@@ -84,9 +84,13 @@ class GroupDetailViewController: UIViewController {
     
     var emojiCollList:[ShowGroupEmojiList] = []
     
-    var sampleDict: [String: [ShowGroupEmojiList]] = [:]
+    
     
     var stringEmoji: String = ""
+    
+    
+    var groupName = ""
+    var groupUsers = ""
     
     
     override func viewDidLoad() {
@@ -103,6 +107,10 @@ class GroupDetailViewController: UIViewController {
         
         setTableViewBackground()
         setTopViewBackground()
+        
+        
+        tenUsers.text = groupUsers
+        userGroupName.text = groupName
         
         imageListForGroup(groupCode: groupCode)
         
@@ -178,6 +186,10 @@ class GroupDetailViewController: UIViewController {
                         if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
                             self?.groupImageData = imageGroupData
                             
+                            if imageGroupData.count == 0 || imageGroupData.isEmpty {
+                                self?.detailTblView.isHidden = true
+                            }
+                            
                             // MARK: Use DispatchGroup to wait for all emoji requests
                             let dispatchGroup = DispatchGroup()
                             
@@ -189,7 +201,7 @@ class GroupDetailViewController: UIViewController {
                                     }
                                 }
                             }
-
+                            
                             dispatchGroup.notify(queue: .main) {
                                 print("✅ All emoji requests completed")
                                 //self?.detailTblView.reloadData()
@@ -219,37 +231,7 @@ class GroupDetailViewController: UIViewController {
         }
     }
     
-//    func showEmojiList(imgID: Int){
-//        showEmojiViewModel.requestModel.limit = "4"
-//        showEmojiViewModel.requestModel.offset = "1"
-//        showEmojiViewModel.requestModel.sort = "DESC"
-//        showEmojiViewModel.requestModel.imgId = imgID
-//        
-//       // activityIndicator.startAnimating()
-//        startCustomLoader()
-//        showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { result in
-//            DispatchQueue.main.async {
-//                //self.activityIndicator.stopAnimating()
-//                self.stopCustomLoader()
-//                switch result {
-//                case .goAhead:
-//                    print("My Emoji List 🤗 View Model Calling....📞")
-//                    //table View Reload Data
-//                    DispatchQueue.main.async { [self] in
-//                        
-//                        detailTblView.reloadData()
-//                        
-//                    }
-//                case .heyStop:
-//                    print("Error")
-//                }
-//                
-//                
-//            }
-//            
-//            
-//        } // view model
-//    }
+    
     
     
     func showEmojiListWithCompletion(imgID: Int, completion: @escaping () -> Void) {
@@ -257,7 +239,7 @@ class GroupDetailViewController: UIViewController {
         showEmojiViewModel.requestModel.offset = "1"
         showEmojiViewModel.requestModel.sort = "DESC"
         showEmojiViewModel.requestModel.imgId = imgID
-
+        
         showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -270,7 +252,7 @@ class GroupDetailViewController: UIViewController {
             }
         }
     }
-
+    
     
     
     @IBAction func backToPreViouspage(_ sender: Any) {
@@ -307,7 +289,7 @@ class GroupDetailViewController: UIViewController {
         
         self.loaderView = loader
         
-       
+        
     }
     
     func stopCustomLoader(){
@@ -362,7 +344,7 @@ class GroupDetailViewController: UIViewController {
     @objc func deletingImage(_ sender: UIButton){
         var indexPath = sender.tag
         
-
+        
         print("My Image Code is", groupImageData[indexPath].id, "My group code is", groupCode  )
         
         guard let imageID = groupImageData[indexPath].id else {
@@ -434,7 +416,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.backgroundColor = .clear
         cell.layer.cornerRadius = 25
         cell.clipsToBounds = true
-
+        
         
         if let imagePath = groupImageData[indexPath.row].path,
            let imgName = groupImageData[indexPath.row].img_name,
@@ -450,30 +432,54 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
                         print("Failed to load image from url: \(fullImage)")
                         return
                     }
-
+                    
                     DispatchQueue.main.async { [self] in
                         // Check if cell is still visible
                         if let updateCell = tableView.cellForRow(at: indexPath) as? GroupDetailViewCell {
                             updateCell.partyImageView.image = UIImage(data: data)
                             updateCell.userName.text = ownerName
                         }
-//                        cell.allEmojiBtn.setTitle("Hello", for: .normal)
+                        //                        cell.allEmojiBtn.setTitle("Hello", for: .normal)
                         
                         if let emojisAre = self.groupImageData[indexPath.row].emoji {
-                        for emoji in 0...emojisAre.count - 1 {
                             
-                            if let singleEmoji = emojisAre[emoji].emoji_code {
-                                //cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
-                                stringEmoji = self.stringEmoji + String(singleEmoji)
-                            } else {
+                            if emojisAre.count <= 2 && emojisAre.count > 0  {
                                 
+                                for emoji in 0...emojisAre.count - 1 {
+                                    
+                                    if let singleEmoji = emojisAre[emoji].emoji_code {
+                                        //cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
+                                        stringEmoji = self.stringEmoji + String(singleEmoji)
+                                        
+                                    }
+                                    
+                                } // for loop ending
+                                
+                                cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
+                                stringEmoji = ""
+                            }  else if emojisAre.count == 0 {
+                                cell.allEmojiBtn.setTitle("", for: .normal)
+                                //stringEmoji = ""
                             }
                             
+                            
+                            
+                            else {
+                                if let firstEmoji = emojisAre[0].emoji_code,
+                                    let secondEmoji = emojisAre[1].emoji_code
+                                {
+                                    //cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
+                                    stringEmoji =  String(firstEmoji) + String(secondEmoji) + String(emojisAre.count - 2) + "+"
+                                    cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
+                                    stringEmoji = ""
+                                }
+                            }
+                            
+                            
                         }
-                    }
                         
-                        cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
-                        stringEmoji = ""
+                        //                        cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
+                        //                        stringEmoji = ""
                     } // Main thread upgradation
                     
                 }.resume()
@@ -483,7 +489,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
         }
         
-      //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
+        //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
         
         
         
@@ -493,24 +499,9 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.selectEmojiBtn.tag = indexPath.row
         cell.selectEmojiBtn.addTarget(self, action: #selector(showingImage), for: .touchUpInside)
         
-
+        
         cell.allEmojiBtn.tag = indexPath.row
         cell.allEmojiBtn.addTarget(self, action: #selector(allReactionList(_:)), for: .touchUpInside)
-        
-        
-//        if let emojisAre = groupImageData[indexPath.row].emoji {
-//        for emoji in 0...emojisAre.count - 1 {
-//            
-//            if let singleEmoji = emojisAre[emoji].emoji_code {
-//                cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
-//            } else {
-//                
-//            }
-//            
-//        }
-//    }
-        
-        
         
         return cell
     }
@@ -521,7 +512,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let updatedImageCode = groupImageData[indexPath.row].id ,
-            let emojisAre = groupImageData[indexPath.row].emoji {
+           let emojisAre = groupImageData[indexPath.row].emoji {
             print("the group code is", groupCode)
             print("Upadted Image code -->", updatedImageCode)
             for emoji in 0...emojisAre.count - 1 {
