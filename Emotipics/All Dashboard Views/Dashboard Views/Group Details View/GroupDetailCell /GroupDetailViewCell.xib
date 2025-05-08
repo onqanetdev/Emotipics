@@ -30,18 +30,18 @@
                                 <color key="textColor" red="0.52549019610000003" green="0.52156862749999999" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCF-bK-ww1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCF-bK-ww1">
                                 <rect key="frame" x="20" y="245" width="73" height="23"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="VWv-m3-8CI"/>
                                     <constraint firstAttribute="height" constant="23" id="dF4-p0-Rua"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray">
-                                    <backgroundConfiguration key="background" image="LongEmoji" imageContentMode="scaleAspectFill"/>
-                                    <color key="baseBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="😻☠️+1">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R8N-5b-EPS">
                                 <rect key="frame" x="20" y="38" width="300" height="200"/>
@@ -180,7 +180,6 @@
     <resources>
         <image name="AddEmoji" width="14" height="15"/>
         <image name="Download" width="12" height="12"/>
-        <image name="LongEmoji" width="204" height="72"/>
         <image name="Party" width="1000" height="667"/>
         <image name="ProfilePhotobg" width="108" height="108"/>
         <image name="deleteIcon" width="61" height="61"/>

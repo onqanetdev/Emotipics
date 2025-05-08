@@ -160,7 +160,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     }
     
     func reloadAllData(){
-        catalogueListingViewModel.requestModel.limit = "10"
+        catalogueListingViewModel.requestModel.limit = "50"
         catalogueListingViewModel.requestModel.offset = "1"
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
@@ -201,11 +201,14 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                     
                     
                     if let countData = catalogueListingViewModel.responseModel?.data?.count {
-                        
+                        print("Count data 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾", countData)
                         if countData % 2 == 0{
                             let height:CGFloat = CGFloat(sumHeight)
-                            self.collectionViewHeight.constant = height
-                            scrollViewHeight.constant = collectionViewHeight.constant + 370
+                            self.collectionViewHeight.constant = height + 120
+                           scrollViewHeight.constant = collectionViewHeight.constant + 300
+                            
+                            
+                            
                         } else {
                             let height:CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height + 120
@@ -452,6 +455,8 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                                 let height:CGFloat = CGFloat(sumHeight)
                                 self.collectionViewHeight.constant = height
                                 self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
+//                                self.scrollViewHeight.constant = self.collectionViewHeight.constant + 1000
+        
                             } else {
                                 let height:CGFloat = CGFloat(sumHeight)
                                 self.collectionViewHeight.constant = height + 120

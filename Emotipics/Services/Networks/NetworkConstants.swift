@@ -53,6 +53,7 @@ enum APIEndpoint: String {
     case profileDetails = "user-profile"
     
     case addEmoji = "add-emoji"
+    case showEmoji = "emoji-list"
     
     
 }

@@ -117,6 +117,8 @@
 		8A3431FC2DC87AAD005FE890 /* GroupImageListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FB2DC87AAD005FE890 /* GroupImageListResModel.swift */; };
 		8A3431FE2DC87F4C005FE890 /* GroupImageListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FD2DC87F4C005FE890 /* GroupImageListReqModel.swift */; };
 		8A3432002DC87FED005FE890 /* GroupImageListAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */; };
+		8A39B5CB2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39B5CA2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift */; };
+		8A39B5CD2DCB203300C1FC37 /* ShowEmojiListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A39B5CC2DCB203300C1FC37 /* ShowEmojiListViewModel.swift */; };
 		8A3B823B2D87DBF500CFFC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */; };
 		8A3B823F2D881B0800CFFC37 /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */; };
 		8A3B82402D881B0800CFFC37 /* GroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */; };
@@ -173,6 +175,10 @@
 		8A4616442DA91DCF00661A9C /* SharedInformationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */; };
 		8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */; };
 		8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */; };
+		8A4983AD2DCC62D200220552 /* ShowEmojiListPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4983AB2DCC62D200220552 /* ShowEmojiListPopUp.swift */; };
+		8A4983AE2DCC62D200220552 /* ShowEmojiListPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4983AC2DCC62D200220552 /* ShowEmojiListPopUp.xib */; };
+		8A4983B12DCC688300220552 /* ShowEmojiListPopUpTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A4983AF2DCC688300220552 /* ShowEmojiListPopUpTVC.swift */; };
+		8A4983B22DCC688300220552 /* ShowEmojiListPopUpTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4983B02DCC688300220552 /* ShowEmojiListPopUpTVC.xib */; };
 		8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */; };
 		8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */; };
 		8A53333A2D913AAC00B524A7 /* AboutUsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333392D913AAC00B524A7 /* AboutUsVC.xib */; };
@@ -391,6 +397,8 @@
 		8A3431FB2DC87AAD005FE890 /* GroupImageListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListResModel.swift; sourceTree = "<group>"; };
 		8A3431FD2DC87F4C005FE890 /* GroupImageListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListReqModel.swift; sourceTree = "<group>"; };
 		8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListAPICaller.swift; sourceTree = "<group>"; };
+		8A39B5CA2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEmojiListAPICaller.swift; sourceTree = "<group>"; };
+		8A39B5CC2DCB203300C1FC37 /* ShowEmojiListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEmojiListViewModel.swift; sourceTree = "<group>"; };
 		8A3B823A2D87DBF500CFFC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3B823D2D881B0800CFFC37 /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
 		8A3B823E2D881B0800CFFC37 /* GroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupTableViewCell.xib; sourceTree = "<group>"; };
@@ -449,6 +457,10 @@
 		8A4616422DA91DCF00661A9C /* SharedInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationVC.swift; sourceTree = "<group>"; };
 		8A4616432DA91DCF00661A9C /* SharedInformationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationVC.xib; sourceTree = "<group>"; };
 		8A48815B2D7849DF00EAB64B /* DashboardView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DashboardView+extension.swift"; sourceTree = "<group>"; };
+		8A4983AB2DCC62D200220552 /* ShowEmojiListPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEmojiListPopUp.swift; sourceTree = "<group>"; };
+		8A4983AC2DCC62D200220552 /* ShowEmojiListPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowEmojiListPopUp.xib; sourceTree = "<group>"; };
+		8A4983AF2DCC688300220552 /* ShowEmojiListPopUpTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowEmojiListPopUpTVC.swift; sourceTree = "<group>"; };
+		8A4983B02DCC688300220552 /* ShowEmojiListPopUpTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowEmojiListPopUpTVC.xib; sourceTree = "<group>"; };
 		8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountDetailsVC.swift; sourceTree = "<group>"; };
 		8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountDetailsVC.xib; sourceTree = "<group>"; };
 		8A5333382D913AAC00B524A7 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
@@ -1033,6 +1045,7 @@
 				8A3431FF2DC87FED005FE890 /* GroupImageListAPICaller.swift */,
 				8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */,
 				8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */,
+				8A39B5CA2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -1125,6 +1138,7 @@
 				8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */,
 				8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */,
 				8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */,
+				8A39B5CC2DCB203300C1FC37 /* ShowEmojiListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1175,6 +1189,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8A4983AA2DCC62AA00220552 /* Show Emoji PopUp */,
 				8A707E2D2DCA026A00054756 /* EmojiListView */,
 				8A09D37E2DC35A330050A3CA /* Logout Functionality */,
 				8ACDCBD32DBBA4D800A9B3EE /* ExitFromCataloguePopUps */,
@@ -1294,6 +1309,17 @@
 				8ABA8ABC2D771B4D003D4727 /* Dashboard Views */,
 			);
 			path = "All Dashboard Views";
+			sourceTree = "<group>";
+		};
+		8A4983AA2DCC62AA00220552 /* Show Emoji PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				8A4983AB2DCC62D200220552 /* ShowEmojiListPopUp.swift */,
+				8A4983AC2DCC62D200220552 /* ShowEmojiListPopUp.xib */,
+				8A4983AF2DCC688300220552 /* ShowEmojiListPopUpTVC.swift */,
+				8A4983B02DCC688300220552 /* ShowEmojiListPopUpTVC.xib */,
+			);
+			path = "Show Emoji PopUp";
 			sourceTree = "<group>";
 		};
 		8A5333312D91144200B524A7 /* All Side Menu Views */ = {
@@ -1742,6 +1768,7 @@
 				8A241DF02D804994002D7BA8 /* CatalogueViewController.xib in Resources */,
 				8ACDCBD62DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib in Resources */,
 				8A2E517D2D9D0B6F00D4A023 /* OTPPopUPVC.xib in Resources */,
+				8A4983B22DCC688300220552 /* ShowEmojiListPopUpTVC.xib in Resources */,
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A707E342DCA03E700054756 /* EmojiListViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
@@ -1757,6 +1784,7 @@
 				8A4353B62D758F4700ABB7A0 /* jost_regular.ttf in Resources */,
 				8A5333402D915BCF00B524A7 /* NotificationDetailsVC.xib in Resources */,
 				8A3B82462D8820B800CFFC37 /* GroupListViewController.xib in Resources */,
+				8A4983AE2DCC62D200220552 /* ShowEmojiListPopUp.xib in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
 				8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */,
@@ -1875,6 +1903,7 @@
 				8ACDCBD02DBB8C6D00A9B3EE /* CatalogueRenameAPICaller.swift in Sources */,
 				8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */,
 				8AEADB5B2DA6537A00BF187E /* AddCatalogueApiCaller.swift in Sources */,
+				8A4983B12DCC688300220552 /* ShowEmojiListPopUpTVC.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A707E3B2DCA0FB900054756 /* EmojiCell.swift in Sources */,
@@ -1926,6 +1955,7 @@
 				8A3ED2612DAF6695002C3129 /* CatalogueImageListReqModel.swift in Sources */,
 				8A2E51862D9D4A0400D4A023 /* OTPViewModel.swift in Sources */,
 				8A48815C2D7849DF00EAB64B /* DashboardView+extension.swift in Sources */,
+				8A39B5CD2DCB203300C1FC37 /* ShowEmojiListViewModel.swift in Sources */,
 				8A43538C2D75760600ABB7A0 /* AppDelegate.swift in Sources */,
 				8A00BA162DBF3FA000513C44 /* CatUserExitResModel.swift in Sources */,
 				8A1B0EA42DC0D01400A3CCA5 /* GroupAddUserReqModel.swift in Sources */,
@@ -1947,6 +1977,7 @@
 				8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
+				8A39B5CB2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift in Sources */,
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
 				8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */,
 				8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */,
@@ -1962,6 +1993,7 @@
 				8A3C027C2D955C5300DE941A /* LoginResponseModel.swift in Sources */,
 				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
+				8A4983AD2DCC62D200220552 /* ShowEmojiListPopUp.swift in Sources */,
 				8A1B0EA12DC0AC6200A3CCA5 /* GroupRenameViewModel.swift in Sources */,
 				8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */,
 				8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */,

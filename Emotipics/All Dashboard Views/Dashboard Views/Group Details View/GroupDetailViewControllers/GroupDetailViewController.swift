@@ -79,6 +79,14 @@ class GroupDetailViewController: UIViewController {
     var groupImageData:[GroupImageData] = []
     
     var groupDeleteImageViewModel: GroupDeleteImageViewModel = GroupDeleteImageViewModel()
+    //Show Emoji
+    var showEmojiViewModel:ShowEmojiListViewModel = ShowEmojiListViewModel()
+    
+    var emojiCollList:[ShowGroupEmojiList] = []
+    
+    var sampleDict: [String: [ShowGroupEmojiList]] = [:]
+    
+    var stringEmoji: String = ""
     
     
     override func viewDidLoad() {
@@ -159,7 +167,7 @@ class GroupDetailViewController: UIViewController {
         groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { result in
             DispatchQueue.main.async { [self] in
                 //self.activityIndicator.stopAnimating()
-                self.stopCustomLoader()
+                //self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     
@@ -169,6 +177,24 @@ class GroupDetailViewController: UIViewController {
                         
                         if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
                             self?.groupImageData = imageGroupData
+                            
+                            // MARK: Use DispatchGroup to wait for all emoji requests
+                            let dispatchGroup = DispatchGroup()
+                            
+                            for image in imageGroupData {
+                                if let imgID = image.id {
+                                    dispatchGroup.enter()
+                                    self?.showEmojiListWithCompletion(imgID: imgID) {
+                                        dispatchGroup.leave()
+                                    }
+                                }
+                            }
+
+                            dispatchGroup.notify(queue: .main) {
+                                print("✅ All emoji requests completed")
+                                //self?.detailTblView.reloadData()
+                                self?.stopCustomLoader()
+                            }
                             
                             self?.tblViewHeight.constant = CGFloat( 300*(imageGroupData.count) + 300)
                             
@@ -189,14 +215,62 @@ class GroupDetailViewController: UIViewController {
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
     
+//    func showEmojiList(imgID: Int){
+//        showEmojiViewModel.requestModel.limit = "4"
+//        showEmojiViewModel.requestModel.offset = "1"
+//        showEmojiViewModel.requestModel.sort = "DESC"
+//        showEmojiViewModel.requestModel.imgId = imgID
+//        
+//       // activityIndicator.startAnimating()
+//        startCustomLoader()
+//        showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { result in
+//            DispatchQueue.main.async {
+//                //self.activityIndicator.stopAnimating()
+//                self.stopCustomLoader()
+//                switch result {
+//                case .goAhead:
+//                    print("My Emoji List 🤗 View Model Calling....📞")
+//                    //table View Reload Data
+//                    DispatchQueue.main.async { [self] in
+//                        
+//                        detailTblView.reloadData()
+//                        
+//                    }
+//                case .heyStop:
+//                    print("Error")
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        } // view model
+//    }
+    
+    
+    func showEmojiListWithCompletion(imgID: Int, completion: @escaping () -> Void) {
+        showEmojiViewModel.requestModel.limit = "4"
+        showEmojiViewModel.requestModel.offset = "1"
+        showEmojiViewModel.requestModel.sort = "DESC"
+        showEmojiViewModel.requestModel.imgId = imgID
+
+        showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .goAhead:
+                    print("Emoji loaded for image ID \(imgID)")
+                case .heyStop:
+                    print("Error loading emoji for image ID \(imgID)")
+                }
+                completion()
+            }
+        }
+    }
+
     
     
     @IBAction func backToPreViouspage(_ sender: Any) {
@@ -233,7 +307,7 @@ class GroupDetailViewController: UIViewController {
         
         self.loaderView = loader
         
-        // Stop and remove after 5 seconds
+       
     }
     
     func stopCustomLoader(){
@@ -242,15 +316,29 @@ class GroupDetailViewController: UIViewController {
         loaderView?.removeFromSuperview()
         
         loaderView = nil
-        
-        
     }
     
     
     
+    @objc func allReactionList(_ sender: UIButton){
+        let indexPath = sender.tag
+        let errorPopup = ShowEmojiListPopUp(nibName: "ShowEmojiListPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        
+        
+        if let imageID = groupImageData[indexPath].id {
+            errorPopup.imageId = imageID
+        }
+        
+        //errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
+        
+    }
+    
     
     @objc func showingImage(_ sender: UIButton){
-        var indexpath = sender.tag
+        let indexpath = sender.tag
         
         let errorPopup = EmojiListViewController(nibName: "EmojiListViewController", bundle: nil)
         errorPopup.modalPresentationStyle = .overCurrentContext
@@ -259,6 +347,11 @@ class GroupDetailViewController: UIViewController {
         errorPopup.groupCode = groupCode
         if let imageID = groupImageData[indexpath].id {
             errorPopup.imgId = imageID
+        }
+        errorPopup.onCompletionOfEmoji = { [weak self] in
+            print("Reloading...................")
+            self?.imageListForGroup(groupCode: self?.groupCode ?? "0")
+            //self.detailTblView.reloadData()
         }
         self.present(errorPopup, animated: true)
         
@@ -358,13 +451,31 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
                         return
                     }
 
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         // Check if cell is still visible
                         if let updateCell = tableView.cellForRow(at: indexPath) as? GroupDetailViewCell {
                             updateCell.partyImageView.image = UIImage(data: data)
                             updateCell.userName.text = ownerName
                         }
+//                        cell.allEmojiBtn.setTitle("Hello", for: .normal)
+                        
+                        if let emojisAre = self.groupImageData[indexPath.row].emoji {
+                        for emoji in 0...emojisAre.count - 1 {
+                            
+                            if let singleEmoji = emojisAre[emoji].emoji_code {
+                                //cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
+                                stringEmoji = self.stringEmoji + String(singleEmoji)
+                            } else {
+                                
+                            }
+                            
+                        }
                     }
+                        
+                        cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
+                        stringEmoji = ""
+                    } // Main thread upgradation
+                    
                 }.resume()
                 
             }
@@ -374,11 +485,33 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
       //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
         
+        
+        
         cell.deleteBtnAction.tag = indexPath.row
         cell.deleteBtnAction.addTarget(self, action: #selector(deletingImage), for: .touchUpInside)
         
         cell.selectEmojiBtn.tag = indexPath.row
         cell.selectEmojiBtn.addTarget(self, action: #selector(showingImage), for: .touchUpInside)
+        
+
+        cell.allEmojiBtn.tag = indexPath.row
+        cell.allEmojiBtn.addTarget(self, action: #selector(allReactionList(_:)), for: .touchUpInside)
+        
+        
+//        if let emojisAre = groupImageData[indexPath.row].emoji {
+//        for emoji in 0...emojisAre.count - 1 {
+//            
+//            if let singleEmoji = emojisAre[emoji].emoji_code {
+//                cell.allEmojiBtn.setTitle(singleEmoji, for: .normal)
+//            } else {
+//                
+//            }
+//            
+//        }
+//    }
+        
+        
+        
         return cell
     }
     
@@ -387,9 +520,13 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let updatedImageCode = groupImageData[indexPath.row].id {
+        if let updatedImageCode = groupImageData[indexPath.row].id ,
+            let emojisAre = groupImageData[indexPath.row].emoji {
             print("the group code is", groupCode)
             print("Upadted Image code -->", updatedImageCode)
+            for emoji in 0...emojisAre.count - 1 {
+                print("emo is ", emojisAre[emoji].emoji_code)
+            }
         }
     }
 }
