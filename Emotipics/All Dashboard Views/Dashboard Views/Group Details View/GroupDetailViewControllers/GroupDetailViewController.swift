@@ -68,6 +68,9 @@ class GroupDetailViewController: UIViewController {
         }
     }
     
+    
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     //Group Image List View Model
     
     let groupImageListViewModel: GroupImageListViewModel = GroupImageListViewModel()
@@ -116,11 +119,7 @@ class GroupDetailViewController: UIViewController {
         
     }
     
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        imageListForGroup(groupCode: groupCode)
-//    }
-    
+
     //MARK: Setting Background for Table View Background
     func setTableViewBackground() {
         let backgroundImage = UIImage(named: "TableViewBackground") // Use your image name
@@ -186,37 +185,18 @@ class GroupDetailViewController: UIViewController {
                     if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
                         self.groupImageData = imageGroupData
                         
-                        if imageGroupData.isEmpty {
-                            self.detailTblView.isHidden = true
-                            self.stopCustomLoader()
-                            return
-                        }
 
-                        // DispatchGroup emoji loading moved to background queue
-                        DispatchQueue.global(qos: .userInitiated).async {
-                            let dispatchGroup = DispatchGroup()
-
-                            for image in imageGroupData {
-                                if let imgID = image.id {
-                                    dispatchGroup.enter()
-                                    self.showEmojiListWithCompletion(imgID: imgID) {
-                                        dispatchGroup.leave()
-                                    }
-                                }
-                            }
-
-                            dispatchGroup.notify(queue: .main) {
-                                print("✅ All emoji requests completed")
-                                self.tblViewHeight.constant = CGFloat(300 * imageGroupData.count + 300)
-                                self.scrollViewHeight.constant = self.tblViewHeight.constant
-                                print("scroll view height", self.scrollViewHeight.constant)
-                                self.detailTblView.reloadData()
-                                self.stopCustomLoader()
-                            }
-                        }
+                        print("the group image data ", imageGroupData)
+                        
+                        self.tblViewHeight.constant = CGFloat(imageGroupData.count * 300) + 300
+                        self.scrollViewHeight.constant = self.tblViewHeight.constant
+                        self.detailTblView.reloadData()
+                        self.stopCustomLoader()
 
                     } else {
                         self.detailTblView.isHidden = true
+                        self.tblViewHeight.constant = 0
+                        self.scrollView.isScrollEnabled = false
                         self.stopCustomLoader()
                     }
 

@@ -20,6 +20,8 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
         //cell.textLabel?.text = "Cell No.: \(indexPath.row)"
         //cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         cell.sarahLbl.text = contactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
+        cell.associatedEmailTxtFld.text = contactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
+        
         cell.layer.cornerRadius = 10
         cell.moreActionBtn.tag = indexPath.row
         cell.moreActionBtn.addTarget(self, action: #selector(popUpFromBottom(_:)), for: .touchUpInside)

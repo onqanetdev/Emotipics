@@ -15,6 +15,7 @@
                 <outlet property="detailTblView" destination="rRB-Wa-O46" id="wOc-jY-VZc"/>
                 <outlet property="groupIconImgView" destination="lqA-ds-7VT" id="LHF-hi-Ovk"/>
                 <outlet property="roundedView" destination="me1-fN-hSm" id="6sn-z6-ySD"/>
+                <outlet property="scrollView" destination="MwT-A6-S7F" id="52W-G5-9d1"/>
                 <outlet property="scrollViewHeight" destination="tAg-kz-a3p" id="pZl-zO-oeE"/>
                 <outlet property="shareFilesBtn" destination="bTz-YN-mPU" id="dYx-KZ-1NR"/>
                 <outlet property="tblViewHeight" destination="25W-fb-J7t" id="mcx-dk-P8K"/>

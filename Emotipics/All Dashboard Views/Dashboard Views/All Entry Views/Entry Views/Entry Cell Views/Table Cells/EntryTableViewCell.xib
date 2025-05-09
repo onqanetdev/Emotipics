@@ -26,12 +26,23 @@
                                     <constraint firstAttribute="height" constant="54" id="dB3-Yb-myO"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarah Williams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zW-JW-JQQ">
-                                <rect key="frame" x="55.999999999999993" y="23.333333333333329" width="100.33333333333331" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="ZxM-SG-vOr">
+                                <rect key="frame" x="63.000000000000014" y="15.333333333333332" width="148.33333333333337" height="34.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sarah Williams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zW-JW-JQQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.33333333333333" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcdefghijklm@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn5-LO-3MO">
+                                        <rect key="frame" x="0.0" y="20" width="148.33333333333334" height="14.333333333333336"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDk-0R-r4P">
                                 <rect key="frame" x="371" y="15" width="35" height="35"/>
                                 <constraints>
@@ -45,11 +56,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95294117647058818" green="0.97647058823529409" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="2zW-JW-JQQ" firstAttribute="leading" secondItem="I0y-U1-zUv" secondAttribute="trailing" constant="11" id="17u-mF-Rva"/>
+                            <constraint firstItem="ZxM-SG-vOr" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="AmT-eP-890"/>
                             <constraint firstItem="EDk-0R-r4P" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="EzE-GP-Fua"/>
                             <constraint firstItem="I0y-U1-zUv" firstAttribute="leading" secondItem="CL5-Yy-1eI" secondAttribute="leading" constant="13" id="Gnc-ji-oFA"/>
                             <constraint firstAttribute="height" constant="65" id="PZv-Dh-MVZ"/>
-                            <constraint firstItem="2zW-JW-JQQ" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="b1C-zu-mxB"/>
+                            <constraint firstItem="ZxM-SG-vOr" firstAttribute="leading" secondItem="I0y-U1-zUv" secondAttribute="trailing" constant="18" id="VWJ-Zo-eeC"/>
                             <constraint firstAttribute="trailing" secondItem="EDk-0R-r4P" secondAttribute="trailing" constant="15" id="l10-dF-bo3"/>
                             <constraint firstItem="I0y-U1-zUv" firstAttribute="centerY" secondItem="CL5-Yy-1eI" secondAttribute="centerY" id="wLw-vP-Btw"/>
                         </constraints>
@@ -64,6 +75,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="associatedEmailTxtFld" destination="wn5-LO-3MO" id="Tl4-dw-DDn"/>
                 <outlet property="cellView" destination="CL5-Yy-1eI" id="5co-KR-Pcb"/>
                 <outlet property="moreActionBtn" destination="EDk-0R-r4P" id="5Nw-PU-aPr"/>
                 <outlet property="profilePhoto" destination="I0y-U1-zUv" id="lQV-LM-YEj"/>

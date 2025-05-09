@@ -44,6 +44,9 @@ class EntryTableViewCell: UITableViewCell {
     
     
     
+    @IBOutlet weak var associatedEmailTxtFld: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

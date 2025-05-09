@@ -268,7 +268,7 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
         cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
-        
+        cell.associatedEmailTxtFld.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
         cell.moreActionBtn.tag = indexPath.row
         cell.moreActionBtn.addTarget(self, action: #selector(popUpFromBottom(_:)), for: .touchUpInside)
             return cell
