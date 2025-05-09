@@ -67,7 +67,7 @@ class CatalogueUserExitAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for CatalogueUserExitAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

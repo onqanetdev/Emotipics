@@ -67,7 +67,7 @@ class CatalogueUserListAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE from catalogue user list api caller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

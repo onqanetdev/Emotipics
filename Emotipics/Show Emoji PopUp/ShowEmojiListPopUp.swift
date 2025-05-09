@@ -55,34 +55,41 @@ class ShowEmojiListPopUp: UIViewController {
     }
     
     
+
+    
+    
+    
     func showEmojiList(imgID: Int) {
-        allListViewModel.requestModel.limit = "50"
+        allListViewModel.requestModel.limit = "20"
         allListViewModel.requestModel.offset = "1"
         allListViewModel.requestModel.sort = "DESC"
         allListViewModel.requestModel.imgId = imgID
         
         startCustomLoader()
         
-        allListViewModel.showEmojiListViewModel(request: allListViewModel.requestModel) { result in
+        allListViewModel.showEmojiListViewModel(request: allListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
+                guard let self = self else { return }
+                
                 switch result {
                 case .goAhead:
                     print("Emoji List Show")
-
+                    
                     if let emojiDetailsFor = self.allListViewModel.responseModel?.data {
                         self.emojiDetails = emojiDetailsFor
-                        
                         self.emojiListTblView.reloadData()
                         self.stopCustomLoader()
                     }
+                    
                 case .heyStop:
                     print("Error loading emoji for image ID \(imgID)")
-                    
                 }
-                
             }
         }
     }
+
+    
+    
     
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
@@ -109,6 +116,10 @@ class ShowEmojiListPopUp: UIViewController {
         
         loaderView = nil
     }
+    
+    deinit {
+            print("🧹 ShowEmojiListPopUp deinitialized properly")
+        }
 }
 
 

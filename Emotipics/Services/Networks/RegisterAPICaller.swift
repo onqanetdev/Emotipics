@@ -63,7 +63,7 @@ class RegisterAPICaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for RegisterAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

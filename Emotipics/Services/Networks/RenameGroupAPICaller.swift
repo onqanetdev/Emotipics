@@ -66,7 +66,7 @@ class RenameGroupAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for RenameGroupAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

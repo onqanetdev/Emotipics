@@ -66,7 +66,7 @@ class DeleteGroupAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for DeleteGroupAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

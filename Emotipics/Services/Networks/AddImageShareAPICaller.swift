@@ -66,7 +66,7 @@ class AddImageShareAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for AddImageShareAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

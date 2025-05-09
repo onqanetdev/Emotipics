@@ -67,7 +67,7 @@ class GetAllContactList {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for GetAllContactList")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

@@ -65,7 +65,7 @@ class DeleteImageApiCaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for DeleteImageApiCaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

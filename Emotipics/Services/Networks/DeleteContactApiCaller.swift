@@ -63,7 +63,7 @@ class DeleteContactApiCaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for DeleteContactApiCaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

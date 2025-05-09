@@ -65,7 +65,7 @@ class CatalogueListingApiCaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for CatalogueListingApiCaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

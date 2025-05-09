@@ -67,7 +67,7 @@ class UserExitFromGrpAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for User Leaving a Group")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

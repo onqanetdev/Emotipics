@@ -73,7 +73,7 @@ class AddContactApiCaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for AddContactsApiCaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

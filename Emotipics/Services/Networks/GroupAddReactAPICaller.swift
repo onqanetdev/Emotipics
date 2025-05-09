@@ -70,7 +70,7 @@ class GroupAddReactAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for Add Reaction to a Image")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

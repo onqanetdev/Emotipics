@@ -69,7 +69,7 @@ class ShareImageListAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for ShareImageListAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

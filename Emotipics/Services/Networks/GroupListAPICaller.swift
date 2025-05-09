@@ -69,7 +69,7 @@ class GroupListAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for GroupListAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

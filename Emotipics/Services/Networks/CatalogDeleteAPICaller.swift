@@ -65,7 +65,7 @@ class CatalogDeleteAPICaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for CatalogueDeleteAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

@@ -65,7 +65,7 @@ class DeleteGroupImageAPICaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE from  delete group image")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

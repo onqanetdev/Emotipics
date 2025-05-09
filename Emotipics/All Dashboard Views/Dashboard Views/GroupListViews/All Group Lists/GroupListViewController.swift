@@ -182,27 +182,26 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
     
     
     
+
     
     func loadingAllGroups() {
-        groupListingView.requestModel.limit = "10"
+        groupListingView.requestModel.limit = "50"
         groupListingView.requestModel.offset = "1"
-        //activityIndicator.startAnimating()
         startCustomLoader()
         
-        groupListingView.groupListViewModelFunc(request: groupListingView.requestModel) { result in
-            DispatchQueue.main.async { [self] in
-                // self.activityIndicator.stopAnimating()
+        groupListingView.groupListViewModelFunc(request: groupListingView.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("✅ Data received successfully!")
-                    guard let resultArray = groupListingView.responseModel?.data else {
+                    guard let resultArray = self.groupListingView.responseModel?.data else {
                         return
                     }
                     
-                    newResultArray = resultArray
+                    self.newResultArray = resultArray
                     self.tblViewForGroups.reloadData()
-                    
                     
                 case .heyStop:
                     print("Error")
@@ -210,8 +209,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
             }
         }
     }
-    
-    
+
     
     
     

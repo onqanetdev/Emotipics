@@ -67,7 +67,7 @@ class CatalogueRenameAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for CatalogueRenameAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

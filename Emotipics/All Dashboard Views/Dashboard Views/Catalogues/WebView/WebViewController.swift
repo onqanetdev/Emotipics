@@ -94,8 +94,6 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
     private func loadWebsite() {
         
-
-        
         guard let userCode = savedUserCode, let catalogueId = savedCatalogueId else {
              print("❌ Missing userCode or catalogueId")
              return
@@ -133,11 +131,25 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
     
 
        // Receive JS message
-       func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-           if message.name == "buttonClicked", let body = message.body as? String, body == "goBack" {
-               navigationController?.popViewController(animated: true)
-           }
-       }
+//       func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+//           if message.name == "buttonClicked", let body = message.body as? String, body == "goBack" {
+//               navigationController?.popViewController(animated: true)
+//           }
+//       }
+    
+    
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            if message.name == "buttonClicked", let body = message.body as? String {
+                switch body {
+                case "goBack":
+                    navigationController?.popViewController(animated: true)
+                case "openCamera":
+                    openCamera()
+                default:
+                    break
+                }
+            }
+        }
 
        deinit {
            webView.configuration.userContentController.removeScriptMessageHandler(forName: "buttonClicked")
@@ -147,4 +159,33 @@ class WebViewController: UIViewController, WKScriptMessageHandler, WKNavigationD
 
 
 
-
+extension WebViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("❌ Camera not available on this device.")
+            return
+        }
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true)
+    }
+    
+    // Called when an image is picked
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        if let image = info[.originalImage] as? UIImage {
+            print("📷 Captured image: \(image)")
+            // You can handle uploading or processing the image here
+        }
+    }
+    
+    // Called if user cancels the picker
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}

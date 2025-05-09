@@ -84,7 +84,7 @@ public class APICaller {
                     CompletionHandler(.success(jsonResponse))
                 }
             } else {
-                print("Not able to decode into json")
+                print("Not able to decode into json for LoginAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
         }.resume()

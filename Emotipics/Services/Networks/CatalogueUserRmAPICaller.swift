@@ -66,7 +66,7 @@ class CatalogueUserRmAPICaller {
                 
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE for CatalogueUserRmAPICaller")
                 CompletionHandler(.failure(.canNotParseData))
             }
             

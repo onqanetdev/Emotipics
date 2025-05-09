@@ -117,9 +117,9 @@ class GroupDetailViewController: UIViewController {
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        imageListForGroup(groupCode: groupCode)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        imageListForGroup(groupCode: groupCode)
+//    }
     
     //MARK: Setting Background for Table View Background
     func setTableViewBackground() {
@@ -164,72 +164,71 @@ class GroupDetailViewController: UIViewController {
         contentView.insertSubview(backgroundImageView, at: 0)
     }
     
-    func imageListForGroup(groupCode: String){
-        
+
+
+
+
+    
+    
+    func imageListForGroup(groupCode: String) {
         groupImageListViewModel.requestModel.groupCode = groupCode
         groupImageListViewModel.requestModel.limit = "50"
         groupImageListViewModel.requestModel.offset = "1"
-        
-        //activityIndicator.startAnimating()
+
         startCustomLoader()
-        groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { result in
-            DispatchQueue.main.async { [self] in
-                //self.activityIndicator.stopAnimating()
-                //self.stopCustomLoader()
+        
+        groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+
                 switch result {
                 case .goAhead:
-                    
-                    
-                    DispatchQueue.main.async { [weak self] in
+                    if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
+                        self.groupImageData = imageGroupData
                         
-                        
-                        if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
-                            self?.groupImageData = imageGroupData
-                            
-                            if imageGroupData.count == 0 || imageGroupData.isEmpty {
-                                self?.detailTblView.isHidden = true
-                            }
-                            
-                            // MARK: Use DispatchGroup to wait for all emoji requests
+                        if imageGroupData.isEmpty {
+                            self.detailTblView.isHidden = true
+                            self.stopCustomLoader()
+                            return
+                        }
+
+                        // DispatchGroup emoji loading moved to background queue
+                        DispatchQueue.global(qos: .userInitiated).async {
                             let dispatchGroup = DispatchGroup()
-                            
+
                             for image in imageGroupData {
                                 if let imgID = image.id {
                                     dispatchGroup.enter()
-                                    self?.showEmojiListWithCompletion(imgID: imgID) {
+                                    self.showEmojiListWithCompletion(imgID: imgID) {
                                         dispatchGroup.leave()
                                     }
                                 }
                             }
-                            
+
                             dispatchGroup.notify(queue: .main) {
                                 print("✅ All emoji requests completed")
-                                //self?.detailTblView.reloadData()
-                                self?.stopCustomLoader()
+                                self.tblViewHeight.constant = CGFloat(300 * imageGroupData.count + 300)
+                                self.scrollViewHeight.constant = self.tblViewHeight.constant
+                                print("scroll view height", self.scrollViewHeight.constant)
+                                self.detailTblView.reloadData()
+                                self.stopCustomLoader()
                             }
-                            
-                            self?.tblViewHeight.constant = CGFloat( 300*(imageGroupData.count) + 300)
-                            
-                            self?.scrollViewHeight.constant = self?.tblViewHeight.constant ?? 100
-                            
-                            print("scroll view height", self?.scrollViewHeight.constant)
-                        } else {
-                            self?.detailTblView.isHidden = true
                         }
-                        
-                        
-                        self?.detailTblView.reloadData()
-                        
-                    } // DispatchQueue Closing
-                    
-                    
-                    
+
+                    } else {
+                        self.detailTblView.isHidden = true
+                        self.stopCustomLoader()
+                    }
+
                 case .heyStop:
-                    print("Error")
+                    print("❌ Error")
+                    self.stopCustomLoader()
                 }
             }
         }
     }
+
+    
     
     
     
@@ -239,9 +238,14 @@ class GroupDetailViewController: UIViewController {
         showEmojiViewModel.requestModel.offset = "1"
         showEmojiViewModel.requestModel.sort = "DESC"
         showEmojiViewModel.requestModel.imgId = imgID
-        
-        showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { result in
+
+        showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
+                guard self != nil else {
+                    completion()
+                    return
+                }
+
                 switch result {
                 case .goAhead:
                     print("Emoji loaded for image ID \(imgID)")
@@ -252,6 +256,7 @@ class GroupDetailViewController: UIViewController {
             }
         }
     }
+
     
     
     
@@ -259,8 +264,6 @@ class GroupDetailViewController: UIViewController {
         
         navigationController?.popViewController(animated: true)
     }
-    
-    
     
     
     @IBAction func shareFilesBtn(_ sender: Any) {
@@ -271,9 +274,7 @@ class GroupDetailViewController: UIViewController {
         navigationController?.pushViewController(webView, animated: true)
     }
     
-    
-    
-    
+
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -339,8 +340,7 @@ class GroupDetailViewController: UIViewController {
         
     }
     
-    
-    
+
     @objc func deletingImage(_ sender: UIButton){
         var indexPath = sender.tag
         
@@ -400,6 +400,53 @@ class GroupDetailViewController: UIViewController {
         
     }
     
+    
+    
+    @objc func downloadingImage(_ sender: UIButton){
+        let index = sender.tag
+        guard index < groupImageData.count else { return }
+
+        guard let imageUrlString = groupImageData[index].path,
+              let imageUrlRemaining = groupImageData[index].img_name,// or whatever the URL property is
+                let imageUrl = URL(string: imageUrlString + imageUrlRemaining) else {
+            print("Invalid image URL")
+            return
+        }
+
+        startCustomLoader()
+        
+        DispatchQueue.global().async {
+            if let imageData = try? Data(contentsOf: imageUrl),
+               let image = UIImage(data: imageData) {
+                
+                // Save to Photos
+                UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            } else {
+                DispatchQueue.main.async {
+                    self.stopCustomLoader()
+                    print("Failed to download image")
+                }
+            }
+        }
+    }
+    
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        DispatchQueue.main.async {
+            self.stopCustomLoader()
+            if let error = error {
+                print("❌ Save error: \(error.localizedDescription)")
+            } else {
+                print("✅ Image successfully saved to Photos")
+            }
+        }
+    }
+
+    deinit {
+        print("🧹 GroupDetailViewController deinitialized")
+        // Set breakpoints here or use Instruments > Leaks
+    }
+
 }
 
 
@@ -478,8 +525,6 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
                             
                         }
                         
-                        //                        cell.allEmojiBtn.setTitle(stringEmoji, for: .normal)
-                        //                        stringEmoji = ""
                     } // Main thread upgradation
                     
                 }.resume()
@@ -489,7 +534,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
         }
         
-        //  cell.partyImageView.image = UIImage(data: <#T##Data#>)
+        
         
         
         
@@ -502,6 +547,10 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         
         cell.allEmojiBtn.tag = indexPath.row
         cell.allEmojiBtn.addTarget(self, action: #selector(allReactionList(_:)), for: .touchUpInside)
+        
+        cell.downLoadBtn.tag = indexPath.row
+        cell.downLoadBtn.addTarget(self, action: #selector(downloadingImage(_:)), for: .touchUpInside)
+        
         
         return cell
     }

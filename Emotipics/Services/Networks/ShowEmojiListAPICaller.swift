@@ -70,7 +70,7 @@ class ShowEmojiListAPICaller {
                 }
                 
             } else {
-                print("UNABLE TO CONVERT IT INTO JSON RESPONSE")
+                print("UNABLE TO CONVERT IT INTO JSON RESPONSE For All Emojis Showing")
                 CompletionHandler(.failure(.canNotParseData))
             }
             
