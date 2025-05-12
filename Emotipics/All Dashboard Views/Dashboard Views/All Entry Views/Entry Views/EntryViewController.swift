@@ -49,41 +49,14 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     //MARK: 1500 height of the scroll view
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
-    //MARK: current Plans Titles
-    
-    @IBOutlet weak var CurrentPlanView: UIView!{
-        didSet{
-            //1.Add corner radius
-            CurrentPlanView.layer.cornerRadius = 20
-            CurrentPlanView.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var getMoreLbl: UILabel!
-    @IBOutlet weak var priceTagLbl: UILabel!
-    @IBOutlet weak var viewPlansBtn: UIButton!{
-        didSet{
-            viewPlansBtn.layer.cornerRadius = 10
-            viewPlansBtn.clipsToBounds = true
-        }
-    }
-    
-    
+ 
     @IBOutlet weak var blueCircle: UIView! {
         didSet {
             blueCircle.layer.cornerRadius = blueCircle.frame.size.width / 2
             blueCircle.clipsToBounds = true
         }
     }
-    
-    @IBOutlet weak var lightBlueCircle: UIView! {
-        didSet {
-            lightBlueCircle.layer.cornerRadius = lightBlueCircle.frame.size.width / 2
-            lightBlueCircle.clipsToBounds = true
-        }
-    }
-    
-    
+        
     //Fonts of  lato-regular
     @IBOutlet weak var totalStorageLbl: UILabel!
     @IBOutlet weak var usedFromLbl: UILabel!
@@ -97,7 +70,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     //Fonts for lato - bold
     
     @IBOutlet weak var fifteenGbLbl: UILabel!
-    @IBOutlet weak var getHundredGbLbl: UILabel!
+   // @IBOutlet weak var getHundredGbLbl: UILabel!
     
     
     @IBOutlet weak var myContactsLbl: UILabel!
@@ -106,14 +79,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     @IBOutlet weak var photosLbl: UILabel!
     
-    //@IBOutlet weak var videosLbl: UILabel!
     
     @IBOutlet weak var nineGbLbl: UILabel!
-    
-   // @IBOutlet weak var sixGbLbl: UILabel!
-    
-    
-    
     
     @IBOutlet weak var contactsTblView: UITableView!{
         didSet {
@@ -140,19 +107,6 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
             moreBtnLbl.clipsToBounds = true
         }
     }
-    
-    
-    @IBOutlet weak var priceTagImg: UIImageView!
-    
-    
-    @IBOutlet weak var backImgView: UIImageView! {
-        didSet {
-            backImgView.layer.cornerRadius = 30
-            backImgView.clipsToBounds = true
-        }
-    }
-    
-    
     
     //Implementing the circular view
     var circularView: Circular!
@@ -191,6 +145,24 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     @IBOutlet weak var myContactsHeaderView: UIView!
     
+    //MARK: Shared Catalogue coll view
+    
+    @IBOutlet weak var sharedCatalogueCollView: UICollectionView!
+    
+    
+    
+    @IBOutlet weak var sharedImageCollView: UICollectionView!
+    
+    
+    // Height for Shared Catalogue and Shared Image with me
+    
+    
+    
+    @IBOutlet weak var sharedCatalogueHeight: NSLayoutConstraint!
+    
+    
+ 
+    @IBOutlet weak var sharedImageCollViewHeight: NSLayoutConstraint!
     
     var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     
@@ -206,9 +178,6 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     var dashboardViewModel: DashboardViewModel = DashboardViewModel()
     
-    
-
-    
     private var totalStorageGB:  Double = .zero
     private var remainingStorageGB: Double = .zero
     private var usedPercent: Double {
@@ -217,36 +186,32 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     }
     
     
+    var dynamicHeight: CGFloat = 0
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
         // Setting Ups The font
-        
-        
+    
         if let savedName = UserDefaults.standard.string(forKey: "userName") {
             // print("Welcome, \(savedName)")
             userName = savedName
         }
-        
-        
+    
         welcomeBackLbl.text = "Welcome Back, " + userName
         
         userExists()
         
         settingUpFonts()
-        
-        
-        
+
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
         fileColView.delegate = self
         fileColView.dataSource = self
         
         fileColView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
-        
-        
-        
         
         // Table Views for contact Listing
         contactsTblView.dataSource = self
@@ -255,7 +220,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
         
         
-        contentViewHeight.constant = 835
+        contentViewHeight.constant = 15.35
         
         
         heightsOfContactsiTblView.constant = 70
@@ -263,6 +228,17 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         pertentageLbl.translatesAutoresizingMaskIntoConstraints = false
         setupCircularView()
         setupPecentageLbl()
+        
+        // MARK: Setting up Shared Catalogue & Share Image With Me
+        sharedCatalogueCollView.delegate = self
+        sharedCatalogueCollView.dataSource = self
+        sharedCatalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+        
+        
+        sharedImageCollView.delegate = self
+        sharedImageCollView.dataSource = self
+        sharedImageCollView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
         
         sideMenuManager.setup(in: self)
        // setupActivityIndicator()
@@ -281,13 +257,16 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
+        //viewModel is for Contacts
         viewModel()
+        
+        //All Catalogueview is for Catalogue
         allCatalogueView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        viewModel()
-        allCatalogueView()
+       // viewModel()
+       // allCatalogueView()
     }
     
 
@@ -402,7 +381,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         //setting Ups fonts  lato-bold
         fifteenGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 28)
         CatalogueLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
-        getHundredGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
+       // getHundredGbLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         myContactsLbl.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         //setting ups for fonts poppins-regular
         photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
@@ -411,8 +390,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
 //        sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
         //settings ups for fonts poppins-medium
         
-        priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
-        viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
+      //  priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
+      //  viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
     }
     
     
@@ -636,29 +615,81 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     }
     
     
+//    func allCatalogueView() {
+//        catalogueListingViewModel.requestModel.limit = "4"
+//        catalogueListingViewModel.requestModel.offset = "1"
+//        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+//        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+//        
+//        //activityIndicator.startAnimating()
+//        startCustomLoader()
+//        
+//        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
+//            DispatchQueue.main.async { [self] in
+//                // self.activityIndicator.stopAnimating()
+//                stopCustomLoader()
+//                switch result {
+//                case .goAhead:
+//
+//                    
+//                    
+//                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
+//                        self.fileColView.isHidden = true
+//                        self.emptyView.isHidden = false
+//                    } else {
+//                        
+//                        self.fileColView.isHidden = false
+//                        self.emptyView.isHidden = true
+//                        
+//                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
+//                            return
+//                        }
+//                        
+//                        self.tempMemory = value
+//                        
+//                        
+//                        
+//                        
+//                        DispatchQueue.main.async { [self] in
+//                            fileColView.reloadData()
+//                            
+//                        }
+//                    }
+//                    
+//                case .heyStop:
+//                    print("Error")
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
+//    }
+    
+    
     func allCatalogueView() {
         catalogueListingViewModel.requestModel.limit = "4"
         catalogueListingViewModel.requestModel.offset = "1"
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-        //activityIndicator.startAnimating()
+        // activityIndicator.startAnimating()
         startCustomLoader()
         
-        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
-            DispatchQueue.main.async { [self] in
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
                 // self.activityIndicator.stopAnimating()
-                stopCustomLoader()
+                self.stopCustomLoader()
+                
                 switch result {
                 case .goAhead:
-
-                    
-                    
-                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
+                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true {
                         self.fileColView.isHidden = true
                         self.emptyView.isHidden = false
                     } else {
-                        
                         self.fileColView.isHidden = false
                         self.emptyView.isHidden = true
                         
@@ -667,74 +698,94 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                         }
                         
                         self.tempMemory = value
-                        
-                        
-                        
-                        
-                        DispatchQueue.main.async { [self] in
-                            fileColView.reloadData()
-                            
-                        }
+                        self.fileColView.reloadData()
                     }
                     
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
+
     
+//    func viewModel(){
+//        //activityIndicator.startAnimating()
+//        startCustomLoader()
+//        
+//        contactsViewModel.allContactList { result in
+//            DispatchQueue.main.async { [self] in
+//                //self.activityIndicator.stopAnimating()
+//                stopCustomLoader()
+//                switch result {
+//                case .goAhead:
+//                    print("YO ✌🏽")
+//                    //table View Reload Data
+//                    
+//                    
+//                    if self.contactsViewModel.responseModel?.data?.isEmpty == true {
+//                        self.contactsTblView.isHidden = true
+//                        self.emptyViewForContacts.isHidden = false
+//                        
+//                        self.heightsOfContactsiTblView.constant = 150
+//                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
+//                        
+//                    } else {
+//                        self.contactsTblView.isHidden = false
+//                        self.emptyViewForContacts.isHidden = true
+//                        
+////                        DispatchQueue.main.async { [self] in
+////                            heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
+////                            contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
+//                            self.contactsTblView.reloadData()
+//                            
+//                        //}
+//                    }
+//                case .heyStop:
+//                    print("Error")
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
+//    }
     
-    
-    
-    func viewModel(){
-        //activityIndicator.startAnimating()
-        startCustomLoader()
+    func viewModel() {
+       // contactsTblView.addSubview(startCustomLoader())
         
-        contactsViewModel.allContactList { result in
-            DispatchQueue.main.async { [self] in
-                //self.activityIndicator.stopAnimating()
-                stopCustomLoader()
+        contactsViewModel.allContactList { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.stopCustomLoader()
+                
                 switch result {
                 case .goAhead:
                     print("YO ✌🏽")
-                    //table View Reload Data
                     
+                    let isEmpty = self.contactsViewModel.responseModel?.data?.isEmpty ?? true
+                    self.contactsTblView.isHidden = isEmpty
+                    self.emptyViewForContacts.isHidden = !isEmpty
                     
-                    if self.contactsViewModel.responseModel?.data?.isEmpty == true {
-                        self.contactsTblView.isHidden = true
-                        self.emptyViewForContacts.isHidden = false
-                        
+                    if isEmpty {
                         self.heightsOfContactsiTblView.constant = 150
-                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
-                        
                     } else {
-                        self.contactsTblView.isHidden = false
-                        self.emptyViewForContacts.isHidden = true
-                        
-                        DispatchQueue.main.async { [self] in
-                            heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
-                            contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
-                            self.contactsTblView.reloadData()
-                            
-                        }
+                        let rowCount = self.contactsViewModel.responseModel?.data?.count ?? 1
+                        self.heightsOfContactsiTblView.constant = CGFloat(70 * rowCount)
                     }
+                    
+                    self.contentViewHeight.constant = 1454 + self.heightsOfContactsiTblView.constant + 30
+                    self.contactsTblView.reloadData()
+                    
                 case .heyStop:
                     print("Error")
+                    // You might want to show an alert or error view here
                 }
-                
-                
             }
-            
-            
         }
     }
-    
-    
+
     
     func showErrorPopup(message: String) {
         let errorPopup = GlobalPopUpVC(nibName: "GlobalPopUpVC", bundle: nil)
