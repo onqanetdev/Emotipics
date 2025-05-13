@@ -28,6 +28,7 @@
                 <outlet property="nineGbLbl" destination="nnj-5i-Hva" id="zzs-3x-siZ"/>
                 <outlet property="photosLbl" destination="tfM-mk-w9y" id="DGc-Bv-glx"/>
                 <outlet property="rotateBtn" destination="yrf-Sg-DtA" id="HhX-HK-RaH"/>
+                <outlet property="shareWithMeViewHeight" destination="eyE-tG-3wE" id="WwB-oV-xXR"/>
                 <outlet property="sharedCatalogueCollView" destination="xSg-lF-OzA" id="XB4-L1-IaY"/>
                 <outlet property="sharedCatalogueHeight" destination="thX-bf-WTi" id="0JU-6r-RUO"/>
                 <outlet property="sharedImageCollView" destination="9Hq-U9-yck" id="dcB-Iz-aE5"/>
@@ -264,8 +265,8 @@
                                     <rect key="frame" x="0.0" y="539" width="393" height="23"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared Catalogue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qoh-Oy-QAC">
-                                            <rect key="frame" x="20" y="1.6666666666666288" width="136" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="20" y="1.6666666666666288" width="142" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -310,8 +311,8 @@
                                     <rect key="frame" x="0.0" y="829" width="393" height="23"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared Image With Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GsI-HZ-DcL">
-                                            <rect key="frame" x="20" y="1.6666666666666288" width="172.66666666666666" height="20"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="20" y="1.6666666666666288" width="179.33333333333334" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>

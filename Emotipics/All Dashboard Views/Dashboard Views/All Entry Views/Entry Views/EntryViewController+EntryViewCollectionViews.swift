@@ -15,11 +15,17 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == fileColView {
             return tempMemory.count
-        } else {
+        } else if collectionView == sharedImageCollView {
+           return sharedImageData.count
+        }
+        else {
             return 4
         }
         //return tempMemory.count
     }
+    
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -50,24 +56,78 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
+            
+            if sharedCataTempMemory.count == 0 || sharedCataTempMemory.isEmpty {
+                
+                cell.projectFilesLbl.text = "Loading.."
+                
+            } else {
+                cell.projectFilesLbl.text = sharedCataTempMemory[indexPath.row].catalog_name
+                cell.noOfFiles.text = sharedCataTempMemory[indexPath.row].total_files
+                cell.fiveGbLbl.text = (sharedCataTempMemory[indexPath.row].file_storage ?? "0") + " MB"
+            }
+            
+            
             return cell
-            
-            
-            
-            
+    
         } else  {
             
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
+            
+            if sharedImageData.count == 0 || sharedImageData.isEmpty {
+                
+            } else {
+                cell.imgViewColl.image = nil
+                cell.startCustomLoader()
+
+   
+                if let imageURL = sharedImageByMeViewModel.fetchImageURL(for: indexPath.row) {
+                    
+                    // Check the cache first
+                    if let cachedImage = imageCache[imageURL] {
+                        cell.imgViewColl.image = cachedImage
+                        cell.stopCustomLoader()
+                    } else {
+                        cell.imgViewColl.image = nil
+                        cell.startCustomLoader()
+
+                        DispatchQueue.global().async {
+                            if let url = URL(string: imageURL),
+                               let data = try? Data(contentsOf: url),
+                               let image = UIImage(data: data) {
+
+                                DispatchQueue.main.async {
+                                    self.imageCache[imageURL] = image
+                                    print("✅ Cached image for URL: \(imageURL)")
+                                       print("🧠 Current cache count: \(self.imageCache.count)")
+                                       print("📸 Cached keys: \(self.imageCache.keys)")
+                                    
+                                    cell.imgViewColl.image = image
+                                    cell.stopCustomLoader()
+                                }
+                            } else {
+                                DispatchQueue.main.async {
+                                    cell.stopCustomLoader()
+                                }
+                            }
+                        }
+                    }
+                }
+
+                
+                
+            }
+            
+            
             return cell
         }
-        
-        
-        
-        
     }
+    
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == fileColView {

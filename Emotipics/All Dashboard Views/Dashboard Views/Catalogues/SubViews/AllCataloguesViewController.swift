@@ -53,16 +53,6 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     var catalogueListingViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemBlue
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
-//    
-    
-    
-    
     @IBOutlet weak var contentView: UIView!
     
     

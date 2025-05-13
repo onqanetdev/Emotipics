@@ -169,11 +169,12 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     var tempMemory:[DataM] = []
     
+    var sharedCataTempMemory:[DataM] = []
     
     
     var userName = ""
     
-    private var loaderView: ImageLoaderView?
+    public var loaderView: ImageLoaderView?
     
     
     var dashboardViewModel: DashboardViewModel = DashboardViewModel()
@@ -187,6 +188,26 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     var dynamicHeight: CGFloat = 0
+    
+    
+    
+    var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
+   
+    
+    //MARK: Image Loading and Storing
+    var sharedImageByMeViewModel: SharedImageByMeViewModel = SharedImageByMeViewModel()
+    
+    var sharedImageData:[SharedData] = []
+    
+    
+    var imageCache: [String: UIImage] = [:]
+
+    
+    
+    @IBOutlet weak var shareWithMeViewHeight: NSLayoutConstraint!
+    
+    
+    
     
     
     override func viewDidLoad() {
@@ -251,6 +272,11 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         setupEmptyViewForContacts()
         
         dashboardStorageDetails()
+        
+        
+        sharedCatalogueList()
+        sharedWithMeList()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -262,12 +288,16 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         //All Catalogueview is for Catalogue
         allCatalogueView()
+        
+        
+        sharedCatalogueList()
+        
+        sharedWithMeList()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-       // viewModel()
-       // allCatalogueView()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//      
+//    }
     
 
     
@@ -614,68 +644,19 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         viewModel()
     }
     
-    
-//    func allCatalogueView() {
-//        catalogueListingViewModel.requestModel.limit = "4"
-//        catalogueListingViewModel.requestModel.offset = "1"
-//        catalogueListingViewModel.requestModel.sort_folder = "DESC"
-//        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
-//        
-//        //activityIndicator.startAnimating()
-//        startCustomLoader()
-//        
-//        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
-//            DispatchQueue.main.async { [self] in
-//                // self.activityIndicator.stopAnimating()
-//                stopCustomLoader()
-//                switch result {
-//                case .goAhead:
-//
-//                    
-//                    
-//                    if self.catalogueListingViewModel.responseModel?.data?.isEmpty == true{
-//                        self.fileColView.isHidden = true
-//                        self.emptyView.isHidden = false
-//                    } else {
-//                        
-//                        self.fileColView.isHidden = false
-//                        self.emptyView.isHidden = true
-//                        
-//                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
-//                            return
-//                        }
-//                        
-//                        self.tempMemory = value
-//                        
-//                        
-//                        
-//                        
-//                        DispatchQueue.main.async { [self] in
-//                            fileColView.reloadData()
-//                            
-//                        }
-//                    }
-//                    
-//                case .heyStop:
-//                    print("Error")
-//                }
-//                
-//                
-//            }
-//            
-//            
-//        }
-//    }
+
     
     
     func allCatalogueView() {
+        
         catalogueListingViewModel.requestModel.limit = "4"
         catalogueListingViewModel.requestModel.offset = "1"
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-        // activityIndicator.startAnimating()
+        
         startCustomLoader()
+        //startCustomLoader(selfView: fileColView)
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
@@ -709,57 +690,16 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     }
 
     
-//    func viewModel(){
-//        //activityIndicator.startAnimating()
-//        startCustomLoader()
-//        
-//        contactsViewModel.allContactList { result in
-//            DispatchQueue.main.async { [self] in
-//                //self.activityIndicator.stopAnimating()
-//                stopCustomLoader()
-//                switch result {
-//                case .goAhead:
-//                    print("YO ✌🏽")
-//                    //table View Reload Data
-//                    
-//                    
-//                    if self.contactsViewModel.responseModel?.data?.isEmpty == true {
-//                        self.contactsTblView.isHidden = true
-//                        self.emptyViewForContacts.isHidden = false
-//                        
-//                        self.heightsOfContactsiTblView.constant = 150
-//                        contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
-//                        
-//                    } else {
-//                        self.contactsTblView.isHidden = false
-//                        self.emptyViewForContacts.isHidden = true
-//                        
-////                        DispatchQueue.main.async { [self] in
-////                            heightsOfContactsiTblView.constant = CGFloat(70 * (self.contactsViewModel.responseModel?.data?.count ?? 1))
-////                            contentViewHeight.constant = 835 + heightsOfContactsiTblView.constant
-//                            self.contactsTblView.reloadData()
-//                            
-//                        //}
-//                    }
-//                case .heyStop:
-//                    print("Error")
-//                }
-//                
-//                
-//            }
-//            
-//            
-//        }
-//    }
+
     
     func viewModel() {
        // contactsTblView.addSubview(startCustomLoader())
-        
+       // startCustomLoader(selfView: contactsTblView)
         contactsViewModel.allContactList { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.stopCustomLoader()
-                
+                //self.stopCustomLoader(selfView: self.contactsTblView)
                 switch result {
                 case .goAhead:
                     print("YO ✌🏽")

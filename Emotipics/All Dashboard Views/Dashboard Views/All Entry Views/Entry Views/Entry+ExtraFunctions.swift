@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 
 
 extension EntryViewController: DeleteCatalogDelegate {
+    
     func deleteCatalogueFunction(pin: Int){
         
         if tempMemory.isEmpty {
@@ -70,3 +72,125 @@ extension EntryViewController: DeleteCatalogDelegate {
     }
 }
 
+
+
+extension EntryViewController {
+    
+    
+    
+    func sharedCatalogueList() {
+        sharedCatalogueViewModel.requestModel.limit = "10"
+        sharedCatalogueViewModel.requestModel.offset = "1"
+        sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
+        sharedCatalogueViewModel.requestModel.type_of_list = "share_all_catalog"
+        
+        // activityIndicator.startAnimating()
+        //startCustomLoader(selfView: sharedCatalogueCollView)
+        startCustomLoader()
+        
+        sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+
+                
+                self.stopCustomLoader()
+
+                switch result {
+                case .goAhead:
+                    guard let tempMemoryForSharedCat = self.sharedCatalogueViewModel.responseModel?.data else {
+                        return
+                    }
+                    
+                    self.sharedCataTempMemory = tempMemoryForSharedCat
+                    
+                    self.sharedCatalogueCollView.reloadData()
+                    
+                case .heyStop:
+                    print("Error")
+                }
+            }
+        }
+    }
+
+    
+    
+    //MARK: FOR IMAGE SHARED WITH ME SECTION
+    
+    func sharedWithMeList(){
+        guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
+            return
+        }
+        
+        sharedImageByMeViewModel.requestModel.limit = "20"
+        sharedImageByMeViewModel.requestModel.offset = "1"
+        sharedImageByMeViewModel.requestModel.usercode = storedCode
+        sharedImageByMeViewModel.requestModel.sharetype = "withme"
+        
+      //  activityIndicator.startAnimating()
+        
+        startCustomLoader()
+        
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                //self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    //table View Reload Data
+                    DispatchQueue.main.async { [self] in
+                        
+                        guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                            return
+                        }
+                        
+                        self.sharedImageData = value
+                        
+                        if sharedImageData.count <= 2 {
+                            shareWithMeViewHeight.constant = 200
+                        } else {
+                            shareWithMeViewHeight.constant = 400
+                        }
+                        
+                        sharedImageCollView.reloadData()
+                        
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+    
+    func startCustomLoader(selfView: UIView){
+        //        let loaderSize: CGFloat = 220
+        
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        selfView.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+        // Stop and remove after 5 seconds
+    }
+    
+    func stopCustomLoader(selfView: UIView){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
+        
+        
+    }
+}

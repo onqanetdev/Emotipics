@@ -49,7 +49,7 @@ class SharedImageByMeVC: UIViewController {
         collView.dataSource = self
         collView.delegate = self
         
-//        collView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+
         
         collView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
         
@@ -63,9 +63,13 @@ class SharedImageByMeVC: UIViewController {
         // This is where you would update your UI based on which segment is selected
         if selectedIndex == 0 {
             //loadShareByMeContent()
+            imageCache = [:]
+
             sharedByMeList()
         } else {
             //loadSharedWithMeContent()
+            imageCache = [:]
+
             sharedWithMeList()
         }
     }
@@ -73,94 +77,79 @@ class SharedImageByMeVC: UIViewController {
     
     
     
-    func sharedByMeList(){
-        
+    func sharedByMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
             return
         }
-        
+
         sharedImageByMeViewModel.requestModel.limit = "20"
         sharedImageByMeViewModel.requestModel.offset = "1"
         sharedImageByMeViewModel.requestModel.usercode = storedCode
         sharedImageByMeViewModel.requestModel.sharetype = "byme"
-        
-      //  activityIndicator.startAnimating()
-        
+
         startCustomLoader()
-        
-        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { result in
+
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
-                //self.activityIndicator.stopAnimating()
-                self.stopCustomLoader()
+                guard let self = self else { return }
+                //self.stopCustomLoader()
+
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        
-                        guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
-                            return
-                        }
-                        
-                        self.sharedImageData = value
-                        
-                        collView.reloadData()
-                        
+                    guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        return
                     }
+
+                    self.sharedImageData = value
+                    self.collView.reloadData()
+                    self.stopCustomLoader()
+
                 case .heyStop:
                     print("Error")
+                    self.stopCustomLoader()
                 }
-                
-                
             }
-            
-            
         }
     }
+
     
-    func sharedWithMeList(){
+    func sharedWithMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
             return
         }
-        
+
         sharedImageByMeViewModel.requestModel.limit = "20"
         sharedImageByMeViewModel.requestModel.offset = "1"
         sharedImageByMeViewModel.requestModel.usercode = storedCode
         sharedImageByMeViewModel.requestModel.sharetype = "withme"
-        
-      //  activityIndicator.startAnimating()
-        
+
         startCustomLoader()
-        
-        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { result in
+
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
-                //self.activityIndicator.stopAnimating()
-                self.stopCustomLoader()
+                guard let self = self else { return }
+               // self.stopCustomLoader()
+
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        
-                        guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
-                            return
-                        }
-                        
-                        self.sharedImageData = value
-                        
-                        collView.reloadData()
-                        
+                    guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        return
                     }
+
+                    self.sharedImageData = value
+                    self.collView.reloadData()
+                    self.stopCustomLoader()
+
                 case .heyStop:
                     print("Error")
+                    self.stopCustomLoader()
                 }
-                
-                
             }
-            
-            
         }
     }
+
     
 
     func addingLayoutOfPages(){
@@ -236,6 +225,8 @@ class SharedImageByMeVC: UIViewController {
         
         // Stop and remove after 5 seconds
     }
+    
+                         
     func stopCustomLoader(){
         print("Trying to stop loader:", loaderView != nil)
         loaderView?.stopAnimating()
@@ -278,49 +269,63 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
         return sharedImageData.count
     }
     
+
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        if isImageCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
-            cell.layer.cornerRadius = 15
-            cell.clipsToBounds = true
+                
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
+        cell.layer.cornerRadius = 15
+        cell.clipsToBounds = true
+        
+        if sharedImageData.count == 0 || sharedImageData.isEmpty {
             
-
-            
-        if let imgPath = sharedImageByMeViewModel.responseModel?.path,
-           let imgName = sharedImageData[indexPath.row].img_name {
-            let imagePath = imgPath + imgName
+        } else {
+            cell.imgViewColl.image = nil
+            cell.startCustomLoader()
 
 
-//
-                if let cachedImage = imageCache[imagePath] {
-                        cell.imgViewColl.image = cachedImage
-                        cell.stopCustomLoader()
+            if let imageURL = sharedImageByMeViewModel.fetchImageURL(for: indexPath.row) {
+                
+                // Check the cache first
+                if let cachedImage = imageCache[imageURL] {
+                    cell.imgViewColl.image = cachedImage
+                    cell.stopCustomLoader()
                 } else {
-                    cell.imgViewColl.image = nil // Optional: clear image to avoid showing old image in reused cell
+                    cell.imgViewColl.image = nil
                     cell.startCustomLoader()
-                    
-                    if let urlImage = URL(string: imagePath) {
-                        URLSession.shared.dataTask(with: urlImage) { data, _, _ in
-                            guard let data = data, let image = UIImage(data: data) else { return }
-                            
+
+                    DispatchQueue.global().async {
+                        if let url = URL(string: imageURL),
+                           let data = try? Data(contentsOf: url),
+                           let image = UIImage(data: data) {
+
                             DispatchQueue.main.async {
-                                self.imageCache[imagePath] = image // Cache the image
-                                if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
-                                    currentCell.imgViewColl.image = image
-                                    currentCell.stopCustomLoader()
-                                }
+                                self.imageCache[imageURL] = image
+//                                print("✅ Cached image for URL: \(imageURL)")
+//                                   print("🧠 Current cache count: \(self.imageCache.count)")
+//                                   print("📸 Cached keys: \(self.imageCache.keys)")
+                                
+                                cell.imgViewColl.image = image
+                                cell.stopCustomLoader()
                             }
-                        }.resume()
+                        } else {
+                            DispatchQueue.main.async {
+                                cell.stopCustomLoader()
+                            }
+                        }
                     }
                 }
-                
             }
 
-            return cell
-            
+        }
         
-        //}
+        
+        return cell
+        
+        
     }
+
     
     
     
