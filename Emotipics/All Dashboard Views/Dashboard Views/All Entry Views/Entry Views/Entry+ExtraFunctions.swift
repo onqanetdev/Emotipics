@@ -53,7 +53,7 @@ extension EntryViewController: DeleteCatalogDelegate {
     
     
     func deletePopup(){
-       // print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
+    
         deleteCatalogueFunction(pin: indexNo)
     }
     
@@ -116,54 +116,46 @@ extension EntryViewController {
     
     //MARK: FOR IMAGE SHARED WITH ME SECTION
     
-    func sharedWithMeList(){
+
+ 
+    
+    func sharedWithMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
             return
         }
         
-        sharedImageByMeViewModel.requestModel.limit = "20"
+        sharedImageByMeViewModel.requestModel.limit = "4"
         sharedImageByMeViewModel.requestModel.offset = "1"
         sharedImageByMeViewModel.requestModel.usercode = storedCode
         sharedImageByMeViewModel.requestModel.sharetype = "withme"
         
-      //  activityIndicator.startAnimating()
-        
         startCustomLoader()
         
-        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { result in
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
-                //self.activityIndicator.stopAnimating()
+                guard let self = self else { return }
+                
                 self.stopCustomLoader()
+                
                 switch result {
                 case .goAhead:
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        
-                        guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
-                            return
-                        }
-                        
-                        self.sharedImageData = value
-                        
-                        if sharedImageData.count <= 2 {
-                            shareWithMeViewHeight.constant = 200
-                        } else {
-                            shareWithMeViewHeight.constant = 400
-                        }
-                        
-                        sharedImageCollView.reloadData()
-                        
+                    guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        return
                     }
+                    
+                    self.sharedImageData = value
+                    
+                    self.shareWithMeViewHeight.constant = (self.sharedImageData.count <= 2) ? 200 : 400
+                    self.sharedImageCollView.reloadData()
+                    
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
+
+    
     
     
     func startCustomLoader(selfView: UIView){

@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="alreadyAccLbl" destination="dhw-kF-fig" id="YPE-C6-bCg"/>
                 <outlet property="circleImage" destination="wvw-8b-KWc" id="NXz-TH-Ral"/>
+                <outlet property="contentView" destination="BTo-K9-RME" id="UXx-5q-CJI"/>
                 <outlet property="contentViewHeight" destination="2Nf-bs-lTE" id="ISh-jf-VxO"/>
                 <outlet property="emailAddTxtFld" destination="pSv-B4-jHk" id="GwM-vk-28f"/>
                 <outlet property="eyeBtn" destination="r05-Gw-YSS" id="jdu-8T-zxd"/>
@@ -44,7 +45,7 @@
                     <rect key="frame" x="0.0" y="241" width="393" height="577"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTo-K9-RME">
-                            <rect key="frame" x="3" y="2" width="393" height="1000"/>
+                            <rect key="frame" x="0.0" y="2" width="393" height="1000"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi,there.Please register to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAK-k9-hLQ">
                                     <rect key="frame" x="20" y="15" width="353" height="26"/>
@@ -187,7 +188,7 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="BTo-K9-RME" firstAttribute="leading" secondItem="NvI-Tb-DOX" secondAttribute="leading" constant="3" id="5qN-Ez-45l"/>
+                        <constraint firstItem="BTo-K9-RME" firstAttribute="leading" secondItem="NvI-Tb-DOX" secondAttribute="leading" id="5qN-Ez-45l"/>
                         <constraint firstItem="BTo-K9-RME" firstAttribute="width" secondItem="afL-dw-GQM" secondAttribute="width" id="FC5-OC-JQQ"/>
                         <constraint firstItem="BTo-K9-RME" firstAttribute="trailing" secondItem="NvI-Tb-DOX" secondAttribute="trailing" constant="243" id="gYB-Dz-HFG"/>
                         <constraint firstItem="BTo-K9-RME" firstAttribute="bottom" secondItem="NvI-Tb-DOX" secondAttribute="bottom" constant="130" id="t3a-1E-3Kx"/>

@@ -116,6 +116,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     
+    @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
@@ -153,12 +154,6 @@ class RegisterViewController: UIViewController {
     var iconClick = true
     
     
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemOrange
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
     
     private var loaderView: ImageLoaderView?
     
@@ -205,6 +200,9 @@ class RegisterViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(forgotPasswordTapped))
         forgotPasswordLbl.addGestureRecognizer(tapGesture)
         
+        
+        setupKeyboardHiding() // add
+        
     }
     
     
@@ -215,18 +213,7 @@ class RegisterViewController: UIViewController {
     
     
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-    
+
     
     
     override func viewDidLayoutSubviews() {
@@ -242,9 +229,10 @@ class RegisterViewController: UIViewController {
         registerBtn.frame.height +
         alreadyAccLbl.frame.height
         
-        
-        contentViewHeight.constant = totalHeight + 320
-        contentViewHeight.constant += 20
+        if isSomeFieldsHidden == false {
+            contentViewHeight.constant = totalHeight + 320
+            contentViewHeight.constant += 20
+        }
     }
     // extra function
     func updateUIForState() {
@@ -253,13 +241,15 @@ class RegisterViewController: UIViewController {
             phnTxtFld.isHidden = true
             fullNameHeight.constant = 0
             phnNumberHeight.constant = 0
-            scrollView.isScrollEnabled = false
+            scrollView.isScrollEnabled = true
             welcomeLblSubOne.text = "Welcome back! Glad to see"
             welcomeLblSubTwo.text = "you again!"
             registerBtn.setTitle("Login", for: .normal)
             alreadyAccLbl.text = "Don't have an account?"
             loginlbl.text = "Register"
             forgotPasswordLbl.isHidden = false
+            contentViewHeight.constant = 450
+            //contentView.backgroundColor = .brown
         } else {
             fullNameTxtFld.isHidden = false
             phnTxtFld.isHidden = false
@@ -278,6 +268,13 @@ class RegisterViewController: UIViewController {
         //        UIView.animate(withDuration: 0.3) {
         //            self.view.layoutIfNeeded()
         //        }
+    }
+    
+    
+    
+    private func setupKeyboardHiding() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     
@@ -536,4 +533,28 @@ extension RegisterViewController: MoveToNextView {
         navigationController?.pushViewController(DashboardViewController(), animated: true)
     }
 }
+
+
+
+
+
+extension RegisterViewController {
+    @objc func keyboardWillShow(sender: NSNotification) {
+            contentView.frame.origin.y =  contentView.frame.origin.y + 100
+        
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+       // view.frame.origin.y = 0
+        if contentView.frame.origin.y != 0 {
+            contentView.frame.origin.y = 0
+                }
+    }
+    
+    
+    
+  
+    
+}
+
 
