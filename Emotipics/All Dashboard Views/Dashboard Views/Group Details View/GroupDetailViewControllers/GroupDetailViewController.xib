@@ -179,6 +179,9 @@
                                             <color key="tintColor" red="0.52549019607843139" green="0.52156862745098043" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
+                                            <connections>
+                                                <action selector="detailViewPresent:" destination="-1" eventType="touchUpInside" id="uC3-dK-hzE"/>
+                                            </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFQ-BA-SLd">
                                             <rect key="frame" x="267" y="11" width="74" height="0.0"/>

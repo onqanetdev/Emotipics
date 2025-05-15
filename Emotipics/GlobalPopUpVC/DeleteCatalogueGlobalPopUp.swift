@@ -15,6 +15,7 @@ enum completeCases {
     case NO
     case SHARE
     case RENAME
+    case DETAILS
 }
 
 

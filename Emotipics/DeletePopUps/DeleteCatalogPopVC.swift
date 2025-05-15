@@ -85,6 +85,14 @@ class DeleteCatalogPopVC: UIViewController {
         
     }
     
+    
+    
+    @IBAction func detailsView(_ sender: Any) {
+        self.onCompletion?(.DETAILS)
+    }
+    
+    
+    
 }
 
 

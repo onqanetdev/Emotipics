@@ -117,6 +117,7 @@ class GroupDetailViewController: UIViewController {
         
         imageListForGroup(groupCode: groupCode)
         
+        
     }
     
 
@@ -420,6 +421,50 @@ class GroupDetailViewController: UIViewController {
                 print("✅ Image successfully saved to Photos")
             }
         }
+    }
+    
+    
+    
+    
+    @IBAction func detailViewPresent(_ sender: Any) {
+        
+        let errorPopup = DetailsVCPopUp(nibName: "DetailsVCPopUp", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        
+        //errorPopup.delegate = self
+        errorPopup.onCompletion = { [weak self] in
+            self?.presentDetailsViewPopUp()
+        }
+        
+        self.present(errorPopup, animated: true)
+        
+    }
+    
+    
+    
+    func presentDetailsViewPopUp() {
+        
+        guard let responseModel = groupImageListViewModel.responseModel else { return }
+        
+        let errorPopup = DetailsOfDetailsPopUpVC(nibName: "DetailsOfDetailsPopUpVC", bundle: nil)
+        errorPopup.modalPresentationStyle = .overCurrentContext
+        errorPopup.modalTransitionStyle = .crossDissolve
+        
+        guard let  ownerName = groupImageListViewModel.responseModel?.owner,
+              let groupName = groupImageListViewModel.responseModel?.groupname,
+              let totalUserCount = groupImageListViewModel.responseModel?.member_count,
+              let createdDate = groupImageListViewModel.responseModel?.created_date else {
+                  return
+              }
+        
+        errorPopup.ownerNameVar = ownerName
+        errorPopup.grpNmVar = groupName
+        errorPopup.totalUserVar = totalUserCount
+        errorPopup.createdDateVar = createdDate
+        
+        //errorPopup.delegate = self
+        self.present(errorPopup, animated: true)
     }
 
     deinit {

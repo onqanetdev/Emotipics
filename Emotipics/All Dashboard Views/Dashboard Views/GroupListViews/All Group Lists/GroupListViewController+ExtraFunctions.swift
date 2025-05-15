@@ -46,6 +46,11 @@ extension GroupListViewController: SharedInformationDelegate {
                 errorPopup.dismiss(animated: true){
                     self?.presentRenameGroupScreen()
                 }
+            case .DETAILS:
+                print("Detailsss")
+                errorPopup.dismiss(animated: true){
+                    self?.presentDetailsScreen()
+                }
             }
             
             
@@ -56,47 +61,7 @@ extension GroupListViewController: SharedInformationDelegate {
     
     
     
-//    func exitFromGroupPopUp(index: Int){
-//        let errorPopup = ExitFromCataloguePopUp(nibName: "ExitFromCataloguePopUp", bundle: nil)
-//        errorPopup.modalPresentationStyle = .overCurrentContext
-//        errorPopup.modalTransitionStyle = .crossDissolve
-//        errorPopup.isGroupViewCalling = true
-//        // errorPopup.delegate = self
-//        
-//        guard let groupCode = groupListingView.responseModel?.data?[index].group_code else {
-//            return
-//        }
-//        
-//        errorPopup.onExitFromGroup = { [weak self] in
-//            print("Group Code is--> ", groupCode )
-//            self?.groupUserExitViewModel.requestModel.groupCode = groupCode
-//            //print("Exit from catalogue tapped. Sender tag is \(sender.tag)")
-//            // Handle exit logic here
-//            self?.startCustomLoader()
-//            self?.groupUserExitViewModel.groupUserExitViewModel(request: (self?.groupUserExitViewModel.requestModel)!) { result in
-//                DispatchQueue.main.async {
-//                   // self.activityIndicator.stopAnimating()
-//                    self?.stopCustomLoader()
-//                    switch result {
-//                    case .goAhead:
-//                        DispatchQueue.main.async {
-//                            //self.shareWithMe()
-//                       // self.sharedCollView.reloadData()
-//                            
-//                       }
-//                    case .heyStop:
-//                        print("Error")
-//                    }
-//                    
-//                    
-//                }
-//                
-//                
-//            }
-//        }
-//        
-//        self.present(errorPopup, animated: true)
-//    }
+
     
     
     func exitFromGroupPopUp(index: Int) {
@@ -190,6 +155,32 @@ extension GroupListViewController: SharedInformationDelegate {
         }
         self.present(shareInfo, animated: true, completion: nil)
     }
+    
+    
+    
+    func presentDetailsScreen(){
+       
+        let detailScreen = DetailsOfDetailsPopUpVC(nibName: "DetailsOfDetailsPopUpVC", bundle: nil)
+        detailScreen.modalPresentationStyle = .overCurrentContext
+        detailScreen.modalTransitionStyle = .crossDissolve
+        
+        
+        guard let  ownerName = newResultArray[indexNo].owner_detials?.name,
+              let groupName = newResultArray[indexNo].groupname,
+              let totalUserCount = newResultArray[indexNo].members,
+              let createdDate = newResultArray[indexNo].datetime else {
+                  return
+              }
+        
+        detailScreen.ownerNameVar = ownerName
+        detailScreen.grpNmVar = groupName
+        detailScreen.totalUserVar = totalUserCount
+        detailScreen.createdDateVar = createdDate
+        
+        
+        self.present(detailScreen, animated: true)
+    }
+    
     
     
     

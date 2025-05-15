@@ -16,6 +16,12 @@ struct GroupImageListResModel:Codable {
     let data : [GroupImageData]?
     let currentpage : Int?
     let totalpage : Int?
+    
+    let groupname : String?
+    let member_count : Int?
+    let created_date : String?
+    let owner : String?
+    let owner_email : String?
 
     enum CodingKeys: String, CodingKey {
 
@@ -25,6 +31,13 @@ struct GroupImageListResModel:Codable {
         case data = "data"
         case currentpage = "currentpage"
         case totalpage = "totalpage"
+        
+        
+        case groupname = "groupname"
+        case member_count = "member_count"
+        case created_date = "created_date"
+        case owner = "owner"
+        case owner_email = "owner_email"
     }
 
     init(from decoder: Decoder) throws {
@@ -35,6 +48,13 @@ struct GroupImageListResModel:Codable {
         data = try values.decodeIfPresent([GroupImageData].self, forKey: .data)
         currentpage = try values.decodeIfPresent(Int.self, forKey: .currentpage)
         totalpage = try values.decodeIfPresent(Int.self, forKey: .totalpage)
+        
+        
+        groupname = try values.decodeIfPresent(String.self, forKey: .groupname)
+        member_count = try values.decodeIfPresent(Int.self, forKey: .member_count)
+        created_date = try values.decodeIfPresent(String.self, forKey: .created_date)
+        owner = try values.decodeIfPresent(String.self, forKey: .owner)
+        owner_email = try values.decodeIfPresent(String.self, forKey: .owner_email)
     }
 
 }

@@ -406,6 +406,8 @@ class CatalogueViewController: UIViewController,DeleteCatalogDelegate {
                     self?.presentRenameCatalogueScreen()
                     
                 }
+            case .DETAILS:
+                print("Details has not been filled yet")
             }
         }
         

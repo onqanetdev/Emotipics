@@ -203,6 +203,12 @@ class RegisterViewController: UIViewController {
         
         setupKeyboardHiding() // add
         
+        
+        
+        emailAddTxtFld.delegate = self
+        passwordTxtFld.delegate = self
+
+        
     }
     
     
@@ -249,6 +255,10 @@ class RegisterViewController: UIViewController {
             loginlbl.text = "Register"
             forgotPasswordLbl.isHidden = false
             contentViewHeight.constant = 450
+        
+            emailAddTxtFld.returnKeyType = .next
+            passwordTxtFld.returnKeyType = .go
+            
             //contentView.backgroundColor = .brown
         } else {
             fullNameTxtFld.isHidden = false
@@ -415,12 +425,7 @@ class RegisterViewController: UIViewController {
                             //                            self.navigationController?.pushViewController(DashboardViewController(), animated: true)
                             self.otpVerification()
                             UserDefaults.standard.set(nameText, forKey: "userName")
-                            //If SuccessFul registration then save the access token into keychain
-                            
-                            
-                            //                            let accessToken = "another-dummy-access-token"
-                            //                            let data = Data(accessToken.utf8)
-                            //                          KeychainManager.standard.save(data, service: "access-token", account: "Emotipic")
+
                         }
                     case .heyStop:
                         print("Something Went Wrong")
@@ -505,7 +510,53 @@ class RegisterViewController: UIViewController {
         
     }
     
-    
+    func loginButtonTapped(){
+        if let emailtext = emailAddTxtFld.text, !emailtext.isEmpty,
+           let passwordText = passwordTxtFld.text, !passwordText.isEmpty {
+            
+            guard isValidEmail(emailtext) else {
+                showErrorPopup(message: "Please Enter Valid Credentials")
+                return
+            }
+            
+           // activityIndicator.startAnimating()
+            startCustomLoader()
+            registerBtn.isEnabled = false
+            
+            loginViewModel.requestModel.email = emailtext
+            loginViewModel.requestModel.password = passwordText
+            loginViewModel.getLoginData(loginViewModel.requestModel) { result in
+                DispatchQueue.main.async { [self] in
+                   // self.activityIndicator.stopAnimating()
+                    stopCustomLoader()
+                    self.registerBtn.isEnabled = true
+                    
+                    switch result {
+                    case .goAhead:
+                        if (loginViewModel.responseModel?.login_data?[0].user?.active == "Y") && (loginViewModel.responseModel?.login_data?[0].user?.verify == "Y") {
+                            
+                            let dashboard = DashboardViewController()
+                            
+                            guard let userName = loginViewModel.responseModel?.login_data?[0].user?.name else{
+                                return
+                            }
+                            UserDefaults.standard.set(userName, forKey: "userName")
+
+                           // dashboard.name = userName
+                            self.navigationController?.pushViewController(dashboard, animated: true)
+                        } else {
+                            
+                            otpVerification()
+                        }
+                    case .heyStop:
+                        print("Something Went Wrong!!!")
+                    }
+                }
+            }
+        } else {
+            showErrorPopup(message: "Please Fill All The Boxes")
+        }
+    }
     
 }
 
@@ -553,8 +604,27 @@ extension RegisterViewController {
     
     
     
-  
+}
+
+
+
+extension RegisterViewController: UITextFieldDelegate {
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case emailAddTxtFld:
+            passwordTxtFld.becomeFirstResponder()
+        case passwordTxtFld:
+            loginButtonTapped()
+        default:
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     
 }
+
 
 

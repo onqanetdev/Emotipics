@@ -538,6 +538,8 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 errorPopup.dismiss(animated: true){
                     self?.presentRenameCatalogueScreen()
                 }
+            case .DETAILS:
+                print("Details has not been filled yet for All Catalogues...")
             }
             
             

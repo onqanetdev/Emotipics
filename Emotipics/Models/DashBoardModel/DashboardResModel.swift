@@ -16,6 +16,8 @@ struct DashboardResModel:Codable {
     let remaining_size : String?
     let total_image : Int?
     let total_image_sizeunit : String?
+    
+    let notification_count : Int?
 
     enum CodingKeys: String, CodingKey {
 
@@ -26,6 +28,7 @@ struct DashboardResModel:Codable {
         case remaining_size = "remaining_size"
         case total_image = "total_image"
         case total_image_sizeunit = "total_image_sizeunit"
+        case notification_count = "notification_count"
     }
 
     init(from decoder: Decoder) throws {
@@ -37,6 +40,8 @@ struct DashboardResModel:Codable {
         remaining_size = try values.decodeIfPresent(String.self, forKey: .remaining_size)
         total_image = try values.decodeIfPresent(Int.self, forKey: .total_image)
         total_image_sizeunit = try values.decodeIfPresent(String.self, forKey: .total_image_sizeunit)
+        
+        notification_count = try values.decodeIfPresent(Int.self, forKey: .notification_count)
     }
 
 }

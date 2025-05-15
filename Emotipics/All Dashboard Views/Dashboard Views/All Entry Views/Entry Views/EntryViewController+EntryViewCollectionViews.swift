@@ -14,7 +14,8 @@ import UIKit
 extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == fileColView {
-            return tempMemory.count
+           return tempMemory.count
+           // return isSkeletonVisible ? 10 : tempMemory.count
         } else if collectionView == sharedImageCollView {
            return sharedImageData.count
         }

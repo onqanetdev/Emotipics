@@ -208,6 +208,14 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     
+    var isSkeletonVisible = true
+
+    
+    
+    // MARK: All The Heights
+    
+    
+    
     
     
     override func viewDidLoad() {
@@ -233,6 +241,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         fileColView.dataSource = self
         
         fileColView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
+        
+       // showSkeleton()
+        
         
         // Table Views for contact Listing
         contactsTblView.dataSource = self
@@ -295,14 +306,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         sharedWithMeList()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//      
-//    }
-    
 
-    
-
-    
     
     /// Keeps only 0‑9 and decimal point, so "24.94 GB" → "24.94"
     private func numericString(from raw: String) -> String {
@@ -622,6 +626,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                 errorPopup.dismiss(animated: true) {
                     self?.presentRenameCatalogueScreen()
                 }
+                
+            case .DETAILS:
+                print("Details of catalogue has not been filled yet on entry view controller")
             }
         }
         
@@ -657,6 +664,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         startCustomLoader()
         //startCustomLoader(selfView: fileColView)
+       
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
@@ -679,7 +687,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                         }
                         
                         self.tempMemory = value
+                        self.isSkeletonVisible = false 
                         self.fileColView.reloadData()
+                        //self.stopSkeleton()
                     }
                     
                 case .heyStop:
@@ -835,5 +845,12 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
     }
     
+    
+//    func stopSkeleton() {
+//        isSkeletonVisible = false
+//        hideSkeleton()
+//        fileColView.reloadData()
+//    }
+
     
 }
