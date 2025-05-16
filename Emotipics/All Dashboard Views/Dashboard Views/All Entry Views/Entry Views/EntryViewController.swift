@@ -237,6 +237,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         settingUpFonts()
 
         rotateBtn.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+        
         fileColView.delegate = self
         fileColView.dataSource = self
         
@@ -533,7 +534,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     @IBAction func allCatalogueAction(_ sender: Any) {
         
         
-        navigationController?.pushViewController(CatalogueViewController(), animated: true)
+//        navigationController?.pushViewController(CatalogueViewController(), animated: true)
+        
+        navigationController?.pushViewController(NewCatalogueVC(), animated: true)
         
     }
     

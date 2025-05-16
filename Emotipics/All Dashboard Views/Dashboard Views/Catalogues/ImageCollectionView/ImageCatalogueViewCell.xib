@@ -21,62 +21,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Qp-4r-jo6">
                                 <rect key="frame" x="0.0" y="8" width="282" height="29"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bcw-n6-hIh">
-                                        <rect key="frame" x="15" y="6.3333333333333321" width="20" height="16.999999999999996"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="kwc-ca-n5C"/>
-                                            <constraint firstAttribute="height" constant="20" id="ucv-30-LgX"/>
-                                        </constraints>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="image-1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOz-B8-4wa">
-                                        <rect key="frame" x="39" y="6.666666666666667" width="67" height="15.666666666666664"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="67" id="tfS-TO-rB9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zar-ZF-FiC">
-                                        <rect key="frame" x="247" y="2" width="25" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="Lji-Bk-cFS"/>
-                                            <constraint firstAttribute="width" constant="25" id="MYz-bw-d76"/>
-                                        </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="bcw-n6-hIh" firstAttribute="leading" secondItem="8Qp-4r-jo6" secondAttribute="leading" constant="15" id="AIo-5M-42d"/>
                                     <constraint firstAttribute="height" constant="29" id="CdO-Tk-chu"/>
-                                    <constraint firstItem="gOz-B8-4wa" firstAttribute="leading" secondItem="bcw-n6-hIh" secondAttribute="trailing" constant="4" id="CrF-M0-j9V"/>
-                                    <constraint firstItem="gOz-B8-4wa" firstAttribute="centerY" secondItem="8Qp-4r-jo6" secondAttribute="centerY" id="JYl-95-zg5"/>
-                                    <constraint firstItem="Zar-ZF-FiC" firstAttribute="centerY" secondItem="8Qp-4r-jo6" secondAttribute="centerY" id="agS-HQ-PCI"/>
-                                    <constraint firstItem="bcw-n6-hIh" firstAttribute="centerY" secondItem="8Qp-4r-jo6" secondAttribute="centerY" id="fmb-lK-Fhc"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zar-ZF-FiC" secondAttribute="trailing" constant="10" id="lDu-dd-C2q"/>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Party" translatesAutoresizingMaskIntoConstraints="NO" id="ct3-CK-H6J">
-                                <rect key="frame" x="68.666666666666686" y="44" width="145" height="109"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="145" id="BrB-VV-ye5"/>
-                                    <constraint firstAttribute="height" constant="109" id="VZs-t4-pzx"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="0.0" width="282" height="208"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.81960784313725488" green="0.90588235294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ct3-CK-H6J" firstAttribute="centerX" secondItem="Uxf-fd-f5G" secondAttribute="centerX" id="A1i-kR-3Ie"/>
+                            <constraint firstItem="ct3-CK-H6J" firstAttribute="leading" secondItem="Uxf-fd-f5G" secondAttribute="leading" id="3Db-v5-KaA"/>
                             <constraint firstItem="8Qp-4r-jo6" firstAttribute="top" secondItem="Uxf-fd-f5G" secondAttribute="top" constant="8" id="Kub-Kb-BqW"/>
                             <constraint firstItem="8Qp-4r-jo6" firstAttribute="leading" secondItem="Uxf-fd-f5G" secondAttribute="leading" id="Sm6-MU-P8h"/>
-                            <constraint firstItem="ct3-CK-H6J" firstAttribute="top" secondItem="8Qp-4r-jo6" secondAttribute="bottom" constant="7" id="Yst-Ty-9Uo"/>
+                            <constraint firstItem="ct3-CK-H6J" firstAttribute="top" secondItem="Uxf-fd-f5G" secondAttribute="top" id="ZgW-VI-14D"/>
                             <constraint firstAttribute="trailing" secondItem="8Qp-4r-jo6" secondAttribute="trailing" id="o7r-S4-5Ms"/>
+                            <constraint firstAttribute="trailing" secondItem="ct3-CK-H6J" secondAttribute="trailing" id="s2d-Ng-R4K"/>
+                            <constraint firstAttribute="bottom" secondItem="ct3-CK-H6J" secondAttribute="bottom" id="tFx-qo-rN8"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -90,8 +52,6 @@
             </constraints>
             <size key="customSize" width="282" height="208"/>
             <connections>
-                <outlet property="imageBtnDelete" destination="Zar-ZF-FiC" id="Rn9-3L-qgE"/>
-                <outlet property="imageTitle" destination="gOz-B8-4wa" id="EC0-wG-yjY"/>
                 <outlet property="imgViewColl" destination="ct3-CK-H6J" id="HBp-gT-gLW"/>
             </connections>
             <point key="canvasLocation" x="577.0992366412213" y="33.098591549295776"/>
@@ -99,7 +59,5 @@
     </objects>
     <resources>
         <image name="Party" width="1000" height="667"/>
-        <image name="ellipsis" catalog="system" width="128" height="37"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
     </resources>
 </document>

@@ -66,6 +66,11 @@
 		8A09D38C2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D38B2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift */; };
 		8A09D3902DC394880050A3CA /* SetNewLoginPinVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */; };
 		8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */; };
+		8A1283D72DD6EEE5009307A7 /* NewCatalogueVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1283D62DD6EEE5009307A7 /* NewCatalogueVC.xib */; };
+		8A1283D82DD6EEE5009307A7 /* NewCatalogueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1283D52DD6EEE5009307A7 /* NewCatalogueVC.swift */; };
+		8A1283DA2DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1283D92DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift */; };
+		8A1283E22DD74F28009307A7 /* NewCatCollViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1283E12DD74F28009307A7 /* NewCatCollViewCell.xib */; };
+		8A1283E32DD74F28009307A7 /* NewCatCollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1283E02DD74F28009307A7 /* NewCatCollViewCell.swift */; };
 		8A1823592D87D37A007A2E90 /* ImageCatalogueViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */; };
 		8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */; };
 		8A192B6B2DC884C7007F5868 /* GroupImageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */; };
@@ -351,6 +356,11 @@
 		8A09D38B2DC37FBC0050A3CA /* RegisterViewController+Extra Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RegisterViewController+Extra Functions.swift"; sourceTree = "<group>"; };
 		8A09D38E2DC394880050A3CA /* SetNewLoginPinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNewLoginPinVC.swift; sourceTree = "<group>"; };
 		8A09D38F2DC394880050A3CA /* SetNewLoginPinVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetNewLoginPinVC.xib; sourceTree = "<group>"; };
+		8A1283D52DD6EEE5009307A7 /* NewCatalogueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatalogueVC.swift; sourceTree = "<group>"; };
+		8A1283D62DD6EEE5009307A7 /* NewCatalogueVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCatalogueVC.xib; sourceTree = "<group>"; };
+		8A1283D92DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewCatalogueVC+CollectionViews.swift"; sourceTree = "<group>"; };
+		8A1283E02DD74F28009307A7 /* NewCatCollViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatCollViewCell.swift; sourceTree = "<group>"; };
+		8A1283E12DD74F28009307A7 /* NewCatCollViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewCatCollViewCell.xib; sourceTree = "<group>"; };
 		8A1823572D87D37A007A2E90 /* ImageCatalogueViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCatalogueViewCell.swift; sourceTree = "<group>"; };
 		8A1823582D87D37A007A2E90 /* ImageCatalogueViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCatalogueViewCell.xib; sourceTree = "<group>"; };
 		8A192B6A2DC884C7007F5868 /* GroupImageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImageListViewModel.swift; sourceTree = "<group>"; };
@@ -773,6 +783,26 @@
 			path = "New Login Password";
 			sourceTree = "<group>";
 		};
+		8A1283D42DD6EDD1009307A7 /* CatalogueViews */ = {
+			isa = PBXGroup;
+			children = (
+				8A1283D52DD6EEE5009307A7 /* NewCatalogueVC.swift */,
+				8A1283D62DD6EEE5009307A7 /* NewCatalogueVC.xib */,
+				8A1283D92DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift */,
+				8A1283DF2DD74D80009307A7 /* NewCollectionViewCell */,
+			);
+			path = CatalogueViews;
+			sourceTree = "<group>";
+		};
+		8A1283DF2DD74D80009307A7 /* NewCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8A1283E02DD74F28009307A7 /* NewCatCollViewCell.swift */,
+				8A1283E12DD74F28009307A7 /* NewCatCollViewCell.xib */,
+			);
+			path = NewCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		8A1823562D87D315007A2E90 /* ImageCollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -860,7 +890,7 @@
 				8AEADB522DA6435500BF187E /* WebView */,
 				8A1823562D87D315007A2E90 /* ImageCollectionView */,
 				8AA25B902D82A1920093F3F1 /* Shared Catalogues */,
-				8AA459302D81909E0004938B /* SubViews */,
+				8AA459302D81909E0004938B /* AllCatalogueViews */,
 				8A241DED2D804962002D7BA8 /* Views */,
 			);
 			path = Catalogues;
@@ -1501,14 +1531,15 @@
 			path = "Shared Catalogues";
 			sourceTree = "<group>";
 		};
-		8AA459302D81909E0004938B /* SubViews */ = {
+		8AA459302D81909E0004938B /* AllCatalogueViews */ = {
 			isa = PBXGroup;
 			children = (
+				8A1283D42DD6EDD1009307A7 /* CatalogueViews */,
 				8AA459312D8191D60004938B /* AllCataloguesViewController.swift */,
 				8AA459322D8191D60004938B /* AllCataloguesViewController.xib */,
 				8A3ED26B2DAFB930002C3129 /* AllCataloguesViewController+ExtraFunctions.swift */,
 			);
-			path = SubViews;
+			path = AllCatalogueViews;
 			sourceTree = "<group>";
 		};
 		8AB7D6832D76B28000B291BA /* Test Views */ = {
@@ -1783,6 +1814,7 @@
 				8A4353982D75760900ABB7A0 /* Base in Resources */,
 				8A9611FF2DA939E70026A1FC /* SharingContactListVC.xib in Resources */,
 				8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */,
+				8A1283E22DD74F28009307A7 /* NewCatCollViewCell.xib in Resources */,
 				8A241DDE2D7FFA19002D7BA8 /* ContactsViewController.xib in Resources */,
 				8A3ED2702DAFBD61002C3129 /* ImageDeletePopUpVC.xib in Resources */,
 				8A4353932D75760600ABB7A0 /* Base in Resources */,
@@ -1801,6 +1833,7 @@
 				8ACDCBD62DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib in Resources */,
 				8A2E517D2D9D0B6F00D4A023 /* OTPPopUPVC.xib in Resources */,
 				8A4983B22DCC688300220552 /* ShowEmojiListPopUpTVC.xib in Resources */,
+				8A1283D72DD6EEE5009307A7 /* NewCatalogueVC.xib in Resources */,
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A707E342DCA03E700054756 /* EmojiListViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
@@ -1928,6 +1961,7 @@
 				8A97F79A2DA7A9EC00D53C9C /* DeleteCatalogViewModel.swift in Sources */,
 				8A03686B2DC235E300995B8E /* CatalogueUserListViewModel.swift in Sources */,
 				8A97F7942DA79E2E00D53C9C /* DeleteCatalogReqModel.swift in Sources */,
+				8A1283E32DD74F28009307A7 /* NewCatCollViewCell.swift in Sources */,
 				8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */,
 				8A192B742DC8DA7C007F5868 /* GroupDeleteImageViewModel.swift in Sources */,
 				8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */,
@@ -1939,6 +1973,7 @@
 				8A4983B12DCC688300220552 /* ShowEmojiListPopUpTVC.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
+				8A1283D82DD6EEE5009307A7 /* NewCatalogueVC.swift in Sources */,
 				8A707E3B2DCA0FB900054756 /* EmojiCell.swift in Sources */,
 				8A0521642D7958F800AE5FC4 /* EntryViewController.swift in Sources */,
 				8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */,
@@ -2006,6 +2041,7 @@
 				8A3ED25F2DAF663F002C3129 /* CatalogueImageListViewModel.swift in Sources */,
 				8A00BA322DBF965F00513C44 /* GroupListReqModel.swift in Sources */,
 				8A97F79F2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.swift in Sources */,
+				8A1283DA2DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift in Sources */,
 				8AC269452DB8C21100B4EEDF /* ShareImageReqModel.swift in Sources */,
 				8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
