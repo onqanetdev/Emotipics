@@ -22,7 +22,7 @@ class NewCatalogueVC: UIViewController {
         }
     }
     
-
+    
     
     @IBOutlet weak var photoCollView: UICollectionView!
     
@@ -32,9 +32,6 @@ class NewCatalogueVC: UIViewController {
     
     
     var collectionHeight:Int = 150
-    
-    
-    
     
     var dynamicHeight: CGFloat = 0
     
@@ -83,12 +80,18 @@ class NewCatalogueVC: UIViewController {
     
     var tempMemory:[DataM] = []
     
+    var imageCount:[ImageData] = []
     
-   
+    var selectedIndexPath: IndexPath?
+    
+    var imageCache = [String: UIImage]()
+    
+    var catalogCode = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         
         catalogueCollView.delegate = self
@@ -96,7 +99,7 @@ class NewCatalogueVC: UIViewController {
         
         catalogueCollView.register(UINib(nibName: "NewCatCollViewCell", bundle: nil), forCellWithReuseIdentifier: "NewCatView")
         
-       // showSkeleton()
+        // showSkeleton()
         
         
         // Table Views for contact Listing
@@ -105,13 +108,16 @@ class NewCatalogueVC: UIViewController {
         
         photoCollView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
         
+        
+        
         settingUpAllFonts()
         
         loadAllCatalogueData()
         
+        
     }
-
-
+    
+    
     @IBAction func previousView(_ sender: Any) {
         
         navigationController?.popViewController(animated: true)
@@ -127,7 +133,7 @@ class NewCatalogueVC: UIViewController {
     
     
     
-
+    
     
     
     func loadAllCatalogueData() {
@@ -150,12 +156,22 @@ class NewCatalogueVC: UIViewController {
                     
                     if let value = self.catalogueListingViewModel.responseModel?.data {
                         self.tempMemory = value
+                        
+                        self.catalogCode = self.tempMemory[0].catalog_code ?? ""
+                        
+                        
+                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                        
+                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                        self.selectedIndexPath?.row = 0
+                        
                         self.catalogueCollView.reloadData()
+                        self.photoCollView.reloadData()
                     }
                     
                     let sumHeight = (Int(self.dynamicHeight) * (self.catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
                     print("Sum height: \(sumHeight)")
-
+                    
                     if let countData = self.catalogueListingViewModel.responseModel?.data?.count {
                         print("Count data 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾", countData)
                     }
@@ -169,12 +185,72 @@ class NewCatalogueVC: UIViewController {
             }
         }
     }
-
+    
+    
+    
+    func loadAllImageCatalogue(catalogueCode: String) {
+        
+        catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
+        catalogueImageListViewModel.requestModel.limit = "50"
+        catalogueImageListViewModel.requestModel.offset = "1"
+        
+        startCustomLoader()
+        
+        catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                switch result {
+                case .goAhead:
+                    guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                        // self.photoCollView.isHidden = true
+                        self.imageCache.removeAll() // ✅ Clear cache
+                        self.imageCount.removeAll()
+                        self.photoCollView.reloadData()
+                        self.stopCustomLoader()
+                        return
+                    }
+                    
+                    self.imageCount = value
+                    
+                    if self.imageCount.isEmpty || self.imageCount.count == 0 {
+                        print("The Image count is 0")
+                        self.photoCollView.isHidden = true
+                        self.imageCache.removeAll() // ✅ Clear cache
+                        self.photoCollView.isHidden = true
+                    } else {
+                        print("Image count is there", self.imageCount.count)
+                        
+                        let sumHeight = (Int(self.dynamicHeight) * self.imageCount.count) / 2
+                        // You can use `sumHeight` for layout purposes if needed
+                    }
+                    
+                    self.photoCollView.reloadData()
+                    self.stopCustomLoader()
+                    
+                case .heyStop:
+                    print("Error")
+                    self.stopCustomLoader()
+                }
+            }
+        }
+    }
+    
+    
+    
+    @IBAction func uploadImgBtnAction(_ sender: Any) {
+        
+        
+    }
     
     
     
     
-    
+    @IBAction func createCatalogAction(_ sender: Any) {
+        
+        
+        
+    }
     
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
@@ -207,3 +283,8 @@ class NewCatalogueVC: UIViewController {
     
     
 }
+
+
+
+
+

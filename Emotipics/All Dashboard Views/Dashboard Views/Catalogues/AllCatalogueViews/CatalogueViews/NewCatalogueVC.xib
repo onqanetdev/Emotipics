@@ -240,6 +240,9 @@
                                         <color key="titleColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="small"/>
                                     </state>
+                                    <connections>
+                                        <action selector="uploadImgBtnAction:" destination="-1" eventType="touchUpInside" id="Vf5-cM-Lo4"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fA2-cj-ghG">
                                     <rect key="frame" x="190" y="0.0" width="170" height="45"/>
@@ -256,6 +259,9 @@
                                         <color key="titleColor" red="0.0078431372549019607" green="0.31764705882352939" blue="0.65490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="small"/>
                                     </state>
+                                    <connections>
+                                        <action selector="createCatalogAction:" destination="-1" eventType="touchUpInside" id="NeS-vW-Bp8"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </stackView>

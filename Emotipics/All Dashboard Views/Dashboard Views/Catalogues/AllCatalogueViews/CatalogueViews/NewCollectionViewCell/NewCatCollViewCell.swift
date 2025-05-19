@@ -35,7 +35,27 @@ class NewCatCollViewCell: UICollectionViewCell {
     
     
     
-    @IBOutlet weak var borderView: UIView!
+    @IBOutlet weak var borderView: UIView!{
+        didSet {
+            borderView.isHidden = true
+            borderView.clipsToBounds = true
+        }
+    }
+    
+    // MARK: All Labels
+    
+    @IBOutlet weak var projectFilesLbl: UILabel!
+    
+    @IBOutlet weak var noOfFiles: UILabel!
+    
+    @IBOutlet weak var availableSpaceDetails: UILabel!
+    
+    
+    
+    @IBOutlet weak var showFolder: UIImageView!
+
+    @IBOutlet weak var threeDotBtn: UIButton!
+    
     
     
     

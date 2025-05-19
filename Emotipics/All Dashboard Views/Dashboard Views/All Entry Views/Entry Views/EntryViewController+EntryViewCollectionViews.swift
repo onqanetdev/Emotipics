@@ -40,8 +40,6 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 cell.noOfFiles.text = "0"
                 cell.fiveGbLbl.text = "12.gb"
             } else {
-                
-                
                 cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name ?? "Example"
                 cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
                 cell.fiveGbLbl.text = tempMemory[indexPath.row].catalogimagesize
