@@ -37,5 +37,7 @@ class SessionManager {
             window.rootViewController = nav
             window.makeKeyAndVisible()
         }
+        
+        
     }
 }

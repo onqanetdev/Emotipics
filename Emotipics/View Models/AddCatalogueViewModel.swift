@@ -20,9 +20,11 @@ class AddCatalogueViewModel {
             case .success(let data):
                 self?.responseModel = data
                 completion(.goAhead)
-                DispatchQueue.main.async {
-                    AlertView.showAlert("Alert!", message: data.message ?? "ContactsCon", okTitle: "OK")
-                }
+//                DispatchQueue.main.async {
+//                    AlertView.showAlert("Alert!", message: data.message ?? "ContactsCon", okTitle: "OK")
+//                }
+                print("New catalogue Created ✅✅✅✅")
+                
             case .failure(let error):
                 completion(.heyStop)
                 DispatchQueue.main.async {

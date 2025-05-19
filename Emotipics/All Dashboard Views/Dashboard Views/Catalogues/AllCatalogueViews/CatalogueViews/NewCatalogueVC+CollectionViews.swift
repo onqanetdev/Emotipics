@@ -35,6 +35,12 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.borderView.isHidden = indexPath == selectedIndexPath ? false : true
 
             if  indexPath == selectedIndexPath {
+                if let catalogueId = tempMemory[indexPath.row].catalog_code {
+                    
+                    print("My Catalogue id is catalogueId", catalogueId)
+                    UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
+                }
+                
                 cell.borderView.isHidden = false
                 cell.mainView.backgroundColor = .systemBlue
                 cell.threeDotBtn.tintColor = .white

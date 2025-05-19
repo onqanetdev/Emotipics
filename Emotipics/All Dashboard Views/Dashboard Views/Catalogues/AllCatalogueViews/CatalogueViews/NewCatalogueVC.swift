@@ -118,6 +118,18 @@ class NewCatalogueVC: UIViewController {
     }
     
     
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let catalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+            print("Catalogue ID: \(catalogueId)")
+            loadAllImageCatalogue(catalogueCode: catalogueId)
+        }
+    }
+    
+    
+    
     @IBAction func previousView(_ sender: Any) {
         
         navigationController?.popViewController(animated: true)
@@ -239,8 +251,8 @@ class NewCatalogueVC: UIViewController {
     
     
     @IBAction func uploadImgBtnAction(_ sender: Any) {
-        
-        
+        let webView = WebViewController()
+        navigationController?.pushViewController(webView, animated: true)
     }
     
     

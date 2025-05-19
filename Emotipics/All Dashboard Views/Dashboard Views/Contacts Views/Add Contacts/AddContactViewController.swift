@@ -139,6 +139,7 @@ class AddContactViewController: UIViewController {
                             print("Its Okay")
                             self.emailTxtFld.text = ""
                             
+                            
                         case .heyStop:
                             print("SomeThing Went Wrong")
                         }
@@ -163,16 +164,36 @@ class AddContactViewController: UIViewController {
             addCatalogueViewModel.addCatalogueVM(request: addCatalogueViewModel.requestModel) { result in
                 DispatchQueue.main.async {
                    // self.activityIndicator.stopAnimating()
-                    self.stopCustomLoader()
+                   
                     switch result {
                     case .goAhead:
                         print("Success Folder Creation")
                         //table View Reload Data
+//                        DispatchQueue.main.async {
+//                            self.emailTxtFld.text = ""
+//                        }
+                        
+                        self.stopCustomLoader()
+                        
                         DispatchQueue.main.async {
-                            self.emailTxtFld.text = ""
+                            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                                  let window = windowScene.windows.first else {
+                                return
+                            }
+
+                            let loginVC = EntryViewController() // Or instantiate from storyboard if needed
+                            //loginVC.isSomeFieldsHidden = true
+                            let nav = UINavigationController(rootViewController: loginVC)
+                            nav.modalPresentationStyle = .fullScreen
+
+                            window.rootViewController = nav
+                            window.makeKeyAndVisible()
                         }
+                        
                     case .heyStop:
                         print("Error")
+                        
+                        self.stopCustomLoader()
                     }
                     
                     
