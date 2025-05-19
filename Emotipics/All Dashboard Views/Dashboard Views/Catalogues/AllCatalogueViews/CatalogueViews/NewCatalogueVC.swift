@@ -247,9 +247,16 @@ class NewCatalogueVC: UIViewController {
     
     
     @IBAction func createCatalogAction(_ sender: Any) {
+        print("Why Not Printing ")
         
+        let newCat = AddContactViewController()
+        newCat.isCatalogueView = true
+        newCat.txtFieldPlaceHolder = "Enter Catalogue Name"
+        newCat.addCataText = "Create a Catalogue"
+        newCat.createCataTxt = "Create a catalogue and add users to share your"
+        newCat.favImgLbl = "favourite images"
         
-        
+        self.navigationController?.pushViewController(newCat, animated: true)
     }
     
     func startCustomLoader(){
