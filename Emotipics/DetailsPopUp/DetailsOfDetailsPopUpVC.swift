@@ -17,6 +17,12 @@ class DetailsOfDetailsPopUpVC: UIViewController {
         }
     }
     
+    
+    
+    
+    @IBOutlet weak var groupNmLbl: UILabel!
+    
+    
     // MARK: All Labels
     
     
@@ -36,7 +42,7 @@ class DetailsOfDetailsPopUpVC: UIViewController {
     var ownerNameVar = ""
     var totalUserVar = 0
     
-    
+    var catalogName = "Group Name"
     
     @IBOutlet weak var okBtn: UIButton!{
         didSet{
@@ -59,6 +65,8 @@ class DetailsOfDetailsPopUpVC: UIViewController {
         ownerNmLbl.text = ownerNameVar
         totalUserLbl.text = String(totalUserVar)
         createdLbl.text = createdDateVar
+        
+        groupNmLbl.text = catalogName
     }
 
 

@@ -88,6 +88,9 @@ class NewCatalogueVC: UIViewController {
     
     var catalogCode = ""
     
+    var indexNo:Int = 0
+    
+    var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -232,10 +235,15 @@ class NewCatalogueVC: UIViewController {
                         self.photoCollView.isHidden = true
                     } else {
                         print("Image count is there", self.imageCount.count)
-                        
-                        let sumHeight = (Int(self.dynamicHeight) * self.imageCount.count) / 2
                         // You can use `sumHeight` for layout purposes if needed
                     }
+                    
+                    
+                    
+//                    let height = self.photoCollView.frame.size.height + 200
+//                    
+//                    self.photoCollView.frame.size.height =  height
+//                    print("PhotoCollView height + 100: \(height)")
                     
                     self.photoCollView.reloadData()
                     self.stopCustomLoader()

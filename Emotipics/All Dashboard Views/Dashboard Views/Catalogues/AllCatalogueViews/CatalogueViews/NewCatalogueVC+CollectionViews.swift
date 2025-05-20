@@ -43,16 +43,18 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 
                 cell.borderView.isHidden = false
                 cell.mainView.backgroundColor = .systemBlue
-                cell.threeDotBtn.tintColor = .white
+                cell.moreFeaturesBtn.tintColor = .white
                 cell.noOfFiles.textColor = .white
                 cell.availableSpaceDetails.textColor = .white
                 cell.projectFilesLbl.textColor = .white
                 cell.showFolder.image = UIImage(named: "ShowFolder")?.withRenderingMode(.alwaysTemplate)
                 cell.showFolder.tintColor = .white
-            } else {
+            } 
+            else
+            {
                 cell.borderView.isHidden = true
                 cell.mainView.backgroundColor = .white
-                cell.threeDotBtn.tintColor = .systemGray
+                cell.moreFeaturesBtn.tintColor = .systemGray
                 cell.noOfFiles.textColor = UIColor(red: 0/255, green: 153/255, blue: 153/255, alpha: 1)
                 cell.availableSpaceDetails.textColor = .black
                 cell.projectFilesLbl.textColor = .black
@@ -60,6 +62,10 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 
             }
            
+            
+            cell.moreFeaturesBtn.tag = indexPath.row
+            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
@@ -121,7 +127,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             //            return CGSize(width: max(0, cellWidth), height: cellWidth * 0.7)
             
             dynamicHeight = cellWidth * 1.0
-            return CGSize(width: max(0, cellWidth), height: cellWidth * 0.6)
+            return CGSize(width: max(0, cellWidth), height: cellWidth * 0.7)
             
         }
     }

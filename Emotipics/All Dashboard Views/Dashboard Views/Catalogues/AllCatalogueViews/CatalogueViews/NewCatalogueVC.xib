@@ -213,7 +213,7 @@
                     <rect key="frame" x="0.0" y="276" width="393" height="591"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VyF-0f-9tc">
-                            <rect key="frame" x="3" y="10" width="387" height="581"/>
+                            <rect key="frame" x="3" y="10" width="387" height="481"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dOS-FL-DDb">
                                 <size key="itemSize" width="128" height="128"/>
@@ -273,7 +273,7 @@
                         <constraint firstAttribute="bottom" secondItem="peJ-vo-paj" secondAttribute="bottom" constant="45" id="fF1-fx-NSi"/>
                         <constraint firstItem="VyF-0f-9tc" firstAttribute="leading" secondItem="QbR-yl-e6o" secondAttribute="leading" constant="3" id="nAq-A0-K8f"/>
                         <constraint firstItem="peJ-vo-paj" firstAttribute="centerX" secondItem="QbR-yl-e6o" secondAttribute="centerX" id="qga-SG-aK5"/>
-                        <constraint firstAttribute="bottom" secondItem="VyF-0f-9tc" secondAttribute="bottom" id="thr-CK-hUy"/>
+                        <constraint firstAttribute="bottom" secondItem="VyF-0f-9tc" secondAttribute="bottom" constant="100" id="thr-CK-hUy"/>
                     </constraints>
                 </view>
             </subviews>

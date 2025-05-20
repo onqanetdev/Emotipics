@@ -254,6 +254,7 @@
 		8AC2694B2DB8DF3700B4EEDF /* ImageShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */; };
 		8AC2694E2DB910AB00B4EEDF /* SharedImgResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694D2DB910AB00B4EEDF /* SharedImgResModel.swift */; };
 		8AC269502DB910C300B4EEDF /* SharedImgReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC2694F2DB910C300B4EEDF /* SharedImgReqModel.swift */; };
+		8ACC6ED42DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACC6ED32DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift */; };
 		8ACDCBBE2DBB455100A9B3EE /* CatalogueUserRmResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBBD2DBB455100A9B3EE /* CatalogueUserRmResModel.swift */; };
 		8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBBF2DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift */; };
 		8ACDCBC22DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */; };
@@ -545,6 +546,7 @@
 		8AC2694A2DB8DF3700B4EEDF /* ImageShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageShareViewModel.swift; sourceTree = "<group>"; };
 		8AC2694D2DB910AB00B4EEDF /* SharedImgResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgResModel.swift; sourceTree = "<group>"; };
 		8AC2694F2DB910C300B4EEDF /* SharedImgReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgReqModel.swift; sourceTree = "<group>"; };
+		8ACC6ED32DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewCatalogVC+ExtraFunction.swift"; sourceTree = "<group>"; };
 		8ACDCBBD2DBB455100A9B3EE /* CatalogueUserRmResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmResModel.swift; sourceTree = "<group>"; };
 		8ACDCBBF2DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmReqModel.swift; sourceTree = "<group>"; };
 		8ACDCBC12DBB46CD00A9B3EE /* CatalogueUserRmAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueUserRmAPICaller.swift; sourceTree = "<group>"; };
@@ -789,6 +791,7 @@
 				8A1283D52DD6EEE5009307A7 /* NewCatalogueVC.swift */,
 				8A1283D62DD6EEE5009307A7 /* NewCatalogueVC.xib */,
 				8A1283D92DD70D83009307A7 /* NewCatalogueVC+CollectionViews.swift */,
+				8ACC6ED32DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift */,
 				8A1283DF2DD74D80009307A7 /* NewCollectionViewCell */,
 			);
 			path = CatalogueViews;
@@ -1892,6 +1895,7 @@
 				8A1B0EA62DC0D13300A3CCA5 /* GroupAddUserResModel.swift in Sources */,
 				8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */,
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
+				8ACC6ED42DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift in Sources */,
 				8AE113FC2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A00BA212DBF5E7B00513C44 /* GroupCreateAPICaller.swift in Sources */,

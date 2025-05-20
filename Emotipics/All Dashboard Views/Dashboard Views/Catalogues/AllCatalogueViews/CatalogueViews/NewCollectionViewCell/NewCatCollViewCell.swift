@@ -54,10 +54,8 @@ class NewCatCollViewCell: UICollectionViewCell {
     
     @IBOutlet weak var showFolder: UIImageView!
 
-    @IBOutlet weak var threeDotBtn: UIButton!
-    
-    
-    
+
+    @IBOutlet weak var moreFeaturesBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()

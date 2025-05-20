@@ -135,13 +135,18 @@ class RenameCatalogueVC: UIViewController {
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
-                    print("Shared Catalogue View Model 🫡 🫡 View Controller")
+                    
                     //table View Reload Data
+//                    DispatchQueue.main.async { [self] in
+//                        
+//                        self.dismiss(animated: true)
+//                        
+//                    }
+                    
                     DispatchQueue.main.async { [self] in
-                        
-                        self.dismiss(animated: true)
-                        
-                    }
+                            self.onDismiss?()
+                            self.dismiss(animated: true)
+                        }
                 case .heyStop:
                     print("Error")
                 }

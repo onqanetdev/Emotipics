@@ -86,18 +86,7 @@ class AddContactViewController: UIViewController {
     }
 
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-    
+
     
     
     @IBAction func backBtnAction(_ sender: Any) {
@@ -106,9 +95,7 @@ class AddContactViewController: UIViewController {
     }
     
     
-    
-    
-    
+
 
     @IBAction func saveIntoDatabase(_ sender: Any) {
         
@@ -193,7 +180,7 @@ class AddContactViewController: UIViewController {
                     case .heyStop:
                         print("Error")
                         
-                        self.stopCustomLoader()
+                        self.stopCustomLoader() 
                     }
                     
                     

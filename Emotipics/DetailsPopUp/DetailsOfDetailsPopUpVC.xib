@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="createdLbl" destination="d2s-Tg-HVi" id="5XC-cU-z6k"/>
                 <outlet property="detailsView" destination="WhO-ib-LhI" id="5sQ-vG-Mx9"/>
+                <outlet property="groupNmLbl" destination="Rul-eF-dma" id="WQh-3l-ic3"/>
                 <outlet property="grpNmLbl" destination="Gaw-ch-AaY" id="BnW-hl-gRp"/>
                 <outlet property="okBtn" destination="v2u-JI-Zk3" id="U7j-ke-vfz"/>
                 <outlet property="ownerNmLbl" destination="7au-Yf-H8M" id="yEb-Rp-sL0"/>

@@ -129,12 +129,12 @@
                 <outlet property="availableSpaceDetails" destination="DmL-H8-3dl" id="XKu-pN-TtG"/>
                 <outlet property="borderView" destination="fha-pk-c7K" id="s6Q-C3-cuz"/>
                 <outlet property="mainView" destination="oYS-tJ-SEw" id="9Jf-60-5Pm"/>
+                <outlet property="moreFeaturesBtn" destination="y0Q-xg-Fgx" id="F2D-hm-9qP"/>
                 <outlet property="noOfFiles" destination="brg-Iy-4Tv" id="iBD-QJ-c3v"/>
                 <outlet property="personLbl" destination="NcR-Pg-KzI" id="fn2-k1-VRm"/>
                 <outlet property="projectFilesLbl" destination="uKU-BY-sNE" id="mjn-gu-8sP"/>
                 <outlet property="shareByMeLbl" destination="LlD-lF-PQ7" id="cFw-EL-Bzj"/>
                 <outlet property="showFolder" destination="5Mp-b0-MMQ" id="XES-IG-SJ9"/>
-                <outlet property="threeDotBtn" destination="y0Q-xg-Fgx" id="mzM-3V-IUM"/>
             </connections>
             <point key="canvasLocation" x="320.61068702290078" y="67.957746478873247"/>
         </collectionViewCell>
