@@ -37,11 +37,11 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             if tempMemory.count == 0 || tempMemory.isEmpty { 
                 cell.projectFilesLbl.text =  "Example"
-                cell.noOfFiles.text = "0"
+                cell.noOfFiles.text = "0 Files"
                 cell.fiveGbLbl.text = "12.gb"
             } else {
                 cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name ?? "Example"
-                cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
+                cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)" + " Files"
                 cell.fiveGbLbl.text = tempMemory[indexPath.row].catalogimagesize
             }
             cell.moreFeaturesBtn.tag = indexPath.row
@@ -62,8 +62,14 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 
             } else {
                 cell.projectFilesLbl.text = sharedCataTempMemory[indexPath.row].catalog_name
-                cell.noOfFiles.text = sharedCataTempMemory[indexPath.row].total_files
-                cell.fiveGbLbl.text = (sharedCataTempMemory[indexPath.row].file_storage ?? "0") + " MB"
+                
+                //cell.noOfFiles.text = "\(sharedCataTempMemory[indexPath.row].totalcatalogfile)"
+                if let totalFiles = sharedCataTempMemory[indexPath.row].totalcatalogfile {
+                    cell.noOfFiles.text = "\(totalFiles)" + " Files"
+                } else {
+                    cell.noOfFiles.text = "0" + " Files"
+                }
+                cell.fiveGbLbl.text = (sharedCataTempMemory[indexPath.row].catalogimagesize ?? "0") + " MB"
             }
             
             
@@ -154,7 +160,7 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == fileColView {
-            return UIEdgeInsets(top: 0, left: 25, bottom: 0, right: 65) // Leading space for the first cell
+            return UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 65) // Leading space for the first cell
         } else if collectionView == sharedCatalogueCollView {
             let totalCellWidth = 180 * 2 // Two cells per row, each 180 wide
             let totalSpacingWidth = 10 * 1 // One space between two cells

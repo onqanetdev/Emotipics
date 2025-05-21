@@ -282,7 +282,7 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
             
         } else {
             cell.imgViewColl.image = nil
-            cell.startCustomLoader()
+           // cell.startCustomLoader()
 
 
             if let imageURL = sharedImageByMeViewModel.fetchImageURL(for: indexPath.row) {
@@ -290,10 +290,10 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
                 // Check the cache first
                 if let cachedImage = imageCache[imageURL] {
                     cell.imgViewColl.image = cachedImage
-                    cell.stopCustomLoader()
+                   // cell.stopCustomLoader()
                 } else {
                     cell.imgViewColl.image = nil
-                    cell.startCustomLoader()
+                  //  cell.startCustomLoader()
 
                     DispatchQueue.global().async {
                         if let url = URL(string: imageURL),
@@ -307,11 +307,11 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
 //                                   print("📸 Cached keys: \(self.imageCache.keys)")
                                 
                                 cell.imgViewColl.image = image
-                                cell.stopCustomLoader()
+                             //   cell.stopCustomLoader()
                             }
                         } else {
                             DispatchQueue.main.async {
-                                cell.stopCustomLoader()
+                             //   cell.stopCustomLoader()
                             }
                         }
                     }

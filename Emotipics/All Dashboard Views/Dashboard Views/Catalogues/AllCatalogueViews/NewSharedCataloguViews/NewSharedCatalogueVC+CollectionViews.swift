@@ -1,8 +1,8 @@
 //
-//  NewCatalogueVC+CollectionViews.swift
+//  NewSharedCatalogueVC+CollectionViews.swift
 //  Emotipics
 //
-//  Created by Onqanet on 16/05/25.
+//  Created by Onqanet on 20/05/25.
 //
 
 import Foundation
@@ -12,30 +12,33 @@ import UIKit
 
 
 
-extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout  {
+
+extension NewSharedCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        if collectionView == catalogueCollView {
-            return tempMemory.count
+        if collectionView == shareCatalogueFolderCollView {
+            //return tempMemory.count
+            return sharedData.count
         } else {
+           // return imageCount.count
             return imageCount.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if collectionView == catalogueCollView {
+        if collectionView == shareCatalogueFolderCollView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewCatView", for: indexPath) as! NewCatCollViewCell
             cell.layer.cornerRadius = 20
             
             
-            cell.projectFilesLbl.text = tempMemory[indexPath.row].catalog_name
-            cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
-            cell.availableSpaceDetails.text = tempMemory[indexPath.row].catalogimagesize
+            cell.projectFilesLbl.text = sharedData[indexPath.row].catalog_name
+            cell.noOfFiles.text = "\(sharedData[indexPath.row].totalcatalogfile ?? 0)" + " Files"
+            cell.availableSpaceDetails.text = sharedData[indexPath.row].catalogimagesize
             cell.borderView.isHidden = indexPath == selectedIndexPath ? false : true
 
             if  indexPath == selectedIndexPath {
-                if let catalogueId = tempMemory[indexPath.row].catalog_code {
+                if let catalogueId = sharedData[indexPath.row].catalog_code {
                     
                     print("My Catalogue id is catalogueId", catalogueId)
                     UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
@@ -49,7 +52,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 cell.projectFilesLbl.textColor = .white
                 cell.showFolder.image = UIImage(named: "ShowFolder")?.withRenderingMode(.alwaysTemplate)
                 cell.showFolder.tintColor = .white
-            } 
+            }
             else
             {
                 cell.borderView.isHidden = true
@@ -64,10 +67,10 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
            
             
             cell.moreFeaturesBtn.tag = indexPath.row
-            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
+//            cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
             
             return cell
-        } 
+        }
         else
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
@@ -117,7 +120,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == catalogueCollView {
+        if collectionView == shareCatalogueFolderCollView {
             return CGSize(width: 200, height: collectionHeight)
         } else {
             let numberOfItemsPerRow: CGFloat = 2
@@ -143,7 +146,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == catalogueCollView {
+        if collectionView == shareCatalogueFolderCollView {
             return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 65)
         } else {
             return UIEdgeInsets(top: 10, left: 15, bottom: 15, right: 15)
@@ -154,15 +157,17 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if collectionView == catalogueCollView {
+        if collectionView == shareCatalogueFolderCollView {
             selectedIndexPath = indexPath
-            guard let catCode = tempMemory[indexPath.row].catalog_code else { return }
+            guard let catCode = sharedData[indexPath.row].catalog_code else { return }
             loadAllImageCatalogue(catalogueCode: catCode)
             collectionView.reloadData()
         } else {
             
-            guard let catCode = imageCount[indexPath.row].catalog_code else { return }
-            loadAllImageCatalogue(catalogueCode: catCode)
+//            guard let catCode = sharedData[indexPath.row].catalog_code else { return }
+//            loadAllImageCatalogue(catalogueCode: catCode)
         }
     }
 }
+
+

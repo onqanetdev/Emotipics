@@ -102,10 +102,7 @@ class NewCatalogueVC: UIViewController {
         
         catalogueCollView.register(UINib(nibName: "NewCatCollViewCell", bundle: nil), forCellWithReuseIdentifier: "NewCatView")
         
-        // showSkeleton()
-        
-        
-        // Table Views for contact Listing
+    
         photoCollView.dataSource = self
         photoCollView.delegate = self
         

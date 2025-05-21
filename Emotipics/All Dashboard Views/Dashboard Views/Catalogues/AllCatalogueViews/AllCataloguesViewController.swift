@@ -635,8 +635,8 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             
-            cell.imageBtnDelete.tag = indexPath.row
-            cell.imageBtnDelete.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
+//            cell.imageBtnDelete.tag = indexPath.row
+//            cell.imageBtnDelete.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
             
             if let imgPath = imageCount[indexPath.row].path,
                let imgName = imageCount[indexPath.row].img_name {
@@ -707,7 +707,7 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
         if isImageCell {
             //print("Image Cell is true")
             dynamicHeight = cellWidth * 1.0
-            return CGSize(width: max(0, cellWidth), height: cellWidth * 1.0)
+            return CGSize(width: max(0, cellWidth), height: cellWidth * 0.8)
         } else {
             //print("Image cell is false")
             dynamicHeight = 120
@@ -738,6 +738,19 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
                 let imagePath = imgPath + imgName
                 print("Selected Image Path: \(imagePath)")
             }
+            
+            
+            let selectedImage = imageCount[indexPath.row]
+
+                // Optional: store selected index or image code if needed
+                imageIndex = indexPath.row
+            imageCode = selectedImage.id ?? 0
+
+                print("Selected index: \(indexPath.row), image ID: \(imageCode)")
+
+                // Show popup
+                deleteImagePopUp()
+            
         } else {
             print("Selected entry cell at index: \(indexPath.row)")
             

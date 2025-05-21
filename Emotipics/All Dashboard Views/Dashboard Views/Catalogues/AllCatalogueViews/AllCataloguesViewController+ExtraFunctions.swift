@@ -11,6 +11,8 @@ import UIKit
 
 extension AllCataloguesViewController: DeleteImagePopUpDelegate {
     @objc func deleteImage(_ sender: UIButton){
+        
+        
          imageIndex = sender.tag
         print("The Index at desire index", imageCount[imageIndex].id as Any)
         if let img = imageCount[imageIndex].id {

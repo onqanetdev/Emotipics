@@ -811,6 +811,11 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     
+    @IBAction func sharedCatalogueViewAll(_ sender: Any) {
+        
+        self.navigationController?.pushViewController(NewSharedCatalogueVC(), animated: true)
+        
+    }
     
     
     @objc func addNewContact(){
@@ -849,11 +854,5 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     }
     
     
-//    func stopSkeleton() {
-//        isSkeletonVisible = false
-//        hideSkeleton()
-//        fileColView.reloadData()
-//    }
 
-    
 }

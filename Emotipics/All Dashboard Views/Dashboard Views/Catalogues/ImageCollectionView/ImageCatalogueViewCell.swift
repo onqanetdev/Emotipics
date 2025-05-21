@@ -29,12 +29,12 @@ class ImageCatalogueViewCell: UICollectionViewCell {
     
     
     
-//    var activityIndicator: UIActivityIndicatorView = {
-//        let indicator = UIActivityIndicatorView(style: .large)
-//        indicator.color = .systemTeal
-//        indicator.hidesWhenStopped = true
-//        return indicator
-//    }()
+    var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = .systemTeal
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     private var loaderView: ImageLoaderView?
     
@@ -42,19 +42,19 @@ class ImageCatalogueViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        //setupActivityIndicator()
+        setupActivityIndicator()
     }
     
     
     
-//    func setupActivityIndicator() {
-//        contentView.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-//        ])
-//    }
+    func setupActivityIndicator() {
+        contentView.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
+    }
 
 
     func startCustomLoader(){
