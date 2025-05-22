@@ -33,7 +33,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.noOfFiles.text = "\(tempMemory[indexPath.row].totalcatalogfile ?? 0)"
             cell.availableSpaceDetails.text = tempMemory[indexPath.row].catalogimagesize
             cell.borderView.isHidden = indexPath == selectedIndexPath ? false : true
-
+            
             if  indexPath == selectedIndexPath {
                 if let catalogueId = tempMemory[indexPath.row].catalog_code {
                     
@@ -49,7 +49,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 cell.projectFilesLbl.textColor = .white
                 cell.showFolder.image = UIImage(named: "ShowFolder")?.withRenderingMode(.alwaysTemplate)
                 cell.showFolder.tintColor = .white
-            } 
+            }
             else
             {
                 cell.borderView.isHidden = true
@@ -61,13 +61,14 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 cell.showFolder.image = UIImage(named: "ShowFolder")
                 
             }
-           
+            
             
             cell.moreFeaturesBtn.tag = indexPath.row
             cell.moreFeaturesBtn.addTarget(self, action: #selector(deleteCatalogueBtnAction(_:)), for: .touchUpInside)
             
+            //            tempMemoryImages.removeAll()
             return cell
-        } 
+        }
         else
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
@@ -78,15 +79,15 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                let imgName = imageCount[indexPath.row].img_name {
                 let imagePath = imgPath + imgName
                 print("Image Path:", imagePath)
-
-
-
+                
+                
+                
                 if let cachedImage = imageCache[imagePath] {
-                        cell.imgViewColl.image = cachedImage
-                       // cell.stopCustomLoader()
+                    cell.imgViewColl.image = cachedImage
+                    // cell.stopCustomLoader()
                 } else {
                     cell.imgViewColl.image = nil // Optional: clear image to avoid showing old image in reused cell
-                  //  cell.startCustomLoader()
+                    //  cell.startCustomLoader()
                     
                     cell.activityIndicator.startAnimating()
                     
@@ -94,26 +95,57 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                         URLSession.shared.dataTask(with: urlImage) { data, _, _ in
                             guard let data = data, let image = UIImage(data: data) else {
                                 DispatchQueue.main.async {
-                                                    cell.activityIndicator.stopAnimating()
-                                                }
+                                    cell.activityIndicator.stopAnimating()
+                                }
                                 return }
+                            
+                            
+                            
                             
                             DispatchQueue.main.async {
                                 self.imageCache[imagePath] = image // Cache the image
+                                
                                 if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
                                     currentCell.imgViewColl.image = image
-                                   // currentCell.stopCustomLoader()
+                                    // currentCell.stopCustomLoader()
                                     currentCell.activityIndicator.stopAnimating()
                                 }
                             }
+                            
+                            
+                            
+                            //                            DispatchQueue.global(qos: .background).async { [weak self] in
+                            //                                guard let self = self else { return }
+                            //
+                            //                                // Expensive check in background
+                            //                                let isAlreadyAdded = self.tempMemoryImages.contains { $0.pngData() == image.pngData() }
+                            //
+                            //                                if !isAlreadyAdded {
+                            //                                    self.tempMemoryImages.append(image)
+                            //                                }
+                            //
+                            //                                // UI updates on main thread
+                            //                                DispatchQueue.main.async {
+                            //                                    self.imageCache[imagePath] = image
+                            //
+                            //                                    if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
+                            //                                        currentCell.imgViewColl.image = image
+                            //                                        currentCell.activityIndicator.stopAnimating()
+                            //                                    }
+                            //                                }
+                            //                            }
+                            
+                            
+                            
+                            
                         }.resume()
                     }
-                }
+                } //else Ending Here
                 
             }
             
             return cell
-        }
+        } //else ending
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -155,14 +187,58 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == catalogueCollView {
+            
             selectedIndexPath = indexPath
             guard let catCode = tempMemory[indexPath.row].catalog_code else { return }
             loadAllImageCatalogue(catalogueCode: catCode)
             collectionView.reloadData()
-        } else {
             
-            guard let catCode = imageCount[indexPath.row].catalog_code else { return }
-            loadAllImageCatalogue(catalogueCode: catCode)
+        } else {
+//            if let imgPath = imageCount[indexPath.row].path,
+//               let imgName = imageCount[indexPath.row].img_name {
+//                let imagePath = imgPath + imgName
+//                print("Image Path:", imagePath)
+//            } else {
+//                
+//            }
+//            
+//            
+//            print("Total numbers of Image--> ", tempMemoryImages)
+//            
+//            let previewVC = TestImageSamplePreviewController()
+//            
+//           // previewVC.images = tempMemoryImages
+//            previewVC.newImageSet = imageCount
+//            
+//            self.navigationController?.pushViewController(previewVC, animated: true)
+            
+            
+            let allImages = imageCount
+                
+                // The index the user tapped
+                let tappedIndex = indexPath.row
+                
+                // 1. Pull out the tapped image
+                let firstImage = allImages[tappedIndex]
+                
+                // 2. Build a new array beginning with the tapped image, then all the others in order
+                let remaining = allImages.enumerated()
+                                          .filter { $0.offset != tappedIndex }   // drop the tapped one
+                                          .map { $0.element }                     // extract the image objects
+                let reordered = [firstImage] + remaining
+                
+                // 3. Pass the reordered array to your preview VC
+                let previewVC = TestImageSamplePreviewController()
+                previewVC.newImageSet = reordered
+                //previewVC.indexNoFetched = 0    // since we moved the tapped image to index zero
+                navigationController?.pushViewController(previewVC, animated: true)
+            
         }
     }
 }
+
+
+
+
+
+

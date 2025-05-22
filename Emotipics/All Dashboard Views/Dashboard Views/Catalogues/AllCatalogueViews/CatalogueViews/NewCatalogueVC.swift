@@ -92,6 +92,9 @@ class NewCatalogueVC: UIViewController {
     
     var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     
+    
+    var tempMemoryImages: [UIImage] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -218,7 +221,11 @@ class NewCatalogueVC: UIViewController {
                         // self.photoCollView.isHidden = true
                         self.imageCache.removeAll() // ✅ Clear cache
                         self.imageCount.removeAll()
+                        
+                       // self.tempMemoryImages.removeAll()
+                        
                         self.photoCollView.reloadData()
+                       
                         self.stopCustomLoader()
                         return
                     }

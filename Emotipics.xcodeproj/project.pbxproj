@@ -186,6 +186,10 @@
 		8A4983B22DCC688300220552 /* ShowEmojiListPopUpTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A4983B02DCC688300220552 /* ShowEmojiListPopUpTVC.xib */; };
 		8A503A8B2DDDB0A300EC3190 /* ImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A503A8A2DDDB0A300EC3190 /* ImagePreviewViewController.xib */; };
 		8A503A8C2DDDB0A300EC3190 /* ImagePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A503A892DDDB0A300EC3190 /* ImagePreviewViewController.swift */; };
+		8A503A902DDDE9CC00EC3190 /* TestImagePreviewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A503A8F2DDDE9CC00EC3190 /* TestImagePreviewVC.xib */; };
+		8A503A912DDDE9CC00EC3190 /* TestImagePreviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A503A8E2DDDE9CC00EC3190 /* TestImagePreviewVC.swift */; };
+		8A503A942DDDFD8D00EC3190 /* TestImageSamplePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A503A932DDDFD8D00EC3190 /* TestImageSamplePreviewController.swift */; };
+		8A503A962DDDFDE400EC3190 /* ZoomableImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A503A952DDDFDE400EC3190 /* ZoomableImageCell.swift */; };
 		8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */; };
 		8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */; };
 		8A53333A2D913AAC00B524A7 /* AboutUsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A5333392D913AAC00B524A7 /* AboutUsVC.xib */; };
@@ -484,6 +488,10 @@
 		8A4983B02DCC688300220552 /* ShowEmojiListPopUpTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShowEmojiListPopUpTVC.xib; sourceTree = "<group>"; };
 		8A503A892DDDB0A300EC3190 /* ImagePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewViewController.swift; sourceTree = "<group>"; };
 		8A503A8A2DDDB0A300EC3190 /* ImagePreviewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagePreviewViewController.xib; sourceTree = "<group>"; };
+		8A503A8E2DDDE9CC00EC3190 /* TestImagePreviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImagePreviewVC.swift; sourceTree = "<group>"; };
+		8A503A8F2DDDE9CC00EC3190 /* TestImagePreviewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestImagePreviewVC.xib; sourceTree = "<group>"; };
+		8A503A932DDDFD8D00EC3190 /* TestImageSamplePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestImageSamplePreviewController.swift; sourceTree = "<group>"; };
+		8A503A952DDDFDE400EC3190 /* ZoomableImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableImageCell.swift; sourceTree = "<group>"; };
 		8A5333332D91151F00B524A7 /* MyAccountDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountDetailsVC.swift; sourceTree = "<group>"; };
 		8A5333342D91151F00B524A7 /* MyAccountDetailsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountDetailsVC.xib; sourceTree = "<group>"; };
 		8A5333382D913AAC00B524A7 /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
@@ -1380,10 +1388,30 @@
 		8A503A882DDDB06800EC3190 /* ImagePreviewView */ = {
 			isa = PBXGroup;
 			children = (
+				8A503A922DDDFD4500EC3190 /* TestSampleImageViews */,
+				8A503A8D2DDDE99100EC3190 /* TestImagePreviewController */,
 				8A503A892DDDB0A300EC3190 /* ImagePreviewViewController.swift */,
 				8A503A8A2DDDB0A300EC3190 /* ImagePreviewViewController.xib */,
 			);
 			path = ImagePreviewView;
+			sourceTree = "<group>";
+		};
+		8A503A8D2DDDE99100EC3190 /* TestImagePreviewController */ = {
+			isa = PBXGroup;
+			children = (
+				8A503A8E2DDDE9CC00EC3190 /* TestImagePreviewVC.swift */,
+				8A503A8F2DDDE9CC00EC3190 /* TestImagePreviewVC.xib */,
+			);
+			path = TestImagePreviewController;
+			sourceTree = "<group>";
+		};
+		8A503A922DDDFD4500EC3190 /* TestSampleImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				8A503A932DDDFD8D00EC3190 /* TestImageSamplePreviewController.swift */,
+				8A503A952DDDFDE400EC3190 /* ZoomableImageCell.swift */,
+			);
+			path = TestSampleImageViews;
 			sourceTree = "<group>";
 		};
 		8A5333312D91144200B524A7 /* All Side Menu Views */ = {
@@ -1860,6 +1888,7 @@
 				8AF683182DD5AF26002994BA /* DetailsOfDetailsPopUpVC.xib in Resources */,
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
 				8A2DED902D894D900057DFC0 /* GroupDetailViewCell.xib in Resources */,
+				8A503A902DDDE9CC00EC3190 /* TestImagePreviewVC.xib in Resources */,
 				8A4353CB2D75BEBC00ABB7A0 /* TestScrollViewController.xib in Resources */,
 				8A4353BC2D758F4700ABB7A0 /* poppins_bold.ttf in Resources */,
 				8A707E3A2DCA0FB900054756 /* EmojiCell.xib in Resources */,
@@ -1926,6 +1955,7 @@
 				8A2DED962D897B890057DFC0 /* GroupDetailViewController.swift in Sources */,
 				8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */,
 				8A1B0EA62DC0D13300A3CCA5 /* GroupAddUserResModel.swift in Sources */,
+				8A503A962DDDFDE400EC3190 /* ZoomableImageCell.swift in Sources */,
 				8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */,
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
 				8ACC6ED42DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift in Sources */,
@@ -2023,6 +2053,7 @@
 				8A241DDF2D7FFA19002D7BA8 /* ContactsViewController.swift in Sources */,
 				8A2E51842D9D3A5500D4A023 /* RegistrationOTPModel.swift in Sources */,
 				8A707E422DCA18A300054756 /* GroupAddReactAPICaller.swift in Sources */,
+				8A503A942DDDFD8D00EC3190 /* TestImageSamplePreviewController.swift in Sources */,
 				8ABB96952D8D3B660032E6DA /* SideMenuCell.swift in Sources */,
 				8A0368642DC2285000995B8E /* CatalogueUserListAPICaller.swift in Sources */,
 				8A9611FE2DA939E70026A1FC /* SharingContactListVC.swift in Sources */,
@@ -2103,6 +2134,7 @@
 				8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */,
 				8A4353CA2D75BEBC00ABB7A0 /* TestScrollViewController.swift in Sources */,
 				8AC1649F2DD4A1E800CC0821 /* SkeletonDisplayable.swift in Sources */,
+				8A503A912DDDE9CC00EC3190 /* TestImagePreviewVC.swift in Sources */,
 				8A4983AD2DCC62D200220552 /* ShowEmojiListPopUp.swift in Sources */,
 				8A1B0EA12DC0AC6200A3CCA5 /* GroupRenameViewModel.swift in Sources */,
 				8A3ED26A2DAFB295002C3129 /* DeleteImageViewModel.swift in Sources */,
