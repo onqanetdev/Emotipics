@@ -75,6 +75,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     
     var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
+    
     var imageCode = 0
     var imageIndex = 0
     
@@ -84,7 +85,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     
     var imageCache = [String: UIImage]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,12 +156,12 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-       // activityIndicator.startAnimating()
+        // activityIndicator.startAnimating()
         startCustomLoader()
         
         catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
             DispatchQueue.main.async { [self] in
-               // self.activityIndicator.stopAnimating()
+                // self.activityIndicator.stopAnimating()
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
@@ -195,7 +196,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                         if countData % 2 == 0{
                             let height:CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height + 120
-                           scrollViewHeight.constant = collectionViewHeight.constant + 300
+                            scrollViewHeight.constant = collectionViewHeight.constant + 300
                             
                             
                             
@@ -204,7 +205,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                             self.collectionViewHeight.constant = height + 120
                             scrollViewHeight.constant = collectionViewHeight.constant + 370
                         }
-                    
+                        
                         
                     } else {
                         
@@ -239,8 +240,8 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
-                
-
+                    
+                    
                     DispatchQueue.main.async { [self] in
                         guard let value = self.catalogueImageListViewModel.responseModel?.data else {
                             
@@ -251,7 +252,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                             catalogueCollView.isHidden = true
                             return
                         }
-                       
+                        
                         self.imageCount = value
                         //catalogueCollView.reloadData()
                         if imageCount.isEmpty || imageCount.count == 0{
@@ -291,7 +292,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                         
                     }
                     
-        
+                    
                     
                 case .heyStop:
                     print("Error")
@@ -306,7 +307,6 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
     
     
     func startCustomLoader(){
-        //        let loaderSize: CGFloat = 220
         
         if loaderView != nil { return }
         let loader = ImageLoaderView(frame: view.bounds)
@@ -320,7 +320,6 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         
         self.loaderView = loader
         
-        // Stop and remove after 5 seconds
     }
     
     func stopCustomLoader(){
@@ -329,23 +328,21 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         loaderView?.removeFromSuperview()
         
         loaderView = nil
-        
-        
     }
     
-//    
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-//    
+    //
+    //    func setupActivityIndicator() {
+    //        view.addSubview(activityIndicator)
+    //        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    //
+    //        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
+    //
+    //        NSLayoutConstraint.activate([
+    //            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+    //            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+    //        ])
+    //    }
+    //
     
     func updateScrollViewHeight() {
         // Force collectionView layout update
@@ -414,7 +411,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         
         
         
-       // self.activityIndicator.startAnimating()
+        // self.activityIndicator.startAnimating()
         startCustomLoader()
         deleteCatalogueViewModel.requestModel.UUID = item
         deleteCatalogueViewModel.deleteCatalogViewModel(request: deleteCatalogueViewModel.requestModel) { result in
@@ -445,14 +442,14 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
                                 let height:CGFloat = CGFloat(sumHeight)
                                 self.collectionViewHeight.constant = height
                                 self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
-//                                self.scrollViewHeight.constant = self.collectionViewHeight.constant + 1000
-        
+                                //                                self.scrollViewHeight.constant = self.collectionViewHeight.constant + 1000
+                                
                             } else {
                                 let height:CGFloat = CGFloat(sumHeight)
                                 self.collectionViewHeight.constant = height + 120
                                 self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
                             }
-                        
+                            
                             
                         } else {
                             
@@ -588,7 +585,7 @@ class AllCataloguesViewController: UIViewController, DeleteCatalogDelegate {
         self.present(shareInfo, animated: true, completion: nil)
     }
     
-
+    
 }
 
 
@@ -635,19 +632,19 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             
-//            cell.imageBtnDelete.tag = indexPath.row
-//            cell.imageBtnDelete.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
+            //            cell.imageBtnDelete.tag = indexPath.row
+            //            cell.imageBtnDelete.addTarget(self, action: #selector(deleteImage(_:)), for: .touchUpInside)
             
             if let imgPath = imageCount[indexPath.row].path,
                let imgName = imageCount[indexPath.row].img_name {
                 let imagePath = imgPath + imgName
                 print("Image Path:", imagePath)
-
-
-//                
+                
+                
+                //
                 if let cachedImage = imageCache[imagePath] {
-                        cell.imgViewColl.image = cachedImage
-                        cell.stopCustomLoader()
+                    cell.imgViewColl.image = cachedImage
+                    cell.stopCustomLoader()
                 } else {
                     cell.imgViewColl.image = nil // Optional: clear image to avoid showing old image in reused cell
                     cell.startCustomLoader()
@@ -668,10 +665,10 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
                 }
                 
             }
-
+            
             return cell
             
-        
+            
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EntryCollectionViewCell
             cell.layer.cornerRadius = 15
@@ -741,22 +738,22 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             
             
             let selectedImage = imageCount[indexPath.row]
-
-                // Optional: store selected index or image code if needed
-                imageIndex = indexPath.row
+            
+            // Optional: store selected index or image code if needed
+            imageIndex = indexPath.row
             imageCode = selectedImage.id ?? 0
-
-                print("Selected index: \(indexPath.row), image ID: \(imageCode)")
-
-                // Show popup
-                deleteImagePopUp()
+            
+            print("Selected index: \(indexPath.row), image ID: \(imageCode)")
+            
+            // Show popup
+            deleteImagePopUp()
             
         } else {
             print("Selected entry cell at index: \(indexPath.row)")
             
             let imageViewController = AllCataloguesViewController()
             imageViewController.isImageCell = true
-        
+            
             
             let catalogueId = tempMemory[indexPath.row].catalog_code
             let userCode = tempMemory[indexPath.row].owner_detials?.code
@@ -767,7 +764,7 @@ extension AllCataloguesViewController: UICollectionViewDelegate, UICollectionVie
             if let catalogueId = catalogueId {
                 UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
             }
-
+            
             if let userCode = userCode {
                 UserDefaults.standard.set(userCode, forKey: "userCode")
             }

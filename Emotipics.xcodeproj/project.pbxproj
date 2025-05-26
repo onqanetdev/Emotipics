@@ -22,6 +22,10 @@
 		8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA2F2DBF964900513C44 /* GroupListResModel.swift */; };
 		8A00BA322DBF965F00513C44 /* GroupListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */; };
 		8A00BA342DBF9EAF00513C44 /* GroupListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A00BA332DBF9EAF00513C44 /* GroupListViewModel.swift */; };
+		8A01D8672DE41EDE00CBE34B /* AddBirthdayReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01D8662DE41EDE00CBE34B /* AddBirthdayReqModel.swift */; };
+		8A01D8692DE41EF300CBE34B /* AddBirthdayResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01D8682DE41EF300CBE34B /* AddBirthdayResModel.swift */; };
+		8A01D86B2DE4211700CBE34B /* AddBirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01D86A2DE4211700CBE34B /* AddBirthdayViewModel.swift */; };
+		8A01D86D2DE4215100CBE34B /* AddBirthdayAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A01D86C2DE4215100CBE34B /* AddBirthdayAPICaller.swift */; };
 		8A0368512DC1E92A00995B8E /* GroupUserListResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0368502DC1E92A00995B8E /* GroupUserListResModel.swift */; };
 		8A0368532DC1EB9D00995B8E /* GroupUserListReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0368522DC1EB9D00995B8E /* GroupUserListReqModel.swift */; };
 		8A0368552DC1ECE900995B8E /* GroupUserListAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0368542DC1ECE900995B8E /* GroupUserListAPICaller.swift */; };
@@ -303,6 +307,8 @@
 		8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */; };
 		8AF792482D9BF45800085FEC /* RegisterRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */; };
 		8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */; };
+		8AF808C82DE06B64006D0464 /* BirthdayPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF808C62DE06B64006D0464 /* BirthdayPopUpView.swift */; };
+		8AF808C92DE06B64006D0464 /* BirthdayPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF808C72DE06B64006D0464 /* BirthdayPopUpView.xib */; };
 		8AFDE6462DA5336A005AA235 /* EmptyCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE6452DA5336A005AA235 /* EmptyCollView.swift */; };
 /* End PBXBuildFile section */
 
@@ -322,6 +328,10 @@
 		8A00BA2F2DBF964900513C44 /* GroupListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListResModel.swift; sourceTree = "<group>"; };
 		8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListReqModel.swift; sourceTree = "<group>"; };
 		8A00BA332DBF9EAF00513C44 /* GroupListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListViewModel.swift; sourceTree = "<group>"; };
+		8A01D8662DE41EDE00CBE34B /* AddBirthdayReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBirthdayReqModel.swift; sourceTree = "<group>"; };
+		8A01D8682DE41EF300CBE34B /* AddBirthdayResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBirthdayResModel.swift; sourceTree = "<group>"; };
+		8A01D86A2DE4211700CBE34B /* AddBirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBirthdayViewModel.swift; sourceTree = "<group>"; };
+		8A01D86C2DE4215100CBE34B /* AddBirthdayAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBirthdayAPICaller.swift; sourceTree = "<group>"; };
 		8A0368502DC1E92A00995B8E /* GroupUserListResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserListResModel.swift; sourceTree = "<group>"; };
 		8A0368522DC1EB9D00995B8E /* GroupUserListReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserListReqModel.swift; sourceTree = "<group>"; };
 		8A0368542DC1ECE900995B8E /* GroupUserListAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupUserListAPICaller.swift; sourceTree = "<group>"; };
@@ -604,6 +614,8 @@
 		8AF792452D9BE2FF00085FEC /* RegisterResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponseModel.swift; sourceTree = "<group>"; };
 		8AF792472D9BF45800085FEC /* RegisterRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterRequestModel.swift; sourceTree = "<group>"; };
 		8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		8AF808C62DE06B64006D0464 /* BirthdayPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPopUpView.swift; sourceTree = "<group>"; };
+		8AF808C72DE06B64006D0464 /* BirthdayPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthdayPopUpView.xib; sourceTree = "<group>"; };
 		8AFDE6452DA5336A005AA235 /* EmptyCollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -653,6 +665,15 @@
 				8A00BA312DBF965F00513C44 /* GroupListReqModel.swift */,
 			);
 			path = GroupListModel;
+			sourceTree = "<group>";
+		};
+		8A01D8652DE41DB900CBE34B /* AddBirthday */ = {
+			isa = PBXGroup;
+			children = (
+				8A01D8662DE41EDE00CBE34B /* AddBirthdayReqModel.swift */,
+				8A01D8682DE41EF300CBE34B /* AddBirthdayResModel.swift */,
+			);
+			path = AddBirthday;
 			sourceTree = "<group>";
 		};
 		8A03684F2DC1E90000995B8E /* GroupUserList */ = {
@@ -1107,6 +1128,7 @@
 				8A192B6C2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift */,
 				8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */,
 				8A39B5CA2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift */,
+				8A01D86C2DE4215100CBE34B /* AddBirthdayAPICaller.swift */,
 			);
 			path = Networks;
 			sourceTree = "<group>";
@@ -1114,6 +1136,7 @@
 		8A3C02792D955C0300DE941A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8A01D8652DE41DB900CBE34B /* AddBirthday */,
 				8A707E3C2DCA174400054756 /* AddEmojiReact */,
 				8A707E282DC9EB4600054756 /* GroupEmojiList */,
 				8A192B6E2DC8CEAD007F5868 /* GroupImageDeleteModel */,
@@ -1200,6 +1223,7 @@
 				8A192B732DC8DA7B007F5868 /* GroupDeleteImageViewModel.swift */,
 				8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */,
 				8A39B5CC2DCB203300C1FC37 /* ShowEmojiListViewModel.swift */,
+				8A01D86A2DE4211700CBE34B /* AddBirthdayViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -1250,6 +1274,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8AF808C52DE06912006D0464 /* Birthday Pop Up Views */,
 				8AC1649D2DD4A17B00CC0821 /* Skeleton views */,
 				8AF683102DD5AA94002994BA /* DetailsPopUp */,
 				8A4983AA2DCC62AA00220552 /* Show Emoji PopUp */,
@@ -1795,6 +1820,15 @@
 			path = RegisterModels;
 			sourceTree = "<group>";
 		};
+		8AF808C52DE06912006D0464 /* Birthday Pop Up Views */ = {
+			isa = PBXGroup;
+			children = (
+				8AF808C62DE06B64006D0464 /* BirthdayPopUpView.swift */,
+				8AF808C72DE06B64006D0464 /* BirthdayPopUpView.xib */,
+			);
+			path = "Birthday Pop Up Views";
+			sourceTree = "<group>";
+		};
 		8AFDE6422DA532FF005AA235 /* AdditionalViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1916,6 +1950,7 @@
 				8A4983AE2DCC62D200220552 /* ShowEmojiListPopUp.xib in Resources */,
 				8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */,
 				8A4353BF2D758F4700ABB7A0 /* poppins_regular.ttf in Resources */,
+				8AF808C92DE06B64006D0464 /* BirthdayPopUpView.xib in Resources */,
 				8A5333362D91151F00B524A7 /* MyAccountDetailsVC.xib in Resources */,
 				8AA25B932D82A26F0093F3F1 /* SharedCatalogueViewController.xib in Resources */,
 				8AF683142DD5AB43002994BA /* DetailsVCPopUp.xib in Resources */,
@@ -1988,6 +2023,7 @@
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
 				8AF792412D9BA36E00085FEC /* GlobalPopUpVC.swift in Sources */,
 				8A0368622DC203C100995B8E /* GroupUserDeleteViewModel.swift in Sources */,
+				8A01D8672DE41EDE00CBE34B /* AddBirthdayReqModel.swift in Sources */,
 				8A44CD6E2DB626DD0044E904 /* CopyOrMoveImgResModel.swift in Sources */,
 				8A09D37B2DC3444F0050A3CA /* GroupUserExitResModel.swift in Sources */,
 				8A53333F2D915BCF00B524A7 /* NotificationDetailsVC.swift in Sources */,
@@ -1995,6 +2031,7 @@
 				8A3ED2732DAFCA31002C3129 /* DeleteImagePopUpDelegate.swift in Sources */,
 				8A00BA1A2DBF497900513C44 /* CatalogueUserExitViewModel.swift in Sources */,
 				8A707E402DCA178000054756 /* AddEmojiReactReqModel.swift in Sources */,
+				8A01D86D2DE4215100CBE34B /* AddBirthdayAPICaller.swift in Sources */,
 				8A44CD702DB62B720044E904 /* CopyOrMoveReqModel.swift in Sources */,
 				8A1B0E9F2DC0AAC500A3CCA5 /* RenameGroupAPICaller.swift in Sources */,
 				8A00BA2D2DBF94E400513C44 /* GroupListAPICaller.swift in Sources */,
@@ -2125,6 +2162,7 @@
 				8A1B0E942DC097E400A3CCA5 /* DeleteGroupAPICaller.swift in Sources */,
 				8A4353A32D757D4F00ABB7A0 /* HomeViewController.swift in Sources */,
 				8A241DE22D80196F002D7BA8 /* ContactsView.swift in Sources */,
+				8AF808C82DE06B64006D0464 /* BirthdayPopUpView.swift in Sources */,
 				8A2E51792D9CFC7800D4A023 /* PopUpViewDelegate.swift in Sources */,
 				8A2E51802D9D301A00D4A023 /* RegOTPVerificationAPICaller.swift in Sources */,
 				8AC269472DB8C2D700B4EEDF /* ShareImageResModel.swift in Sources */,
@@ -2146,6 +2184,7 @@
 				8A00BA1F2DBF5CA600513C44 /* GroupCreateResModel.swift in Sources */,
 				8A0368512DC1E92A00995B8E /* GroupUserListResModel.swift in Sources */,
 				8A9612032DA93F9C0026A1FC /* SharingContactListTVC.swift in Sources */,
+				8A01D8692DE41EF300CBE34B /* AddBirthdayResModel.swift in Sources */,
 				8A44CD782DB64C500044E904 /* CopyMoveViewController.swift in Sources */,
 				8AF683132DD5AB43002994BA /* DetailsVCPopUp.swift in Sources */,
 				8A2DED8F2D894D900057DFC0 /* GroupDetailViewCell.swift in Sources */,
@@ -2159,6 +2198,7 @@
 				8A09D3852DC3743A0050A3CA /* ForgetPasswordReqModel.swift in Sources */,
 				8A075C992DB9F029004554E2 /* SharedImageByMeViewModel.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
+				8A01D86B2DE4211700CBE34B /* AddBirthdayViewModel.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,
 				8AC269492DB8CE5B00B4EEDF /* AddImageShareAPICaller.swift in Sources */,
 				8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */,

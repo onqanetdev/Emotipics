@@ -55,6 +55,8 @@ enum APIEndpoint: String {
     case addEmoji = "add-emoji"
     case showEmoji = "emoji-list"
     
+    case addBirthday = "add-birthday"
+    
     
 }
 

@@ -79,6 +79,17 @@ class SharingContactListVC: UIViewController {
     var groupCode: String = ""
     
     
+    //MARK: All for birthday wishes
+    var isBirthday:Bool = false
+    var selectedContactsForBirth:[String] = []
+    var birthdayMSG: String = ""
+    var addBirthdayViewModel:AddBirthdayViewModel = AddBirthdayViewModel()
+    
+    
+    var imageURL = ""
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -148,7 +159,31 @@ class SharingContactListVC: UIViewController {
                 }
                 
                 
-            } else 
+            } 
+            else if isBirthday {
+                let modfiedString = selectedContactsForBirth.joined(separator: ",")
+                print("The Modified String-->", modfiedString)
+                
+                let birthdayPopUpView = BirthdayPopUpView(nibName: "BirthdayPopUpView", bundle: nil)
+                birthdayPopUpView.modalPresentationStyle = .overCurrentContext
+                birthdayPopUpView.modalTransitionStyle = .crossDissolve
+                
+                birthdayPopUpView.onCompletion = { birthDayMsg in
+                    self.birthdayMSG = birthDayMsg
+                    print("Received Birthday Message: \(birthDayMsg)")
+                    // Handle message here
+                    self.addBirthdayFunction(msgString: self.birthdayMSG, userCode: modfiedString, immgURL: self.imageURL, notifyDate: "2007-05-23")
+                }
+                
+        
+                print("Desired Image URL--->", imageURL)
+            
+                self.present(birthdayPopUpView, animated: true, completion: nil)
+                
+            }
+            
+            
+            else
             {
                 print("Submitted List Will Be", catalogData[shareIndex].catalog_code )
                 // print("Selcted Contacts will be", selectedContacts)
@@ -219,13 +254,26 @@ class SharingContactListVC: UIViewController {
                                 self.catalogueNameLbl.text = self.catalogueName
                             } else {
                                 if self.contactListForGr {
+                                    
+                                    
                                     self.catalogueNameLbl.text = self.groupData[self.shareIndex].groupname
-                                    print("The Data", self.groupData[self.shareIndex].groupname)
-                                } else {
-                                    self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                                    
+                                    
                                 }
+                                else if self.isBirthday {
+        
+                                    self.catalogueNameLbl.text = ""
+                                    
+                                }
+                                else
+                                {
+                                    
+                                    self.catalogueNameLbl.text = self.catalogData[self.shareIndex].catalog_name
+                                    
+                                }
+                                
                             }
-                           // print("The Catalog data is ", self.catalogData[self.shareIndex].catalog_name)
+                           
                         } else {
                             AlertView.showAlert("Alert!", message: "There is no data", okTitle: "OK")
                         }
@@ -285,8 +333,44 @@ class SharingContactListVC: UIViewController {
         
     }
     
-    
-    
+
+    func addBirthdayFunction(msgString: String, userCode: String, immgURL: String, notifyDate: String) {
+        print("MSGString is ",msgString)
+        print("userCode is ", userCode)
+        print("immgURL is ", immgURL)
+        print("notify date is ", notifyDate)
+        
+        addBirthdayViewModel.requestModel.message = msgString
+        addBirthdayViewModel.requestModel.user_code = userCode
+        addBirthdayViewModel.requestModel.image_url = immgURL
+        addBirthdayViewModel.requestModel.notifydate = notifyDate
+
+        startCustomLoader()
+
+        addBirthdayViewModel.addBirthdayViewModel(request: addBirthdayViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                          let window = windowScene.windows.first else {
+                        return
+                    }
+
+                    let dashboardVC = DashboardViewController()
+                    let navController = UINavigationController(rootViewController: dashboardVC)
+                    window.rootViewController = navController
+                    window.makeKeyAndVisible()
+
+                case .heyStop:
+                    print("Error")
+                }
+            }
+        }
+    }
+
     
     @objc func checkUncheck(_ sender: UIButton){
         if sender.currentBackgroundImage == UIImage(systemName: "square"){
@@ -300,7 +384,17 @@ class SharingContactListVC: UIViewController {
                     print("✅✅✅✅✅✅Added: \(userCode)")
                 }
                 
-            } else {
+            } 
+            else if isBirthday {
+                
+                if let contactCode = data[sender.tag].contactdetails?.code {
+                    selectedContactsForBirth.append(contactCode)
+                    print("✅ Selected Contacts For Birth Day--->>>>", selectedContactsForBirth)
+                }
+            }
+            
+            else
+            {
                 if let contactCode = data[sender.tag].contactcode {
                     selectedContacts.append(contactCode)
                     print("✅ Added: \(contactCode)")
@@ -319,7 +413,16 @@ class SharingContactListVC: UIViewController {
                 }
                 
                 
-            } else {
+            } else if  isBirthday{
+                
+                if let userCode = data[sender.tag].contactdetails?.code,
+                   let index = selectedContactsForBirth.firstIndex(of: userCode) {
+                    selectedContactsForBirth.remove(at: index)
+                    print("❌❌Removed: \(userCode)")
+                }
+            }
+            
+            else {
                 
                 if let contactCode = data[sender.tag].contactcode,
                    let index = selectedContacts.firstIndex(of: contactCode) {

@@ -64,83 +64,65 @@ class CopyMoveViewController: UIViewController {
 
 
     
-    func loadData(){
+
+    
+    func loadData() {
         catalogueListingViewModel.requestModel.limit = "10"
         catalogueListingViewModel.requestModel.offset = "1"
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
-       // activityIndicator.startAnimating()
+        // activityIndicator.startAnimating()
         startCustomLoader()
         
-        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { result in
-            DispatchQueue.main.async { [self] in
-               // self.activityIndicator.stopAnimating()
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                // self.activityIndicator.stopAnimating()
                 self.stopCustomLoader()
+                
                 switch result {
                 case .goAhead:
                     print("Catalogue View Model from AllCataloguesViewController")
-                    //table View Reload Data
                     self.allCatalogueCollView.reloadData()
                     
-                    DispatchQueue.main.async { [self] in
-                        guard let value = self.catalogueListingViewModel.responseModel?.data else {
-                            return
-                        }
-                        
-                        self.totalCatalogueCount = value
-                        allCatalogueCollView.reloadData()
+                    guard let value = self.catalogueListingViewModel.responseModel?.data else {
+                        return
                     }
                     
+                    self.totalCatalogueCount = value
+                    self.allCatalogueCollView.reloadData()
                     
-                    //Calculating the height of catalogue cell
-                    let sumHeight = (Int(dynamicHeight) * (catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
+                    // Calculating the height of catalogue cell
+                    let sumHeight = (Int(self.dynamicHeight) * (self.catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
                     
-                    
-                    if let countData = catalogueListingViewModel.responseModel?.data?.count {
-                        
-                        if countData % 2 == 0{
-                            let height:CGFloat = CGFloat(sumHeight)
+                    if let countData = self.catalogueListingViewModel.responseModel?.data?.count {
+                        if countData % 2 == 0 {
+                            let height: CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height
-                            scrollViewHeight.constant = collectionViewHeight.constant + 370
+                            self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
                             
-                            //Recalculating constant
-                            self.collectionViewHeight.constant = scrollViewHeight.constant
-                            
-                            
+                            // Recalculating constant
+                            self.collectionViewHeight.constant = self.scrollViewHeight.constant
                         } else {
-                            let height:CGFloat = CGFloat(sumHeight)
+                            let height: CGFloat = CGFloat(sumHeight)
                             self.collectionViewHeight.constant = height + 120
-                            scrollViewHeight.constant = collectionViewHeight.constant + 370
+                            self.scrollViewHeight.constant = self.collectionViewHeight.constant + 370
                             
-                            
-                            //Recalculating constant
-                            self.collectionViewHeight.constant = scrollViewHeight.constant
-                            
+                            // Recalculating constant
+                            self.collectionViewHeight.constant = self.scrollViewHeight.constant
                         }
-                    
-                        
-                    } else {
-                        
                     }
-                    //Ending of the calculation of the cell
                     
-                    allCatalogueCollView.reloadData()
+                    self.allCatalogueCollView.reloadData()
+                    
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
-        }//view model Completion handler ending
-        
-        
-        
+        } // view model Completion handler ending
     }
-    
-    
+
     
 
     func imageCopy(actionType:String, imgId: Int, catalogCode: String, imgSize: String, imageName: String ){

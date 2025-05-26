@@ -13,18 +13,13 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     
     private var collectionView: UICollectionView!
     
-    //var images: [UIImage] = []
-    
-    // Optional: Closure to receive the images
-  //  var onReceiveImages: (([UIImage]) -> Void)?
-    
-    
     var newImageSet:[ImageData] = []
     
+    var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
     
+    private var loaderView: ImageLoaderView?
     
-    //var indexNoFetched = 0
-    
+    var imageIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +58,45 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     @objc private func didTapBack() {
         navigationController?.popViewController(animated: true)
     }
+    
+    
+    
+    func deleteImage(indexTag: Int) {
+       
+        startCustomLoader()
+        guard let imageCode = newImageSet[indexTag].id else {
+            return
+        }
+        
+        imageIndex = indexTag
+        
+        imageDeleteViewModel.requestModel.image_id = imageCode
+        imageDeleteViewModel.deleteImage(request:imageDeleteViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+               // self.activityIndicator.stopAnimating()
+                self.stopCustomLoader()
+                switch result {
+                case .goAhead:
+                    print("Success for Deleting the photo")
+                    //table View Reload Data
+                    DispatchQueue.main.async {
+                        //self.contactsTblView.reloadData()
+                        self.dismiss(animated: true )
+                        self.newImageSet.remove(at: self.imageIndex)
+                        self.collectionView.reloadData()
+                        //self.deleteDelegate?.updateUI()
+                    }
+                case .heyStop:
+                    print("Error")
+                }
+                
+                
+            }
+        }
+    }
+    
+    
+    
     
     // MARK: - Collection View
     
@@ -158,6 +192,16 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
         cell.deleteButton.tag = indexPath.item
         cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
         
+        //MARK: Rest of the buttons
+        cell.birthdayButton.tag = indexPath.item
+        cell.birthdayButton.addTarget(self, action: #selector(didTapBirthday(_:)), for: .touchUpInside)
+        
+        cell.copyIconButton.tag = indexPath.item
+        cell.copyIconButton.addTarget(self, action: #selector(didTapCopy(_:)), for: .touchUpInside)
+        
+        cell.moveIconButton.tag = indexPath.item
+        cell.moveIconButton.addTarget(self, action: #selector(didTapMove(_:)), for: .touchUpInside)
+        
         
         return cell
     }
@@ -171,22 +215,130 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     // MARK: - Button Actions
     
     @objc private func didTapDownload(_ sender: UIButton) {
-        let imageName = imageNames[sender.tag]
+        
+        let imageName = newImageSet[sender.tag]
         print("Download tapped for \(imageName)")
-        // Add actual download logic here
+       
     }
     
     @objc private func didTapShare(_ sender: UIButton) {
-        let imageName = imageNames[sender.tag]
-        guard let image = UIImage(named: imageName) else { return }
-        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        present(activityVC, animated: true)
+               
+        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        vc.catalogueName = "Demo"
+        vc.shareImage = true
+        guard let imageId = newImageSet[sender.tag].id else {
+            return
+        }
+        vc.imgId = imageId
+
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     @objc private func didTapDelete(_ sender: UIButton) {
-        let imageName = imageNames[sender.tag]
-        print("Delete tapped for \(imageName)")
-        // Add delete logic here (or notify delegate, etc.)
+            
+        deleteImage(indexTag: sender.tag)
+        
+    }
+    
+    @objc private func didTapBirthday(_ sender: UIButton) {
+
+        
+//        let birthdayPopUpView = BirthdayPopUpView(nibName: "BirthdayPopUpView", bundle: nil)
+//        birthdayPopUpView.modalPresentationStyle = .overCurrentContext
+//        birthdayPopUpView.modalTransitionStyle = .crossDissolve
+//        self.present(birthdayPopUpView, animated: true, completion: nil)
+        
+        
+        
+        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        vc.catalogueName = "Demo"
+        vc.isBirthday = true
+       
+        guard let imageId = newImageSet[sender.tag].id,
+              let imgURLFirstPath = newImageSet[sender.tag].path,
+              let imgURLlastPath = newImageSet[sender.tag].img_name else {
+            return
+        }
+        
+        print("Desired Image URL--->", imgURLFirstPath + imgURLlastPath)
+        vc.imgId = imageId
+        vc.imageURL = imgURLFirstPath + imgURLlastPath
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        
+        
+    }
+    
+    
+    @objc private func didTapCopy(_ sender: UIButton) {
+        let copyVC = CopyMoveViewController()
+        guard let selectedImgId = newImageSet[sender.tag].id,
+              let selectedImgNm = newImageSet[sender.tag].img_name,
+              let selectedImgSize = newImageSet[sender.tag].image_size else {
+            return
+        }
+        let selectedImgTypeOfAction = "copy"
+        
+        copyVC.imageId = selectedImgId
+        copyVC.imageName = selectedImgNm
+        copyVC.imageSize = selectedImgSize
+        copyVC.typeOfAction = selectedImgTypeOfAction
+        
+        self.present(copyVC, animated: true)
+    }
+    
+    
+    @objc private func didTapMove(_ sender: UIButton) {
+        let moveVC = CopyMoveViewController()
+
+        guard let selectedImgId = newImageSet[sender.tag].id,
+              let selectedImgNm = newImageSet[sender.tag].img_name,
+              let selectedImgSize = newImageSet[sender.tag].image_size else {
+            return
+        }
+        let selectedImgTypeOfAction = "move"
+        
+        moveVC.imageId = selectedImgId
+        moveVC.imageName = selectedImgNm
+        moveVC.imageSize = selectedImgSize
+        moveVC.typeOfAction = "move"
+        
+        self.present(moveVC, animated: true)
+    }
+    
+    
+    
+    
+
+    
+    
+    
+    
+    func startCustomLoader(){
+      
+        if loaderView != nil { return }
+        let loader = ImageLoaderView(frame: view.bounds)
+        loader.center = view.center
+        loader.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        loader.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //loader.layer.cornerRadius = 16
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+        
+        self.loaderView = loader
+        
+    }
+    
+    func stopCustomLoader(){
+        print("Trying to stop loader:", loaderView != nil)
+        loaderView?.stopAnimating()
+        loaderView?.removeFromSuperview()
+        
+        loaderView = nil
     }
     
 }
