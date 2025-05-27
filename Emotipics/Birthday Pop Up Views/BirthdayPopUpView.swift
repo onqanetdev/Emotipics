@@ -10,8 +10,6 @@ import UIKit
 class BirthdayPopUpView: UIViewController {
 
     
-    
-    
     @IBOutlet weak var submitBtn: UIButton!{
         didSet {
             submitBtn.layer.cornerRadius = 15
@@ -31,21 +29,32 @@ class BirthdayPopUpView: UIViewController {
     }
     
     
-    @IBOutlet weak var birthdayMsgTxtField: UITextField!
-    
-    
-    
-    //var onCompletion:((birthDayMsg:String) -> Void)?
-    
+    @IBOutlet weak var birthdayMsgTxtField: UITextView!{
+        didSet {
+            birthdayMsgTxtField.layer.cornerRadius = 10
+            birthdayMsgTxtField.clipsToBounds = true
+        }
+    }
+        
     var onCompletion: ((String) -> Void)?
 
+    
+    let placeholderText = "Enter birthday message here..."
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        birthdayMsgTxtField.delegate = self
+        setupPlaceholder()
     }
 
+    
+    func setupPlaceholder() {
+            birthdayMsgTxtField.text = placeholderText
+            birthdayMsgTxtField.textColor = .lightGray
+        }
 
     
     @IBAction func submitBtnAction(_ sender: Any) {
@@ -63,3 +72,22 @@ class BirthdayPopUpView: UIViewController {
     }
     
 }
+
+
+
+
+extension BirthdayPopUpView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholderText {
+            textView.text = ""
+            textView.textColor = .black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            setupPlaceholder()
+        }
+    }
+}
+

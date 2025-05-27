@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Photos
+
 
 class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -20,6 +22,9 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     private var loaderView: ImageLoaderView?
     
     var imageIndex = 0
+    
+  
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -216,8 +221,58 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     
     @objc private func didTapDownload(_ sender: UIButton) {
         
-        let imageName = newImageSet[sender.tag]
-        print("Download tapped for \(imageName)")
+//        let imageName = newImageSet[sender.tag]
+//        if let imgInitialPath = newImageSet[sender.tag].path,
+//           let imgLastPath = newImageSet[sender.tag].img_name {
+//            let imageFinalPath = imgInitialPath + imgLastPath
+//            print("Final Image Path is->", imageFinalPath)
+//        } else {
+//            print("Something went wrong in the image path")
+//        }
+        
+        
+        if let imgInitialPath = newImageSet[sender.tag].path,
+           let imgLastPath = newImageSet[sender.tag].img_name,
+           let url = URL(string: imgInitialPath + imgLastPath) {
+            
+            print("Final Image Path is->", url.absoluteString)
+
+            // Download the image data
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print("Download error: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Failed to load image data")
+                    return
+                }
+
+                // Request permission and save to photo library
+                PHPhotoLibrary.requestAuthorization { status in
+                    if status == .authorized || status == .limited {
+                        PHPhotoLibrary.shared().performChanges({
+                            PHAssetChangeRequest.creationRequestForAsset(from: image)
+                        }) { success, error in
+                            DispatchQueue.main.async {
+                                if success {
+                                    print("✅ Image saved to Photos")
+                                } else {
+                                    print("❌ Error saving image: \(error?.localizedDescription ?? "Unknown error")")
+                                }
+                            }
+                        }
+                    } else {
+                        print("🚫 Permission to access photo library denied")
+                    }
+                }
+
+            }.resume()
+
+        } else {
+            print("Something went wrong in the image path")
+        }
        
     }
     
@@ -243,15 +298,6 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     }
     
     @objc private func didTapBirthday(_ sender: UIButton) {
-
-        
-//        let birthdayPopUpView = BirthdayPopUpView(nibName: "BirthdayPopUpView", bundle: nil)
-//        birthdayPopUpView.modalPresentationStyle = .overCurrentContext
-//        birthdayPopUpView.modalTransitionStyle = .crossDissolve
-//        self.present(birthdayPopUpView, animated: true, completion: nil)
-        
-        
-        
         let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
         vc.modalPresentationStyle = .fullScreen
         vc.catalogueName = "Demo"
@@ -308,14 +354,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
         
         self.present(moveVC, animated: true)
     }
-    
-    
-    
-    
 
-    
-    
-    
     
     func startCustomLoader(){
       

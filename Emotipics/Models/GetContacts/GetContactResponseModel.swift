@@ -68,12 +68,14 @@ struct Contactdetails : Codable {
     let code : String?
     let name : String?
     let email : String?
+    let dob: String?
 
     enum CodingKeys: String, CodingKey {
 
         case code = "code"
         case name = "name"
         case email = "email"
+        case dob = "dob"
     }
 
     init(from decoder: Decoder) throws {
@@ -81,6 +83,7 @@ struct Contactdetails : Codable {
         code = try values.decodeIfPresent(String.self, forKey: .code)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         email = try values.decodeIfPresent(String.self, forKey: .email)
+        dob = try values.decodeIfPresent(String.self, forKey: .dob)
     }
 
 }
