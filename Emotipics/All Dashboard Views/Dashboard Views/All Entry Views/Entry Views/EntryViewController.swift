@@ -708,7 +708,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     func viewModel() {
        // contactsTblView.addSubview(startCustomLoader())
        // startCustomLoader(selfView: contactsTblView)
-        contactsViewModel.allContactList { [weak self] result in
+        contactsViewModel.requestModel.offSet = "2"
+        contactsViewModel.allContactList(request: contactsViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 self.stopCustomLoader()

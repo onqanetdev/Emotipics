@@ -248,6 +248,7 @@
 		8AA459332D8191D60004938B /* AllCataloguesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA459312D8191D60004938B /* AllCataloguesViewController.swift */; };
 		8AA459342D8191D60004938B /* AllCataloguesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AA459322D8191D60004938B /* AllCataloguesViewController.xib */; };
 		8AB10BA52DACC63A0012D53F /* SharedInformationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */; };
+		8AB2BFEC2DE6EEEA002369F7 /* ContactsReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB2BFEB2DE6EEEA002369F7 /* ContactsReqModel.swift */; };
 		8AB7D6862D76B29F00B291BA /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */; };
 		8AB7D6872D76B29F00B291BA /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */; };
 		8ABA8AB62D770848003D4727 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8ABA8AB52D770848003D4727 /* IQKeyboardManagerSwift */; };
@@ -557,6 +558,7 @@
 		8AA459312D8191D60004938B /* AllCataloguesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCataloguesViewController.swift; sourceTree = "<group>"; };
 		8AA459322D8191D60004938B /* AllCataloguesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllCataloguesViewController.xib; sourceTree = "<group>"; };
 		8AB10BA42DACC63A0012D53F /* SharedInformationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationProtocol.swift; sourceTree = "<group>"; };
+		8AB2BFEB2DE6EEEA002369F7 /* ContactsReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsReqModel.swift; sourceTree = "<group>"; };
 		8AB7D6842D76B29F00B291BA /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		8AB7D6852D76B29F00B291BA /* ExampleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExampleViewController.xib; sourceTree = "<group>"; };
 		8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
@@ -1027,6 +1029,7 @@
 			isa = PBXGroup;
 			children = (
 				8A3128632D9FF9FB003FA3B8 /* GetContactResponseModel.swift */,
+				8AB2BFEB2DE6EEEA002369F7 /* ContactsReqModel.swift */,
 			);
 			path = GetContacts;
 			sourceTree = "<group>";
@@ -2025,6 +2028,7 @@
 				8AE113F72DC493F400B8CBA5 /* ResetPasswordViewModel.swift in Sources */,
 				8A00BA342DBF9EAF00513C44 /* GroupListViewModel.swift in Sources */,
 				8A3128582D9FB2CA003FA3B8 /* AddContactRequestModel.swift in Sources */,
+				8AB2BFEC2DE6EEEA002369F7 /* ContactsReqModel.swift in Sources */,
 				8A3128612D9FF2AE003FA3B8 /* GetAllContactList.swift in Sources */,
 				8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,

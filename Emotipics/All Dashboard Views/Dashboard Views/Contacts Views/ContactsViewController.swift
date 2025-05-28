@@ -37,6 +37,17 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     let emptyViewForContacts = EmptyCollView()
     
+    
+    var contactsData: [Datam] = []
+    
+    private let footerActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+
+    
 //    var activityIndicator: UIActivityIndicatorView = {
 //        let indicator = UIActivityIndicatorView(style: .large)
 //        indicator.color = .systemOrange
@@ -44,12 +55,17 @@ class ContactsViewController: UIViewController, UpdateUI {
 //        return indicator
 //    }()
     
-    
-    
-    
+
     @IBOutlet weak var contentView: UIView!
     
     private var loaderView: ImageLoaderView?
+    
+    var isPaginating = false
+    var currentPage = 1
+
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,10 +82,15 @@ class ContactsViewController: UIViewController, UpdateUI {
         contactsTblView.register(UINib(nibName: "EntryTableViewCell", bundle: nil), forCellReuseIdentifier: "TableCell")
         
     
+        
+        contactsTblView.tableFooterView = footerActivityIndicator
+        footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: contactsTblView.bounds.width, height: 50)
+
+        
         addPlusIcon()
      //   setupActivityIndicator()
     
-        viewModel()
+        contactsAllViewModel()
         
         setupEmptyContactView()
         
@@ -89,14 +110,17 @@ class ContactsViewController: UIViewController, UpdateUI {
             }
         
         
-        viewModel()
+        contactsAllViewModel()
         
     }
     
-    func viewModel(){
+    func contactsAllViewModel(){
         //activityIndicator.startAnimating()
         startCustomLoader()
-        allContactsViewModel.allContactList { result in
+        
+        allContactsViewModel.requestModel.offSet = "1"
+        
+        allContactsViewModel.allContactList(request: allContactsViewModel.requestModel) { result in
             DispatchQueue.main.async {
                 //self.activityIndicator.stopAnimating()
                 self.stopCustomLoader()
@@ -104,8 +128,9 @@ class ContactsViewController: UIViewController, UpdateUI {
                 case .goAhead:
                     print("Success 👍🏽")
                     //table View Reload Data
-                    if let contactsViewCount = self.allContactsViewModel.responseModel?.data?.count {
-                        if contactsViewCount == 0 {
+                    if let contactsViewCount = self.allContactsViewModel.responseModel?.data {
+                        self.contactsData = contactsViewCount
+                        if contactsViewCount.count == 0 {
                             self.emptyViewForContacts.isHidden = false
                         } else {
                             self.emptyViewForContacts.isHidden = true
@@ -130,18 +155,7 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     
     
-//    func setupActivityIndicator() {
-//        view.addSubview(activityIndicator)
-//        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        activityIndicator.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
-//        
-//        NSLayoutConstraint.activate([
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-//    }
-    
+
     
     
     func addPlusIcon(){
@@ -163,7 +177,7 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     func updateUI(){
         print("Update UI is getting called")
-        viewModel()
+        contactsAllViewModel()
     }
     
     
@@ -223,8 +237,8 @@ class ContactsViewController: UIViewController, UpdateUI {
         deleteScreenPopUp(desiredCode: code)
     }
     
-    
-    
+
+
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -252,23 +266,26 @@ class ContactsViewController: UIViewController, UpdateUI {
         
         
     }
-    
-    
-    
 }
 
 
-extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
+extension ContactsViewController: UITableViewDelegate , UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allContactsViewModel.responseModel?.data?.count ?? 0
+        //return allContactsViewModel.responseModel?.data?.count ?? 0
+        return contactsData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
-        cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
-        cell.associatedEmailTxtFld.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
+        
+//        cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
+//        cell.associatedEmailTxtFld.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
+        
+        cell.sarahLbl.text = contactsData[indexPath.row].contactdetails?.name
+        cell.associatedEmailTxtFld.text = contactsData[indexPath.row].contactdetails?.email
+        
         cell.moreActionBtn.tag = indexPath.row
         cell.moreActionBtn.addTarget(self, action: #selector(popUpFromBottom(_:)), for: .touchUpInside)
             return cell
@@ -297,6 +314,66 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource {
            return 50
            
        }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        let position = scrollView.contentOffset.y
+//        if position > (contactsTblView.contentSize.height - 3 - scrollView.frame.size.height) {
+//
+//            guard !isPaginating else { return }
+//                    isPaginating = true
+//                    currentPage += 1
+//                    fetchPaginatedContacts(page: currentPage)
+//        }
+        
+        
+        let position = scrollView.contentOffset.y
+            let contentHeight = contactsTblView.contentSize.height
+            let frameHeight = scrollView.frame.size.height
+
+            if position > (contentHeight - frameHeight - 20), !isPaginating {
+                paginateContacts()
+            }
+        
+        
+    }
+    
+    func paginateContacts() {
+        isPaginating = true
+        footerActivityIndicator.startAnimating()
+        currentPage += 1
+        allContactsViewModel.requestModel.offSet = "\(currentPage)"
+
+        allContactsViewModel.allContactList(request: allContactsViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.footerActivityIndicator.stopAnimating()
+                self.isPaginating = false
+
+                switch result {
+                case .goAhead:
+                    print("Contacts View Count is")
+                    
+                    if let contactsViewCount = self.allContactsViewModel.responseModel?.data {
+                        
+                        if contactsViewCount.count == 0 {
+                            
+                        } else {
+                            self.contactsData.append(contentsOf: contactsViewCount)
+                        }
+                    }
+                    else {
+                        
+                    }
+                    
+                    
+                    self.contactsTblView.reloadData()
+                case .heyStop:
+                    print("Pagination failed or no more data")
+                }
+            }
+        }
+    }
+
 }
 
 

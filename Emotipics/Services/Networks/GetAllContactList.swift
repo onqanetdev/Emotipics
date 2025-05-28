@@ -9,7 +9,7 @@ import Foundation
 
 
 class GetAllContactList {
-   static func getAllContacts( CompletionHandler: @escaping(_ result: Result<GetContactResponseModel, NetworkError>) -> Void) {
+    static func getAllContacts(offset: String, CompletionHandler: @escaping(_ result: Result<GetContactResponseModel, NetworkError>) -> Void) {
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
         let accessToken = String(data: data, encoding: .utf8)!
@@ -35,7 +35,7 @@ class GetAllContactList {
     
         
         let requestBody: [String : Any] = [
-            "offset": "1",
+            "offset": offset,
             "limit": "10"
         ]
         

@@ -261,7 +261,8 @@ class SharingContactListVC: UIViewController {
         
         // activityIndicator.startAnimating()
         startCustomLoader()
-        conatactViewModel.allContactList { result in
+        conatactViewModel.requestModel.offSet = "2"
+        conatactViewModel.allContactList(request: conatactViewModel.requestModel) { result in
             DispatchQueue.main.async {
                 //   self.activityIndicator.stopAnimating()
                 self.stopCustomLoader()

@@ -14,9 +14,12 @@ import Foundation
 
 class AllContactsViewModel {
     var responseModel:GetContactResponseModel?
+    var requestModel:ContactsReqModel = ContactsReqModel(offSet: "")
     
-    func allContactList(completion: @escaping(_ result: userDataDefination) -> Void) {
-        GetAllContactList.getAllContacts { result in
+    private var isPaginating: Bool = false
+    
+    func allContactList(request:ContactsReqModel, completion: @escaping(_ result: userDataDefination) -> Void) {
+        GetAllContactList.getAllContacts(offset: request.offSet) { result in
             switch result {
             case .success(let data):
                 self.responseModel = data
@@ -24,7 +27,7 @@ class AllContactsViewModel {
             case .failure(let error):
                 completion(.heyStop)
                 DispatchQueue.main.async {
-                    print("🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️")
+                    //print("🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️🌩️")
                     AlertView.showAlert("Alert!", message: "Something Went Wrong", okTitle: "OK")
                 }
             }
