@@ -194,48 +194,133 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             collectionView.reloadData()
             
         } else {
-//            if let imgPath = imageCount[indexPath.row].path,
-//               let imgName = imageCount[indexPath.row].img_name {
-//                let imagePath = imgPath + imgName
-//                print("Image Path:", imagePath)
-//            } else {
-//                
-//            }
-//            
-//            
-//            print("Total numbers of Image--> ", tempMemoryImages)
-//            
-//            let previewVC = TestImageSamplePreviewController()
-//            
-//           // previewVC.images = tempMemoryImages
-//            previewVC.newImageSet = imageCount
-//            
-//            self.navigationController?.pushViewController(previewVC, animated: true)
+            //            if let imgPath = imageCount[indexPath.row].path,
+            //               let imgName = imageCount[indexPath.row].img_name {
+            //                let imagePath = imgPath + imgName
+            //                print("Image Path:", imagePath)
+            //            } else {
+            //
+            //            }
+            //
+            //
+            //            print("Total numbers of Image--> ", tempMemoryImages)
+            //
+            //            let previewVC = TestImageSamplePreviewController()
+            //
+            //           // previewVC.images = tempMemoryImages
+            //            previewVC.newImageSet = imageCount
+            //
+            //            self.navigationController?.pushViewController(previewVC, animated: true)
             
             
             let allImages = imageCount
-                
-                // The index the user tapped
-                let tappedIndex = indexPath.row
-                
-                // 1. Pull out the tapped image
-                let firstImage = allImages[tappedIndex]
-                
-                // 2. Build a new array beginning with the tapped image, then all the others in order
-                let remaining = allImages.enumerated()
-                                          .filter { $0.offset != tappedIndex }   // drop the tapped one
-                                          .map { $0.element }                     // extract the image objects
-                let reordered = [firstImage] + remaining
-                
-                // 3. Pass the reordered array to your preview VC
-                let previewVC = TestImageSamplePreviewController()
-                previewVC.newImageSet = reordered
-                //previewVC.indexNoFetched = 0    // since we moved the tapped image to index zero
-                navigationController?.pushViewController(previewVC, animated: true)
+            
+            // The index the user tapped
+            let tappedIndex = indexPath.row
+            
+            // 1. Pull out the tapped image
+            let firstImage = allImages[tappedIndex]
+            
+            // 2. Build a new array beginning with the tapped image, then all the others in order
+            let remaining = allImages.enumerated()
+                .filter { $0.offset != tappedIndex }   // drop the tapped one
+                .map { $0.element }                     // extract the image objects
+            let reordered = [firstImage] + remaining
+            
+            // 3. Pass the reordered array to your preview VC
+            let previewVC = TestImageSamplePreviewController()
+            previewVC.newImageSet = reordered
+            //previewVC.indexNoFetched = 0    // since we moved the tapped image to index zero
+            navigationController?.pushViewController(previewVC, animated: true)
             
         }
     }
 }
+
+
+
+
+
+extension NewCatalogueVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.x
+        let contentWidth = catalogueCollView.contentSize.width
+        let frameWidth = scrollView.frame.size.width
+        
+        if position > (contentWidth - frameWidth - 20), !isPaginating {
+            print("Reachead End")
+            paginatingCatalogue()
+        }
+    }
+    
+    
+    func paginatingCatalogue(){
+        
+        isPaginating = true
+//        activityIndicator.startAnimating()
+        currentPage += 1
+        
+        
+        catalogueListingViewModel.requestModel.limit = "10"
+        catalogueListingViewModel.requestModel.offset = "\(currentPage)"
+        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+        
+        activityIndicator.startAnimating()
+        
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                //self.stopCustomLoader()
+                
+                self.activityIndicator.stopAnimating()
+                self.isPaginating = false
+                
+                switch result {
+                case .goAhead:
+                    
+                    self.catalogueCollView.reloadData()
+                    
+                    if let value = self.catalogueListingViewModel.responseModel?.data {
+                        
+                        if value.count == 0 {
+                            
+                        }
+                        else {
+                        
+                        self.tempMemory.append(contentsOf: value)
+                        
+                        self.catalogCode = self.tempMemory[0].catalog_code ?? ""
+                        
+                        
+                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                        
+                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                        self.selectedIndexPath?.row = 0
+                        
+                        self.catalogueCollView.reloadData()
+                        self.photoCollView.reloadData()
+                    } // else
+                }
+
+                    self.stopCustomLoader()
+                    
+                case .heyStop:
+                    print("Error")
+                    self.stopCustomLoader()
+                }
+            }
+        }
+        
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//            self.activityIndicator.stopAnimating()
+//            self.catalogueCollView.reloadData()
+//        }
+    }
+}
+
 
 
 

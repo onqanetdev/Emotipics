@@ -92,8 +92,23 @@ class NewCatalogueVC: UIViewController {
     
     var deleteCatalogueViewModel: DeleteCatalogViewModel = DeleteCatalogViewModel()
     
-    
     var tempMemoryImages: [UIImage] = []
+    
+    
+    //let activityIndicator = UIActivityIndicatorView(style: .medium)
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    
+    var isPaginating = false
+    var currentPage = 1
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,12 +127,19 @@ class NewCatalogueVC: UIViewController {
         photoCollView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
         
         
-        
         settingUpAllFonts()
         
+
+        
+        catalogueCollView.reloadData()
+        catalogueCollView.layoutIfNeeded()
+        activityIndicator.center = CGPoint(x: catalogueCollView.contentSize.width - 10, y: catalogueCollView.bounds.height / 2)
+        
+        
+        catalogueCollView.addSubview(activityIndicator)
+
+        
         loadAllCatalogueData()
-        
-        
     }
     
     
@@ -131,6 +153,13 @@ class NewCatalogueVC: UIViewController {
         }
     }
     
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        activityIndicator.center = CGPoint(x: catalogueCollView.contentSize.width + 30, y: catalogueCollView.bounds.height / 2)
+    }
+
     
     
     @IBAction func previousView(_ sender: Any) {
@@ -152,7 +181,7 @@ class NewCatalogueVC: UIViewController {
     
     
     func loadAllCatalogueData() {
-        catalogueListingViewModel.requestModel.limit = "50"
+        catalogueListingViewModel.requestModel.limit = "10"
         catalogueListingViewModel.requestModel.offset = "1"
         catalogueListingViewModel.requestModel.sort_folder = "DESC"
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
@@ -184,13 +213,7 @@ class NewCatalogueVC: UIViewController {
                         self.photoCollView.reloadData()
                     }
                     
-                    let sumHeight = (Int(self.dynamicHeight) * (self.catalogueListingViewModel.responseModel?.data?.count ?? 1)) / 2
-                    print("Sum height: \(sumHeight)")
-                    
-                    if let countData = self.catalogueListingViewModel.responseModel?.data?.count {
-                        print("Count data 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾 👉🏾", countData)
-                    }
-                    
+
                     self.stopCustomLoader()
                     
                 case .heyStop:
@@ -271,8 +294,7 @@ class NewCatalogueVC: UIViewController {
     
     
     @IBAction func createCatalogAction(_ sender: Any) {
-        print("Why Not Printing ")
-        
+                
         let newCat = AddContactViewController()
         newCat.isCatalogueView = true
         newCat.txtFieldPlaceHolder = "Enter Catalogue Name"
@@ -281,7 +303,9 @@ class NewCatalogueVC: UIViewController {
         newCat.favImgLbl = "favourite images"
         
         self.navigationController?.pushViewController(newCat, animated: true)
+        
     }
+    
     
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220

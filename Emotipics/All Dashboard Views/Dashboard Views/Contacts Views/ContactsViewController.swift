@@ -64,7 +64,8 @@ class ContactsViewController: UIViewController, UpdateUI {
     var currentPage = 1
 
 
-    
+   
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,7 @@ class ContactsViewController: UIViewController, UpdateUI {
     
         
         contactsTblView.tableFooterView = footerActivityIndicator
+        
         footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: contactsTblView.bounds.width, height: 50)
 
         
@@ -91,6 +93,8 @@ class ContactsViewController: UIViewController, UpdateUI {
      //   setupActivityIndicator()
     
         contactsAllViewModel()
+        
+        
         
         setupEmptyContactView()
         
@@ -375,12 +379,6 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource, U
     }
 
 }
-
-
-
-
-
-
 
 
 
