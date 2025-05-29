@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 extension GroupListViewController: SharedInformationDelegate {
@@ -201,3 +202,55 @@ extension GroupListViewController: SharedInformationDelegate {
         self.present(shareVC, animated: true, completion: nil)
     }
 }
+
+
+
+extension GroupListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let contentHeight = tblViewForGroups.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+        
+        if position > (contentHeight - frameHeight - 10), !isPaginating{
+            print("Hello")
+            paginateGroupList()
+        }
+    }
+   
+    func paginateGroupList(){
+        isPaginating = true
+        footerActivityIndicator.startAnimating()
+        currentPage += 1
+        
+        
+        groupListingView.requestModel.limit = "10"
+        groupListingView.requestModel.offset = "\(currentPage)"
+       // startCustomLoader()
+        
+        groupListingView.groupListViewModelFunc(request: groupListingView.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                //self.stopCustomLoader()
+                self.footerActivityIndicator.stopAnimating()
+                self.isPaginating = false
+                switch result {
+                case .goAhead:
+                    print("✅ Data received successfully!")
+                    guard let resultArray = self.groupListingView.responseModel?.data else {
+                        return
+                    }
+                    
+                    //self.newResultArray = resultArray
+                    self.newResultArray.append(contentsOf: resultArray)
+                    self.tblViewForGroups.reloadData()
+                    
+                case .heyStop:
+                    print("Error")
+                }
+            }
+        }
+    }
+}
+
+

@@ -94,6 +94,18 @@ class GroupDetailViewController: UIViewController {
     
     var groupName = ""
     var groupUsers = ""
+   
+    
+    var isPaginating = false
+    var currentPage = 1
+    
+    
+    private let footerActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     
     override func viewDidLoad() {
@@ -117,6 +129,10 @@ class GroupDetailViewController: UIViewController {
         
         imageListForGroup(groupCode: groupCode)
         
+        
+        detailTblView.tableFooterView = footerActivityIndicator
+        
+        footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: detailTblView.bounds.width, height: 50)
         
     }
     
@@ -172,7 +188,7 @@ class GroupDetailViewController: UIViewController {
     
     func imageListForGroup(groupCode: String) {
         groupImageListViewModel.requestModel.groupCode = groupCode
-        groupImageListViewModel.requestModel.limit = "50"
+        groupImageListViewModel.requestModel.limit = "10"
         groupImageListViewModel.requestModel.offset = "1"
 
         startCustomLoader()
@@ -596,7 +612,34 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
-
+extension GroupDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        print("Yoooo")
+        
+        let position = scrollView.contentOffset.y
+        let contentHeight =  detailTblView.contentSize.height
+        let frameHeight = scrollView.frame.height
+        
+        if position > (contentHeight - frameHeight - 100){
+            print("More Image loading")
+            paginateImagesForGroup()
+        }
+    }
+    
+    
+    func paginateImagesForGroup(){
+        isPaginating = true
+      //  footerActivityIndicator.startAnimating()
+        currentPage += 1
+        
+        print("Group Code is", groupCode)
+     //   footerActivityIndicator.stopAnimating()
+        
+    }
+    
+}
 
 
 

@@ -66,6 +66,18 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
     var groupUserExitViewModel: GroupUserExitViewModel = GroupUserExitViewModel()
     
     
+    
+     let footerActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    var isPaginating = false
+    var currentPage = 1
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -99,6 +111,11 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
             
             // Make table view background transparent so image shows through cells
             tblViewForGroups.backgroundColor = .clear
+            
+            
+            tblViewForGroups.tableFooterView = footerActivityIndicator
+            
+            footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: tblViewForGroups.bounds.width, height: 50)
         }
         
         
@@ -185,7 +202,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
 
     
     func loadingAllGroups() {
-        groupListingView.requestModel.limit = "50"
+        groupListingView.requestModel.limit = "10"
         groupListingView.requestModel.offset = "1"
         startCustomLoader()
         
