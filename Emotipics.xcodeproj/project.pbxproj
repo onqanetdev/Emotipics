@@ -312,6 +312,7 @@
 		8AF7924A2D9BF95E00085FEC /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */; };
 		8AF808C82DE06B64006D0464 /* BirthdayPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF808C62DE06B64006D0464 /* BirthdayPopUpView.swift */; };
 		8AF808C92DE06B64006D0464 /* BirthdayPopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF808C72DE06B64006D0464 /* BirthdayPopUpView.xib */; };
+		8AFDBDC82DE9BCFD0066E734 /* GroupImagePreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */; };
 		8AFDE6462DA5336A005AA235 /* EmptyCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFDE6452DA5336A005AA235 /* EmptyCollView.swift */; };
 /* End PBXBuildFile section */
 
@@ -622,6 +623,7 @@
 		8AF792492D9BF95E00085FEC /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		8AF808C62DE06B64006D0464 /* BirthdayPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayPopUpView.swift; sourceTree = "<group>"; };
 		8AF808C72DE06B64006D0464 /* BirthdayPopUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BirthdayPopUpView.xib; sourceTree = "<group>"; };
+		8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupImagePreviewController.swift; sourceTree = "<group>"; };
 		8AFDE6452DA5336A005AA235 /* EmptyCollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1069,6 +1071,7 @@
 				8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */,
 				8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */,
 				8A1B0E972DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift */,
+				8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */,
 			);
 			path = "All Group Lists";
 			sourceTree = "<group>";
@@ -2019,6 +2022,7 @@
 				8A00BA302DBF964900513C44 /* GroupListResModel.swift in Sources */,
 				8ACDCBC02DBB45BB00A9B3EE /* CatalogueUserRmReqModel.swift in Sources */,
 				8ACC6ED42DDC39B0005787F6 /* NewCatalogVC+ExtraFunction.swift in Sources */,
+				8AFDBDC82DE9BCFD0066E734 /* GroupImagePreviewController.swift in Sources */,
 				8AE113FC2DC4A5EC00B8CBA5 /* ProfileDetailsReqModel.swift in Sources */,
 				8A9E7D6D2DA3F9C3007CE28A /* CatalogueListingReqModel.swift in Sources */,
 				8A00BA212DBF5E7B00513C44 /* GroupCreateAPICaller.swift in Sources */,

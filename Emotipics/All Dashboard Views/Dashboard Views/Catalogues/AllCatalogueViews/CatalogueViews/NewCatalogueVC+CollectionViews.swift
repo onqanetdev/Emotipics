@@ -194,24 +194,6 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             collectionView.reloadData()
             
         } else {
-            //            if let imgPath = imageCount[indexPath.row].path,
-            //               let imgName = imageCount[indexPath.row].img_name {
-            //                let imagePath = imgPath + imgName
-            //                print("Image Path:", imagePath)
-            //            } else {
-            //
-            //            }
-            //
-            //
-            //            print("Total numbers of Image--> ", tempMemoryImages)
-            //
-            //            let previewVC = TestImageSamplePreviewController()
-            //
-            //           // previewVC.images = tempMemoryImages
-            //            previewVC.newImageSet = imageCount
-            //
-            //            self.navigationController?.pushViewController(previewVC, animated: true)
-            
             
             let allImages = imageCount
             

@@ -17,8 +17,7 @@ extension EntryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
-        //cell.textLabel?.text = "Cell No.: \(indexPath.row)"
-        //cell.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        
         cell.sarahLbl.text = contactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
         cell.associatedEmailTxtFld.text = contactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
         

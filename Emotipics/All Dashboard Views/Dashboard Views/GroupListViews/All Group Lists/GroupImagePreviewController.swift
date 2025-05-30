@@ -1,21 +1,19 @@
 //
-//  TestImageSamplePreviewController.swift
+//  GroupImagePreviewController.swift
 //  Emotipics
 //
-//  Created by Onqanet on 21/05/25.
+//  Created by Onqanet on 30/05/25.
 //
 
 import UIKit
 import Photos
 
-
-class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class GroupImagePreviewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    private let imageNames = ["Party", "Picnic", "Birthday", "Wedding"]
     
     private var collectionView: UICollectionView!
     
-    var newImageSet:[ImageData] = []
+   // var newImageSet:[ImageData] = []
     
     var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
     
@@ -23,7 +21,10 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     
     var imageIndex = 0
     
-   
+   // MARK: For Group Image Details
+   // var isGrpDetailImg:Bool = false
+
+    var groupImageSet:[GroupImageData] = []
     
     
     override func viewDidLoad() {
@@ -69,7 +70,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     func deleteImage(indexTag: Int) {
        
         startCustomLoader()
-        guard let imageCode = newImageSet[indexTag].id else {
+        guard let imageCode = groupImageSet[indexTag].id else {
             return
         }
         
@@ -87,7 +88,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
                     DispatchQueue.main.async {
                         //self.contactsTblView.reloadData()
                         self.dismiss(animated: true )
-                        self.newImageSet.remove(at: self.imageIndex)
+                        self.groupImageSet.remove(at: self.imageIndex)
                         self.collectionView.reloadData()
                         //self.deleteDelegate?.updateUI()
                     }
@@ -110,9 +111,9 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
        // return images.count
         //return newImageSet.count
         
-
-            return newImageSet.count
-        
+       
+           return groupImageSet.count
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,14 +121,15 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
             return UICollectionViewCell()
         }
     
+        cell.moveIconButton.isHidden = true
+        
         cell.imageView.image = nil // Optional: clear image to avoid showing old image in reused cell
         //  cell.startCustomLoader()
-        
-
+    
             cell.activityIndicator.startAnimating()
             
-            guard let imgPath = newImageSet[indexPath.row].path,
-                  let imgName = newImageSet[indexPath.row].img_name else {
+            guard let imgPath = groupImageSet[indexPath.row].path,
+                  let imgName = groupImageSet[indexPath.row].img_name else {
                 return cell
             }
             
@@ -153,30 +155,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
                     }
                 }.resume()
             }
-            
-            
-            
-            cell.downloadButton.tag = indexPath.item
-            cell.downloadButton.addTarget(self, action: #selector(didTapDownload(_:)), for: .touchUpInside)
-            
-            cell.shareButton.tag = indexPath.item
-            cell.shareButton.addTarget(self, action: #selector(didTapShare(_:)), for: .touchUpInside)
-            
-            cell.deleteButton.tag = indexPath.item
-            cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
-            
-            //MARK: Rest of the buttons
-            cell.birthdayButton.tag = indexPath.item
-            cell.birthdayButton.addTarget(self, action: #selector(didTapBirthday(_:)), for: .touchUpInside)
-            
-            cell.copyIconButton.tag = indexPath.item
-            cell.copyIconButton.addTarget(self, action: #selector(didTapCopy(_:)), for: .touchUpInside)
-            
-            cell.moveIconButton.tag = indexPath.item
-            cell.moveIconButton.addTarget(self, action: #selector(didTapMove(_:)), for: .touchUpInside)
-            
-      
-
+      //  }
         return cell
     }
     
@@ -193,8 +172,8 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
 
         
         
-        if let imgInitialPath = newImageSet[sender.tag].path,
-           let imgLastPath = newImageSet[sender.tag].img_name,
+        if let imgInitialPath = groupImageSet[sender.tag].path,
+           let imgLastPath = groupImageSet[sender.tag].img_name,
            let url = URL(string: imgInitialPath + imgLastPath) {
             
             print("Final Image Path is->", url.absoluteString)
@@ -244,7 +223,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
         vc.modalPresentationStyle = .fullScreen
         vc.catalogueName = "Demo"
         vc.shareImage = true
-        guard let imageId = newImageSet[sender.tag].id else {
+        guard let imageId = groupImageSet[sender.tag].id else {
             return
         }
         vc.imgId = imageId
@@ -265,9 +244,9 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
         vc.catalogueName = "Demo"
         vc.isBirthday = true
        
-        guard let imageId = newImageSet[sender.tag].id,
-              let imgURLFirstPath = newImageSet[sender.tag].path,
-              let imgURLlastPath = newImageSet[sender.tag].img_name else {
+        guard let imageId = groupImageSet[sender.tag].id,
+              let imgURLFirstPath = groupImageSet[sender.tag].path,
+              let imgURLlastPath = groupImageSet[sender.tag].img_name else {
             return
         }
         
@@ -283,9 +262,9 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     
     @objc private func didTapCopy(_ sender: UIButton) {
         let copyVC = CopyMoveViewController()
-        guard let selectedImgId = newImageSet[sender.tag].id,
-              let selectedImgNm = newImageSet[sender.tag].img_name,
-              let selectedImgSize = newImageSet[sender.tag].image_size else {
+        guard let selectedImgId = groupImageSet[sender.tag].id,
+              let selectedImgNm = groupImageSet[sender.tag].img_name,
+              let selectedImgSize = groupImageSet[sender.tag].image_size else {
             return
         }
         let selectedImgTypeOfAction = "copy"
@@ -299,24 +278,7 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     }
     
     
-    @objc private func didTapMove(_ sender: UIButton) {
-        let moveVC = CopyMoveViewController()
-
-        guard let selectedImgId = newImageSet[sender.tag].id,
-              let selectedImgNm = newImageSet[sender.tag].img_name,
-              let selectedImgSize = newImageSet[sender.tag].image_size else {
-            return
-        }
-        let selectedImgTypeOfAction = "move"
-        
-        moveVC.imageId = selectedImgId
-        moveVC.imageName = selectedImgNm
-        moveVC.imageSize = selectedImgSize
-        moveVC.typeOfAction = "move"
-        
-        self.present(moveVC, animated: true)
-    }
-
+    
     
     func startCustomLoader(){
       
@@ -343,8 +305,5 @@ class TestImageSamplePreviewController: UIViewController, UICollectionViewDataSo
     }
     
 }
-
-
-
 
 

@@ -455,6 +455,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.clipsToBounds = true
         
         
+        
         if let imagePath = groupImageData[indexPath.row].path,
            let imgName = groupImageData[indexPath.row].img_name,
            let ownerName = groupImageData[indexPath.row].user?.name{
@@ -550,10 +551,32 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
            let emojisAre = groupImageData[indexPath.row].emoji {
             print("the group code is", groupCode)
             print("Upadted Image code -->", updatedImageCode)
-            for emoji in 0...emojisAre.count - 1 {
-                print("emo is ", emojisAre[emoji].emoji_code)
-            }
+            
+//            for emoji in 0...emojisAre.count - 1 {
+//                print("emo is ", emojisAre[emoji].emoji_code)
+//            }
+            
         }
+        
+        let allImgCollection = groupImageData
+        // The index the user tapped
+        let tappedIndex = indexPath.row
+        
+        // 1. Pull out the tapped image
+        let firstImage = allImgCollection[tappedIndex]
+        
+        let remaining = allImgCollection.enumerated()
+            .filter { $0.offset != tappedIndex }   // drop the tapped one
+            .map { $0.element }                     // extract the image objects
+        let reordered = [firstImage] + remaining
+        
+        let previewVC = GroupImagePreviewController()
+        
+      //  previewVC.isGrpDetailImg = true
+        
+        previewVC.groupImageSet = reordered
+        
+        navigationController?.pushViewController(previewVC, animated: true)
     }
 }
 
