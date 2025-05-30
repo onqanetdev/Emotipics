@@ -9,24 +9,7 @@ import UIKit
 
 class GroupDetailViewController: UIViewController {
     
-    
-    
-    
-    @IBOutlet weak var groupIconImgView: UIImageView! {
-        didSet {
-            groupIconImgView.layer.cornerRadius = 22.5
-            groupIconImgView.clipsToBounds = true
-        }
-    }
-    
-    @IBOutlet weak var topView: UIView!
-    
-    
-    @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
-    
-    
-    @IBOutlet weak var tblViewHeight: NSLayoutConstraint!
-    
+
     @IBOutlet weak var detailTblView: UITableView!
     
     
@@ -40,8 +23,7 @@ class GroupDetailViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var ContentView: UIView!
-    
+
     
     @IBOutlet weak var shareFilesBtn: UIButton!{
         didSet {
@@ -54,23 +36,7 @@ class GroupDetailViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var userGroupName: UILabel!{
-        didSet{
-            userGroupName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 16)
-        }
-    }
-    
-    
-    
-    @IBOutlet weak var tenUsers: UILabel!{
-        didSet {
-            tenUsers.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-        }
-    }
-    
-    
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+
     //Group Image List View Model
     
     let groupImageListViewModel: GroupImageListViewModel = GroupImageListViewModel()
@@ -107,6 +73,8 @@ class GroupDetailViewController: UIViewController {
         return indicator
     }()
     
+    var tableHeaderView = GroupDetailHeaderView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,22 +84,27 @@ class GroupDetailViewController: UIViewController {
         detailTblView.delegate = self
         detailTblView.register(UINib(nibName: "GroupDetailViewCell", bundle: nil), forCellReuseIdentifier: "DetailChat")
         
-        tblViewHeight.constant = 10*300
-        scrollViewHeight.constant = tblViewHeight.constant + 50
-        
-        
         setTableViewBackground()
         setTopViewBackground()
         
-        
-        tenUsers.text = groupUsers
-        userGroupName.text = groupName
-        
+    
         imageListForGroup(groupCode: groupCode)
         
         
-        detailTblView.tableFooterView = footerActivityIndicator
+        //For Header View
         
+         tableHeaderView = GroupDetailHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
+        tableHeaderView.usersLbl.text = "11 Users"
+        tableHeaderView.manageLbl.text = "Manage Terms"
+        tableHeaderView.actionBtn.addTarget(self, action: #selector(detailViewPresent(_:)), for: .touchUpInside)
+        
+        
+        self.detailTblView.tableHeaderView = tableHeaderView
+        
+        
+        
+        
+        detailTblView.tableFooterView = footerActivityIndicator
         footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: detailTblView.bounds.width, height: 50)
         
     }
@@ -154,20 +127,13 @@ class GroupDetailViewController: UIViewController {
     
     //MARK: Setting Up function for uiview background
     func setTopViewBackground() {
-        guard let topView = topView else { return } // Ensure topView is not nil
+     
         
         guard let roundedView = roundedView else { return }
         
-        guard let contentView = ContentView else { return }
+       
         
         let backgroundImage = UIImage(named: "TableViewBackground") // Replace with your image name
-        let backgroundImageView = UIImageView(frame: topView.bounds)
-        backgroundImageView.image = backgroundImage
-        backgroundImageView.contentMode = .scaleAspectFill
-        backgroundImageView.clipsToBounds = true
-        backgroundImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight] // Adjust on size change
-        
-        
         
         let roundedBackgroundView = UIImageView(frame: roundedView.bounds)
         roundedBackgroundView.image = backgroundImage
@@ -175,15 +141,9 @@ class GroupDetailViewController: UIViewController {
         roundedBackgroundView.clipsToBounds = true
         roundedBackgroundView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
-        topView.insertSubview(backgroundImageView, at: 0) // Send it to the back
         roundedView.insertSubview(roundedBackgroundView, at: 0)
-        contentView.insertSubview(backgroundImageView, at: 0)
+        
     }
-    
-
-
-
-
     
     
     func imageListForGroup(groupCode: String) {
@@ -199,21 +159,20 @@ class GroupDetailViewController: UIViewController {
 
                 switch result {
                 case .goAhead:
-                    if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
+                    if let imageGroupData = self.groupImageListViewModel.responseModel?.data,
+                       let imageGroupDetails = self.groupImageListViewModel.responseModel,
+                       let groupMemberCount = self.groupImageListViewModel.responseModel?.member_count {
                         self.groupImageData = imageGroupData
                         
-
-                        print("the group image data ", imageGroupData)
+                        self.tableHeaderView.usersLbl.text = "\(groupMemberCount + 1)"
+                        self.tableHeaderView.manageLbl.text = imageGroupDetails.groupname
                         
-                        self.tblViewHeight.constant = CGFloat(imageGroupData.count * 300) + 300
-                        self.scrollViewHeight.constant = self.tblViewHeight.constant
                         self.detailTblView.reloadData()
                         self.stopCustomLoader()
 
                     } else {
                         self.detailTblView.isHidden = true
-                        self.tblViewHeight.constant = 0
-                        self.scrollView.isScrollEnabled = false
+                        
                         self.stopCustomLoader()
                     }
 
@@ -225,9 +184,6 @@ class GroupDetailViewController: UIViewController {
         }
     }
 
-    
-    
-    
     
     
     func showEmojiListWithCompletion(imgID: Int, completion: @escaping () -> Void) {
@@ -340,8 +296,7 @@ class GroupDetailViewController: UIViewController {
 
     @objc func deletingImage(_ sender: UIButton){
         var indexPath = sender.tag
-        
-        
+    
         print("My Image Code is", groupImageData[indexPath].id, "My group code is", groupCode  )
         
         guard let imageID = groupImageData[indexPath].id else {
@@ -367,12 +322,6 @@ class GroupDetailViewController: UIViewController {
                         
                         if let imageGroupData = self?.groupImageListViewModel.responseModel?.data {
                             self?.groupImageData = imageGroupData
-                            
-                            self?.tblViewHeight.constant = CGFloat( 300*(imageGroupData.count) + 300)
-                            
-                            self?.scrollViewHeight.constant = self?.tblViewHeight.constant ?? 100
-                            
-                            print("scroll view height", self?.scrollViewHeight.constant as Any)
                         } else {
                             self?.detailTblView.isHidden = true
                         }
@@ -575,10 +524,6 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
         }
         
-        
-        
-        
-        
         cell.deleteBtnAction.tag = indexPath.row
         cell.deleteBtnAction.addTarget(self, action: #selector(deletingImage), for: .touchUpInside)
         
@@ -615,15 +560,11 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
 extension GroupDetailViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        print("Yoooo")
-        
         let position = scrollView.contentOffset.y
         let contentHeight =  detailTblView.contentSize.height
         let frameHeight = scrollView.frame.height
         
-        if position > (contentHeight - frameHeight - 100){
-            print("More Image loading")
+        if position > (contentHeight - frameHeight - 20), !isPaginating{
             paginateImagesForGroup()
         }
     }
@@ -631,11 +572,48 @@ extension GroupDetailViewController: UIScrollViewDelegate {
     
     func paginateImagesForGroup(){
         isPaginating = true
-      //  footerActivityIndicator.startAnimating()
+        footerActivityIndicator.startAnimating()
         currentPage += 1
         
-        print("Group Code is", groupCode)
-     //   footerActivityIndicator.stopAnimating()
+//        print("Group Code is", groupCode)
+//        footerActivityIndicator.stopAnimating()
+        
+        
+        groupImageListViewModel.requestModel.groupCode = groupCode
+        groupImageListViewModel.requestModel.limit = "10"
+        groupImageListViewModel.requestModel.offset = "\(currentPage)"
+
+        //startCustomLoader()
+        
+        groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+
+                self.footerActivityIndicator.stopAnimating()
+                self.isPaginating = false
+                
+                switch result {
+                case .goAhead:
+                    if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
+//                        self.groupImageData = imageGroupData
+                        self.groupImageData.append(contentsOf: imageGroupData)
+
+                        
+                        self.detailTblView.reloadData()
+                        
+
+                    } else {
+                        //self.detailTblView.isHidden = true
+                        
+                       // self.stopCustomLoader()
+                    }
+
+                case .heyStop:
+                    print("❌ Error")
+                    self.stopCustomLoader()
+                }
+            }
+        }
         
     }
     

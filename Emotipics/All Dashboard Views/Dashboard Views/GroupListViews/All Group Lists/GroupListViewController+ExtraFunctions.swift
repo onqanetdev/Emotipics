@@ -213,7 +213,7 @@ extension GroupListViewController: UIScrollViewDelegate {
         let frameHeight = scrollView.frame.size.height
         
         if position > (contentHeight - frameHeight - 10), !isPaginating{
-            print("Hello")
+           
             paginateGroupList()
         }
     }
@@ -236,7 +236,7 @@ extension GroupListViewController: UIScrollViewDelegate {
                 self.isPaginating = false
                 switch result {
                 case .goAhead:
-                    print("✅ Data received successfully!")
+                    
                     guard let resultArray = self.groupListingView.responseModel?.data else {
                         return
                     }
