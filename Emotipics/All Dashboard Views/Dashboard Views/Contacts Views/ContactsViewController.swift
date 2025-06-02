@@ -338,8 +338,6 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource, U
             if position > (contentHeight - frameHeight - 20), !isPaginating {
                 paginateContacts()
             }
-        
-        
     }
     
     func paginateContacts() {

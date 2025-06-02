@@ -108,7 +108,9 @@ class NewCatalogueVC: UIViewController {
     
     var isPaginating = false
     var currentPage = 1
-
+    
+    var isPaginatingImage = false
+    var currentImagePage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +122,7 @@ class NewCatalogueVC: UIViewController {
         
         catalogueCollView.register(UINib(nibName: "NewCatCollViewCell", bundle: nil), forCellWithReuseIdentifier: "NewCatView")
         
-    
+        
         photoCollView.dataSource = self
         photoCollView.delegate = self
         
@@ -129,7 +131,7 @@ class NewCatalogueVC: UIViewController {
         
         settingUpAllFonts()
         
-
+        
         
         catalogueCollView.reloadData()
         catalogueCollView.layoutIfNeeded()
@@ -137,32 +139,41 @@ class NewCatalogueVC: UIViewController {
         
         
         catalogueCollView.addSubview(activityIndicator)
-
+        
         
         loadAllCatalogueData()
     }
     
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        if let catalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
-            print("Catalogue ID: \(catalogueId)")
-            loadAllImageCatalogue(catalogueCode: catalogueId)
+        if let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+        
+            loadAllCatalogueData()
+        } else {
+            
         }
     }
     
     
+    
+    
+    
+    
+    
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         activityIndicator.center = CGPoint(x: catalogueCollView.contentSize.width + 30, y: catalogueCollView.bounds.height / 2)
     }
-
+    
     
     
     @IBAction func previousView(_ sender: Any) {
+        
+        UserDefaults.standard.removeObject(forKey: "selectedIndexRowCatalogue")
         
         navigationController?.popViewController(animated: true)
     }
@@ -204,16 +215,33 @@ class NewCatalogueVC: UIViewController {
                         self.catalogCode = self.tempMemory[0].catalog_code ?? ""
                         
                         
-                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                         self.selectedIndexPath = IndexPath(row: 0, section: 0)
                         
-                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
-                        self.selectedIndexPath?.row = 0
+                        if UserDefaults.standard.object(forKey: "selectedIndexRowCatalogue") != nil {
+                            let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowCatalogue")
+                            self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                        } else {
+                            
+                            
+                            self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                        }
+                        
+                        
+                        guard let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") else {
+                            //print("Saved catalogue ID: \(savedCatalogueId)")
+                            return
+                        }
+                        
+                        
+                        
+                        self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
+                        
                         
                         self.catalogueCollView.reloadData()
                         self.photoCollView.reloadData()
                     }
                     
-
+                    
                     self.stopCustomLoader()
                     
                 case .heyStop:
@@ -229,7 +257,7 @@ class NewCatalogueVC: UIViewController {
     func loadAllImageCatalogue(catalogueCode: String) {
         
         catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
-        catalogueImageListViewModel.requestModel.limit = "50"
+        catalogueImageListViewModel.requestModel.limit = "10"
         catalogueImageListViewModel.requestModel.offset = "1"
         
         startCustomLoader()
@@ -245,10 +273,10 @@ class NewCatalogueVC: UIViewController {
                         self.imageCache.removeAll() // ✅ Clear cache
                         self.imageCount.removeAll()
                         
-                       // self.tempMemoryImages.removeAll()
+                        // self.tempMemoryImages.removeAll()
                         
                         self.photoCollView.reloadData()
-                       
+                        
                         self.stopCustomLoader()
                         return
                     }
@@ -266,11 +294,6 @@ class NewCatalogueVC: UIViewController {
                     }
                     
                     
-                    
-//                    let height = self.photoCollView.frame.size.height + 200
-//                    
-//                    self.photoCollView.frame.size.height =  height
-//                    print("PhotoCollView height + 100: \(height)")
                     
                     self.photoCollView.reloadData()
                     self.stopCustomLoader()
@@ -294,7 +317,7 @@ class NewCatalogueVC: UIViewController {
     
     
     @IBAction func createCatalogAction(_ sender: Any) {
-                
+        
         let newCat = AddContactViewController()
         newCat.isCatalogueView = true
         newCat.txtFieldPlaceHolder = "Enter Catalogue Name"

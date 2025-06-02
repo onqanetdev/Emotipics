@@ -967,6 +967,7 @@
 			isa = PBXGroup;
 			children = (
 				8A28FD2C2DE86BF400CC3DD2 /* GroupDetailHeaderView.swift */,
+				8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */,
 			);
 			path = GroupDetailHeaderView;
 			sourceTree = "<group>";
@@ -1071,7 +1072,6 @@
 				8A3B82432D8820B800CFFC37 /* GroupListViewController.swift */,
 				8A3B82442D8820B800CFFC37 /* GroupListViewController.xib */,
 				8A1B0E972DC09FEB00A3CCA5 /* GroupListViewController+ExtraFunctions.swift */,
-				8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */,
 			);
 			path = "All Group Lists";
 			sourceTree = "<group>";

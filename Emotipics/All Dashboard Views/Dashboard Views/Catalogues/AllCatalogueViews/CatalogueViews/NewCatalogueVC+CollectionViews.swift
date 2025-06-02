@@ -111,32 +111,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                                     currentCell.activityIndicator.stopAnimating()
                                 }
                             }
-                            
-                            
-                            
-                            //                            DispatchQueue.global(qos: .background).async { [weak self] in
-                            //                                guard let self = self else { return }
-                            //
-                            //                                // Expensive check in background
-                            //                                let isAlreadyAdded = self.tempMemoryImages.contains { $0.pngData() == image.pngData() }
-                            //
-                            //                                if !isAlreadyAdded {
-                            //                                    self.tempMemoryImages.append(image)
-                            //                                }
-                            //
-                            //                                // UI updates on main thread
-                            //                                DispatchQueue.main.async {
-                            //                                    self.imageCache[imagePath] = image
-                            //
-                            //                                    if let currentCell = collectionView.cellForItem(at: indexPath) as? ImageCatalogueViewCell {
-                            //                                        currentCell.imgViewColl.image = image
-                            //                                        currentCell.activityIndicator.stopAnimating()
-                            //                                    }
-                            //                                }
-                            //                            }
-                            
-                            
-                            
+                        
                             
                         }.resume()
                     }
@@ -189,7 +164,20 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
         if collectionView == catalogueCollView {
             
             selectedIndexPath = indexPath
+            
+//            UserDefaults.standard.set(selectedIndexPath, forKey: "selectedIndexCatalogue")
+            
+            UserDefaults.standard.set(indexPath.row, forKey: "selectedIndexRowCatalogue")
+
+            
             guard let catCode = tempMemory[indexPath.row].catalog_code else { return }
+            catalogCode = catCode
+            print("Cat Code is ", catCode )
+            
+            if let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+                print("Saved catalogue ID: \(savedCatalogueId)")
+            }
+            
             loadAllImageCatalogue(catalogueCode: catCode)
             collectionView.reloadData()
             
@@ -211,12 +199,15 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             
             // 3. Pass the reordered array to your preview VC
             let previewVC = TestImageSamplePreviewController()
+            currentImagePage = 1
             previewVC.newImageSet = reordered
             //previewVC.indexNoFetched = 0    // since we moved the tapped image to index zero
             navigationController?.pushViewController(previewVC, animated: true)
             
         }
     }
+    
+    
 }
 
 
@@ -224,15 +215,34 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
 
 
 extension NewCatalogueVC: UIScrollViewDelegate {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.x
-        let contentWidth = catalogueCollView.contentSize.width
-        let frameWidth = scrollView.frame.size.width
         
-        if position > (contentWidth - frameWidth - 20), !isPaginating {
-            print("Reachead End")
-            paginatingCatalogue()
+        if scrollView == catalogueCollView {
+            
+            let position = scrollView.contentOffset.x
+            let contentWidth = catalogueCollView.contentSize.width
+            let frameWidth = scrollView.frame.size.width
+            
+            if position > (contentWidth - frameWidth - 20), !isPaginating {
+                print("Reachead End")
+                paginatingCatalogue()
+            }
+            
+        } else {
+            
+            let position = scrollView.contentOffset.y
+                let contentHeight = photoCollView.contentSize.height
+                let frameHeight = scrollView.frame.size.height
+
+                if position > (contentHeight - frameHeight - 20), !isPaginatingImage {
+                   
+                    
+                    paginatingImageList()
+                }
+            
         }
+        
     }
     
     
@@ -286,20 +296,60 @@ extension NewCatalogueVC: UIScrollViewDelegate {
                     } // else
                 }
 
-                    self.stopCustomLoader()
+                    //self.stopCustomLoader()
                     
                 case .heyStop:
                     print("Error")
-                    self.stopCustomLoader()
+                    //self.stopCustomLoader()
                 }
             }
         }
         
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-//            self.activityIndicator.stopAnimating()
-//            self.catalogueCollView.reloadData()
-//        }
+
+    }
+    
+    
+    func paginatingImageList(){
+        isPaginatingImage = true
+        currentImagePage += 1
+        
+        
+        catalogueImageListViewModel.requestModel.catalog_code = catalogCode
+        catalogueImageListViewModel.requestModel.limit = "10"
+        catalogueImageListViewModel.requestModel.offset = "\(currentImagePage)"
+        
+       // startCustomLoader()
+        activityIndicator.startAnimating()
+        catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                self.activityIndicator.stopAnimating()
+                self.isPaginatingImage = false
+                
+                switch result {
+                case .goAhead:
+                    
+                    self.activityIndicator.stopAnimating()
+                    
+                    guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                        self.photoCollView.reloadData()
+                        return
+                    }
+                         
+                    self.imageCount.append(contentsOf: value)
+                    
+                    self.photoCollView.reloadData()
+                   // self.stopCustomLoader()
+                    
+                case .heyStop:
+                    self.activityIndicator.stopAnimating()
+                    print("Error")
+                    //self.stopCustomLoader()
+                }
+            }
+        }
     }
 }
 

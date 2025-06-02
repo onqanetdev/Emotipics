@@ -88,6 +88,9 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
                     DispatchQueue.main.async {
                         //self.contactsTblView.reloadData()
                         self.dismiss(animated: true )
+                        
+                        
+                        
                         self.groupImageSet.remove(at: self.imageIndex)
                         self.collectionView.reloadData()
                         //self.deleteDelegate?.updateUI()
@@ -122,7 +125,7 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         }
     
         cell.moveIconButton.isHidden = true
-        
+        cell.deleteButton.isHidden = true
         cell.imageView.image = nil // Optional: clear image to avoid showing old image in reused cell
         //  cell.startCustomLoader()
     
@@ -155,6 +158,24 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
                     }
                 }.resume()
             }
+        
+        cell.downloadButton.tag = indexPath.item
+        cell.downloadButton.addTarget(self, action: #selector(didTapDownload(_:)), for: .touchUpInside)
+        
+        cell.shareButton.tag = indexPath.item
+        cell.shareButton.addTarget(self, action: #selector(didTapShare(_:)), for: .touchUpInside)
+        
+        cell.deleteButton.tag = indexPath.item
+        cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
+        
+        //MARK: Rest of the buttons
+        cell.birthdayButton.tag = indexPath.item
+        cell.birthdayButton.addTarget(self, action: #selector(didTapBirthday(_:)), for: .touchUpInside)
+        
+        cell.copyIconButton.tag = indexPath.item
+        cell.copyIconButton.addTarget(self, action: #selector(didTapCopy(_:)), for: .touchUpInside)
+        
+        
       //  }
         return cell
     }
@@ -221,7 +242,7 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
                
         let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
         vc.modalPresentationStyle = .fullScreen
-        vc.catalogueName = "Demo"
+        //vc.catalogueName = "Demo"
         vc.shareImage = true
         guard let imageId = groupImageSet[sender.tag].id else {
             return

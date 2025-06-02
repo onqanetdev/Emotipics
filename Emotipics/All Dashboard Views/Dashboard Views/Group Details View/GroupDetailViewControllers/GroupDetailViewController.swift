@@ -454,6 +454,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.layer.cornerRadius = 25
         cell.clipsToBounds = true
         
+        cell.deleteBtnAction.isHidden = true
         
         
         if let imagePath = groupImageData[indexPath.row].path,

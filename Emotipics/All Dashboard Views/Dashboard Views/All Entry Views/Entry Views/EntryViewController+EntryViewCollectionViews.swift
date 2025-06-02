@@ -175,8 +175,9 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == fileColView {
-            let imageViewController = AllCataloguesViewController()
-            imageViewController.isImageCell = true
+            
+//            let imageViewController = AllCataloguesViewController()
+//            imageViewController.isImageCell = true
             
             
             let catalogueId = tempMemory[indexPath.row].catalog_code
@@ -194,8 +195,12 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 UserDefaults.standard.set(userCode, forKey: "userCode")
             }
             
+            //Saving the user  selected cell index
+            UserDefaults.standard.set(indexPath.row, forKey: "selectedIndexRowCatalogue")
             
-            navigationController?.pushViewController(imageViewController, animated: true)
+            navigationController?.pushViewController(NewCatalogueVC(), animated: true)
+            
+//            navigationController?.pushViewController(imageViewController, animated: true)
         }
         
         else if collectionView ==  sharedCatalogueCollView {

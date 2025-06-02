@@ -63,7 +63,11 @@ class CopyMoveViewController: UIViewController {
     }
 
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        //loadData()
+    }
 
     
     func loadData() {
@@ -196,6 +200,13 @@ class CopyMoveViewController: UIViewController {
         
         
     }
+    
+    
+    @IBAction func dismissView(_ sender: Any) {
+        self.dismiss(animated: true)
+        
+    }
+    
 
 }
 
