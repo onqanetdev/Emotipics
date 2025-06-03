@@ -8,7 +8,7 @@
 import UIKit
 
 class SharedImageByMeVC: UIViewController {
-
+    
     
     
     @IBOutlet weak var roundedView: UIView!{
@@ -20,6 +20,9 @@ class SharedImageByMeVC: UIViewController {
     
     
     
+    @IBOutlet weak var catalogueImgName: UILabel!
+    
+    
     @IBOutlet weak var collView: UICollectionView!
     
     
@@ -29,82 +32,108 @@ class SharedImageByMeVC: UIViewController {
     
     var sharedImageByMeViewModel: SharedImageByMeViewModel = SharedImageByMeViewModel()
     
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.color = #colorLiteral(red: 0, green: 0.1685190499, blue: 0.3580696285, alpha: 1)
+        indicator.hidesWhenStopped = true
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        return indicator
+    }()
+    
+    
     private var loaderView: ImageLoaderView?
-    
-    
     var logginUserCode = ""
-    
-    
     var sharedImageData:[SharedData] = []
-    
-    
     var imageCache = [String: UIImage]()
-    
     var dynamicHeight: CGFloat = 0
+    
+    //All States
+    var isPgnatingImgShareByMe = false
+    var currentImgPgShareByMe = 1
+    
+    var isPgnatingImgShareWithMe = false
+    var currentImgPgShareWithMe = 1
+    
+    var isShareWithMe: Bool = false
+    var isShareByMe: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
         collView.dataSource = self
         collView.delegate = self
-        
-
-        
         collView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
+        
+        view.addSubview(activityIndicator)
         
         // Do any additional setup after loading the view.
         addingLayoutOfPages()
         sharedByMeList()
+        
+        NSLayoutConstraint.activate([
+            activityIndicator.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
     }
-
+    
     
     func updateContentForSelectedSegment(_ selectedIndex: Int) {
         // This is where you would update your UI based on which segment is selected
+        
+        
         if selectedIndex == 0 {
-            //loadShareByMeContent()
+            isShareByMe = true
+            isShareWithMe = false
+            currentImgPgShareByMe = 1
+            sharedImageData.removeAll()
+            collView.reloadData()
             imageCache = [:]
-
             sharedByMeList()
         } else {
-            //loadSharedWithMeContent()
+            isShareByMe = false
+            isShareWithMe = true
+            currentImgPgShareWithMe = 1
+            sharedImageData.removeAll()
+            collView.reloadData()
             imageCache = [:]
-
             sharedWithMeList()
         }
+
+        
+        
     }
-    
-    
-    
+
     
     func sharedByMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
             return
         }
-
-        sharedImageByMeViewModel.requestModel.limit = "20"
+        
+        sharedImageByMeViewModel.requestModel.limit = "10"
         sharedImageByMeViewModel.requestModel.offset = "1"
         sharedImageByMeViewModel.requestModel.usercode = storedCode
         sharedImageByMeViewModel.requestModel.sharetype = "byme"
-
+        
         startCustomLoader()
-
+        
         sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 //self.stopCustomLoader()
-
+                
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
                     guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
                         return
                     }
-
+                    
                     self.sharedImageData = value
                     self.collView.reloadData()
                     self.stopCustomLoader()
-
+                    
                 case .heyStop:
                     print("Error")
                     self.stopCustomLoader()
@@ -112,36 +141,36 @@ class SharedImageByMeVC: UIViewController {
             }
         }
     }
-
+    
     
     func sharedWithMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
             return
         }
-
-        sharedImageByMeViewModel.requestModel.limit = "20"
+        
+        sharedImageByMeViewModel.requestModel.limit = "10"
         sharedImageByMeViewModel.requestModel.offset = "1"
         sharedImageByMeViewModel.requestModel.usercode = storedCode
         sharedImageByMeViewModel.requestModel.sharetype = "withme"
-
+        
         startCustomLoader()
-
+        
         sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-               // self.stopCustomLoader()
-
+                // self.stopCustomLoader()
+                
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
                     guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
                         return
                     }
-
+                    
                     self.sharedImageData = value
                     self.collView.reloadData()
                     self.stopCustomLoader()
-
+                    
                 case .heyStop:
                     print("Error")
                     self.stopCustomLoader()
@@ -149,9 +178,9 @@ class SharedImageByMeVC: UIViewController {
             }
         }
     }
-
     
-
+    
+    
     func addingLayoutOfPages(){
         if let segmentedControl = segmentControlShared {
             
@@ -181,10 +210,10 @@ class SharedImageByMeVC: UIViewController {
             addUnderlineForSelectedSegment(segmentedControl)
         }
     }
-
+    
     
     func addUnderlineForSelectedSegment(_ segmentedControl: UISegmentedControl) {
-
+        
         
         // Create underline view
         let underlineHeight: CGFloat = 4.0
@@ -208,6 +237,14 @@ class SharedImageByMeVC: UIViewController {
     }
     
     
+    
+    @IBAction func dismissView(_ sender: Any) {
+        
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -226,7 +263,7 @@ class SharedImageByMeVC: UIViewController {
         // Stop and remove after 5 seconds
     }
     
-                         
+    
     func stopCustomLoader(){
         print("Trying to stop loader:", loaderView != nil)
         loaderView?.stopAnimating()
@@ -269,11 +306,11 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
         return sharedImageData.count
     }
     
-
+    
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
         cell.layer.cornerRadius = 15
         cell.clipsToBounds = true
@@ -282,53 +319,46 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
             
         } else {
             cell.imgViewColl.image = nil
-           // cell.startCustomLoader()
-
-
-            if let imageURL = sharedImageByMeViewModel.fetchImageURL(for: indexPath.row) {
+            // cell.startCustomLoader()
+            cell.activityIndicator.startAnimating()
+            
+            if let imageURL = fetchImageURL(for: indexPath.row) {
                 
                 // Check the cache first
                 if let cachedImage = imageCache[imageURL] {
                     cell.imgViewColl.image = cachedImage
-                   // cell.stopCustomLoader()
+                    // cell.stopCustomLoader()
+                    cell.activityIndicator.stopAnimating()
                 } else {
                     cell.imgViewColl.image = nil
-                  //  cell.startCustomLoader()
-
+                    //  cell.startCustomLoader()
+                    cell.activityIndicator.startAnimating()
                     DispatchQueue.global().async {
                         if let url = URL(string: imageURL),
                            let data = try? Data(contentsOf: url),
                            let image = UIImage(data: data) {
-
+                            
                             DispatchQueue.main.async {
                                 self.imageCache[imageURL] = image
-//                                print("✅ Cached image for URL: \(imageURL)")
-//                                   print("🧠 Current cache count: \(self.imageCache.count)")
-//                                   print("📸 Cached keys: \(self.imageCache.keys)")
-                                
+
                                 cell.imgViewColl.image = image
-                             //   cell.stopCustomLoader()
-                            }
+                                //   cell.stopCustomLoader()
+                                cell.activityIndicator.stopAnimating()                            }
                         } else {
                             DispatchQueue.main.async {
-                             //   cell.stopCustomLoader()
+                                //   cell.stopCustomLoader()
+                                cell.activityIndicator.stopAnimating()
                             }
                         }
                     }
                 }
             }
-
+            
         }
-        
-        
+
         return cell
-        
-        
     }
 
-    
-    
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfItemsPerRow: CGFloat = 2
         let spacingBetweenCells: CGFloat = 10
@@ -339,12 +369,15 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
         
         let cellWidth = availableWidth / numberOfItemsPerRow
         
-            //print("Image Cell is true")
-            dynamicHeight = cellWidth * 1.0
-            return CGSize(width: max(0, cellWidth), height: cellWidth * 1.0)
-     
+        //print("Image Cell is true")
+        dynamicHeight = cellWidth * 1.0
+        return CGSize(width: max(0, cellWidth), height: cellWidth * 1.0)
+        
         
     }
+    
+    
+    
     
     
     
@@ -361,13 +394,191 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //print("Image Path is ", imagePathName)
-      
-            if
-               let imgName = sharedImageData[indexPath.row].img_name {
-                let imagePath = imgName
-                print("Selected Image Path: \(imagePath)")
-            }
-       
+
+        if
+            let imgName = sharedImageData[indexPath.row].img_name {
+            let imagePath = imgName
+            print("Selected Image Path: \(imagePath)")
+        }
+        
+        let allImgCollection = sharedImageData
+        // The index the user tapped
+        let tappedIndex = indexPath.row
+        
+        // 1. Pull out the tapped image
+        let firstImage = allImgCollection[tappedIndex]
+        
+        let remaining = allImgCollection.enumerated()
+            .filter { $0.offset != tappedIndex }   // drop the tapped one
+            .map { $0.element }                     // extract the image objects
+        let reordered = [firstImage] + remaining
+        
+        let previewVC = SharedImgPreviewViewController()
+        previewVC.sharedImageSet = reordered
+        
+        navigationController?.pushViewController(previewVC, animated: true)
+        
+        
     }
+    
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if isShareByMe == true {
+            let position = scrollView.contentOffset.y
+            let contentHeight = collView.contentSize.height
+            let frameHeight = scrollView.frame.size.height
+            
+            if position > (contentHeight - frameHeight - 20), !isPgnatingImgShareByMe {
+                
+                paginatingSharingByMe()
+            }
+            
+        } else {
+            
+            let position = scrollView.contentOffset.y
+            let contentHeight = collView.contentSize.height
+            let frameHeight = scrollView.frame.size.height
+            
+            if position > (contentHeight - frameHeight - 20), !isPgnatingImgShareWithMe {
+                
+                paginatingSharingWithMe()
+            }
+            
+        }
+        
+        
+    }
+    
+    
+    
+    func paginatingSharingByMe(){
+        
+        isPgnatingImgShareByMe = true
+        
+        currentImgPgShareByMe += 1
+        
+        guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
+            return
+        }
+        
+        
+        sharedImageByMeViewModel.requestModel.limit = "10"
+        sharedImageByMeViewModel.requestModel.offset = "\(currentImgPgShareByMe)"
+        sharedImageByMeViewModel.requestModel.usercode = storedCode
+        sharedImageByMeViewModel.requestModel.sharetype = "byme"
+        
+        activityIndicator.startAnimating()
+        
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                // self.stopCustomLoader()
+                self.isPgnatingImgShareByMe = false
+                switch result {
+                case .goAhead:
+                    print("Shared Catalogue View Model From Shared Catalogue View Controller")
+                    guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        return
+                    }
+                    
+                    if value.count == 0 {
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
+                        
+                    } else {
+                        
+                       // self.sharedByMeList(offSet: "\(self.currentImgPgShareByMe)")
+                        self.sharedImageData.append(contentsOf: value)
+                        
+                        self.collView.reloadData()
+                        
+                        self.activityIndicator.stopAnimating()
+                        
+                    }
+                    
+                case .heyStop:
+                    print("Error")
+                    //self.stopCustomLoader()
+                    
+                    self.activityIndicator.stopAnimating()
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    
+    func paginatingSharingWithMe(){
+        
+        isPgnatingImgShareWithMe = true
+        
+        currentImgPgShareWithMe += 1
+        
+        guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
+            return
+        }
+        
+        
+        sharedImageByMeViewModel.requestModel.limit = "10"
+        sharedImageByMeViewModel.requestModel.offset = "\(currentImgPgShareWithMe)"
+        sharedImageByMeViewModel.requestModel.usercode = storedCode
+        sharedImageByMeViewModel.requestModel.sharetype = "withme"
+        
+        activityIndicator.startAnimating()
+        
+        sharedImageByMeViewModel.sharedImageByMeViewModel(request: sharedImageByMeViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                // self.stopCustomLoader()
+                self.activityIndicator.stopAnimating()
+                self.isPgnatingImgShareWithMe = false
+                switch result {
+                case .goAhead:
+                    print("Shared Catalogue View Model From Shared Catalogue View Controller")
+                    guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        return
+                    }
+                    
+                    if value.count == 0 {
+                        self.activityIndicator.stopAnimating()
+                        self.activityIndicator.isHidden = true
+                    } else {
+                        
+                       // self.sharedByMeList(offSet: "\(self.currentImgPgShareByMe)")
+                        self.sharedImageData.append(contentsOf: value)
+                        
+                        self.collView.reloadData()
+                    }
+                    
+                case .heyStop:
+                    print("Error")
+ 
+                }
+            }
+        }
+        
+        
+        
+    }
+    
+    func fetchImageURL(for index: Int) -> String? {
+        guard index < sharedImageData.count,
+              let path = sharedImageByMeViewModel.responseModel?.path,
+              let name = sharedImageData[index].img_name else {
+            return nil
+        }
+        return path + name
+    }
+
 }
+
+
+
+
+
+
+

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SharedImageByMeVC" customModule="Emotipics" customModuleProvider="target">
             <connections>
+                <outlet property="catalogueImgName" destination="b2v-iM-jtl" id="cAu-JC-v2I"/>
                 <outlet property="collView" destination="06A-NR-fNu" id="Dal-6Z-h4D"/>
                 <outlet property="roundedView" destination="RWK-HA-ChM" id="EK2-4M-1SW"/>
                 <outlet property="segmentControlShared" destination="O78-wc-8EP" id="uBI-cU-iYN"/>
@@ -50,6 +51,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain"/>
+                                            <connections>
+                                                <action selector="dismissView:" destination="-1" eventType="touchUpInside" id="sA3-zU-QlP"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -152,12 +156,12 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y97-qL-FrH" userLabel="MyCatalogueView">
                     <rect key="frame" x="0.0" y="193" width="393" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catalogue Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2v-iM-jtl">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shared Images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2v-iM-jtl">
                             <rect key="frame" x="13" y="11" width="136" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="136" id="Zaa-D7-Izt"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>

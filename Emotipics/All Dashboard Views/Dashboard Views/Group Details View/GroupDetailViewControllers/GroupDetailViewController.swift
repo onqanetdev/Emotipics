@@ -572,9 +572,6 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         let reordered = [firstImage] + remaining
         
         let previewVC = GroupImagePreviewController()
-        
-      //  previewVC.isGrpDetailImg = true
-        
         previewVC.groupImageSet = reordered
         
         navigationController?.pushViewController(previewVC, animated: true)

@@ -284,8 +284,7 @@ extension ContactsViewController: UITableViewDelegate , UITableViewDataSource, U
 
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! EntryTableViewCell
         
-//        cell.sarahLbl.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.name
-//        cell.associatedEmailTxtFld.text = allContactsViewModel.responseModel?.data?[indexPath.row].contactdetails?.email
+
         
         cell.sarahLbl.text = contactsData[indexPath.row].contactdetails?.name
         cell.associatedEmailTxtFld.text = contactsData[indexPath.row].contactdetails?.email

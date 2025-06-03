@@ -826,6 +826,15 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     
+    
+    @IBAction func viewAllSharedImage(_ sender: Any) {
+        
+        navigationController?.pushViewController(SharedImageByMeVC(), animated: true)
+    }
+    
+    
+    
+    
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         

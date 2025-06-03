@@ -89,7 +89,7 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                 cell.startCustomLoader()
 
    
-                if let imageURL = sharedImageByMeViewModel.fetchImageURL(for: indexPath.row) {
+                if let imageURL = fetchImageURL(for: indexPath.row) {
                     
                     // Check the cache first
                     if let cachedImage = imageCache[imageURL] {
@@ -216,5 +216,12 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     
     
-    
+    func fetchImageURL(for index: Int) -> String? {
+        guard index < sharedImageData.count,
+              let path = sharedImageByMeViewModel.responseModel?.path,
+              let name = sharedImageData[index].img_name else {
+            return nil
+        }
+        return path + name
+    }
 }

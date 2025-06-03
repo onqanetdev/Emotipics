@@ -38,13 +38,13 @@ class SharedImageByMeViewModel {
     
     
 
-    func fetchImageURL(for index: Int) -> String? {
-        guard let imgPath = responseModel?.path,
-              let imgName = responseModel?.data?[index].img_name else {
-            return nil
-        }
-        return imgPath + imgName
-    }
+//    func fetchImageURL(for index: Int) -> String? {
+//        guard let imgPath = responseModel?.path,
+//              let imgName = responseModel?.data?[index].img_name else {
+//            return nil
+//        }
+//        return imgPath + imgName
+//    }
 
     
     

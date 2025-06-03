@@ -247,7 +247,7 @@ extension NewCatalogueVC: UIScrollViewDelegate {
     func paginatingCatalogue(){
         
         isPaginating = true
-//        activityIndicator.startAnimating()
+
         currentPage += 1
         
         

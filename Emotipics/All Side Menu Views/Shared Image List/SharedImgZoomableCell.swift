@@ -1,15 +1,15 @@
 //
-//  ZoomableImageCell.swift
+//  SharedImgZoomableCell.swift
 //  Emotipics
 //
-//  Created by Onqanet on 21/05/25.
+//  Created by Onqanet on 03/06/25.
 //
 
 import UIKit
 
-class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
+class SharedImgZoomableCell: UICollectionViewCell, UIScrollViewDelegate {
     
-    static let identifier = "ZoomableImageCell"
+    static let identifier = "ZoomableSharedImgCell"
     
     private let scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -27,16 +27,8 @@ class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
     
     // MARK: - Overlay Buttons
     let downloadButton = UIButton(type: .system)
-    let shareButton = UIButton(type: .system)
+    
     let deleteButton = UIButton(type: .system)
-    
-    
-    //MARK: - Other Buttons
-    let birthdayButton = UIButton(type: .system)
-    let copyIconButton = UIButton(type: .system)
-    let moveIconButton = UIButton(type: .system)
-    
-    
     
     
     var activityIndicator: UIActivityIndicatorView = {
@@ -81,7 +73,7 @@ class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
         let buttonSize: CGFloat = 44
         let spacing: CGFloat = 16
         //let startY = contentView.bounds.height / 2 - (buttonSize * 1.5 + spacing)
-        let startY = contentView.bounds.height / 2 - (buttonSize * 3.5 + spacing)
+        let startY = contentView.bounds.height / 2 - (buttonSize * 1.0 + spacing)
         let rightMargin: CGFloat = 16
         
         downloadButton.frame = CGRect(x: contentView.bounds.width - buttonSize - rightMargin,
@@ -89,31 +81,15 @@ class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
                                       width: buttonSize,
                                       height: buttonSize)
         
-        shareButton.frame = CGRect(x: downloadButton.frame.origin.x,
-                                   y: downloadButton.frame.maxY + spacing,
-                                   width: buttonSize,
-                                   height: buttonSize)
+       
         
-        deleteButton.frame = CGRect(x: shareButton.frame.origin.x,
-                                    y: shareButton.frame.maxY + spacing,
+        deleteButton.frame = CGRect(x: downloadButton.frame.origin.x,
+                                    y: downloadButton.frame.maxY + spacing,
                                     width: buttonSize,
                                     height: buttonSize)
         
-        //MARK: -  Other Button
-        
-        birthdayButton.frame = CGRect(x: deleteButton.frame.origin.x,
-                                      y: deleteButton.frame.maxY + spacing,
-                                      width: buttonSize,
-                                      height: buttonSize)
-        copyIconButton.frame = CGRect(x: birthdayButton.frame.origin.x,
-                                      y: birthdayButton.frame.maxY + spacing,
-                                      width: buttonSize,
-                                      height: buttonSize)
-        
-        moveIconButton.frame = CGRect(x: copyIconButton.frame.origin.x,
-                                      y: copyIconButton.frame.maxY + spacing,
-                                      width: buttonSize,
-                                      height: buttonSize)
+      
+       
         
     }
     
@@ -135,22 +111,17 @@ class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
         
         //MARK: Rest of the Buttons
         
-        configureButtonMyButton(birthdayButton, named: "BirthdayIcon")
-        configureButtonMyButton(copyIconButton, named: "CopyIcon")
-        configureButtonMyButton(moveIconButton, named: "MoveIcon")
-        configureButtonMyButton(shareButton, named: "ShareIcon")
+        
         configureButtonMyButton(deleteButton, named: "DeleteIcon")
         configureButtonMyButton(downloadButton, named: "DownloadIcon")
         
         contentView.addSubview(downloadButton)
-        contentView.addSubview(shareButton)
+       
         contentView.addSubview(deleteButton)
         
         //MARK: - Content View add Other buttons
         
-        contentView.addSubview(birthdayButton)
-        contentView.addSubview(copyIconButton)
-        contentView.addSubview(moveIconButton)
+       
     }
     
     private func configureButton(_ button: UIButton, systemName: String) {
@@ -173,9 +144,4 @@ class ZoomableImageCell: UICollectionViewCell, UIScrollViewDelegate {
         button.clipsToBounds = true
     }
 }
-
-
-
-
-
 

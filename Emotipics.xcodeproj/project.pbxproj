@@ -215,6 +215,8 @@
 		8A707E402DCA178000054756 /* AddEmojiReactReqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E3F2DCA178000054756 /* AddEmojiReactReqModel.swift */; };
 		8A707E422DCA18A300054756 /* GroupAddReactAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */; };
 		8A707E442DCA1E9800054756 /* AddEmojiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */; };
+		8A71E17A2DEF0D630046DF88 /* SharedImgPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A71E1792DEF0D630046DF88 /* SharedImgPreviewViewController.swift */; };
+		8A71E17C2DEF18700046DF88 /* SharedImgZoomableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A71E17B2DEF18700046DF88 /* SharedImgZoomableCell.swift */; };
 		8A7F31952D9E50CA00288E29 /* LoginPinResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */; };
 		8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */; };
 		8A7F31992D9E5CB600288E29 /* LoginSetPinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */; };
@@ -527,6 +529,8 @@
 		8A707E3F2DCA178000054756 /* AddEmojiReactReqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmojiReactReqModel.swift; sourceTree = "<group>"; };
 		8A707E412DCA18A300054756 /* GroupAddReactAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupAddReactAPICaller.swift; sourceTree = "<group>"; };
 		8A707E432DCA1E9700054756 /* AddEmojiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEmojiViewModel.swift; sourceTree = "<group>"; };
+		8A71E1792DEF0D630046DF88 /* SharedImgPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgPreviewViewController.swift; sourceTree = "<group>"; };
+		8A71E17B2DEF18700046DF88 /* SharedImgZoomableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedImgZoomableCell.swift; sourceTree = "<group>"; };
 		8A7F31942D9E50CA00288E29 /* LoginPinResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinResponseModel.swift; sourceTree = "<group>"; };
 		8A7F31962D9E5C5600288E29 /* LoginPinRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinRequestModel.swift; sourceTree = "<group>"; };
 		8A7F31982D9E5CB600288E29 /* LoginSetPinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSetPinViewModel.swift; sourceTree = "<group>"; };
@@ -775,6 +779,8 @@
 			children = (
 				8A075C9B2DB9FE11004554E2 /* SharedImageByMeVC.swift */,
 				8A075C9C2DB9FE11004554E2 /* SharedImageByMeVC.xib */,
+				8A71E1792DEF0D630046DF88 /* SharedImgPreviewViewController.swift */,
+				8A71E17B2DEF18700046DF88 /* SharedImgZoomableCell.swift */,
 			);
 			path = "Shared Image List";
 			sourceTree = "<group>";
@@ -2048,6 +2054,7 @@
 				8A4616452DA91DCF00661A9C /* SharedInformationVC.swift in Sources */,
 				8A6AB5F32D967DFB00775D5C /* AlertView.swift in Sources */,
 				8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */,
+				8A71E17A2DEF0D630046DF88 /* SharedImgPreviewViewController.swift in Sources */,
 				8A0368692DC22B1C00995B8E /* CatalogueUserListResModel.swift in Sources */,
 				8A192B6D2DC8CE3E007F5868 /* DeleteGroupImageAPICaller.swift in Sources */,
 				8A5333352D91151F00B524A7 /* MyAccountDetailsVC.swift in Sources */,
@@ -2235,6 +2242,7 @@
 				8AC269492DB8CE5B00B4EEDF /* AddImageShareAPICaller.swift in Sources */,
 				8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
+				8A71E17C2DEF18700046DF88 /* SharedImgZoomableCell.swift in Sources */,
 				8A00BA252DBF712900513C44 /* SubmitButton.swift in Sources */,
 				8A97F7972DA7A06400D53C9C /* DeleteCatalogPopVC.swift in Sources */,
 				8A707E2C2DC9EB7F00054756 /* GroupEmojiListReqModel.swift in Sources */,
