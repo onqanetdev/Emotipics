@@ -164,9 +164,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
         if collectionView == catalogueCollView {
             
             selectedIndexPath = indexPath
-            
-//            UserDefaults.standard.set(selectedIndexPath, forKey: "selectedIndexCatalogue")
-            
+        
             UserDefaults.standard.set(indexPath.row, forKey: "selectedIndexRowCatalogue")
 
             

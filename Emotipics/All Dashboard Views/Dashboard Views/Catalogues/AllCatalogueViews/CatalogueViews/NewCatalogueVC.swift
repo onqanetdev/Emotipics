@@ -237,6 +237,13 @@ class NewCatalogueVC: UIViewController {
                         self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
                         
                         
+                        DispatchQueue.main.async {
+                            if let selectedIndexPath = self.selectedIndexPath {
+                                self.catalogueCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                            }
+                        }
+                        
+                        
                         self.catalogueCollView.reloadData()
                         self.photoCollView.reloadData()
                     }
