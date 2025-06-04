@@ -351,10 +351,6 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
                     self.totalStorageGB     = total
                     self.remainingStorageGB = remaining
                     
-//                    print("Total Storage 🦠🦠🦠🦠🦠", self.totalStorageGB)
-//                    print("Remaining Storage 🦠🦠🦠🦠🦠🦠", self.remainingStorageGB )
-
-                    
                     let usedGB = self.totalStorageGB  - self.remainingStorageGB
                     
                     self.fifteenGbLbl.text = String(format: "%.2f", usedGB) + "%"
@@ -400,12 +396,6 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
     }
 
-    
-    
-
-    
-    
-
     //MARK: Font Family Settigs
     private func settingUpFonts() {
         //         let inputFont = "Lato-Regular"
@@ -422,11 +412,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         photosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
 //        videosLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
         nineGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-//        sixGbLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 13)
-        //settings ups for fonts poppins-medium
-        
-      //  priceTagLbl.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 13)
-      //  viewPlansBtn.titleLabel?.font = UIFont(name: textInputStyle.poppinsMedium.rawValue, size: 14)
+
     }
     
     
@@ -532,9 +518,6 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     
     @IBAction func allCatalogueAction(_ sender: Any) {
-        
-        
-//        navigationController?.pushViewController(CatalogueViewController(), animated: true)
         
         navigationController?.pushViewController(NewCatalogueVC(), animated: true)
         

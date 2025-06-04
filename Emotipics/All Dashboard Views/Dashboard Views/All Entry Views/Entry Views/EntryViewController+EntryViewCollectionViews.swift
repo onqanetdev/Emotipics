@@ -75,60 +75,52 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             return cell
     
-        } else  {
-            
-            
+        } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
+            cell.imgViewColl.image = nil
+            cell.startCustomLoader()
             
-            if sharedImageData.count == 0 || sharedImageData.isEmpty {
+            if sharedImageData.count > indexPath.row {
                 
-            } else {
-                cell.imgViewColl.image = nil
-                cell.startCustomLoader()
-
-   
                 if let imageURL = fetchImageURL(for: indexPath.row) {
                     
-                    // Check the cache first
+                    // Assign unique tag to validate later
+                    cell.tag = indexPath.row
+                    
                     if let cachedImage = imageCache[imageURL] {
                         cell.imgViewColl.image = cachedImage
                         cell.stopCustomLoader()
                     } else {
-                        cell.imgViewColl.image = nil
-                        cell.startCustomLoader()
-
+                        // Start background image loading
                         DispatchQueue.global().async {
                             if let url = URL(string: imageURL),
                                let data = try? Data(contentsOf: url),
                                let image = UIImage(data: data) {
-
+                                
                                 DispatchQueue.main.async {
-                                    self.imageCache[imageURL] = image
-                                    print("✅ Cached image for URL: \(imageURL)")
-                                       print("🧠 Current cache count: \(self.imageCache.count)")
-                                       print("📸 Cached keys: \(self.imageCache.keys)")
-                                    
-                                    cell.imgViewColl.image = image
-                                    cell.stopCustomLoader()
+                                    // Ensure cell hasn't been reused
+                                    if cell.tag == indexPath.row {
+                                        self.imageCache[imageURL] = image
+                                        cell.imgViewColl.image = image
+                                        cell.stopCustomLoader()
+                                    }
                                 }
                             } else {
                                 DispatchQueue.main.async {
-                                    cell.stopCustomLoader()
+                                    if cell.tag == indexPath.row {
+                                        cell.stopCustomLoader()
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
-                
-                
             }
-            
-            
             return cell
         }
+        
     }
     
     
@@ -210,6 +202,30 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
         }
         else if collectionView == sharedImageCollView {
+            
+            
+            if
+                let imgName = sharedImageData[indexPath.row].img_name {
+                let imagePath = imgName
+                print("Selected Image Path: \(imagePath)")
+            }
+            
+            let allImgCollection = sharedImageData
+            // The index the user tapped
+            let tappedIndex = indexPath.row
+            
+            // 1. Pull out the tapped image
+            let firstImage = allImgCollection[tappedIndex]
+            
+            let remaining = allImgCollection.enumerated()
+                .filter { $0.offset != tappedIndex }   // drop the tapped one
+                .map { $0.element }                     // extract the image objects
+            let reordered = [firstImage] + remaining
+            
+            let previewVC = SharedImgPreviewViewController()
+            previewVC.sharedImageSet = reordered
+            
+            navigationController?.pushViewController(previewVC, animated: true)
             print("From SharedImageCollView")
         }
     }

@@ -17,6 +17,8 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
     
     var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
     
+    var shareImgDeleteViewModel: ShareImgDeleteViewModel = ShareImgDeleteViewModel()
+    
     private var loaderView: ImageLoaderView?
     
     var imageIndex = 0
@@ -70,14 +72,14 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
     func deleteImage(indexTag: Int) {
        
         startCustomLoader()
-        guard let imageCode = sharedImageSet[indexTag].id else {
+        guard let sharedImgCode = sharedImageSet[indexTag].id else {
             return
         }
         
         imageIndex = indexTag
         
-        imageDeleteViewModel.requestModel.image_id = imageCode
-        imageDeleteViewModel.deleteImage(request:imageDeleteViewModel.requestModel) { result in
+        shareImgDeleteViewModel.requestModel.sharedId = "\(sharedImgCode)"
+        shareImgDeleteViewModel.shareImgDeleteViewModel(request:shareImgDeleteViewModel.requestModel) { result in
             DispatchQueue.main.async {
                // self.activityIndicator.stopAnimating()
                 self.stopCustomLoader()
@@ -88,9 +90,7 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
                     DispatchQueue.main.async {
                         //self.contactsTblView.reloadData()
                         self.dismiss(animated: true )
-                        
-                        
-                        
+                    
                         self.sharedImageSet.remove(at: self.imageIndex)
                         self.collectionView.reloadData()
                         //self.deleteDelegate?.updateUI()
@@ -179,9 +179,7 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
     // MARK: - Button Actions
     
     @objc private func didTapDownload(_ sender: UIButton) {
-        
-
-        
+    
         
         if
            let imgLastPath = sharedImageSet[sender.tag].img_name,
@@ -228,20 +226,10 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
        
     }
     
-    @objc private func didTapShare(_ sender: UIButton) {
-               
-        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
-        vc.modalPresentationStyle = .fullScreen
-        //vc.catalogueName = "Demo"
-        vc.shareImage = true
-        guard let imageId = sharedImageSet[sender.tag].id else {
-            return
-        }
-        vc.imgId = imageId
+    
 
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
-    }
+    
+    
     
     @objc private func didTapDelete(_ sender: UIButton) {
             
@@ -249,31 +237,10 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
         
     }
     
-    @objc private func didTapBirthday(_ sender: UIButton) {
-        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
-        vc.modalPresentationStyle = .fullScreen
-        vc.catalogueName = "Demo"
-        vc.isBirthday = true
-       
-        guard let imageId = sharedImageSet[sender.tag].id,
-             
-              let imgURLlastPath = sharedImageSet[sender.tag].img_name else {
-            return
-        }
-        
-        //print("Desired Image URL--->", imgURLFirstPath + imgURLlastPath)
-        vc.imgId = imageId
-        vc.imageURL = imgURLlastPath
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
-        
-        
-    }
+
     
     
-    @objc private func didTapCopy(_ sender: UIButton){
-        
-    }
+ 
     
     
     

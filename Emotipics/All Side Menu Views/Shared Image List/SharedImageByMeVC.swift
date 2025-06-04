@@ -79,6 +79,14 @@ class SharedImageByMeVC: UIViewController {
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        sharedByMeList()
+    }
+    
+    
+    
+    
     func updateContentForSelectedSegment(_ selectedIndex: Int) {
         // This is where you would update your UI based on which segment is selected
         
