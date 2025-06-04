@@ -9,8 +9,6 @@ import UIKit
 
 class SharedImageByMeVC: UIViewController {
     
-    
-    
     @IBOutlet weak var roundedView: UIView!{
         didSet{
             roundedView.layer.cornerRadius = 35
@@ -58,6 +56,12 @@ class SharedImageByMeVC: UIViewController {
     var isShareWithMe: Bool = false
     var isShareByMe: Bool = true
     
+    
+    
+
+    var previousSelectedIndex: Int = 0
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,6 +80,13 @@ class SharedImageByMeVC: UIViewController {
             activityIndicator.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+        
+        
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(segmentTappedAgain(_:)))
+        tapGesture.cancelsTouchesInView = false // ✅ allows segmented control to still work
+        segmentControlShared.addGestureRecognizer(tapGesture)
+
     }
     
     
@@ -85,34 +96,6 @@ class SharedImageByMeVC: UIViewController {
     }
     
     
-    
-    
-    func updateContentForSelectedSegment(_ selectedIndex: Int) {
-        // This is where you would update your UI based on which segment is selected
-        
-        
-        if selectedIndex == 0 {
-            isShareByMe = true
-            isShareWithMe = false
-            currentImgPgShareByMe = 1
-            sharedImageData.removeAll()
-            collView.reloadData()
-            imageCache = [:]
-            sharedByMeList()
-        } else {
-            isShareByMe = false
-            isShareWithMe = true
-            currentImgPgShareWithMe = 1
-            sharedImageData.removeAll()
-            collView.reloadData()
-            imageCache = [:]
-            sharedWithMeList()
-        }
-
-        
-        
-    }
-
     
     func sharedByMeList() {
         guard let storedCode = UserDefaults.standard.string(forKey: "userCode") else {
@@ -285,20 +268,61 @@ class SharedImageByMeVC: UIViewController {
     
     
     @IBAction func changingSegments(_ sender: Any) {
-        
-        UIView.animate(withDuration: 0.3) {
-            // Find the underline view
-            if let underlineView = (sender as AnyObject).subviews.first(where: { $0.tag == 999 }) {
-                let underlineWidth = (sender as AnyObject).frame.width / CGFloat((sender as AnyObject).numberOfSegments)
-                let underlineXPosition = CGFloat((sender as AnyObject).selectedSegmentIndex) * underlineWidth
-                underlineView.frame.origin.x = underlineXPosition
-            }
-        }
-        
-        // Handle the segment change
-        updateContentForSelectedSegment((sender as AnyObject).selectedSegmentIndex)
+        let selectedIndex = (sender as AnyObject).selectedSegmentIndex
+        print("Segment Changed to index: \(selectedIndex)")
+        updateContentForSelectedSegment(selectedIndex ?? 0)
+        previousSelectedIndex = selectedIndex ?? 0
     }
+
+    func animateUnderlineToSelectedSegment(_ selectedIndex: Int) {
+        guard let segmentedControl = segmentControlShared,
+              let underlineView = segmentedControl.subviews.first(where: { $0.tag == 999 }) else { return }
+
+        let segmentWidth = segmentedControl.frame.width / CGFloat(segmentedControl.numberOfSegments)
+        let underlineX = CGFloat(selectedIndex) * segmentWidth
+
+        UIView.animate(withDuration: 0.3) {
+            underlineView.frame.origin.x = underlineX
+        }
+    }
+
     
+    
+    func updateContentForSelectedSegment(_ selectedIndex: Int) {
+        print("Updating UI for segment: \(selectedIndex)")
+        animateUnderlineToSelectedSegment(selectedIndex)
+        
+        sharedImageData.removeAll()
+        collView.reloadData()
+        imageCache = [:]
+
+        if selectedIndex == 0 {
+            isShareByMe = true
+            isShareWithMe = false
+            currentImgPgShareByMe = 1
+            sharedByMeList()
+        } else {
+            isShareByMe = false
+            isShareWithMe = true
+            currentImgPgShareWithMe = 1
+            sharedWithMeList()
+        }
+    }
+
+    
+    @objc func segmentTappedAgain(_ gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: segmentControlShared)
+        let segmentWidth = segmentControlShared.bounds.width / CGFloat(segmentControlShared.numberOfSegments)
+        let tappedIndex = Int(location.x / segmentWidth)
+
+        if tappedIndex == segmentControlShared.selectedSegmentIndex {
+            print("Tapped again on SAME segment: \(tappedIndex)")
+            updateContentForSelectedSegment(tappedIndex)
+        }
+    }
+
+
+
 }
 
 
@@ -317,55 +341,107 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
     
     
     
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
+//        cell.layer.cornerRadius = 15
+//        cell.clipsToBounds = true
+//        
+//        if sharedImageData.count == 0 || sharedImageData.isEmpty {
+//            
+//        } else {
+//            cell.imgViewColl.image = nil
+//            // cell.startCustomLoader()
+//            cell.activityIndicator.startAnimating()
+//            
+//            if let imageURL = fetchImageURL(for: indexPath.row) {
+//                
+//                // Check the cache first
+//                if let cachedImage = imageCache[imageURL] {
+//                    cell.imgViewColl.image = cachedImage
+//                    // cell.stopCustomLoader()
+//                    cell.activityIndicator.stopAnimating()
+//                } else {
+//                    cell.imgViewColl.image = nil
+//                    //  cell.startCustomLoader()
+//                    cell.activityIndicator.startAnimating()
+//                    DispatchQueue.global().async {
+//                        if let url = URL(string: imageURL),
+//                           let data = try? Data(contentsOf: url),
+//                           let image = UIImage(data: data) {
+//                            
+//                            DispatchQueue.main.async {
+//                                self.imageCache[imageURL] = image
+//
+//                                cell.imgViewColl.image = image
+//                                //   cell.stopCustomLoader()
+//                                cell.activityIndicator.stopAnimating()                            }
+//                        } else {
+//                            DispatchQueue.main.async {
+//                                //   cell.stopCustomLoader()
+//                                cell.activityIndicator.stopAnimating()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//            
+//        }
+//
+//        return cell
+//    }
+    
+    
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
         cell.layer.cornerRadius = 15
         cell.clipsToBounds = true
+        cell.imgViewColl.image = nil
+        cell.activityIndicator.startAnimating()
         
-        if sharedImageData.count == 0 || sharedImageData.isEmpty {
-            
-        } else {
-            cell.imgViewColl.image = nil
-            // cell.startCustomLoader()
-            cell.activityIndicator.startAnimating()
-            
+        // Assign unique tag for reuse check
+        cell.tag = indexPath.row
+
+        if sharedImageData.count > indexPath.row {
             if let imageURL = fetchImageURL(for: indexPath.row) {
                 
-                // Check the cache first
                 if let cachedImage = imageCache[imageURL] {
                     cell.imgViewColl.image = cachedImage
-                    // cell.stopCustomLoader()
                     cell.activityIndicator.stopAnimating()
                 } else {
-                    cell.imgViewColl.image = nil
-                    //  cell.startCustomLoader()
-                    cell.activityIndicator.startAnimating()
                     DispatchQueue.global().async {
                         if let url = URL(string: imageURL),
                            let data = try? Data(contentsOf: url),
                            let image = UIImage(data: data) {
                             
                             DispatchQueue.main.async {
-                                self.imageCache[imageURL] = image
-
-                                cell.imgViewColl.image = image
-                                //   cell.stopCustomLoader()
-                                cell.activityIndicator.stopAnimating()                            }
+                                if cell.tag == indexPath.row {
+                                    self.imageCache[imageURL] = image
+                                    cell.imgViewColl.image = image
+                                    cell.activityIndicator.stopAnimating()
+                                }
+                            }
                         } else {
                             DispatchQueue.main.async {
-                                //   cell.stopCustomLoader()
-                                cell.activityIndicator.stopAnimating()
+                                if cell.tag == indexPath.row {
+                                    cell.activityIndicator.stopAnimating()
+                                }
                             }
                         }
                     }
                 }
             }
-            
         }
-
+        
         return cell
     }
+
+    
+    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numberOfItemsPerRow: CGFloat = 2
@@ -588,5 +664,11 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
 
 
 
+//class PassThroughTapGestureRecognizer: UITapGestureRecognizer {
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+//        self.state = .failed // Allow segmented control to handle the touch
+//        super.touchesBegan(touches, with: event)
+//    }
+//}
 
 

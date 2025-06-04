@@ -80,8 +80,8 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             cell.layer.cornerRadius = 15
             cell.clipsToBounds = true
             cell.imgViewColl.image = nil
-            cell.startCustomLoader()
-            
+            //cell.startCustomLoader()
+            cell.activityIndicator.startAnimating()
             if sharedImageData.count > indexPath.row {
                 
                 if let imageURL = fetchImageURL(for: indexPath.row) {
@@ -91,7 +91,8 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                     
                     if let cachedImage = imageCache[imageURL] {
                         cell.imgViewColl.image = cachedImage
-                        cell.stopCustomLoader()
+                        //cell.stopCustomLoader()
+                        cell.activityIndicator.stopAnimating()
                     } else {
                         // Start background image loading
                         DispatchQueue.global().async {
@@ -104,13 +105,15 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
                                     if cell.tag == indexPath.row {
                                         self.imageCache[imageURL] = image
                                         cell.imgViewColl.image = image
-                                        cell.stopCustomLoader()
+                                       // cell.stopCustomLoader()
+                                        cell.activityIndicator.stopAnimating()
                                     }
                                 }
                             } else {
                                 DispatchQueue.main.async {
                                     if cell.tag == indexPath.row {
-                                        cell.stopCustomLoader()
+                                        //cell.stopCustomLoader()
+                                        cell.activityIndicator.stopAnimating()
                                     }
                                 }
                             }
