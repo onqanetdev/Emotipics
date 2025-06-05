@@ -1,14 +1,14 @@
 //
-//  SharedImgPreviewViewController.swift
+//  SharedCatalogueImgPreviewController.swift
 //  Emotipics
 //
-//  Created by Onqanet on 03/06/25.
+//  Created by Onqanet on 05/06/25.
 //
 
 import UIKit
 import Photos
 
-class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     
     private var collectionView: UICollectionView!
@@ -26,7 +26,7 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
    // MARK: For Group Image Details
    // var isGrpDetailImg:Bool = false
 
-    var sharedImageSet:[SharedData] = []
+    var sharedImageSet:[ImageData] = []
     
     
     override func viewDidLoad() {
@@ -127,11 +127,14 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
     
             cell.activityIndicator.startAnimating()
             
-        guard let imgName = sharedImageSet[indexPath.row].img_name else {
+        guard let imgName = sharedImageSet[indexPath.row].img_name,
+              let imgPath = sharedImageSet[indexPath.row].path
+        
+        else {
                 return cell
             }
             
-            let imagePath = imgName
+            let imagePath = imgPath + imgName
             
             if let urlImage = URL(string: imagePath) {
                 URLSession.shared.dataTask(with: urlImage) { data, _, _ in
@@ -270,6 +273,3 @@ class SharedImgPreviewViewController: UIViewController, UICollectionViewDataSour
     }
     
 }
-
-
-

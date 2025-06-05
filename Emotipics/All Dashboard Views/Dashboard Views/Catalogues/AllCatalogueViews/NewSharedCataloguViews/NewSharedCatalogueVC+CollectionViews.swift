@@ -160,14 +160,53 @@ extension NewSharedCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSo
         if collectionView == shareCatalogueFolderCollView {
             selectedIndexPath = indexPath
             guard let catCode = sharedData[indexPath.row].catalog_code else { return }
+            
+             
+            if let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") {
+                print("Saved catalogue ID: \(savedCatalogueId)")
+                print("Same Id required: ", catCode)
+            }
+            catalogCode = catCode
+            currentImageSharedPage = 1
+            isPaginatingSharedImage = false
             loadAllImageCatalogue(catalogueCode: catCode)
             collectionView.reloadData()
         } else {
             
 //            guard let catCode = sharedData[indexPath.row].catalog_code else { return }
 //            loadAllImageCatalogue(catalogueCode: catCode)
+            
+            
+            
+            if
+                let imgName = imageCount[indexPath.row].img_name {
+                let imagePath = imgName
+                print("Selected Image Path: \(imagePath)")
+            }
+            
+            let allImgCollection = imageCount
+            // The index the user tapped
+            let tappedIndex = indexPath.row
+            
+            // 1. Pull out the tapped image
+            let firstImage = allImgCollection[tappedIndex]
+            
+            let remaining = allImgCollection.enumerated()
+                .filter { $0.offset != tappedIndex }   // drop the tapped one
+                .map { $0.element }                     // extract the image objects
+            let reordered = [firstImage] + remaining
+            
+            let previewVC = NewSharedCatalogueImgPreviewController()
+            previewVC.sharedImageSet = reordered
+            
+            navigationController?.pushViewController(previewVC, animated: true)
+            print("From SharedImageCollView")
+            
+            
         }
     }
 }
+
+
 
 

@@ -299,6 +299,7 @@
 		8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
+		8AE483362DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
 		8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */; };
 		8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */; };
@@ -616,6 +617,7 @@
 		8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewModel.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
+		8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharedCatalogueImgPreviewController.swift; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueResponseModel.swift; sourceTree = "<group>"; };
 		8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueRqModel.swift; sourceTree = "<group>"; };
@@ -1758,6 +1760,7 @@
 				8ACC6ED62DDC9543005787F6 /* NewSharedCatalogueVC.swift */,
 				8ACC6ED72DDC9543005787F6 /* NewSharedCatalogueVC.xib */,
 				8ACC6EDA2DDCA00E005787F6 /* NewSharedCatalogueVC+CollectionViews.swift */,
+				8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */,
 			);
 			path = NewSharedCataloguViews;
 			sourceTree = "<group>";
@@ -2137,6 +2140,7 @@
 				8A3128662D9FFFB5003FA3B8 /* AllContactsViewModel.swift in Sources */,
 				8AEADB5B2DA6537A00BF187E /* AddCatalogueApiCaller.swift in Sources */,
 				8A4983B12DCC688300220552 /* ShowEmojiListPopUpTVC.swift in Sources */,
+				8AE483362DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift in Sources */,
 				8A4353902D75760600ABB7A0 /* ViewController.swift in Sources */,
 				8A6AB5F02D966A7500775D5C /* LoginParamsStruct.swift in Sources */,
 				8A1283D82DD6EEE5009307A7 /* NewCatalogueVC.swift in Sources */,

@@ -21,11 +21,6 @@ class CatalogueImageListViewModel {
                 self?.responseModel = data
                 print("Data From CatalogueListViewModel", data)
                 completion(.goAhead)
-
-                
-                
-
-                
             case .failure(let error):
                 completion(.heyStop)
                 DispatchQueue.main.async {

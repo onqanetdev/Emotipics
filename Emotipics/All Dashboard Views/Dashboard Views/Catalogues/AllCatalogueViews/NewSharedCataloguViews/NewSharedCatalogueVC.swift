@@ -48,13 +48,6 @@ class NewSharedCatalogueVC: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
     var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     
@@ -77,6 +70,34 @@ class NewSharedCatalogueVC: UIViewController {
     
     var catalogCode = ""
     
+    
+    //Variables
+    
+    var isPaginating = false
+    var currentPage = 1
+    
+    
+    let activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    var isPaginatingSharedImage = false
+    var currentImageSharedPage = 1
+    
+    
+    let photoActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    var typeOfList = "catalog_share_byme"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -93,12 +114,30 @@ class NewSharedCatalogueVC: UIViewController {
         
         shareCataloguePhotoCollView.register(UINib(nibName: "ImageCatalogueViewCell", bundle: nil), forCellWithReuseIdentifier: "ImageCataCell")
         
-        shareByMe()
-        
+       //shareByMe()
+        shareWithMe()
         settingUpAllFonts()
+        
+        shareCatalogueFolderCollView.reloadData()
+        shareCatalogueFolderCollView.layoutIfNeeded()
+        
+        activityIndicator.center = CGPoint(x: shareCatalogueFolderCollView.contentSize.width - 30, y: shareCatalogueFolderCollView.bounds.height / 2)
+        
+        shareCatalogueFolderCollView.addSubview(activityIndicator)
+        
+        
+        photoActivityIndicator.center = CGPoint(x: shareCataloguePhotoCollView.bounds.width / 2, y: shareCataloguePhotoCollView.contentSize.height - 10)
+        shareCataloguePhotoCollView.addSubview(photoActivityIndicator)
+        
     }
 
-    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        activityIndicator.center = CGPoint(x: shareCatalogueFolderCollView.contentSize.width - 30, y: shareCatalogueFolderCollView.bounds.height / 2)
+        
+        photoActivityIndicator.center = CGPoint(x: shareCataloguePhotoCollView.bounds.width / 2, y: shareCataloguePhotoCollView.contentSize.height - 20)
+    }
     
     private func settingUpAllFonts() {
         shareByMeBtn.titleLabel?.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 15)
@@ -138,7 +177,7 @@ class NewSharedCatalogueVC: UIViewController {
                         
                         self.selectedIndexPath = IndexPath(row: 0, section: 0)
                         
-                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+//                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
                         self.selectedIndexPath?.row = 0
                         
                         self.shareCatalogueFolderCollView.reloadData()
@@ -179,10 +218,6 @@ class NewSharedCatalogueVC: UIViewController {
                         return
                     }
                     
-                    
-                    
-                    
-                    
                     if let value = self.sharedCatalogueViewModel.responseModel?.data {
                         self.sharedData = value
                         
@@ -197,9 +232,6 @@ class NewSharedCatalogueVC: UIViewController {
                         self.shareCatalogueFolderCollView.reloadData()
                         self.shareCataloguePhotoCollView.reloadData()
                     }
-                    
-                    
-                    
                     
                     self.sharedData = sharedData
                     self.shareCatalogueFolderCollView.reloadData()
@@ -220,7 +252,7 @@ class NewSharedCatalogueVC: UIViewController {
     func loadAllImageCatalogue(catalogueCode: String) {
         
         catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
-        catalogueImageListViewModel.requestModel.limit = "50"
+        catalogueImageListViewModel.requestModel.limit = "10"
         catalogueImageListViewModel.requestModel.offset = "1"
         
         startCustomLoader()
@@ -277,14 +309,17 @@ class NewSharedCatalogueVC: UIViewController {
     
     
     @IBAction func shareByMe(_ sender: Any) {
-        shareByMe()
+        //shareByMe()
+        shareWithMe()
         changingColour(shareWithMe: false)
     }
     
     
     
     @IBAction func shareWithMe(_ sender: Any) {
-        shareWithMe()
+        //shareWithMe()
+        shareByMe()
+        typeOfList = "catalog_share_byme"
         changingColour(shareWithMe: true)
     }
     
@@ -346,8 +381,146 @@ class NewSharedCatalogueVC: UIViewController {
         
     }
     
-    
-    
-    
-
 }
+
+
+
+
+extension NewSharedCatalogueVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == shareCatalogueFolderCollView {
+            let position = scrollView.contentOffset.x
+            let contentWidth = shareCatalogueFolderCollView.contentSize.width
+            let frameWidth = scrollView.frame.size.width
+            
+            if position > (contentWidth - frameWidth - 20), !isPaginating {
+                print("Reachead End🛑🛑🛑")
+                paginatingCatalogue()
+            }
+        } else {
+            
+            let position = scrollView.contentOffset.y
+                let contentHeight = shareCataloguePhotoCollView.contentSize.height
+                let frameHeight = scrollView.frame.size.height
+
+                if position > (contentHeight - frameHeight - 20), !isPaginatingSharedImage {
+                   
+                    
+                    paginatingImageList()
+                }
+            
+        }
+    }
+    
+    
+    func paginatingCatalogue(){
+        
+        isPaginating = true
+
+        currentPage += 1
+        
+        
+        sharedCatalogueViewModel.requestModel.limit = "10"
+        sharedCatalogueViewModel.requestModel.offset = "\(currentPage)"
+        sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
+        sharedCatalogueViewModel.requestModel.type_of_list = typeOfList
+        
+        activityIndicator.startAnimating()
+        
+        sharedCatalogueViewModel.catalogueListing(request: sharedCatalogueViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                //self.stopCustomLoader()
+                
+                self.activityIndicator.stopAnimating()
+                
+                self.isPaginating = false
+                
+                switch result {
+                case .goAhead:
+                    
+                    self.shareCatalogueFolderCollView.reloadData()
+                    
+                    if let value = self.sharedCatalogueViewModel.responseModel?.data {
+                        
+                        if value.count == 0 {
+                            
+                        }
+                        else {
+                        
+                        self.sharedData.append(contentsOf: value)
+                        
+                        self.catalogCode = self.sharedData[0].catalog_code ?? ""
+                        
+                        
+                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                        
+                        //self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                        self.selectedIndexPath?.row = 0
+                        
+                        self.shareCatalogueFolderCollView.reloadData()
+                        self.shareCataloguePhotoCollView.reloadData()
+                    } // else
+                }
+
+                    //self.stopCustomLoader()
+                    
+                case .heyStop:
+                    print("Error")
+                    //self.stopCustomLoader()
+                }
+            }
+        }
+    
+    }
+    
+    
+    
+    func  paginatingImageList(){
+        
+        print("Catalog Code->🛜🛜🛜🛜 " ,catalogCode)
+        isPaginatingSharedImage = true
+        currentImageSharedPage += 1
+    
+        catalogueImageListViewModel.requestModel.catalog_code = catalogCode
+        catalogueImageListViewModel.requestModel.limit = "10"
+        catalogueImageListViewModel.requestModel.offset = "\(currentImageSharedPage)"
+                
+       // startCustomLoader()
+        photoActivityIndicator.startAnimating()
+        catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                self.photoActivityIndicator.stopAnimating()
+                self.isPaginatingSharedImage = false
+                
+                switch result {
+                case .goAhead:
+                    
+                    self.photoActivityIndicator.stopAnimating()
+                    
+                    guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                        self.shareCataloguePhotoCollView.reloadData()
+                        return
+                    }
+                         
+                    self.imageCount.append(contentsOf: value)
+                    
+                    self.shareCataloguePhotoCollView.reloadData()
+                   // self.stopCustomLoader()
+                    
+                case .heyStop:
+                    self.photoActivityIndicator.stopAnimating()
+                    print("Error")
+                    //self.stopCustomLoader()
+                }
+            }
+        }
+    }
+}
+
+
+
+

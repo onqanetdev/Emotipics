@@ -82,7 +82,7 @@ extension EntryViewController {
         sharedCatalogueViewModel.requestModel.limit = "10"
         sharedCatalogueViewModel.requestModel.offset = "1"
         sharedCatalogueViewModel.requestModel.sort_folder = "DESC"
-        sharedCatalogueViewModel.requestModel.type_of_list = "share_all_catalog"
+        sharedCatalogueViewModel.requestModel.type_of_list = "catalog_share_withme"
         
         // activityIndicator.startAnimating()
         //startCustomLoader(selfView: sharedCatalogueCollView)

@@ -318,18 +318,18 @@ extension NewCatalogueVC: UIScrollViewDelegate {
         catalogueImageListViewModel.requestModel.offset = "\(currentImagePage)"
         
        // startCustomLoader()
-        activityIndicator.startAnimating()
+        photoActivityIndicator.startAnimating()
         catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 
-                self.activityIndicator.stopAnimating()
+                self.photoActivityIndicator.stopAnimating()
                 self.isPaginatingImage = false
                 
                 switch result {
                 case .goAhead:
                     
-                    self.activityIndicator.stopAnimating()
+                    self.photoActivityIndicator.stopAnimating()
                     
                     guard let value = self.catalogueImageListViewModel.responseModel?.data else {
                         self.photoCollView.reloadData()
@@ -342,13 +342,15 @@ extension NewCatalogueVC: UIScrollViewDelegate {
                    // self.stopCustomLoader()
                     
                 case .heyStop:
-                    self.activityIndicator.stopAnimating()
+                    self.photoActivityIndicator.stopAnimating()
                     print("Error")
                     //self.stopCustomLoader()
                 }
             }
         }
     }
+    
+    
 }
 
 

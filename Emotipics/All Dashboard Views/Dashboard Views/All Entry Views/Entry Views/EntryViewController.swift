@@ -118,7 +118,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     private var pertentageLbl:UILabel = {
         let label = UILabel()
         label.text = "60%"
-        label.font = UIFont(name: "Jost-Medium", size: 20)
+        label.font = UIFont(name: "Jost-Medium", size: 16)
         label.textColor = #colorLiteral(red: 0.6705882353, green: 0.8235294118, blue: 0.9843137255, alpha: 1)
         return label
     }()

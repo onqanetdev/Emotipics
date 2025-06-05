@@ -105,6 +105,13 @@ class NewCatalogueVC: UIViewController {
     }()
     
     
+    let photoActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     
     var isPaginating = false
     var currentPage = 1
@@ -141,6 +148,10 @@ class NewCatalogueVC: UIViewController {
         catalogueCollView.addSubview(activityIndicator)
         
         
+        photoActivityIndicator.center = CGPoint(x: photoCollView.bounds.width / 2, y: photoCollView.contentSize.height - 10)
+        photoCollView.addSubview(photoActivityIndicator)
+        
+        
         loadAllCatalogueData()
     }
     
@@ -157,16 +168,12 @@ class NewCatalogueVC: UIViewController {
     }
     
     
-    
-    
-    
-    
-    
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         activityIndicator.center = CGPoint(x: catalogueCollView.contentSize.width + 30, y: catalogueCollView.bounds.height / 2)
+        
+        photoActivityIndicator.center = CGPoint(x: photoCollView.bounds.width / 2, y: photoCollView.contentSize.height - 20)
     }
     
     
@@ -267,7 +274,7 @@ class NewCatalogueVC: UIViewController {
         catalogueImageListViewModel.requestModel.limit = "10"
         catalogueImageListViewModel.requestModel.offset = "1"
         
-        startCustomLoader()
+       // startCustomLoader()
         
         catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
@@ -284,7 +291,7 @@ class NewCatalogueVC: UIViewController {
                         
                         self.photoCollView.reloadData()
                         
-                        self.stopCustomLoader()
+                       // self.stopCustomLoader()
                         return
                     }
                     
@@ -303,11 +310,11 @@ class NewCatalogueVC: UIViewController {
                     
                     
                     self.photoCollView.reloadData()
-                    self.stopCustomLoader()
+                   // self.stopCustomLoader()
                     
                 case .heyStop:
                     print("Error")
-                    self.stopCustomLoader()
+                    //self.stopCustomLoader()
                 }
             }
         }

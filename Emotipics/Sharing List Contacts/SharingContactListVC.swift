@@ -93,6 +93,20 @@ class SharingContactListVC: UIViewController {
     
     
     
+    var isPaginating = false
+    var currentPage = 1
+    
+    
+    
+    private let footerActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .gray
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,7 +121,10 @@ class SharingContactListVC: UIViewController {
         loadAllContacts()
         selectedContacts = []
         
+        contactListTblView.tableFooterView = footerActivityIndicator
         
+        footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: contactListTblView.bounds.width, height: 50)
+
         
         //        print("The Catalog data is ", catalogData[shareIndex].)
     }
@@ -539,3 +556,55 @@ extension SharingContactListVC: UITableViewDelegate, UITableViewDataSource {
 
 
 
+
+extension SharingContactListVC: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let position = scrollView.contentOffset.y
+            let contentHeight = contactListTblView.contentSize.height
+            let frameHeight = scrollView.frame.size.height
+
+            if position > (contentHeight - frameHeight - 20), !isPaginating {
+                paginateContacts()
+            }
+        
+        
+    }
+    
+    
+    func paginateContacts() {
+        isPaginating = true
+        footerActivityIndicator.startAnimating()
+        currentPage += 1
+        conatactViewModel.requestModel.offSet = "\(currentPage)"
+
+        conatactViewModel.allContactList(request: conatactViewModel.requestModel) { result in
+            DispatchQueue.main.async {
+                self.footerActivityIndicator.stopAnimating()
+                self.isPaginating = false
+
+                switch result {
+                case .goAhead:
+                    print("Contacts View Count is")
+                    
+                    if let contactsViewCount = self.conatactViewModel.responseModel?.data {
+                        
+                        if contactsViewCount.count == 0 {
+                            
+                        } else {
+                            self.data.append(contentsOf: contactsViewCount)
+                        }
+                    }
+                    else {
+                        
+                    }
+                    
+                    
+                    self.contactListTblView.reloadData()
+                case .heyStop:
+                    print("Pagination failed or no more data")
+                }
+            }
+        }
+    }
+}
