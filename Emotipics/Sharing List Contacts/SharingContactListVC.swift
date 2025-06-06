@@ -17,9 +17,6 @@ class SharingContactListVC: UIViewController {
         }
     }
     
-    
-    
-    
     @IBOutlet weak var submitBtn: UIButton!{
         didSet{
             submitBtn.layer.cornerRadius = 15
@@ -27,20 +24,13 @@ class SharingContactListVC: UIViewController {
         }
     }
     
-    
-    
     @IBOutlet weak var catalogueNameLbl: UILabel!{
         didSet{
             catalogueNameLbl.isHidden = true
         }
     }
     
-    
-    
-    
     @IBOutlet weak var contactListTblView: UITableView!
-    
-    
     
     var conatactViewModel:AllContactsViewModel = AllContactsViewModel()
     var data:[Datam] = []
@@ -48,8 +38,7 @@ class SharingContactListVC: UIViewController {
     
     var shareIndex = 0
     var selectedContacts:[String] = []
-    
-    
+
     
     var  selectedContactsForShare:[String] = []
     
@@ -608,3 +597,5 @@ extension SharingContactListVC: UIScrollViewDelegate {
         }
     }
 }
+
+

@@ -15,9 +15,7 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
     
   
     
-    var imageDeleteViewModel: DeleteImageViewModel = DeleteImageViewModel()
     
-    var shareImgDeleteViewModel: ShareImgDeleteViewModel = ShareImgDeleteViewModel()
     
     private var loaderView: ImageLoaderView?
     
@@ -45,7 +43,7 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
         layout.minimumLineSpacing = 0
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.register(SharedImgZoomableCell.self, forCellWithReuseIdentifier: SharedImgZoomableCell.identifier)
+        collectionView.register(NewSharedCatalogueImgPreviewCell.self, forCellWithReuseIdentifier: NewSharedCatalogueImgPreviewCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
@@ -68,41 +66,7 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
     }
     
     
-    
-    func deleteImage(indexTag: Int) {
-       
-        startCustomLoader()
-        guard let sharedImgCode = sharedImageSet[indexTag].id else {
-            return
-        }
-        
-        imageIndex = indexTag
-        
-        shareImgDeleteViewModel.requestModel.sharedId = "\(sharedImgCode)"
-        shareImgDeleteViewModel.shareImgDeleteViewModel(request:shareImgDeleteViewModel.requestModel) { result in
-            DispatchQueue.main.async {
-               // self.activityIndicator.stopAnimating()
-                self.stopCustomLoader()
-                switch result {
-                case .goAhead:
-                    print("Success for Deleting the photo")
-                    //table View Reload Data
-                    DispatchQueue.main.async {
-                        //self.contactsTblView.reloadData()
-                        self.dismiss(animated: true )
-                    
-                        self.sharedImageSet.remove(at: self.imageIndex)
-                        self.collectionView.reloadData()
-                        //self.deleteDelegate?.updateUI()
-                    }
-                case .heyStop:
-                    print("Error")
-                }
-                
-                
-            }
-        }
-    }
+
     
     
     
@@ -116,7 +80,7 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SharedImgZoomableCell.identifier, for: indexPath) as? SharedImgZoomableCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NewSharedCatalogueImgPreviewCell.identifier, for: indexPath) as? NewSharedCatalogueImgPreviewCell else {
             return UICollectionViewCell()
         }
     
@@ -148,7 +112,7 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
                     DispatchQueue.main.async {
                         //self.imageCache[imagePath] = image // Cache the image
                         
-                        if let currentCell = collectionView.cellForItem(at: indexPath) as? SharedImgZoomableCell {
+                        if let currentCell = collectionView.cellForItem(at: indexPath) as? NewSharedCatalogueImgPreviewCell {
                             currentCell.imageView.image = image
                             // currentCell.stopCustomLoader()
                             currentCell.activityIndicator.stopAnimating()
@@ -162,8 +126,8 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
         
        
         
-        cell.deleteButton.tag = indexPath.item
-        cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
+        cell.shareButton.tag = indexPath.item
+        cell.shareButton.addTarget(self, action: #selector(didTapShare(_:)), for: .touchUpInside)
         
         //MARK: Rest of the buttons
         
@@ -230,21 +194,20 @@ class NewSharedCatalogueImgPreviewController: UIViewController, UICollectionView
     }
     
     
+    @objc private func didTapShare(_ sender: UIButton) {
+               
+        let vc = SharingContactListVC(nibName: "SharingContactListVC", bundle: nil)
+        vc.modalPresentationStyle = .fullScreen
+        vc.catalogueName = "Demo"
+        vc.shareImage = true
+        guard let imageId = sharedImageSet[sender.tag].id else {
+            return
+        }
+        vc.imgId = imageId
 
-    
-    
-    
-    @objc private func didTapDelete(_ sender: UIButton) {
-            
-        deleteImage(indexTag: sender.tag)
-        
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
-    
-
-    
-    
- 
-    
     
     
     

@@ -179,7 +179,7 @@
                                         <constraint firstItem="MCY-6g-q9U" firstAttribute="leading" secondItem="KQS-pS-FsS" secondAttribute="leading" constant="11" id="Io0-G0-Bas"/>
                                     </constraints>
                                 </view>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Mw8-fU-DMj">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Mw8-fU-DMj">
                                     <rect key="frame" x="0.0" y="50" width="393" height="600"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>

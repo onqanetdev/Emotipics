@@ -36,11 +36,6 @@ public class APICaller {
     
     static func getAllProducts(email: String, password: String, CompletionHandler: @escaping ( _ result: Result<LoginResponseModel, NetworkError>) -> Void) {
         
-        
-        
-        
-        
-        
         let urlString = baseURL + APIEndpoint.login.rawValue
     
         //1. converting this string into url
@@ -88,16 +83,6 @@ public class APICaller {
                 CompletionHandler(.failure(.canNotParseData))
             }
         }.resume()
-        
                 
-        
     }
-    
-    
-    
-    
-    
-    
-    
-
 }

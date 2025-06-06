@@ -37,15 +37,29 @@ class CopyMoveViewController: UIViewController {
     
     @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
     
-    
-    
     var imageId = 0
     var imageName = ""
     var imageSize = ""
     var typeOfAction = ""
     
+    
     var imageCopyOrMoveViewModel: ImageCopyOrMoveViewModel = ImageCopyOrMoveViewModel()
     
+    
+    var isPaginatingCatalogue = false
+    var currentCataloguePage = 1
+    
+
+    let photoActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.color = .systemOrange
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
+    
+    
+    var catalogCode = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +72,8 @@ class CopyMoveViewController: UIViewController {
         // Do any additional setup after loading the view.
         allCatalogueCollView.register(UINib(nibName: "EntryCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "Cell")
         
-        
+        photoActivityIndicator.center = CGPoint(x: allCatalogueCollView.bounds.width / 2, y: allCatalogueCollView.contentSize.height - 10)
+        allCatalogueCollView.addSubview(photoActivityIndicator)
        
     }
 
@@ -69,6 +84,9 @@ class CopyMoveViewController: UIViewController {
         //loadData()
     }
 
+    
+
+    
     
     func loadData() {
         catalogueListingViewModel.requestModel.limit = "10"
@@ -215,7 +233,7 @@ class CopyMoveViewController: UIViewController {
 extension CopyMoveViewController:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalCatalogueCount.count
-        //return 20
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -229,9 +247,6 @@ extension CopyMoveViewController:UICollectionViewDelegate, UICollectionViewDataS
         cell.fiveGbLbl.text = totalCatalogueCount[indexPath.row].catalogimagesize
         
         cell.moreFeaturesBtn.tag = indexPath.row
-        
-
-        
         
         return cell
     }
@@ -264,6 +279,9 @@ extension CopyMoveViewController:UICollectionViewDelegate, UICollectionViewDataS
         if let layout = allCatalogueCollView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.invalidateLayout() // Ensure the layout updates
         }
+        
+        
+        photoActivityIndicator.center = CGPoint(x: allCatalogueCollView.bounds.width / 2, y: allCatalogueCollView.contentSize.height - 20)
     }
     
     
@@ -286,6 +304,73 @@ extension CopyMoveViewController:UICollectionViewDelegate, UICollectionViewDataS
 
 
 
+
+extension CopyMoveViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let position = scrollView.contentOffset.y
+            let contentHeight = allCatalogueCollView.contentSize.height
+            let frameHeight = scrollView.frame.size.height
+
+            if position > (contentHeight - frameHeight - 20), !isPaginatingCatalogue {
+               
+                print("Working!!🌐")
+               // paginatingImageList()
+                paginatingCatalogueList()
+            }
+        
+    }
+    
+    func paginatingCatalogueList() {
+        isPaginatingCatalogue = true
+        currentCataloguePage += 1
+        
+        
+        catalogueListingViewModel.requestModel.limit = "10"
+        catalogueListingViewModel.requestModel.offset = "\(currentCataloguePage)"
+        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
+        
+        photoActivityIndicator.startAnimating()
+        
+        catalogueListingViewModel.catalogueListing(request: catalogueListingViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                //self.stopCustomLoader()
+                
+                self.photoActivityIndicator.stopAnimating()
+                self.isPaginatingCatalogue = false
+                
+                switch result {
+                case .goAhead:
+                    
+                    self.allCatalogueCollView.reloadData()
+                    
+                    if let value = self.catalogueListingViewModel.responseModel?.data {
+                        
+                        if value.count == 0 {
+                            
+                        }
+                        else {
+                        
+                        self.totalCatalogueCount.append(contentsOf: value)
+                        
+                        //self.catalogCode = self.totalCatalogueCount[0].catalog_code ?? ""
+                        
+                        self.allCatalogueCollView.reloadData()
+                        
+                    } // else
+                }
+                case .heyStop:
+                    print("Error")
+                    //self.stopCustomLoader()
+                }
+            }
+        }
+        
+    }
+}
 
 
 

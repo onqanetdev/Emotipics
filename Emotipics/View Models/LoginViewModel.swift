@@ -36,13 +36,6 @@ protocol LoginViewModelDelegate: AnyObject {
 }
 
 
-
-
-
-
-
-
-
 class LoginViewModel {
     var responseModel:LoginResponseModel?
     
