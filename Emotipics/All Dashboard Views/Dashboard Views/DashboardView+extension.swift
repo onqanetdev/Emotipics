@@ -252,7 +252,9 @@ extension DashboardViewController: UITabBarControllerDelegate {
             case 1:
                 // Catalogue tab
                 
-                self.navigationController?.pushViewController(CatalogueViewController(), animated: true)
+//                self.navigationController?.pushViewController(CatalogueViewController(), animated: true)
+                
+                self.navigationController?.pushViewController(NewCatalogueVC(), animated: true)
                 
             case 2:
                 // Plus tab - handled by button, reset selection

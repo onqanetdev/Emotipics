@@ -59,22 +59,10 @@
                                     <backgroundConfiguration key="background" image="ellipsis" catalog="system"/>
                                 </buttonConfiguration>
                             </button>
-                            <label userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwV-KR-nVe">
-                                <rect key="frame" x="266" y="90" width="30" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="2mq-6O-CkU"/>
-                                    <constraint firstAttribute="height" constant="30" id="sX7-LX-PUy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                                <size key="shadowOffset" width="17" height="7"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 day(s) ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMF-DE-ciQ">
-                                <rect key="frame" x="168" y="103" width="88" height="15"/>
+                                <rect key="frame" x="198" y="103" width="100" height="15"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="88" id="mXw-Ve-eEx"/>
+                                    <constraint firstAttribute="width" constant="100" id="mXw-Ve-eEx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -83,16 +71,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fMF-DE-ciQ" firstAttribute="bottom" secondItem="lwV-KR-nVe" secondAttribute="bottom" constant="-2" id="0GI-KL-JgQ"/>
                             <constraint firstItem="uDO-QE-BN3" firstAttribute="leading" secondItem="itz-HH-x4T" secondAttribute="leading" constant="20" id="46U-K3-WZQ"/>
+                            <constraint firstItem="fMF-DE-ciQ" firstAttribute="top" secondItem="9ne-0l-40v" secondAttribute="bottom" constant="25" id="5kh-cE-fov"/>
                             <constraint firstAttribute="trailing" secondItem="9ne-0l-40v" secondAttribute="trailing" constant="20" id="KYl-bf-4Zp"/>
-                            <constraint firstItem="lwV-KR-nVe" firstAttribute="trailing" secondItem="9ne-0l-40v" secondAttribute="trailing" id="Yt4-3k-YPs"/>
-                            <constraint firstItem="lwV-KR-nVe" firstAttribute="leading" secondItem="fMF-DE-ciQ" secondAttribute="trailing" constant="10" id="cWq-VR-yXR"/>
+                            <constraint firstAttribute="trailing" secondItem="fMF-DE-ciQ" secondAttribute="trailing" constant="18" id="Kwq-BG-scW"/>
                             <constraint firstItem="L89-oB-MUP" firstAttribute="top" secondItem="uDO-QE-BN3" secondAttribute="top" constant="5" id="hgQ-EA-GeM"/>
                             <constraint firstItem="9ne-0l-40v" firstAttribute="top" secondItem="uDO-QE-BN3" secondAttribute="top" constant="5" id="mDR-60-aSu"/>
                             <constraint firstItem="L89-oB-MUP" firstAttribute="leading" secondItem="uDO-QE-BN3" secondAttribute="trailing" constant="11" id="o0y-Rt-2hg"/>
                             <constraint firstItem="ACH-Gs-a2b" firstAttribute="leading" secondItem="L89-oB-MUP" secondAttribute="leading" id="pnd-fR-uwi"/>
-                            <constraint firstItem="lwV-KR-nVe" firstAttribute="top" secondItem="9ne-0l-40v" secondAttribute="bottom" constant="12" id="u6F-Zj-tD6"/>
                             <constraint firstItem="ACH-Gs-a2b" firstAttribute="top" secondItem="L89-oB-MUP" secondAttribute="bottom" constant="12" id="u7b-CE-L10"/>
                             <constraint firstItem="uDO-QE-BN3" firstAttribute="centerY" secondItem="itz-HH-x4T" secondAttribute="centerY" id="uIi-B2-oPZ"/>
                         </constraints>
@@ -112,7 +98,6 @@
                 <outlet property="daysLbl" destination="fMF-DE-ciQ" id="dc5-ha-EPP"/>
                 <outlet property="grpName" destination="L89-oB-MUP" id="AA3-Iy-thb"/>
                 <outlet property="imageViewGroup" destination="uDO-QE-BN3" id="e3Z-8J-yIJ"/>
-                <outlet property="noOfCounts" destination="lwV-KR-nVe" id="5QV-m5-PeX"/>
                 <outlet property="noOfUsers" destination="ACH-Gs-a2b" id="gsv-7x-owU"/>
             </connections>
             <point key="canvasLocation" x="238.1679389312977" y="73.943661971830991"/>

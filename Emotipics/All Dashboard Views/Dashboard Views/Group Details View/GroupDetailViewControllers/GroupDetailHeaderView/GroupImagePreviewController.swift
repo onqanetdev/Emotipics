@@ -33,8 +33,6 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         setupCollectionView()
         setupBackButton()
         
-       
-        
     }
     
     private func setupCollectionView() {
@@ -43,7 +41,7 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         layout.minimumLineSpacing = 0
         
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.register(ZoomableImageCell.self, forCellWithReuseIdentifier: ZoomableImageCell.identifier)
+        collectionView.register(GroupDetailImgCell.self, forCellWithReuseIdentifier: GroupDetailImgCell.identifier)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
@@ -88,9 +86,6 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
                     DispatchQueue.main.async {
                         //self.contactsTblView.reloadData()
                         self.dismiss(animated: true )
-                        
-                        
-                        
                         self.groupImageSet.remove(at: self.imageIndex)
                         self.collectionView.reloadData()
                         //self.deleteDelegate?.updateUI()
@@ -120,14 +115,28 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ZoomableImageCell.identifier, for: indexPath) as? ZoomableImageCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GroupDetailImgCell.identifier, for: indexPath) as? GroupDetailImgCell else {
             return UICollectionViewCell()
         }
     
-        cell.moveIconButton.isHidden = true
-        cell.deleteButton.isHidden = true
+        
+        var ownerDetailsMatch = deleteImgCheck(indexNo: indexPath.row)
+        
+        if ownerDetailsMatch {
+        
+            //cell.deleteButton.isHidden = false
+            cell.isDeleteButtonVisible = true
+            cell.setNeedsLayout()
+            
+        } else {
+            
+           // cell.deleteButton.isHidden = true
+            cell.isDeleteButtonVisible = false
+            cell.setNeedsLayout()
+        }
+
         cell.imageView.image = nil // Optional: clear image to avoid showing old image in reused cell
-        //  cell.startCustomLoader()
+       
     
             cell.activityIndicator.startAnimating()
             
@@ -150,7 +159,7 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
                     DispatchQueue.main.async {
                         //self.imageCache[imagePath] = image // Cache the image
                         
-                        if let currentCell = collectionView.cellForItem(at: indexPath) as? ZoomableImageCell {
+                        if let currentCell = collectionView.cellForItem(at: indexPath) as? GroupDetailImgCell {
                             currentCell.imageView.image = image
                             // currentCell.stopCustomLoader()
                             currentCell.activityIndicator.stopAnimating()
@@ -164,9 +173,7 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         
         cell.shareButton.tag = indexPath.item
         cell.shareButton.addTarget(self, action: #selector(didTapShare(_:)), for: .touchUpInside)
-        
-        cell.deleteButton.tag = indexPath.item
-        cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
+    
         
         //MARK: Rest of the buttons
         cell.birthdayButton.tag = indexPath.item
@@ -175,8 +182,9 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         cell.copyIconButton.tag = indexPath.item
         cell.copyIconButton.addTarget(self, action: #selector(didTapCopy(_:)), for: .touchUpInside)
         
-        
-      //  }
+        cell.deleteButton.tag = indexPath.item
+        cell.deleteButton.addTarget(self, action: #selector(didTapDelete(_:)), for: .touchUpInside)
+    
         return cell
     }
     
@@ -184,6 +192,11 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         return collectionView.bounds.size
     }
     
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Image Owner Details-???", groupImageSet[indexPath.row].user?.code)
+    }
     
     
     // MARK: - Button Actions
@@ -297,6 +310,22 @@ class GroupImagePreviewController: UIViewController, UICollectionViewDataSource,
         
         self.present(copyVC, animated: true)
     }
+    
+    func deleteImgCheck(indexNo: Int) -> Bool {
+        guard let savedUserCode = UserDefaults.standard.string(forKey: "userCode") else {
+            return false
+        }
+        
+        if  groupImageSet[indexNo].user?.code == savedUserCode {
+            print("User logged in and image user code are same")
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    
+    
     
     
     

@@ -34,19 +34,9 @@ class GroupTableViewCell: UITableViewCell {
     
     @IBOutlet weak var daysLbl: UILabel!
     
-    @IBOutlet weak var noOfCounts: UILabel!{
-        didSet {
-            noOfCounts.layer.cornerRadius = 15
-            noOfCounts.clipsToBounds = true
-        }
-    }
-    
-    
-    
-    
     @IBOutlet weak var aboutBtn: UIButton!
     
-    
+    var uploadedDays = ""
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -54,7 +44,7 @@ class GroupTableViewCell: UITableViewCell {
         grpName.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 17)
         noOfUsers.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
         daysLbl.font = UIFont(name: textInputStyle.poppinsRegular.rawValue, size: 12)
-        noOfCounts.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 12)
+//        noOfCounts.font = UIFont(name: textInputStyle.latoRegular.rawValue, size: 12)
         
     }
 

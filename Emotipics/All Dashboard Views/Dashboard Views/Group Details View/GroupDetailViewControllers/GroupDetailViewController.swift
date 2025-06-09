@@ -455,7 +455,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         cell.clipsToBounds = true
         
         cell.deleteBtnAction.isHidden = true
-        
+        cell.backGroundDeleteImgView.isHidden = true
         
         if let imagePath = groupImageData[indexPath.row].path,
            let imgName = groupImageData[indexPath.row].img_name,

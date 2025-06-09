@@ -299,6 +299,7 @@
 		8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */; };
 		8AE2BD542DAE31C300E589D6 /* SharedInformationTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */; };
 		8AE2BD552DAE31C300E589D6 /* SharedInformationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */; };
+		8AE3D04F2DF2F9E2007BE6EE /* GroupDetailImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE3D04E2DF2F9E2007BE6EE /* GroupDetailImgCell.swift */; };
 		8AE483362DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */; };
 		8AE483382DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE483372DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
@@ -618,6 +619,7 @@
 		8AE113FF2DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDetailsViewModel.swift; sourceTree = "<group>"; };
 		8AE2BD522DAE31C300E589D6 /* SharedInformationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInformationTVC.swift; sourceTree = "<group>"; };
 		8AE2BD532DAE31C300E589D6 /* SharedInformationTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SharedInformationTVC.xib; sourceTree = "<group>"; };
+		8AE3D04E2DF2F9E2007BE6EE /* GroupDetailImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailImgCell.swift; sourceTree = "<group>"; };
 		8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharedCatalogueImgPreviewController.swift; sourceTree = "<group>"; };
 		8AE483372DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharedCatalogueImgPreviewCell.swift; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -986,6 +988,7 @@
 			children = (
 				8A28FD2C2DE86BF400CC3DD2 /* GroupDetailHeaderView.swift */,
 				8AFDBDC72DE9BCFD0066E734 /* GroupImagePreviewController.swift */,
+				8AE3D04E2DF2F9E2007BE6EE /* GroupDetailImgCell.swift */,
 			);
 			path = GroupDetailHeaderView;
 			sourceTree = "<group>";
@@ -2224,6 +2227,7 @@
 				8AE114002DC4AA0B00B8CBA5 /* ProfileDetailsViewModel.swift in Sources */,
 				8AEADB5D2DA66C6500BF187E /* AddCatalogueViewModel.swift in Sources */,
 				8AF792462D9BE2FF00085FEC /* RegisterResponseModel.swift in Sources */,
+				8AE3D04F2DF2F9E2007BE6EE /* GroupDetailImgCell.swift in Sources */,
 				8A39B5CB2DCB0DF100C1FC37 /* ShowEmojiListAPICaller.swift in Sources */,
 				8A7F31972D9E5C5600288E29 /* LoginPinRequestModel.swift in Sources */,
 				8A09D3912DC394880050A3CA /* SetNewLoginPinVC.swift in Sources */,
