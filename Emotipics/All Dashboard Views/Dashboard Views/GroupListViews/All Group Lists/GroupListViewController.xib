@@ -127,11 +127,42 @@
                                         <constraint firstAttribute="bottom" secondItem="myP-TV-d7V" secondAttribute="bottom" id="sVs-Ya-6je"/>
                                     </constraints>
                                 </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ih2-W6-gtL">
+                                    <rect key="frame" x="263" y="21" width="50" height="50"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7Zl-RN-MrL">
+                                            <rect key="frame" x="0.0" y="0.66666666666666785" width="50" height="48.666666666666657"/>
+                                            <color key="tintColor" red="0.6705882353" green="0.82352941180000006" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="s5P-f7-VzE">
+                                            <rect key="frame" x="12.666666666666686" y="13.666666666666668" width="25" height="23.333333333333332"/>
+                                            <color key="tintColor" red="0.6705882353" green="0.82352941180000006" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="jjk-bH-HhF"/>
+                                                <constraint firstAttribute="height" constant="25" id="mbD-pb-GwU"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="7Zl-RN-MrL" secondAttribute="bottom" id="EWV-g0-3ko"/>
+                                        <constraint firstAttribute="height" constant="50" id="RDH-Fi-QkK"/>
+                                        <constraint firstItem="s5P-f7-VzE" firstAttribute="centerX" secondItem="ih2-W6-gtL" secondAttribute="centerX" id="SeP-nI-mSI"/>
+                                        <constraint firstAttribute="trailing" secondItem="7Zl-RN-MrL" secondAttribute="trailing" id="T6e-g7-nLZ"/>
+                                        <constraint firstItem="7Zl-RN-MrL" firstAttribute="leading" secondItem="ih2-W6-gtL" secondAttribute="leading" id="Ts9-pJ-fPB"/>
+                                        <constraint firstAttribute="width" constant="50" id="crF-SU-4qs"/>
+                                        <constraint firstItem="7Zl-RN-MrL" firstAttribute="top" secondItem="ih2-W6-gtL" secondAttribute="top" id="dfg-RZ-bhf"/>
+                                        <constraint firstItem="s5P-f7-VzE" firstAttribute="centerY" secondItem="ih2-W6-gtL" secondAttribute="centerY" id="jU2-Jf-u3X"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Hgh-y6-sEL" firstAttribute="top" secondItem="wZS-dV-C2j" secondAttribute="top" constant="20" id="LiT-Ic-HiH"/>
                                 <constraint firstItem="r3v-jt-CQq" firstAttribute="leading" secondItem="TH6-Xb-t5P" secondAttribute="trailing" constant="22" id="RMJ-vO-4Tb"/>
+                                <constraint firstItem="Hgh-y6-sEL" firstAttribute="leading" secondItem="ih2-W6-gtL" secondAttribute="trailing" constant="10" id="S3Z-vf-j9m"/>
+                                <constraint firstItem="ih2-W6-gtL" firstAttribute="centerY" secondItem="wZS-dV-C2j" secondAttribute="centerY" id="ZrM-6F-ozi"/>
                                 <constraint firstItem="r3v-jt-CQq" firstAttribute="top" secondItem="wZS-dV-C2j" secondAttribute="top" constant="20" id="gni-W7-men"/>
                                 <constraint firstAttribute="height" constant="92" id="hHZ-1D-n4A"/>
                                 <constraint firstItem="TH6-Xb-t5P" firstAttribute="leading" secondItem="wZS-dV-C2j" secondAttribute="leading" constant="20" id="nf8-J6-pTa"/>
@@ -180,6 +211,7 @@
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="loginBackground" width="402" height="874"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

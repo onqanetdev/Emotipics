@@ -302,6 +302,8 @@
 		8AE3D04F2DF2F9E2007BE6EE /* GroupDetailImgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE3D04E2DF2F9E2007BE6EE /* GroupDetailImgCell.swift */; };
 		8AE483362DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */; };
 		8AE483382DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE483372DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift */; };
+		8AE6BFAF2DF6BF3400DB990A /* GroupDetailOwnerViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE6BFAE2DF6BF3400DB990A /* GroupDetailOwnerViewCell.xib */; };
+		8AE6BFB02DF6BF3400DB990A /* GroupDetailOwnerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE6BFAD2DF6BF3400DB990A /* GroupDetailOwnerViewCell.swift */; };
 		8AEADB542DA6449000BF187E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB532DA6449000BF187E /* WebViewController.swift */; };
 		8AEADB572DA6504900BF187E /* AddCatalogueResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */; };
 		8AEADB592DA6521300BF187E /* AddCatalogueRqModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */; };
@@ -622,6 +624,8 @@
 		8AE3D04E2DF2F9E2007BE6EE /* GroupDetailImgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailImgCell.swift; sourceTree = "<group>"; };
 		8AE483352DF1B97A00ADE611 /* NewSharedCatalogueImgPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharedCatalogueImgPreviewController.swift; sourceTree = "<group>"; };
 		8AE483372DF1BED000ADE611 /* NewSharedCatalogueImgPreviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSharedCatalogueImgPreviewCell.swift; sourceTree = "<group>"; };
+		8AE6BFAD2DF6BF3400DB990A /* GroupDetailOwnerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetailOwnerViewCell.swift; sourceTree = "<group>"; };
+		8AE6BFAE2DF6BF3400DB990A /* GroupDetailOwnerViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GroupDetailOwnerViewCell.xib; sourceTree = "<group>"; };
 		8AEADB532DA6449000BF187E /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8AEADB562DA6504900BF187E /* AddCatalogueResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueResponseModel.swift; sourceTree = "<group>"; };
 		8AEADB582DA6521300BF187E /* AddCatalogueRqModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCatalogueRqModel.swift; sourceTree = "<group>"; };
@@ -1017,6 +1021,8 @@
 			children = (
 				8A2DED8D2D894D900057DFC0 /* GroupDetailViewCell.swift */,
 				8A2DED8E2D894D900057DFC0 /* GroupDetailViewCell.xib */,
+				8AE6BFAD2DF6BF3400DB990A /* GroupDetailOwnerViewCell.swift */,
+				8AE6BFAE2DF6BF3400DB990A /* GroupDetailOwnerViewCell.xib */,
 			);
 			path = "GroupDetailCell ";
 			sourceTree = "<group>";
@@ -1981,6 +1987,7 @@
 				8A4353BD2D758F4700ABB7A0 /* poppins_light.ttf in Resources */,
 				8A9E7D542DA39DA2007CE28A /* DeletePopUpVC.xib in Resources */,
 				8ACC6ED92DDC9544005787F6 /* NewSharedCatalogueVC.xib in Resources */,
+				8AE6BFAF2DF6BF3400DB990A /* GroupDetailOwnerViewCell.xib in Resources */,
 				8A4353C02D758F4700ABB7A0 /* poppins_semi_bold.ttf in Resources */,
 				8AF683182DD5AF26002994BA /* DetailsOfDetailsPopUpVC.xib in Resources */,
 				8A4353B72D758F4700ABB7A0 /* jost_semi_bold.ttf in Resources */,
@@ -2106,6 +2113,7 @@
 				8AE113F52DC48F2500B8CBA5 /* ResetPasswordReqModel.swift in Sources */,
 				8A3C02762D9551A700DE941A /* NetworkConstants.swift in Sources */,
 				8A3128562D9F9D1A003FA3B8 /* AddContactResponseModel.swift in Sources */,
+				8AE6BFB02DF6BF3400DB990A /* GroupDetailOwnerViewCell.swift in Sources */,
 				8AE113F92DC4A24B00B8CBA5 /* ProfileAPICaller.swift in Sources */,
 				8A3B82452D8820B800CFFC37 /* GroupListViewController.swift in Sources */,
 				8A1B0E922DC0969800A3CCA5 /* GroupDeleteReqModel.swift in Sources */,

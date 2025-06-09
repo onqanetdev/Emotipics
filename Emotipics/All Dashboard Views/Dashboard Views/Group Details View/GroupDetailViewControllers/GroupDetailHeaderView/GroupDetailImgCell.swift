@@ -111,7 +111,7 @@ class GroupDetailImgCell: UICollectionViewCell, UIScrollViewDelegate {
         } else {
             deleteButton.isHidden = true
             deleteButton.frame = CGRect(x: shareButton.frame.origin.x,
-                                        y: shareButton.frame.maxY + spacing,
+                                        y: shareButton.frame.maxY + 0,
                                         width: buttonSize,
                                         height: 0) // Height zero
         }

@@ -416,7 +416,7 @@ extension GroupListViewController: UITableViewDelegate, UITableViewDataSource {
         if notificationView {
             return 90
         } else {
-            return 130
+            return 90
         }
         
     }
