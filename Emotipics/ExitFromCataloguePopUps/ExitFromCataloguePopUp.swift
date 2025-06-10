@@ -26,8 +26,11 @@ class ExitFromCataloguePopUp: UIViewController {
     
     var onExitFromCatalogue: (() -> Void)?
     var onShareCatalogue: (() -> Void)?
-    var onExitFromGroup: (() -> Void)?
     
+
+    var onExitFromGroup: (() -> Void)?
+    var onShareGroup: (() -> Void)?
+    var onDetailsGroup: (() -> Void)?
     
     var isGroupViewCalling: Bool = false
     
@@ -57,6 +60,22 @@ class ExitFromCataloguePopUp: UIViewController {
         }
     }
     
+    
+    
+    
+    @IBAction func shareGroupOrCatalogue(_ sender: Any) {
+        
+        
+        if isGroupViewCalling {
+         
+            onShareGroup?()
+            dismiss(animated: true)
+        } else {
+            print("Share this Catalogue")
+        }
+        
+    }
+
 }
 
 

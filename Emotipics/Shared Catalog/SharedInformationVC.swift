@@ -83,6 +83,8 @@ class SharedInformationVC: UIViewController {
     var groupUserDeleteViewModel: GroupUserDeleteViewModel = GroupUserDeleteViewModel()
     
     
+    
+    var isButtonShown:Bool = false
    
     
     override func viewDidLoad() {
@@ -96,6 +98,15 @@ class SharedInformationVC: UIViewController {
         
         
         loadingViewsAcc()
+        
+        
+        if isButtonShown {
+            addUserBtn.isHidden = true
+        } else {
+            addUserBtn.isHidden = false
+        }
+        
+        
         
     }
     
@@ -254,7 +265,7 @@ class SharedInformationVC: UIViewController {
 
 extension SharedInformationVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // return 2
+        
         if groupSharingVC {
             //return grpTempMemory.count
             return groupUserList.count

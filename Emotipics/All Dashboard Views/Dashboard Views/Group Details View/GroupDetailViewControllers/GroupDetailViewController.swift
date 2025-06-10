@@ -478,6 +478,16 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
                let emoji = groupImageData[indexPath.row].emoji {
                let fullImage = imagePath + imgName
                 
+                
+                if emoji.count > 0 {
+                    cell.emojiListWidth.constant = 44
+                } else {
+                    cell.emojiListWidth.constant = 0 // or default
+                }
+                cell.setNeedsLayout()
+                cell.layoutIfNeeded()
+
+                
                 cell.configureImage(
                     urlString: fullImage,
                     ownerName: ownerName,
@@ -507,6 +517,11 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OwnerDetail", for: indexPath) as! GroupDetailOwnerViewCell
             
+            
+            
+            cell.backgroundColor = .clear
+            cell.layer.cornerRadius = 25
+            cell.clipsToBounds = true
             
             cell.selectionStyle = .none
             

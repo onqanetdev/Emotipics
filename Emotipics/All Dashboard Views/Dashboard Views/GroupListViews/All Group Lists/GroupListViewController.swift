@@ -179,7 +179,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
             submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
             submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
             submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            submitButton.heightAnchor.constraint(equalToConstant: 60)
+            submitButton.heightAnchor.constraint(equalToConstant: 50)
             
         ])
         
@@ -298,7 +298,11 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
                 return
             }
         
-        guard let groupOwnerCode = groupListingView.responseModel?.data?[sender.tag].owner_detials?.code else {
+//        guard let groupOwnerCode = groupListingView.responseModel?.data?[sender.tag].owner_detials?.code else {
+//            return
+//        }
+        
+        guard let groupOwnerCode = newResultArray[sender.tag].owner_detials?.code else {
             return
         }
         
@@ -308,7 +312,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
             print("User Code : \(userCode) and Group Owner code is \(groupOwnerCode)")
             detailsPopUp(index:sender.tag)
         } else {
-            //print("Group Code")
+            
             exitFromGroupPopUp(index: sender.tag)
         }
         

@@ -137,6 +137,15 @@ class GroupDetailViewCell: UITableViewCell {
                     self?.partyImageView.image = UIImage(data: data)
                     self?.userName?.text = ownerName
 
+                    if let name = ownerName, let firstLetter = name.first {
+                        
+                        let symbolName = "\(String(firstLetter).lowercased()).circle.fill"
+                        
+                        
+                        self?.userProfilephoto.image = UIImage(systemName: symbolName)
+                    }
+
+                    
                     // Handle emoji rendering
                     if let emojis = emojis {
                         if emojis.count <= 2 && emojis.count > 0 {
@@ -155,6 +164,11 @@ class GroupDetailViewCell: UITableViewCell {
         }
     
 }
+
+
+
+
+
 
 
 

@@ -66,16 +66,22 @@ extension GroupListViewController: SharedInformationDelegate {
     
     
     func exitFromGroupPopUp(index: Int) {
+        indexNo = index
         let errorPopup = ExitFromCataloguePopUp(nibName: "ExitFromCataloguePopUp", bundle: nil)
         errorPopup.modalPresentationStyle = .overCurrentContext
         errorPopup.modalTransitionStyle = .crossDissolve
         errorPopup.isGroupViewCalling = true
         // errorPopup.delegate = self
         
-        guard let groupCode = groupListingView.responseModel?.data?[index].group_code else {
+//        guard let groupCode = groupListingView.responseModel?.data?[index].group_code else {
+//            return
+//        }
+//        
+        
+        guard let groupCode = newResultArray[index].group_code else {
             return
         }
-
+        
         errorPopup.onExitFromGroup = { [weak self] in
             guard let self = self else { return }
             print("Group Code is--> ", groupCode)
@@ -90,8 +96,6 @@ extension GroupListViewController: SharedInformationDelegate {
                     
                     switch result {
                     case .goAhead:
-                        // Handle successful exit
-                        //break
                         
                         DispatchQueue.main.async {
                             self.newResultArray.remove(at: index)
@@ -105,16 +109,58 @@ extension GroupListViewController: SharedInformationDelegate {
                 }
             }
         }
-
+        
+       
+        
+        
+        errorPopup.onShareGroup = { [weak self] in
+            guard let self = self else { return }
+            
+           
+            
+            errorPopup.dismiss(animated: true) {
+                //self.presentShareScreen()
+                self.presentShareScreenForGroup()
+            }
+            
+            
+        }
+        
+    
         self.present(errorPopup, animated: true)
     }
 
+
+    func presentShareScreenForGroup() {
+        
+        let shareInfo = SharedInformationVC(nibName: "SharedInformationVC", bundle: nil)
+        shareInfo.modalPresentationStyle = .overCurrentContext
+        shareInfo.modalTransitionStyle = .crossDissolve
+        shareInfo.groupSharingVC = true
+        
+        shareInfo.isButtonShown = true
+        
+        shareInfo.delegate = self
+        
+            
+            //shareInfo.temporaryMemory =
+        if let groupName = newResultArray[indexNo].groupname, let explicitArray = newResultArray[indexNo].sharebyme, let gropCode = newResultArray[indexNo].group_code {
+            shareInfo.catalogueNameText = groupName
+            
+            
+            shareInfo.grpTempMemory = explicitArray
+            shareInfo.groupCode = gropCode
+        } else {
+            AlertView.showAlert("Warning!", message: "There is no group name", okTitle: "OK")
+        }
+        self.present(shareInfo, animated: true, completion: nil)
+    }
+    
     
     
     
     func presentRenameGroupScreen() {
-        print("Group name is ", newResultArray[indexNo].groupname)
-        print("Group Code is ", newResultArray[indexNo].group_code)
+         
         let renameCatalogue = RenameCatalogueVC(nibName: "RenameCatalogueVC", bundle: nil)
         renameCatalogue.modalPresentationStyle = .overCurrentContext
         renameCatalogue.modalTransitionStyle = .crossDissolve
@@ -149,6 +195,8 @@ extension GroupListViewController: SharedInformationDelegate {
             //shareInfo.temporaryMemory =
         if let groupName = newResultArray[indexNo].groupname, let explicitArray = newResultArray[indexNo].sharebyme, let gropCode = newResultArray[indexNo].group_code {
             shareInfo.catalogueNameText = groupName
+            
+            
             shareInfo.grpTempMemory = explicitArray
             shareInfo.groupCode = gropCode
         } else {
