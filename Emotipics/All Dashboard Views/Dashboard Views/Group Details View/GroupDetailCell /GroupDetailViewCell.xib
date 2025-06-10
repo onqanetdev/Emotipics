@@ -103,11 +103,11 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfilePhotobg" translatesAutoresizingMaskIntoConstraints="NO" id="B5P-bc-jwN">
-                                <rect key="frame" x="329" y="247" width="40" height="40"/>
+                                <rect key="frame" x="329" y="223" width="40" height="40"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="7qK-AH-eLq"/>
-                                    <constraint firstAttribute="height" constant="40" id="kF9-lE-XHN"/>
+                                    <constraint firstAttribute="width" constant="40" id="IHb-2V-eDt"/>
+                                    <constraint firstAttribute="height" constant="40" id="O9t-LG-QQh"/>
                                 </constraints>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="light"/>
                             </imageView>
@@ -139,10 +139,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="R8N-5b-EPS" firstAttribute="top" secondItem="fQN-mS-WJa" secondAttribute="bottom" constant="8" id="43i-en-sTo"/>
-                            <constraint firstItem="B5P-bc-jwN" firstAttribute="leading" secondItem="OE7-KU-2NO" secondAttribute="trailing" constant="209" id="Fov-Fr-zhL"/>
+                            <constraint firstItem="B5P-bc-jwN" firstAttribute="bottom" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="25" id="9YM-KB-LoT"/>
                             <constraint firstItem="OE7-KU-2NO" firstAttribute="leading" secondItem="oCF-bK-ww1" secondAttribute="trailing" constant="3" id="Gni-Ld-i2Y"/>
                             <constraint firstItem="R8N-5b-EPS" firstAttribute="top" secondItem="5qe-8Q-G1Q" secondAttribute="top" constant="38" id="HMH-q5-ch4"/>
-                            <constraint firstItem="B5P-bc-jwN" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="9" id="IB9-Jh-jZw"/>
+                            <constraint firstItem="B5P-bc-jwN" firstAttribute="leading" secondItem="wiU-Hg-Nqj" secondAttribute="trailing" constant="9" id="Jie-eF-tNF"/>
                             <constraint firstItem="oCF-bK-ww1" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="7" id="K19-RJ-3F8"/>
                             <constraint firstItem="wiU-Hg-Nqj" firstAttribute="trailing" secondItem="R8N-5b-EPS" secondAttribute="trailing" id="MNF-cg-Uw5"/>
                             <constraint firstItem="OE7-KU-2NO" firstAttribute="top" secondItem="R8N-5b-EPS" secondAttribute="bottom" constant="7" id="Q3T-Sg-8s7"/>
@@ -167,6 +167,7 @@
                 <outlet property="backGroundDeleteImgView" destination="cOI-EB-64G" id="AdJ-yP-53e"/>
                 <outlet property="deleteBtnAction" destination="Maa-pS-T07" id="r0M-8u-X4o"/>
                 <outlet property="downLoadBtn" destination="g8l-9Q-wHT" id="k0s-sc-R3c"/>
+                <outlet property="emojiListWidth" destination="VWv-m3-8CI" id="y9l-Ea-zzX"/>
                 <outlet property="partyImageView" destination="oYq-0q-2b5" id="kRv-bg-t5X"/>
                 <outlet property="partyImgPhoto" destination="oYq-0q-2b5" id="TCQ-Uq-N8Z"/>
                 <outlet property="selectEmojiBtn" destination="OE7-KU-2NO" id="lmO-5g-wWg"/>
