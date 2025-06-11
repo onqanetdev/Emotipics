@@ -39,6 +39,9 @@ struct GroupUserListData: Codable {
     let created_at : String?
     let updated_at : String?
     let groupcontact : Groupcontact?
+    
+    let owner_detials : Owner_detials?
+    let sharebyme : [ShareByMe]?
 
     enum CodingKeys: String, CodingKey {
 
@@ -49,6 +52,9 @@ struct GroupUserListData: Codable {
         case created_at = "created_at"
         case updated_at = "updated_at"
         case groupcontact = "groupcontact"
+        
+        case owner_detials = "owner_detials"
+        case sharebyme = "sharebyme"
     }
 
     init(from decoder: Decoder) throws {
@@ -60,6 +66,9 @@ struct GroupUserListData: Codable {
         created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
         updated_at = try values.decodeIfPresent(String.self, forKey: .updated_at)
         groupcontact = try values.decodeIfPresent(Groupcontact.self, forKey: .groupcontact)
+        
+        owner_detials = try values.decodeIfPresent(Owner_detials.self, forKey: .owner_detials)
+        sharebyme = try values.decodeIfPresent([ShareByMe].self, forKey: .sharebyme)
     }
 
 }

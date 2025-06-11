@@ -288,6 +288,7 @@
 		8ACDCBD22DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */; };
 		8ACDCBD62DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD52DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib */; };
 		8ACDCBD72DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACDCBD42DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift */; };
+		8AD413FF2DF9A6A40060FA17 /* CommonDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD413FE2DF9A6A40060FA17 /* CommonDates.swift */; };
 		8ADA95702D9E435200466249 /* LoginPinSetAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */; };
 		8AE113F02DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113EF2DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift */; };
 		8AE113F32DC48F0D00B8CBA5 /* ResetPasswordResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE113F22DC48F0D00B8CBA5 /* ResetPasswordResModel.swift */; };
@@ -610,6 +611,7 @@
 		8ACDCBD12DBB8FEA00A9B3EE /* CatalogueRenameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueRenameViewModel.swift; sourceTree = "<group>"; };
 		8ACDCBD42DBBA51D00A9B3EE /* ExitFromCataloguePopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExitFromCataloguePopUp.swift; sourceTree = "<group>"; };
 		8ACDCBD52DBBA51D00A9B3EE /* ExitFromCataloguePopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExitFromCataloguePopUp.xib; sourceTree = "<group>"; };
+		8AD413FE2DF9A6A40060FA17 /* CommonDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonDates.swift; sourceTree = "<group>"; };
 		8ADA956F2D9E435200466249 /* LoginPinSetAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPinSetAPICaller.swift; sourceTree = "<group>"; };
 		8AE113EF2DC48EA100B8CBA5 /* ResetPasswordAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordAPICaller.swift; sourceTree = "<group>"; };
 		8AE113F22DC48F0D00B8CBA5 /* ResetPasswordResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordResModel.swift; sourceTree = "<group>"; };
@@ -1332,6 +1334,7 @@
 		8A43538A2D75760600ABB7A0 /* Emotipics */ = {
 			isa = PBXGroup;
 			children = (
+				8AD413FD2DF9A6770060FA17 /* Common Dates and Time */,
 				8AF808C52DE06912006D0464 /* Birthday Pop Up Views */,
 				8AC1649D2DD4A17B00CC0821 /* Skeleton views */,
 				8AF683102DD5AA94002994BA /* DetailsPopUp */,
@@ -1813,6 +1816,14 @@
 			path = ExitFromCataloguePopUps;
 			sourceTree = "<group>";
 		};
+		8AD413FD2DF9A6770060FA17 /* Common Dates and Time */ = {
+			isa = PBXGroup;
+			children = (
+				8AD413FE2DF9A6A40060FA17 /* CommonDates.swift */,
+			);
+			path = "Common Dates and Time";
+			sourceTree = "<group>";
+		};
 		8AE113F12DC48EF300B8CBA5 /* Reset Password Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -2280,6 +2291,7 @@
 				8A3ED2642DAFADF3002C3129 /* DeleteImageReqModel.swift in Sources */,
 				8A09D3852DC3743A0050A3CA /* ForgetPasswordReqModel.swift in Sources */,
 				8A075C992DB9F029004554E2 /* SharedImageByMeViewModel.swift in Sources */,
+				8AD413FF2DF9A6A40060FA17 /* CommonDates.swift in Sources */,
 				8A18235A2D87D37A007A2E90 /* ImageCatalogueViewCell.swift in Sources */,
 				8A01D86B2DE4211700CBE34B /* AddBirthdayViewModel.swift in Sources */,
 				8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */,

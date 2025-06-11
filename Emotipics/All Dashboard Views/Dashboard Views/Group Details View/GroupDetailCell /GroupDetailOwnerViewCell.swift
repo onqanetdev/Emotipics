@@ -66,11 +66,7 @@ class GroupDetailOwnerViewCell: UITableViewCell {
             allEmojiBtn.clipsToBounds = true
         }
     }
-    
-    
-    
-    
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()

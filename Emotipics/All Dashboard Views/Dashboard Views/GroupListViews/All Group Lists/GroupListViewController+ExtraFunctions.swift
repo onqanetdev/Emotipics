@@ -137,17 +137,19 @@ extension GroupListViewController: SharedInformationDelegate {
         shareInfo.modalPresentationStyle = .overCurrentContext
         shareInfo.modalTransitionStyle = .crossDissolve
         shareInfo.groupSharingVC = true
-        
         shareInfo.isButtonShown = true
-        
+        shareInfo.deleteBtnIsHidden = true
         shareInfo.delegate = self
         
             
             //shareInfo.temporaryMemory =
-        if let groupName = newResultArray[indexNo].groupname, let explicitArray = newResultArray[indexNo].sharebyme, let gropCode = newResultArray[indexNo].group_code {
+        if let groupName = newResultArray[indexNo].groupname, 
+            let explicitArray = newResultArray[indexNo].sharebyme,
+            let gropCode = newResultArray[indexNo].group_code,
+           let groupOwnerName = newResultArray[indexNo].owner_detials?.name {
             shareInfo.catalogueNameText = groupName
             
-            
+            shareInfo.ownerName = groupOwnerName
             shareInfo.grpTempMemory = explicitArray
             shareInfo.groupCode = gropCode
         } else {
@@ -188,15 +190,18 @@ extension GroupListViewController: SharedInformationDelegate {
         shareInfo.modalPresentationStyle = .overCurrentContext
         shareInfo.modalTransitionStyle = .crossDissolve
         shareInfo.groupSharingVC = true
-        
         shareInfo.delegate = self
-        
+        shareInfo.deleteBtnIsHidden = false
             
             //shareInfo.temporaryMemory =
-        if let groupName = newResultArray[indexNo].groupname, let explicitArray = newResultArray[indexNo].sharebyme, let gropCode = newResultArray[indexNo].group_code {
+         if let groupName = newResultArray[indexNo].groupname, 
+            let explicitArray = newResultArray[indexNo].sharebyme,
+            let gropCode = newResultArray[indexNo].group_code,
+            let groupOwnerName = newResultArray[indexNo].owner_detials?.name
+             {
             shareInfo.catalogueNameText = groupName
             
-            
+            shareInfo.ownerName = groupOwnerName
             shareInfo.grpTempMemory = explicitArray
             shareInfo.groupCode = gropCode
         } else {
@@ -244,7 +249,7 @@ extension GroupListViewController: SharedInformationDelegate {
         }
         shareVC.groupData = groupDataGet
         shareVC.groupCode = groupDataGet[indexNo].group_code ?? "0"
-        print("Group Code is",groupDataGet[indexNo].group_code )
+    
         shareVC.shareIndex = indexNo
         shareVC.contactListForGr = true
         self.present(shareVC, animated: true, completion: nil)
@@ -300,5 +305,9 @@ extension GroupListViewController: UIScrollViewDelegate {
         }
     }
 }
+
+
+
+
 
 

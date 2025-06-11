@@ -86,6 +86,9 @@ class SharedInformationVC: UIViewController {
     
     var isButtonShown:Bool = false
    
+    var deleteBtnIsHidden: Bool = true
+    
+    var ownerName = "Jhon Doe"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +100,7 @@ class SharedInformationVC: UIViewController {
         sharedConListTblView.register(UINib(nibName: "SharedInformationTVC", bundle: nil), forCellReuseIdentifier: "SharingTVC")
         
         
-        loadingViewsAcc()
+       // loadingViewsAcc()
         
         
         if isButtonShown {
@@ -150,10 +153,12 @@ class SharedInformationVC: UIViewController {
         }
         else
         {
-            print("Deleted Contact code would be", temporaryMemory[sender.tag].contactcode as Any)
             
-            print("The folder code would be--->", temporaryMemory[sender.tag].catalogcode)
-            print("The User That Should be deleted", temporaryMemory[sender.tag].id)
+            
+//            print("Deleted Contact code would be", temporaryMemory[sender.tag].contactcode as Any)
+//            
+//            print("The folder code would be--->", temporaryMemory[sender.tag].catalogcode)
+//            print("The User That Should be deleted", temporaryMemory[sender.tag].id)
             
             
             guard let contactId = temporaryMemory[sender.tag].id else {
@@ -165,42 +170,30 @@ class SharedInformationVC: UIViewController {
         }
     }
     
-    func userListForGrp(){
+    func userListForGrp() {
         grpUserListViewModel.requestModel.groupCode = groupCode
         startCustomLoader()
-        grpUserListViewModel.groupAddUserViewModel(request: grpUserListViewModel.requestModel)
-        { result in
+        grpUserListViewModel.groupAddUserViewModel(request: grpUserListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
-                //self.activityIndicator.stopAnimating()
+                guard let self = self else { return }
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Group User List Loaded✅")
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        //                        self.groupUserList = grpUserListViewModel.responseModel?.data ?? <#default value#>
-                        
-                        guard let userGroup = grpUserListViewModel.responseModel?.data else {
-                        
-                           // AlertView.showAlert("Warning!", message: "", okTitle: <#T##String#>)
-                            
-                            return
-                        }
-                        self.groupUserList = userGroup
-                        
-                        self.sharedConListTblView.reloadData()
-                        
+                    guard let userGroup = self.grpUserListViewModel.responseModel?.data else {
+                        return
                     }
+    
+                    self.groupUserList = userGroup
+                    self.sharedConListTblView.reloadData()
+                    
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
+
     
     
     func catalogueUserDelete(folderContactCode:Int, removeAt: Int){
@@ -231,6 +224,8 @@ class SharedInformationVC: UIViewController {
     }
     
     
+    
+    
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -248,6 +243,8 @@ class SharedInformationVC: UIViewController {
         
         // Stop and remove after 5 seconds
     }
+    
+    
     func stopCustomLoader(){
         print("Trying to stop loader:", loaderView != nil)
         loaderView?.stopAnimating()
@@ -264,43 +261,93 @@ class SharedInformationVC: UIViewController {
 
 
 extension SharedInformationVC: UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if groupSharingVC {
-            //return grpTempMemory.count
-            return groupUserList.count
+        if section == 0 {
+            return 1
         } else {
-            return temporaryMemory.count
+            
+            if groupSharingVC {
+                return grpTempMemory.count
+               // return groupUserList.count
+            } else {
+                return temporaryMemory.count
+            }
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if groupSharingVC {
+        
+        
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
+            cell.deleteSharedBtn.isHidden = true
             
-            //            cell.sharedContactLbl.text = grpTempMemory[indexPath.row].groupcontact?.contactdetails?.name
             
-            cell.sharedContactLbl.text = groupUserList[indexPath.row].groupcontact?.contactdetails?.name
+            let ownerText = ownerName
+            let adminText = "  (ADMIN)"
+
+            let fullText = ownerText + adminText
+            let attributedString = NSMutableAttributedString(string: fullText)
+
+            // Color for (ADMIN)
+            let adminRange = (fullText as NSString).range(of: adminText)
+            attributedString.addAttribute(.foregroundColor, value: UIColor.systemTeal, range: adminRange)
+            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 18), range: adminRange)
+
+            if groupSharingVC {
+
+                cell.sharedContactLbl.attributedText = attributedString
+                
+            } else {
+                cell.sharedContactLbl.attributedText = attributedString
+            }
             
-            cell.deleteSharedBtn.tag = indexPath.row
-            
-            cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
-            
+            //cell.sharedContactLbl.text = "Demo Demo"
             return cell
-            
-            
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
-            cell.sharedContactLbl.text = temporaryMemory[indexPath.row].contactlist?.contactdetails?.name
             
-            cell.deleteSharedBtn.tag = indexPath.row
             
-            cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
             
-            return cell
-            
+            if groupSharingVC {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
+                
+                //            cell.sharedContactLbl.text = grpTempMemory[indexPath.row].groupcontact?.contactdetails?.name
+                
+                cell.sharedContactLbl.text = grpTempMemory[indexPath.row].groupcontact?.contactdetails?.name
+                
+                cell.deleteSharedBtn.isHidden = deleteBtnIsHidden
+                
+                cell.deleteSharedBtn.tag = indexPath.row
+                
+                cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
+                
+                return cell
+                
+                
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SharingTVC", for: indexPath) as! SharedInformationTVC
+                cell.sharedContactLbl.text = temporaryMemory[indexPath.row].contactlist?.contactdetails?.name
+                
+                cell.deleteSharedBtn.tag = indexPath.row
+                
+                cell.deleteSharedBtn.addTarget(self, action: #selector(respectiveContactCode(_ :)), for: .touchUpInside)
+                
+                return cell
+            }
         }
     }
     
     
 }
+
+

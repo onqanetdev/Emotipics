@@ -9,10 +9,8 @@ import UIKit
 
 class GroupDetailViewController: UIViewController {
     
-
+    
     @IBOutlet weak var detailTblView: UITableView!
-    
-    
     
     @IBOutlet weak var roundedView: UIView!{
         didSet {
@@ -22,9 +20,7 @@ class GroupDetailViewController: UIViewController {
         }
     }
     
-    
 
-    
     @IBOutlet weak var shareFilesBtn: UIButton!{
         didSet {
             shareFilesBtn.layer.cornerRadius = 25
@@ -36,7 +32,7 @@ class GroupDetailViewController: UIViewController {
     }
     
     
-
+    
     //Group Image List View Model
     
     let groupImageListViewModel: GroupImageListViewModel = GroupImageListViewModel()
@@ -53,18 +49,13 @@ class GroupDetailViewController: UIViewController {
     
     var emojiCollList:[ShowGroupEmojiList] = []
     
-    
-    
     var stringEmoji: String = ""
-    
     
     var groupName = ""
     var groupUsers = ""
-   
     
     var isPaginating = false
     var currentPage = 1
-    
     
     private let footerActivityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
@@ -75,6 +66,25 @@ class GroupDetailViewController: UIViewController {
     
     var tableHeaderView = GroupDetailHeaderView()
     
+    //No User Labels
+    
+    private let noGrpImg: UILabel = {
+        let label = UILabel()
+        label.text = "No Group Image Found!"
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 16)
+        label.textColor = UIColor.black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let addSomeImgLbl: UILabel = {
+        let label = UILabel()
+        label.text = "Add some group image"
+        label.textColor = UIColor.lightGray
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "HelveticaNeue", size: 12)
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,29 +100,31 @@ class GroupDetailViewController: UIViewController {
         setTableViewBackground()
         setTopViewBackground()
         
-    
+        
         imageListForGroup(groupCode: groupCode)
         
-        
+        noImgSetup()
         //For Header View
         
-         tableHeaderView = GroupDetailHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
+        tableHeaderView = GroupDetailHeaderView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 100))
         tableHeaderView.usersLbl.text = "11 Users"
         tableHeaderView.manageLbl.text = "Manage Terms"
         tableHeaderView.actionBtn.addTarget(self, action: #selector(detailViewPresent(_:)), for: .touchUpInside)
-        
-        
+    
         self.detailTblView.tableHeaderView = tableHeaderView
-        
-        
-        
-        
+    
         detailTblView.tableFooterView = footerActivityIndicator
         footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: detailTblView.bounds.width, height: 50)
         
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        imageListForGroup(groupCode: groupCode)
+    }
+    
+    
     //MARK: Setting Background for Table View Background
     func setTableViewBackground() {
         let backgroundImage = UIImage(named: "TableViewBackground") // Use your image name
@@ -130,12 +142,8 @@ class GroupDetailViewController: UIViewController {
     
     //MARK: Setting Up function for uiview background
     func setTopViewBackground() {
-     
-        
         guard let roundedView = roundedView else { return }
-        
-       
-        
+    
         let backgroundImage = UIImage(named: "TableViewBackground") // Replace with your image name
         
         let roundedBackgroundView = UIImageView(frame: roundedView.bounds)
@@ -149,36 +157,66 @@ class GroupDetailViewController: UIViewController {
     }
     
     
+    
+    func noImgSetup() {
+        detailTblView.addSubview(noGrpImg)
+        detailTblView.addSubview(addSomeImgLbl)
+        
+        
+        NSLayoutConstraint.activate([
+            noGrpImg.centerXAnchor.constraint(equalTo: detailTblView.centerXAnchor),
+            noGrpImg.centerYAnchor.constraint(equalTo: detailTblView.centerYAnchor),
+            
+            addSomeImgLbl.topAnchor.constraint(equalTo: noGrpImg.bottomAnchor, constant: 10),
+            addSomeImgLbl.centerXAnchor.constraint(equalTo:detailTblView.centerXAnchor)
+        ])
+    }
+    
+    
+    
     func imageListForGroup(groupCode: String) {
         groupImageListViewModel.requestModel.groupCode = groupCode
         groupImageListViewModel.requestModel.limit = "10"
         groupImageListViewModel.requestModel.offset = "1"
-
+        
         startCustomLoader()
         
         groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-
+                
                 switch result {
                 case .goAhead:
-                    if let imageGroupData = self.groupImageListViewModel.responseModel?.data,
-                       let imageGroupDetails = self.groupImageListViewModel.responseModel,
+                    
+                    if let imageGroupDetails = self.groupImageListViewModel.responseModel,
                        let groupMemberCount = self.groupImageListViewModel.responseModel?.member_count {
-                        self.groupImageData = imageGroupData
                         
                         self.tableHeaderView.usersLbl.text = "\(groupMemberCount + 1)"
                         self.tableHeaderView.manageLbl.text = imageGroupDetails.groupname
                         
-                        self.detailTblView.reloadData()
-                        self.stopCustomLoader()
-
-                    } else {
-                        self.detailTblView.isHidden = true
+                        if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
+                            
+                            self.groupImageData = imageGroupData
+                            
+                            self.noGrpImg.isHidden = true
+                            self.addSomeImgLbl.isHidden = true
+                            //                        self.tableHeaderView.usersLbl.text = "\(groupMemberCount + 1)"
+                            //                        self.tableHeaderView.manageLbl.text = imageGroupDetails.groupname
+                            
+                            self.detailTblView.reloadData()
+                            self.stopCustomLoader()
+                            
+                        } else {
+                            self.detailTblView.isHidden = false
+                            self.noGrpImg.isHidden = false
+                            self.addSomeImgLbl.isHidden = false
+                            self.stopCustomLoader()
+                        }
                         
-                        self.stopCustomLoader()
+                    } else  {
+                        AlertView.showAlert("Warning!", message: "Something Went Wrong!", okTitle: "OK")
                     }
-
+                    
                 case .heyStop:
                     print("❌ Error")
                     self.stopCustomLoader()
@@ -186,7 +224,7 @@ class GroupDetailViewController: UIViewController {
             }
         }
     }
-
+    
     
     
     func showEmojiListWithCompletion(imgID: Int, completion: @escaping () -> Void) {
@@ -194,14 +232,14 @@ class GroupDetailViewController: UIViewController {
         showEmojiViewModel.requestModel.offset = "1"
         showEmojiViewModel.requestModel.sort = "DESC"
         showEmojiViewModel.requestModel.imgId = imgID
-
+        
         showEmojiViewModel.showEmojiListViewModel(request: showEmojiViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard self != nil else {
                     completion()
                     return
                 }
-
+                
                 switch result {
                 case .goAhead:
                     print("Emoji loaded for image ID \(imgID)")
@@ -212,7 +250,7 @@ class GroupDetailViewController: UIViewController {
             }
         }
     }
-
+    
     
     
     
@@ -230,7 +268,7 @@ class GroupDetailViewController: UIViewController {
         navigationController?.pushViewController(webView, animated: true)
     }
     
-
+    
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -296,10 +334,10 @@ class GroupDetailViewController: UIViewController {
         
     }
     
-
+    
     @objc func deletingImage(_ sender: UIButton){
         var indexPath = sender.tag
-    
+        
         print("My Image Code is", groupImageData[indexPath].id, "My group code is", groupCode  )
         
         guard let imageID = groupImageData[indexPath].id else {
@@ -354,14 +392,14 @@ class GroupDetailViewController: UIViewController {
     @objc func downloadingImage(_ sender: UIButton){
         let index = sender.tag
         guard index < groupImageData.count else { return }
-
+        
         guard let imageUrlString = groupImageData[index].path,
               let imageUrlRemaining = groupImageData[index].img_name,// or whatever the URL property is
-                let imageUrl = URL(string: imageUrlString + imageUrlRemaining) else {
+              let imageUrl = URL(string: imageUrlString + imageUrlRemaining) else {
             print("Invalid image URL")
             return
         }
-
+        
         startCustomLoader()
         
         DispatchQueue.global().async {
@@ -423,8 +461,8 @@ class GroupDetailViewController: UIViewController {
               let groupName = groupImageListViewModel.responseModel?.groupname,
               let totalUserCount = groupImageListViewModel.responseModel?.member_count,
               let createdDate = groupImageListViewModel.responseModel?.created_date else {
-                  return
-              }
+            return
+        }
         
         errorPopup.ownerNameVar = ownerName
         errorPopup.grpNmVar = groupName
@@ -434,12 +472,12 @@ class GroupDetailViewController: UIViewController {
         //errorPopup.delegate = self
         self.present(errorPopup, animated: true)
     }
-
+    
     deinit {
         print("🧹 GroupDetailViewController deinitialized")
         // Set breakpoints here or use Instruments > Leaks
     }
-
+    
 }
 
 
@@ -472,11 +510,13 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             cell.backGroundDeleteImgView.isHidden = true
             cell.selectionStyle = .none
             
+            
             if let imagePath = groupImageData[indexPath.row].path,
                let imgName = groupImageData[indexPath.row].img_name,
                let ownerName = groupImageData[indexPath.row].user?.name,
-               let emoji = groupImageData[indexPath.row].emoji {
-               let fullImage = imagePath + imgName
+               let emoji = groupImageData[indexPath.row].emoji,
+               let dateAndTime = groupImageData[indexPath.row].datetime{
+                let fullImage = imagePath + imgName
                 
                 
                 if emoji.count > 0 {
@@ -486,16 +526,18 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
                 }
                 cell.setNeedsLayout()
                 cell.layoutIfNeeded()
-
+                
                 
                 cell.configureImage(
                     urlString: fullImage,
                     ownerName: ownerName,
                     emojis: emoji
                 )
+                
+                cell.sendingTime.text = CommonDates.sharedCommonDates.compareDates(dateAndTime)
 
-            } 
-
+            }
+            
             
             cell.deleteBtnAction.tag = indexPath.row
             cell.deleteBtnAction.addTarget(self, action: #selector(deletingImage), for: .touchUpInside)
@@ -528,15 +570,18 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             if let imagePath = groupImageData[indexPath.row].path,
                let imgName = groupImageData[indexPath.row].img_name,
                let ownerName = groupImageData[indexPath.row].user?.name,
-               let emoji = groupImageData[indexPath.row].emoji {
-               let fullImage = imagePath + imgName
+               let emoji = groupImageData[indexPath.row].emoji,
+               let dateAndTime = groupImageData[indexPath.row].datetime{
+                let fullImage = imagePath + imgName
                 
                 cell.configureImage(
                     urlString: fullImage,
                     ownerName: ownerName,
                     emojis: emoji
                 )
-
+                
+                cell.sendingTime.text = CommonDates.sharedCommonDates.compareDates(dateAndTime)
+                
             } // Optional Binding ending
             
             cell.deleteBtnAction.tag = indexPath.row
@@ -554,7 +599,7 @@ extension GroupDetailViewController: UITableViewDataSource, UITableViewDelegate 
             
             
             return cell
-        
+            
         }
     }
     
@@ -607,40 +652,34 @@ extension GroupDetailViewController: UIScrollViewDelegate {
         isPaginating = true
         footerActivityIndicator.startAnimating()
         currentPage += 1
-        
-//        print("Group Code is", groupCode)
-//        footerActivityIndicator.stopAnimating()
-        
-        
+    
         groupImageListViewModel.requestModel.groupCode = groupCode
         groupImageListViewModel.requestModel.limit = "10"
         groupImageListViewModel.requestModel.offset = "\(currentPage)"
-
+        
         //startCustomLoader()
         
         groupImageListViewModel.groupImageListViewModel(request: groupImageListViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self = self else { return }
-
+                
                 self.footerActivityIndicator.stopAnimating()
                 self.isPaginating = false
                 
                 switch result {
                 case .goAhead:
                     if let imageGroupData = self.groupImageListViewModel.responseModel?.data {
-//                        self.groupImageData = imageGroupData
+                        //                        self.groupImageData = imageGroupData
                         self.groupImageData.append(contentsOf: imageGroupData)
-
+                        
                         
                         self.detailTblView.reloadData()
                         
-
-                    } else {
-                        //self.detailTblView.isHidden = true
                         
-                       // self.stopCustomLoader()
+                    } else {
+                        
                     }
-
+                    
                 case .heyStop:
                     print("❌ Error")
                     self.stopCustomLoader()
@@ -651,6 +690,11 @@ extension GroupDetailViewController: UIScrollViewDelegate {
     }
     
 }
+
+
+
+
+
 
 
 
