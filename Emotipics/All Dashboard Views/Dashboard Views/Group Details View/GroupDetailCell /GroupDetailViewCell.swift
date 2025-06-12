@@ -122,7 +122,7 @@ class GroupDetailViewCell: UITableViewCell {
     
     
     
-    func configureImage(urlString: String?, placeholder: String = "TopBackGround", ownerName: String?, emojis: [Emoji]?) {
+    func configureImage(urlString: String?, placeholder: String = "noImage", ownerName: String?, emojis: [Emoji]?) {
             partyImageView.image = UIImage(named: placeholder)
             
             guard let urlString = urlString, let url = URL(string: urlString) else { return }

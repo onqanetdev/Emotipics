@@ -16,6 +16,7 @@
                 <outlet property="shareCatalogueLbl" destination="vbc-CC-nXQ" id="tn0-2I-Mpw"/>
                 <outlet property="shareCataloguePhotoCollView" destination="Fy6-aS-IlK" id="n2x-v8-Uhn"/>
                 <outlet property="shareWithMeBtn" destination="LaZ-yL-wok" id="IZW-JY-3ZV"/>
+                <outlet property="sortIcon" destination="Yqz-OZ-Sba" id="uHH-FA-s0K"/>
                 <outlet property="view" destination="8D2-j1-P8N" id="X5R-t3-xBu"/>
             </connections>
         </placeholder>

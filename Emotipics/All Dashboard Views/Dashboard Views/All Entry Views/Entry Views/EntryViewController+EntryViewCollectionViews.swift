@@ -171,16 +171,10 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == fileColView {
             
-//            let imageViewController = AllCataloguesViewController()
-//            imageViewController.isImageCell = true
-            
-            
             let catalogueId = tempMemory[indexPath.row].catalog_code
             let userCode = tempMemory[indexPath.row].owner_detials?.code
 
             let tappedCatalogueName = tempMemory[indexPath.row].catalog_name
-            
-            
             
             if let catalogueId = catalogueId {
                 UserDefaults.standard.set(catalogueId, forKey: "catalogueId")
@@ -195,12 +189,27 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
             
             navigationController?.pushViewController(NewCatalogueVC(), animated: true)
             
-//            navigationController?.pushViewController(imageViewController, animated: true)
         }
         
         else if collectionView ==  sharedCatalogueCollView {
-            print("From SharedCatalogueCollView")
+            let catalogueId = sharedCataTempMemory[indexPath.row].catalog_code
+            let userCode = sharedCataTempMemory[indexPath.row].owner_detials?.code
             
+            
+            //Saving the user  selected cell index
+            UserDefaults.standard.set(indexPath.row, forKey: "selectedIndexRowSharedCatalogue")
+            
+            
+            if let catalogueId = catalogueId {
+                UserDefaults.standard.set(catalogueId, forKey: "SharedCatalogueId")
+            }
+            
+            if let userCode = userCode {
+                UserDefaults.standard.set(userCode, forKey: "userCode")
+            }
+            
+            
+            navigationController?.pushViewController(NewSharedCatalogueVC(), animated: true)
             
             
         }

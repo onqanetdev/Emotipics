@@ -235,7 +235,6 @@ class NewCatalogueVC: UIViewController {
                         
                         
                         guard let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") else {
-                            //print("Saved catalogue ID: \(savedCatalogueId)")
                             return
                         }
                         

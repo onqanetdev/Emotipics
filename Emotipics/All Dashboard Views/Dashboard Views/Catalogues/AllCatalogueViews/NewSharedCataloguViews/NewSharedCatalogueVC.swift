@@ -48,6 +48,18 @@ class NewSharedCatalogueVC: UIViewController {
         }
     }
     
+    
+    
+    @IBOutlet weak var sortIcon: UIImageView!{
+        didSet {
+            sortIcon.image = UIImage(named: "SortIcon")?.withRenderingMode(.alwaysTemplate)
+            sortIcon.tintColor = UIColor(red: 171/255, green: 210/255, blue: 252/255, alpha: 1)  // Set to the color you want
+        }
+    }
+    
+    
+    
+    
     var sharedCatalogueViewModel:CatalogueListingViewModel = CatalogueListingViewModel()
     
     
@@ -94,6 +106,10 @@ class NewSharedCatalogueVC: UIViewController {
         indicator.hidesWhenStopped = true
         return indicator
     }()
+    
+    
+    
+    
     
     
     var typeOfList = "catalog_share_byme"
@@ -174,7 +190,7 @@ class NewSharedCatalogueVC: UIViewController {
                         
                         self.catalogCode = self.sharedData[0].catalog_code ?? ""
                         
-                        
+    
                         self.selectedIndexPath = IndexPath(row: 0, section: 0)
                         
 //                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
@@ -226,8 +242,37 @@ class NewSharedCatalogueVC: UIViewController {
                         
                         self.selectedIndexPath = IndexPath(row: 0, section: 0)
                         
-                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
-                        self.selectedIndexPath?.row = 0
+                        
+                        if UserDefaults.standard.object(forKey: "selectedIndexRowSharedCatalogue") != nil {
+                            let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowSharedCatalogue")
+                            self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                        } else {
+                            
+                            
+                            self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                        }
+                        
+                        
+                        guard let savedCatalogueId = UserDefaults.standard.string(forKey: "SharedCatalogueId") else {
+                            return
+                        }
+                        
+                        
+                        
+                        self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
+                        
+                        DispatchQueue.main.async {
+                            if let selectedIndexPath = self.selectedIndexPath {
+                                self.shareCatalogueFolderCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
+                       // self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                       // self.selectedIndexPath?.row = 0
                         
                         self.shareCatalogueFolderCollView.reloadData()
                         self.shareCataloguePhotoCollView.reloadData()
