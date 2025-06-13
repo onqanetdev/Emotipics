@@ -9,7 +9,7 @@ import UIKit
 
 class EmptyCollView: UIView {
 
-    private var imgPhoto: UIImageView = {
+    public var imgPhoto: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "uploadcata")
@@ -54,7 +54,9 @@ class EmptyCollView: UIView {
     }()
     
     
-    
+    public var imgWidthConstraint: NSLayoutConstraint!
+    public var imgHeightConstraint: NSLayoutConstraint!
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -79,15 +81,21 @@ class EmptyCollView: UIView {
     
     
     func settingUpConstraints() {
+        
+        imgWidthConstraint = imgPhoto.widthAnchor.constraint(equalToConstant: 95)
+        imgHeightConstraint = imgPhoto.heightAnchor.constraint(equalToConstant: 75)
+        
         NSLayoutConstraint.activate([
             imgPhoto.topAnchor.constraint(equalTo: self.topAnchor, constant: 2),
-            imgPhoto.widthAnchor.constraint(equalToConstant: 95),
-            imgPhoto.heightAnchor.constraint(equalToConstant: 75),
+            //imgPhoto.widthAnchor.constraint(equalToConstant: 95),
+            imgWidthConstraint,
+           // imgPhoto.heightAnchor.constraint(equalToConstant: 75),
+            imgHeightConstraint,
             imgPhoto.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             
             
             noCatLbl.topAnchor.constraint(equalTo: imgPhoto.bottomAnchor, constant: 2),
-            noCatLbl.widthAnchor.constraint(equalToConstant: 170),
+            noCatLbl.widthAnchor.constraint(equalToConstant: 200),
             noCatLbl.centerXAnchor.constraint(equalTo: imgPhoto.centerXAnchor),
             
             addSomeCat.topAnchor.constraint(equalTo: noCatLbl.bottomAnchor, constant: 2),

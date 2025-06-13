@@ -107,12 +107,23 @@ class NewSharedCatalogueVC: UIViewController {
         return indicator
     }()
     
-    
-    
-    
-    
-    
     var typeOfList = "catalog_share_byme"
+    
+    //MARK: Test empty Image
+    
+//    private let emptyLabel: UILabel = {
+//        let emptylabel = UILabel()
+//        emptylabel.translatesAutoresizingMaskIntoConstraints = false
+//        emptylabel.text = "No Catalogue Image Found!"
+//        emptylabel.isHidden = true
+//        emptylabel.font = UIFont(name: "Helvetica-Bold", size: 16)
+//        return emptylabel
+//    }()
+    
+    
+    
+    let emptyView = EmptyCollView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,6 +155,10 @@ class NewSharedCatalogueVC: UIViewController {
         
         photoActivityIndicator.center = CGPoint(x: shareCataloguePhotoCollView.bounds.width / 2, y: shareCataloguePhotoCollView.contentSize.height - 10)
         shareCataloguePhotoCollView.addSubview(photoActivityIndicator)
+        
+        
+        
+        setupEmptyView()
         
     }
 
@@ -267,10 +282,6 @@ class NewSharedCatalogueVC: UIViewController {
                             }
                         }
                         
-                        
-                        
-                        
-                        
                        // self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
                        // self.selectedIndexPath?.row = 0
                         
@@ -313,6 +324,7 @@ class NewSharedCatalogueVC: UIViewController {
                         self.imageCache.removeAll() // ✅ Clear cache
                         self.imageCount.removeAll()
                         self.shareCataloguePhotoCollView.reloadData()
+                        self.emptyView.isHidden = false
                         self.stopCustomLoader()
                         return
                     }
@@ -321,17 +333,15 @@ class NewSharedCatalogueVC: UIViewController {
                     
                     if self.imageCount.isEmpty || self.imageCount.count == 0 {
                         print("The Image count is 0")
-                        self.shareCataloguePhotoCollView.isHidden = true
+                        self.shareCataloguePhotoCollView.isHidden = false
                         self.imageCache.removeAll() // ✅ Clear cache
-                        self.shareCataloguePhotoCollView.isHidden = true
+                        //self.shareCataloguePhotoCollView.isHidden = true
+                        self.emptyView.isHidden = false
                     } else {
+                        self.emptyView.isHidden = true
                         print("Image count is there", self.imageCount.count)
                         // You can use `sumHeight` for layout purposes if needed
                     }
-                    
-                    
-    
-                    
                     self.shareCataloguePhotoCollView.reloadData()
                     self.stopCustomLoader()
                     
@@ -344,8 +354,32 @@ class NewSharedCatalogueVC: UIViewController {
     }
     
     
+    func setupEmptyView() {
+        
+        
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        shareCataloguePhotoCollView.addSubview(emptyView)
+        
+        emptyView.noCatLbl.text = "No Catalogue Image Found!"
+        emptyView.addSomeCat.text = "Add Some Catalogue Image"
+        
+        emptyView.addBtn.isHidden = true
+        
+        emptyView.imgWidthConstraint.constant = 170
+        emptyView.imgHeightConstraint.constant = 130
+        emptyView.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            emptyView.centerXAnchor.constraint(equalTo: shareCataloguePhotoCollView.centerXAnchor),
+            emptyView.topAnchor.constraint(equalTo: shareCataloguePhotoCollView.topAnchor, constant: 120)
+        ])
+
+        
+       // emptyView.settingUpConstraints()
+    }
     
-    
+
     
     @IBAction func backToPrevious(_ sender: Any) {
         

@@ -519,13 +519,17 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     @IBAction func allCatalogueAction(_ sender: Any) {
         
+        UserDefaults.standard.removeObject(forKey: "selectedIndexRowCatalogue")
         navigationController?.pushViewController(NewCatalogueVC(), animated: true)
+
+        
+       
         
     }
     
     @IBAction func bellIconAction(_ sender: Any) {
         
-        print("This is my bell Icon")
+       
     }
     
     
@@ -533,7 +537,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         //AddContactApiCaller.addContactApiCaller(email: "kinode3436@buides.com")
         navigationController?.pushViewController(ContactsViewController(), animated: true)
-        print("This is my all contacts")
+        
     }
     
     
@@ -797,6 +801,10 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     @IBAction func sharedCatalogueViewAll(_ sender: Any) {
         
+        //Delete the selected Catalogue
+        
+        UserDefaults.standard.removeObject(forKey: "selectedIndexRowSharedCatalogue")
+       
         self.navigationController?.pushViewController(NewSharedCatalogueVC(), animated: true)
         
     }

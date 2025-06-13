@@ -37,6 +37,10 @@ extension NewSharedCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSo
             cell.availableSpaceDetails.text = sharedData[indexPath.row].catalogimagesize
             cell.borderView.isHidden = indexPath == selectedIndexPath ? false : true
 
+            cell.shareByMeLbl.isHidden = false
+            cell.shareByMeLbl.text = sharedData[indexPath.row].owner_detials?.name
+            
+            
             if  indexPath == selectedIndexPath {
                 if let catalogueId = sharedData[indexPath.row].catalog_code {
                     

@@ -34,6 +34,7 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
             cell.availableSpaceDetails.text = tempMemory[indexPath.row].catalogimagesize
             cell.borderView.isHidden = indexPath == selectedIndexPath ? false : true
             
+            
             if  indexPath == selectedIndexPath {
                 if let catalogueId = tempMemory[indexPath.row].catalog_code {
                     
@@ -49,6 +50,8 @@ extension NewCatalogueVC: UICollectionViewDelegate, UICollectionViewDataSource,U
                 cell.projectFilesLbl.textColor = .white
                 cell.showFolder.image = UIImage(named: "ShowFolder")?.withRenderingMode(.alwaysTemplate)
                 cell.showFolder.tintColor = .white
+                // Share by me
+                
             }
             else
             {

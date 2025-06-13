@@ -119,6 +119,9 @@ class NewCatalogueVC: UIViewController {
     var isPaginatingImage = false
     var currentImagePage = 1
     
+    
+    let emptyView = EmptyCollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -153,6 +156,7 @@ class NewCatalogueVC: UIViewController {
         
         
         loadAllCatalogueData()
+        setupEmptyView()
     }
     
     
@@ -192,9 +196,6 @@ class NewCatalogueVC: UIViewController {
         
         myCatalogue.font = UIFont(name: textInputStyle.latoBold.rawValue, size: 19)
     }
-    
-    
-    
     
     
     
@@ -285,10 +286,9 @@ class NewCatalogueVC: UIViewController {
                         // self.photoCollView.isHidden = true
                         self.imageCache.removeAll() // ✅ Clear cache
                         self.imageCount.removeAll()
-                        
-                        // self.tempMemoryImages.removeAll()
-                        
                         self.photoCollView.reloadData()
+                        
+                        self.emptyView.isHidden = false
                         
                        // self.stopCustomLoader()
                         return
@@ -296,14 +296,17 @@ class NewCatalogueVC: UIViewController {
                     
                     self.imageCount = value
                     
+                    
                     if self.imageCount.isEmpty || self.imageCount.count == 0 {
                         print("The Image count is 0")
                         self.photoCollView.isHidden = true
                         self.imageCache.removeAll() // ✅ Clear cache
                         self.photoCollView.isHidden = true
+                        self.emptyView.isHidden = false
                     } else {
+                        self.emptyView.isHidden = true
                         print("Image count is there", self.imageCount.count)
-                        // You can use `sumHeight` for layout purposes if needed
+                        
                     }
                     
                     
@@ -318,6 +321,34 @@ class NewCatalogueVC: UIViewController {
             }
         }
     }
+    
+    func setupEmptyView() {
+    
+        emptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        photoCollView.addSubview(emptyView)
+        
+        emptyView.noCatLbl.text = "No Catalogue Image Found!"
+        emptyView.addSomeCat.text = "Add Some Catalogue Image"
+        
+        emptyView.addBtn.isHidden = true
+        
+        
+        emptyView.imgWidthConstraint.constant = 170
+        emptyView.imgHeightConstraint.constant = 130
+        emptyView.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            emptyView.centerXAnchor.constraint(equalTo: photoCollView.centerXAnchor),
+            emptyView.topAnchor.constraint(equalTo: photoCollView.topAnchor, constant: 120)
+        ])
+        
+       // emptyView.settingUpConstraints()
+    }
+    
+    
+    
+    
     
     
     
