@@ -10,38 +10,38 @@
 //
 //
 //extension DashboardViewController: UITabBarControllerDelegate {
-//    
-//    
-//    
-//    
-//    
+//
+//
+//
+//
+//
 //    func setUpPlusView(){
 //        view.addSubview(plusView)
-//        
-//        
+//
+//
 //        NSLayoutConstraint.activate([
 //            plusView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 100),
 //            plusView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
 //            plusView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
 //            plusView.heightAnchor.constraint(equalToConstant: 300)
 //        ])
-//        
+//
 //    }
-//    
-//    
-//    
+//
+//
+//
 //    func setupTabBarController() {
 //        // Create Tab Bar Controller
 //        let tabBarController = UITabBarController()
 //        tabBarController.delegate = self
 //        tabBarController.tabBar.isTranslucent = false
 //        tabBarController.tabBar.backgroundColor = .clear  // Set clear background to ensure visibility
-//        
+//
 //        // Add custom background image
 //        if let tabBarImage = UIImage(named: "TabbarBackGround") {
 //            let imageView = UIImageView(image: tabBarImage)
 //            imageView.contentMode = .scaleAspectFill
-//            
+//
 //            // Adjust the position of the image upwards
 //            let tabBarFrame = tabBarController.tabBar.bounds
 //            imageView.frame = CGRect(
@@ -50,60 +50,60 @@
 //                width: tabBarFrame.width,
 //                height: tabBarFrame.height + 10 // Extend the height slightly
 //            )
-//            
+//
 //            tabBarController.tabBar.insertSubview(imageView, at: 0) // Add inside tab bar to prevent blocking
 //        }
-//        
-//      
+//
+//
 //        let firstViewController = EntryViewController()
 //        firstViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "HomeDash"), tag: 0)
-//        
-//       
+//
+//
 //        let secondViewController = CatalogueViewController()
 //        secondViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "folder"), tag: 1)
-//        
-//       
-//        
+//
+//
+//
 //        let thirdViewController = UIViewController()
 //        thirdViewController.tabBarItem = UITabBarItem(title: nil, image: nil, tag: 2)
 //        thirdViewController.view.backgroundColor = .systemBlue
-//        
+//
 //        let floatingButton = UIButton(type: .custom)
-//       
+//
 //        floatingButton.setBackgroundImage(UIImage(named: "PlusIcon"), for: .normal)
-//        
+//
 //        floatingButton.layer.cornerRadius = 30  // Make it circular
-//        
-//        
+//
+//
 //        floatingButton.translatesAutoresizingMaskIntoConstraints = false
-//        
+//
 //        tabBarController.view.addSubview(floatingButton)
-//        
+//
 //        NSLayoutConstraint.activate([
 //            floatingButton.centerXAnchor.constraint(equalTo: tabBarController.tabBar.centerXAnchor),
 //            floatingButton.bottomAnchor.constraint(equalTo: tabBarController.tabBar.topAnchor, constant: 20), // Move upwards
 //            floatingButton.widthAnchor.constraint(equalToConstant: 60),
 //            floatingButton.heightAnchor.constraint(equalToConstant: 60)
 //        ])
-//        
-//        
-//        
-//        
-//        
+//
+//
+//
+//
+//
 //        let spacer = UIViewController()
 //        spacer.tabBarItem = UITabBarItem(title: "", image: nil, tag: -1)
-//        
+//
 //        let fourthViewController = ContactsViewController()
 //        fourthViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person"), tag: 3)
 //        fourthViewController.view.backgroundColor = .systemOrange
-//        
+//
 //
 //        let fifthViewController = GroupListViewController()
 //        fifthViewController.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.3"), tag: 4)
 //
 //        fifthViewController.view.backgroundColor = .systemPurple
-//        
-//       
+//
+//
 //        tabBarController.viewControllers = [
 //            firstViewController,
 //            secondViewController,
@@ -112,22 +112,22 @@
 //            fourthViewController,
 //            fifthViewController
 //        ]
-//        
+//
 //        tabBarController.selectedIndex = 0
-//        
+//
 //        addChild(tabBarController)
 //        view.addSubview(tabBarController.view)
 //        tabBarController.view.frame = view.bounds
 //        tabBarController.didMove(toParent: self)
 //    }
-//    
+//
 //    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 //            print("tab pressed")
-//        
-//        
+//
+//
 //        if let tag = viewController.tabBarItem.tag as Int? {
 //                    print("Tab pressed Tag: \(tag)")
-//            
+//
 //            if tag == 1 {
 //                self.navigationController?.pushViewController(CatalogueViewController(), animated: true)
 //                }
@@ -137,9 +137,9 @@
 //            else if tag == 4 {
 //                self.navigationController?.pushViewController(GroupListViewController(), animated: true)
 //            }
-//            
+//
 //        }
-//        
+//
 //        }
 //}
 
@@ -160,8 +160,8 @@ extension DashboardViewController: UITabBarControllerDelegate {
         
         
         
-       
-            tabBarController.tabBar.tintColor = .gray
+        
+        tabBarController.tabBar.tintColor = .gray
         
         // Add custom background image
         if let tabBarImage = UIImage(named: "TabbarBackGround") {
@@ -179,7 +179,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
         
         // Create empty view controllers for the tab bar items
         let homeTab = EntryViewController()
-       // self.navigationController?.pushViewController(homeTab, animated: true)
+        // self.navigationController?.pushViewController(homeTab, animated: true)
         homeTab.userName = name
         homeTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(named: "HomeDash"), tag: 0)
         homeTab.tabBarItem = UITabBarItem(
@@ -189,7 +189,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
         )
         
         
-       // let catalogueTab = UIViewController()
+        // let catalogueTab = UIViewController()
         let catalogueTab = EntryViewController()
         catalogueTab.userName = name
         catalogueTab.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "folder"), tag: 1)
@@ -234,9 +234,60 @@ extension DashboardViewController: UITabBarControllerDelegate {
     
     @objc func plusButtonTapped() {
         // Handle plus button action
-        print("Plus button tapped")
-        // Add your plus button logic here
+        
+        let plusView = PlusIconViewController(nibName: "PlusIconViewController", bundle: nil)
+        plusView.modalPresentationStyle = .overCurrentContext
+        plusView.modalTransitionStyle = .crossDissolve
+        
+        plusView.onTappingAdd = { [weak self] in
+            self?.addContactsView()
+        }
+        
+        plusView.onTappingCreateGrp = { [weak self] in
+            self?.addNewGrpView()
+        }
+        
+        plusView.onTappingCreateCatalog = { [weak self] in
+            self?.addNewCatalogue()
+        }
+        
+        
+        self.present(plusView, animated: true)
     }
+    
+    
+    
+    func addContactsView() {
+        let addCatalogueVC = AddContactViewController()
+        addCatalogueVC.isCatalogueView = false
+        
+        addCatalogueVC.txtFieldPlaceHolder = "Enter Email Address"
+        addCatalogueVC.addCataText = "Add Contact"
+        addCatalogueVC.createCataTxt = "Add users by email address in the bar"
+        addCatalogueVC.favImgLbl = "favourite images"
+                
+        navigationController?.pushViewController(addCatalogueVC, animated: true)
+        
+    }
+    
+    
+    func addNewGrpView() {
+        let newGrp = CreateNewViewController()
+        navigationController?.pushViewController(newGrp, animated: true)
+    }
+    
+    
+    func addNewCatalogue() {
+        let addCatalogueVC = AddContactViewController()
+        addCatalogueVC.isCatalogueView = true
+        
+        addCatalogueVC.txtFieldPlaceHolder = "Enter Catalogue Name"
+        addCatalogueVC.addCataText = "Create a Catalogue"
+        addCatalogueVC.createCataTxt = "Create a catalogue and add users to share your"
+        addCatalogueVC.favImgLbl = "favourite images"
+        navigationController?.pushViewController(addCatalogueVC, animated: true)
+    }
+    
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if let tag = viewController.tabBarItem.tag as Int? {
@@ -246,13 +297,13 @@ extension DashboardViewController: UITabBarControllerDelegate {
             case 0:
                 
                 
-//                self.navigationController?.pushViewController(EntryViewController(), animated: true)
+                //                self.navigationController?.pushViewController(EntryViewController(), animated: true)
                 print("Nothing From Here")
                 
             case 1:
                 // Catalogue tab
                 
-//                self.navigationController?.pushViewController(CatalogueViewController(), animated: true)
+                //                self.navigationController?.pushViewController(CatalogueViewController(), animated: true)
                 
                 self.navigationController?.pushViewController(NewCatalogueVC(), animated: true)
                 
@@ -274,3 +325,12 @@ extension DashboardViewController: UITabBarControllerDelegate {
         }
     }
 }
+
+
+
+
+
+
+
+
+
