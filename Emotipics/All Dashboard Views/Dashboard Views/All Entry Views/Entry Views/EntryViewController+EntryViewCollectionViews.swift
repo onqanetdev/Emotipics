@@ -20,7 +20,8 @@ extension EntryViewController: UICollectionViewDelegate, UICollectionViewDataSou
            return sharedImageData.count
         }
         else {
-            return 4
+            //return 0
+            return sharedCataTempMemory.count
         }
         //return tempMemory.count
     }

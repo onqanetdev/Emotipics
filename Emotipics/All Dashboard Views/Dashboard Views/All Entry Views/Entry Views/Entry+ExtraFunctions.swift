@@ -59,8 +59,8 @@ extension EntryViewController: DeleteCatalogDelegate {
     
     
     func presentRenameCatalogueScreen() {
-        print("folder name is ", tempMemory[indexNo].catalog_name)
-        print("folder uuid is ", tempMemory[indexNo].catalogue_uuid)
+//        print("folder name is ", tempMemory[indexNo].catalog_name)
+//        print("folder uuid is ", tempMemory[indexNo].catalogue_uuid)
         let renameCatalogue = RenameCatalogueVC(nibName: "RenameCatalogueVC", bundle: nil)
         renameCatalogue.modalPresentationStyle = .overCurrentContext
         renameCatalogue.modalTransitionStyle = .crossDissolve
@@ -98,10 +98,15 @@ extension EntryViewController {
                 switch result {
                 case .goAhead:
                     guard let tempMemoryForSharedCat = self.sharedCatalogueViewModel.responseModel?.data else {
+                        self.emptyViewForSharedCatalogue.isHidden = false
                         return
                     }
-                    
+                    self.emptyViewForSharedCatalogue.isHidden = true
                     self.sharedCataTempMemory = tempMemoryForSharedCat
+                    
+                    if self.sharedCataTempMemory.count == 0 || self.sharedCataTempMemory.isEmpty {
+                        self.emptyViewForSharedCatalogue.isHidden = false
+                    }
                     
                     self.sharedCatalogueCollView.reloadData()
                     
@@ -140,10 +145,17 @@ extension EntryViewController {
                 switch result {
                 case .goAhead:
                     guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        self.emptyViewForShareImgWithMe.isHidden = false
                         return
                     }
                     
                     self.sharedImageData = value
+                    
+                    if self.sharedImageData.count == 0 || self.sharedImageData.isEmpty {
+                        self.emptyViewForShareImgWithMe.isHidden = false
+                    } else {
+                        self.emptyViewForShareImgWithMe.isHidden = true
+                    }
                     
                     self.shareWithMeViewHeight.constant = (self.sharedImageData.count <= 2) ? 200 : 400
                     self.sharedImageCollView.reloadData()
@@ -155,6 +167,61 @@ extension EntryViewController {
         }
     }
 
+    func setupEmptyViewForSharedCatalogue(){
+        emptyViewForSharedCatalogue.translatesAutoresizingMaskIntoConstraints = false
+        
+        sharedCatalogueCollView.addSubview(emptyViewForSharedCatalogue)
+        
+        emptyViewForSharedCatalogue.addBtn.isHidden = true
+        emptyViewForSharedCatalogue.noCatLbl.text = "No Shared Catalogue Found!"
+        emptyViewForSharedCatalogue.addSomeCat.text = "Share Some Catalogue to Get Start"
+        
+        
+        emptyViewForSharedCatalogue.imgWidthConstraint.constant = 130
+        emptyViewForSharedCatalogue.imgHeightConstraint.constant = 110
+        emptyViewForSharedCatalogue.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            emptyViewForSharedCatalogue.topAnchor.constraint(equalTo: sharedCatalogueCollView.topAnchor, constant: 55),
+
+            emptyViewForSharedCatalogue.centerXAnchor.constraint(equalTo: sharedCatalogueCollView.centerXAnchor),
+            emptyViewForSharedCatalogue.centerYAnchor.constraint(equalTo: sharedCatalogueCollView.centerYAnchor),
+            
+            emptyViewForSharedCatalogue.widthAnchor.constraint(equalTo: sharedCatalogueCollView.widthAnchor),
+
+        ])
+        
+        //emptyViewForSharedCatalogue.settingUpConstraints()
+        
+    }
+    
+    
+    func setupEmptyViewForShareImgWithMe() {
+        emptyViewForShareImgWithMe.translatesAutoresizingMaskIntoConstraints = false
+        
+        sharedImageCollView.addSubview(emptyViewForShareImgWithMe)
+        
+        emptyViewForShareImgWithMe.addBtn.isHidden = true
+        emptyViewForShareImgWithMe.noCatLbl.text = "No Shared Image Found!"
+        emptyViewForShareImgWithMe.addSomeCat.text = "Share Some Image to Get Started"
+        
+        emptyViewForShareImgWithMe.imgWidthConstraint.constant = 100
+        emptyViewForShareImgWithMe.imgHeightConstraint.constant = 80
+        emptyViewForShareImgWithMe.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            emptyViewForShareImgWithMe.topAnchor.constraint(equalTo: sharedImageCollView.topAnchor , constant: 16),
+            emptyViewForShareImgWithMe.centerXAnchor.constraint(equalTo: sharedImageCollView.centerXAnchor),
+            emptyViewForShareImgWithMe.centerYAnchor.constraint(equalTo: sharedImageCollView.centerYAnchor),
+            
+            emptyViewForShareImgWithMe.widthAnchor.constraint(equalTo: sharedImageCollView.widthAnchor)
+            
+        ])
+        
+        
+    }
+    
+    
     
     
     

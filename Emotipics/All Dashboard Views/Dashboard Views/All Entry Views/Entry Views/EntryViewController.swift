@@ -203,19 +203,15 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     var imageCache: [String: UIImage] = [:]
 
     
-    
     @IBOutlet weak var shareWithMeViewHeight: NSLayoutConstraint!
     
     
     
     var isSkeletonVisible = true
 
+    let emptyViewForSharedCatalogue = EmptyCollView()
     
-    
-    // MARK: All The Heights
-    
-    
-    
+    let emptyViewForShareImgWithMe = EmptyCollView()
     
     
     override func viewDidLoad() {
@@ -280,7 +276,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         
         setupEmptyView()
         
-        viewModel()
+        conatactsViewModel()
         setupEmptyViewForContacts()
         
         dashboardStorageDetails()
@@ -289,6 +285,9 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         sharedCatalogueList()
         sharedWithMeList()
         
+        setupEmptyViewForSharedCatalogue()
+        setupEmptyViewForShareImgWithMe()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -296,7 +295,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false
         //viewModel is for Contacts
-        viewModel()
+        conatactsViewModel()
         
         //All Catalogueview is for Catalogue
         allCatalogueView()
@@ -638,7 +637,8 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
     func updateUI(){
         print("Update UI is getting called")
-        viewModel()
+        //viewModel()
+        conatactsViewModel()
     }
     
 
@@ -692,7 +692,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
     
 
     
-    func viewModel() {
+    func conatactsViewModel() {
        // contactsTblView.addSubview(startCustomLoader())
        // startCustomLoader(selfView: contactsTblView)
         contactsViewModel.requestModel.offSet = "1"
@@ -757,7 +757,7 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         self.deleteCatalogPopUp()
         
         
-        print( "All Shared Information", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog)
+//        print( "All Shared Information", self.catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog)
         
         
     }//button action
