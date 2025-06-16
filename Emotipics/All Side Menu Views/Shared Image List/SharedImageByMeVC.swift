@@ -56,11 +56,12 @@ class SharedImageByMeVC: UIViewController {
     var isShareWithMe: Bool = false
     var isShareByMe: Bool = true
     
-    
-    
 
     var previousSelectedIndex: Int = 0
 
+    
+    let imagesEmptyView = EmptyCollView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,8 @@ class SharedImageByMeVC: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(segmentTappedAgain(_:)))
         tapGesture.cancelsTouchesInView = false // ✅ allows segmented control to still work
         segmentControlShared.addGestureRecognizer(tapGesture)
+        
+        setUpEmptyViewForShareByMe()
 
     }
     
@@ -116,15 +119,22 @@ class SharedImageByMeVC: UIViewController {
                 
                 switch result {
                 case .goAhead:
-                    print("Shared Catalogue View Model From Shared Catalogue View Controller")
+
                     guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        self.imagesEmptyView.isHidden = false
                         return
                     }
                     
-                    self.sharedImageData = value
-                    self.collView.reloadData()
-                    self.stopCustomLoader()
-                    
+                    if value.count == 0 || value.isEmpty {
+                        self.imagesEmptyView.isHidden = false
+                        self.stopCustomLoader()
+                    } else {
+                        
+                        self.imagesEmptyView.isHidden = true
+                        self.sharedImageData = value
+                        self.collView.reloadData()
+                        self.stopCustomLoader()
+                    }
                 case .heyStop:
                     print("Error")
                     self.stopCustomLoader()
@@ -153,15 +163,22 @@ class SharedImageByMeVC: UIViewController {
                 
                 switch result {
                 case .goAhead:
-                    print("Shared Catalogue View Model From Shared Catalogue View Controller")
+                    
                     guard let value = self.sharedImageByMeViewModel.responseModel?.data else {
+                        self.imagesEmptyView.isHidden = false
+                        self.stopCustomLoader()
                         return
                     }
                     
-                    self.sharedImageData = value
-                    self.collView.reloadData()
-                    self.stopCustomLoader()
-                    
+                    if value.count == 0 || value.isEmpty {
+                        self.imagesEmptyView.isHidden = false
+                        self.stopCustomLoader()
+                    } else {
+                        self.imagesEmptyView.isHidden = true
+                        self.sharedImageData = value
+                        self.collView.reloadData()
+                        self.stopCustomLoader()
+                    }
                 case .heyStop:
                     print("Error")
                     self.stopCustomLoader()
@@ -225,6 +242,27 @@ class SharedImageByMeVC: UIViewController {
         underlineView2.backgroundColor = #colorLiteral(red: 0.9058823529, green: 0.9333333333, blue: 0.9607843137, alpha: 1)
         segmentedControl.addSubview(underlineView2)
         segmentedControl.addSubview(underlineView)
+    }
+    
+    
+    func setUpEmptyViewForShareByMe() {
+        imagesEmptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collView.addSubview(imagesEmptyView)
+        
+        imagesEmptyView.noCatLbl.text = "No Images Found!"
+        imagesEmptyView.addSomeCat.isHidden = true
+        imagesEmptyView.addBtn.isHidden = true
+        
+        imagesEmptyView.imgWidthConstraint.constant = 170
+        imagesEmptyView.imgHeightConstraint.constant = 130
+        imagesEmptyView.layoutIfNeeded()
+        
+        NSLayoutConstraint.activate([
+            imagesEmptyView.centerXAnchor.constraint(equalTo: collView.centerXAnchor),
+            imagesEmptyView.topAnchor.constraint(equalTo: collView.topAnchor, constant: 80)
+        ])
+        
     }
     
     
@@ -341,55 +379,7 @@ extension SharedImageByMeVC:  UICollectionViewDelegate, UICollectionViewDataSour
     
     
     
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCataCell", for: indexPath) as! ImageCatalogueViewCell
-//        cell.layer.cornerRadius = 15
-//        cell.clipsToBounds = true
-//        
-//        if sharedImageData.count == 0 || sharedImageData.isEmpty {
-//            
-//        } else {
-//            cell.imgViewColl.image = nil
-//            // cell.startCustomLoader()
-//            cell.activityIndicator.startAnimating()
-//            
-//            if let imageURL = fetchImageURL(for: indexPath.row) {
-//                
-//                // Check the cache first
-//                if let cachedImage = imageCache[imageURL] {
-//                    cell.imgViewColl.image = cachedImage
-//                    // cell.stopCustomLoader()
-//                    cell.activityIndicator.stopAnimating()
-//                } else {
-//                    cell.imgViewColl.image = nil
-//                    //  cell.startCustomLoader()
-//                    cell.activityIndicator.startAnimating()
-//                    DispatchQueue.global().async {
-//                        if let url = URL(string: imageURL),
-//                           let data = try? Data(contentsOf: url),
-//                           let image = UIImage(data: data) {
-//                            
-//                            DispatchQueue.main.async {
-//                                self.imageCache[imageURL] = image
-//
-//                                cell.imgViewColl.image = image
-//                                //   cell.stopCustomLoader()
-//                                cell.activityIndicator.stopAnimating()                            }
-//                        } else {
-//                            DispatchQueue.main.async {
-//                                //   cell.stopCustomLoader()
-//                                cell.activityIndicator.stopAnimating()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//            
-//        }
-//
-//        return cell
-//    }
+
     
     
     
