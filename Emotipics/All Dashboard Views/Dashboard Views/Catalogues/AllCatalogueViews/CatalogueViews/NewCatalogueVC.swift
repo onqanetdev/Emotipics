@@ -124,6 +124,8 @@ class NewCatalogueVC: UIViewController {
     
     let emptyView = EmptyCollView()
     
+    let catalogueEmptyView = EmptyCollView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -159,6 +161,8 @@ class NewCatalogueVC: UIViewController {
         
         loadAllCatalogueData()
         setupEmptyView()
+        
+        setupEmptyViewForCatalogue()
     }
     
     
@@ -216,45 +220,56 @@ class NewCatalogueVC: UIViewController {
                 //self.stopCustomLoader()
                 switch result {
                 case .goAhead:
-                    print("Catalogue View Model from New Catalogue VC")
+                    
                     self.catalogueCollView.reloadData()
                     
                     if let value = self.catalogueListingViewModel.responseModel?.data {
                         self.tempMemory = value
                         
-                        self.catalogCode = self.tempMemory[0].catalog_code ?? ""
+                        self.catalogueEmptyView.isHidden = true
                         
-                        
-                         self.selectedIndexPath = IndexPath(row: 0, section: 0)
-                        
-                        if UserDefaults.standard.object(forKey: "selectedIndexRowCatalogue") != nil {
-                            let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowCatalogue")
-                            self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                        if self.tempMemory.count == 0 || self.tempMemory.isEmpty {
+                            self.catalogueEmptyView.isHidden = false
                         } else {
+                            self.catalogueEmptyView.isHidden = true                       
+                            
+                            
+                            self.catalogCode = self.tempMemory[0].catalog_code ?? ""
                             
                             
                             self.selectedIndexPath = IndexPath(row: 0, section: 0)
-                        }
-                        
-                        
-                        guard let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") else {
-                            return
-                        }
-                        
-                        
-                        
-                        self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
-                        
-                        
-                        DispatchQueue.main.async {
-                            if let selectedIndexPath = self.selectedIndexPath {
-                                self.catalogueCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                            
+                            if UserDefaults.standard.object(forKey: "selectedIndexRowCatalogue") != nil {
+                                let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowCatalogue")
+                                self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                            } else {
+                                self.selectedIndexPath = IndexPath(row: 0, section: 0)
                             }
+                            
+                            
+                            guard let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") else {
+                                return
+                            }
+                            
+                            
+                            
+                            self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
+                            
+                            
+                            DispatchQueue.main.async {
+                                if let selectedIndexPath = self.selectedIndexPath {
+                                    self.catalogueCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                                }
+                            }
+                            
+                            
+                            self.catalogueCollView.reloadData()
+                            self.photoCollView.reloadData()
+                            
                         }
                         
-                        
-                        self.catalogueCollView.reloadData()
-                        self.photoCollView.reloadData()
+                    } else {
+                        self.catalogueEmptyView.isHidden = false
                     }
                     
                     

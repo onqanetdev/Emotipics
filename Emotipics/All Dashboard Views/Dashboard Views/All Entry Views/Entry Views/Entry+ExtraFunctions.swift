@@ -167,6 +167,8 @@ extension EntryViewController {
         }
     }
 
+    
+    
     func setupEmptyViewForSharedCatalogue(){
         emptyViewForSharedCatalogue.translatesAutoresizingMaskIntoConstraints = false
         

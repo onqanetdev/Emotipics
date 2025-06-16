@@ -161,8 +161,8 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
     
     
     func presentRenameCatalogueScreen() {
-        print("folder name is ", tempMemory[indexNo].catalog_name)
-        print("folder uuid is ", tempMemory[indexNo].catalogue_uuid)
+//        print("folder name is ", tempMemory[indexNo].catalog_name)
+//        print("folder uuid is ", tempMemory[indexNo].catalogue_uuid)
         let renameCatalogue = RenameCatalogueVC(nibName: "RenameCatalogueVC", bundle: nil)
         renameCatalogue.modalPresentationStyle = .overCurrentContext
         renameCatalogue.modalTransitionStyle = .crossDissolve
@@ -203,4 +203,28 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
         
         self.present(detailScreen, animated: true)
     }
+    
+    
+    
+    func setupEmptyViewForCatalogue() {
+        catalogueEmptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        catalogueCollView.addSubview(catalogueEmptyView)
+        
+        catalogueEmptyView.noCatLbl.text = "No Catalogue Found!"
+        catalogueEmptyView.noCatLbl.textColor = .white
+        catalogueEmptyView.addSomeCat.text = "Add Some Catalogue to get Started"
+        
+        catalogueEmptyView.addBtn.isHidden = true
+        catalogueEmptyView.imgPhoto.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            catalogueEmptyView.centerXAnchor.constraint(equalTo: catalogueCollView.centerXAnchor),
+            catalogueEmptyView.topAnchor.constraint(equalTo: catalogueCollView.topAnchor, constant: -35),
+            
+        ])
+    }
+    
+    
+    
 }

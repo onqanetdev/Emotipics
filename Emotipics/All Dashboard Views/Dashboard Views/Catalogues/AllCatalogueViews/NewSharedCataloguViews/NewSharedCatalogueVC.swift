@@ -123,6 +123,7 @@ class NewSharedCatalogueVC: UIViewController {
     
     
     let emptyView = EmptyCollView()
+    let sharedCatalogueEmptyView = EmptyCollView()
     
     
     override func viewDidLoad() {
@@ -160,6 +161,8 @@ class NewSharedCatalogueVC: UIViewController {
         
         setupEmptyView()
         
+        setupEmptyViewForSharedCatalogue()
+        
     }
 
     override func viewDidLayoutSubviews() {
@@ -195,26 +198,39 @@ class NewSharedCatalogueVC: UIViewController {
                 switch result {
                 case .goAhead:
                     guard let sharedData = self.sharedCatalogueViewModel.responseModel?.data else {
-                        print("No shared data found")
+                        //print("No shared data found")
+                        self.sharedCatalogueEmptyView.isHidden = false
                         return
                     }
                     
                     
                     if let value = self.sharedCatalogueViewModel.responseModel?.data {
-                        self.sharedData = value
                         
-                        self.catalogCode = self.sharedData[0].catalog_code ?? ""
-                        
-    
-                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
-                        
-//                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
-                        self.selectedIndexPath?.row = 0
-                        
-                        self.shareCatalogueFolderCollView.reloadData()
-                        self.shareCataloguePhotoCollView.reloadData()
+                        if value.count == 0 || value.isEmpty {
+                            
+                            self.sharedCatalogueEmptyView.isHidden = false
+                            
+                        } else {
+                            
+                            self.sharedCatalogueEmptyView.isHidden = true
+                            
+                            self.sharedData = value
+                            
+                            self.catalogCode = self.sharedData[0].catalog_code ?? ""
+                            
+                            
+                            self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                            
+                            //                        self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                            self.selectedIndexPath?.row = 0
+                            
+                            self.shareCatalogueFolderCollView.reloadData()
+                            self.shareCataloguePhotoCollView.reloadData()
+                            
+                            
+                            
+                        }
                     }
-                    
                     
                     
                     self.sharedData = sharedData
@@ -245,50 +261,58 @@ class NewSharedCatalogueVC: UIViewController {
                 switch result {
                 case .goAhead:
                     guard let sharedData = self.sharedCatalogueViewModel.responseModel?.data else {
-                        print("No shared data found")
+                       
+                        self.sharedCatalogueEmptyView.isHidden = false
                         return
                     }
                     
                     if let value = self.sharedCatalogueViewModel.responseModel?.data {
-                        self.sharedData = value
                         
-                        self.catalogCode = self.sharedData[0].catalog_code ?? ""
-                        
-                        
-                        self.selectedIndexPath = IndexPath(row: 0, section: 0)
-                        
-                        
-                        if UserDefaults.standard.object(forKey: "selectedIndexRowSharedCatalogue") != nil {
-                            let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowSharedCatalogue")
-                            self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                        if value.count == 0 || value.isEmpty {
+                            self.sharedCatalogueEmptyView.isHidden = false
                         } else {
+                            
+                            self.sharedData = value
+                            
+                            self.catalogCode = self.sharedData[0].catalog_code ?? ""
                             
                             
                             self.selectedIndexPath = IndexPath(row: 0, section: 0)
-                        }
-                        
-                        
-                        guard let savedCatalogueId = UserDefaults.standard.string(forKey: "SharedCatalogueId") else {
-                            return
-                        }
-                        
-                        
-                        
-                        self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
-                        
-                        DispatchQueue.main.async {
-                            if let selectedIndexPath = self.selectedIndexPath {
-                                self.shareCatalogueFolderCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                            
+                            
+                            if UserDefaults.standard.object(forKey: "selectedIndexRowSharedCatalogue") != nil {
+                                let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowSharedCatalogue")
+                                self.selectedIndexPath = IndexPath(row: selectedIndex, section: 0)
+                            } else {
+                                
+                                
+                                self.selectedIndexPath = IndexPath(row: 0, section: 0)
                             }
+                            
+                            
+                            guard let savedCatalogueId = UserDefaults.standard.string(forKey: "SharedCatalogueId") else {
+                                return
+                            }
+                            
+                            
+                            
+                            self.loadAllImageCatalogue(catalogueCode: savedCatalogueId)
+                            
+                            DispatchQueue.main.async {
+                                if let selectedIndexPath = self.selectedIndexPath {
+                                    self.shareCatalogueFolderCollView.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+                                }
+                            }
+                            
+                            // self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
+                            // self.selectedIndexPath?.row = 0
+                            
+                            self.shareCatalogueFolderCollView.reloadData()
+                            self.shareCataloguePhotoCollView.reloadData()
+                            
+                            
                         }
-                        
-                       // self.loadAllImageCatalogue(catalogueCode: self.catalogCode)
-                       // self.selectedIndexPath?.row = 0
-                        
-                        self.shareCatalogueFolderCollView.reloadData()
-                        self.shareCataloguePhotoCollView.reloadData()
                     }
-                    
                     self.sharedData = sharedData
                     self.shareCatalogueFolderCollView.reloadData()
                     self.shareCataloguePhotoCollView.reloadData()
@@ -380,6 +404,27 @@ class NewSharedCatalogueVC: UIViewController {
     }
     
 
+    func setupEmptyViewForSharedCatalogue() {
+        sharedCatalogueEmptyView.translatesAutoresizingMaskIntoConstraints = false
+        
+        shareCatalogueFolderCollView.addSubview(sharedCatalogueEmptyView)
+        
+        sharedCatalogueEmptyView.noCatLbl.text = "No Shared Catalogue Found!"
+        sharedCatalogueEmptyView.noCatLbl.textColor = .white
+        sharedCatalogueEmptyView.addSomeCat.text = "Share Some Catalogue to get Started"
+        
+        sharedCatalogueEmptyView.addBtn.isHidden = true
+        sharedCatalogueEmptyView.imgPhoto.isHidden = true
+        
+        NSLayoutConstraint.activate([
+            sharedCatalogueEmptyView.centerXAnchor.constraint(equalTo: shareCatalogueFolderCollView.centerXAnchor),
+            sharedCatalogueEmptyView.topAnchor.constraint(equalTo: shareCatalogueFolderCollView.topAnchor, constant: -35),
+            
+        ])
+    }
+    
+    
+    
     
     @IBAction func sortIconBtnAction(_ sender: Any) {
         
