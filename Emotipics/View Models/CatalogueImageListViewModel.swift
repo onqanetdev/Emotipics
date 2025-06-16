@@ -12,10 +12,10 @@ import Foundation
 
 class CatalogueImageListViewModel {
     var responseModel: CatalogueImageListResModel?
-    var requestModel: CatalogueImageListReqModel = CatalogueImageListReqModel(limit: "", offset: "", catalog_code: "")
+    var requestModel: CatalogueImageListReqModel = CatalogueImageListReqModel(limit: "", offset: "", catalog_code: "", sortImages: "")
     
     func catalogueImageListViewModel(request: CatalogueImageListReqModel , completion: @escaping(_ result: userDataDefination) -> Void){
-        CatalogueImageListApiCaller.catalogueImageListApiCaller(limit: request.limit, offset:request.offset,  catalogCode: request.catalog_code) { [weak self] result in
+        CatalogueImageListApiCaller.catalogueImageListApiCaller(limit: request.limit, offset:request.offset,  catalogCode: request.catalog_code, sortImages: request.sortImages) { [weak self] result in
             switch result {
             case .success(let data):
                 self?.responseModel = data

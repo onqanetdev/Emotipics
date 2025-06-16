@@ -94,6 +94,8 @@ class NewCatalogueVC: UIViewController {
     
     var tempMemoryImages: [UIImage] = []
     
+    var sortingOrderGlobal: String = "DESC"
+    
     
     //let activityIndicator = UIActivityIndicatorView(style: .medium)
     
@@ -273,7 +275,7 @@ class NewCatalogueVC: UIViewController {
         catalogueImageListViewModel.requestModel.catalog_code = catalogueCode
         catalogueImageListViewModel.requestModel.limit = "10"
         catalogueImageListViewModel.requestModel.offset = "1"
-        
+        catalogueImageListViewModel.requestModel.sortImages = "DESC"
        // startCustomLoader()
         
         catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
@@ -346,19 +348,14 @@ class NewCatalogueVC: UIViewController {
        // emptyView.settingUpConstraints()
     }
     
-    
-    
-    
-    
-    
+
     
     @IBAction func uploadImgBtnAction(_ sender: Any) {
         let webView = WebViewController()
         navigationController?.pushViewController(webView, animated: true)
     }
     
-    
-    
+
     
     @IBAction func createCatalogAction(_ sender: Any) {
         
@@ -373,6 +370,91 @@ class NewCatalogueVC: UIViewController {
         
     }
     
+   
+    
+    
+    @IBAction func sortButtonAction(_ sender: Any) {
+        
+        let sortView = SortIconViewController(nibName: "SortIconViewController", bundle: nil)
+        
+        sortView.modalPresentationStyle = .overCurrentContext
+        sortView.modalTransitionStyle = .crossDissolve
+        
+        sortView.onTapNewestFirst = { [weak self] in
+            self?.sortingOrderGlobal = "DESC"
+            self?.sortingImagesCatalogue(sortingOrder: self?.sortingOrderGlobal ?? "DESC")
+        }
+        
+        sortView.onTapOldestFirst = { [weak self] in
+            self?.sortingOrderGlobal = "ASC"
+            self?.sortingImagesCatalogue(sortingOrder: self?.sortingOrderGlobal ?? "ASC")
+        }
+        
+        self.present(sortView, animated: true)
+    }
+    
+    
+    
+    func sortingImagesCatalogue(sortingOrder: String) {
+        
+        guard let savedCatalogueId = UserDefaults.standard.string(forKey: "catalogueId") else {
+            return
+        }
+        
+        
+        
+        catalogueImageListViewModel.requestModel.catalog_code = savedCatalogueId
+        catalogueImageListViewModel.requestModel.limit = "10"
+        catalogueImageListViewModel.requestModel.offset = "1"
+        catalogueImageListViewModel.requestModel.sortImages = sortingOrder
+       // startCustomLoader()
+        
+        catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                
+                switch result {
+                case .goAhead:
+                    guard let value = self.catalogueImageListViewModel.responseModel?.data else {
+                        // self.photoCollView.isHidden = true
+                        self.imageCache.removeAll() // ✅ Clear cache
+                        self.imageCount.removeAll()
+                        self.photoCollView.reloadData()
+                        
+                        self.emptyView.isHidden = false
+                        
+                       // self.stopCustomLoader()
+                        return
+                    }
+                    
+                    self.imageCount = value
+                    
+                    
+                    if self.imageCount.isEmpty || self.imageCount.count == 0 {
+                        print("The Image count is 0")
+                        self.photoCollView.isHidden = true
+                        self.imageCache.removeAll() // ✅ Clear cache
+                        self.photoCollView.isHidden = true
+                        self.emptyView.isHidden = false
+                    } else {
+                        self.emptyView.isHidden = true
+                        print("Image count is there", self.imageCount.count)
+                        
+                    }
+                    
+                    
+                    
+                    self.photoCollView.reloadData()
+                   // self.stopCustomLoader()
+                    
+                case .heyStop:
+                    print("Error")
+                    //self.stopCustomLoader()
+                }
+            }
+        }
+    }
+
     
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220

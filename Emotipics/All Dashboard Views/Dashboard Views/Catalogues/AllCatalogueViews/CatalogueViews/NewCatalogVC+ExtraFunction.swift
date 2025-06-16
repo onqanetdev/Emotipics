@@ -117,7 +117,6 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
     
     
     func deletePopup(){
-        //print("Testing Testing 👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹👹")
         deleteCatalogueFunction(pin: indexNo)
     }
     

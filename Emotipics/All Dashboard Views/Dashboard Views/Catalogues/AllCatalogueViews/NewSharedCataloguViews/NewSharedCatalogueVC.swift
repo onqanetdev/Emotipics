@@ -381,6 +381,20 @@ class NewSharedCatalogueVC: UIViewController {
     
 
     
+    @IBAction func sortIconBtnAction(_ sender: Any) {
+        
+        let sortView = SortIconViewController(nibName: "SortIconViewController", bundle: nil)
+        
+        sortView.modalPresentationStyle = .overCurrentContext
+        
+        sortView.modalTransitionStyle = .crossDissolve
+        
+        self.present(sortView, animated: true)
+        
+    }
+    
+    
+    
     @IBAction func backToPrevious(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)

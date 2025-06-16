@@ -107,7 +107,7 @@
                                         <constraint firstItem="Vj4-Uj-cJe" firstAttribute="centerY" secondItem="ba4-yf-PF9" secondAttribute="centerY" id="kHd-qa-vNt"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QT5-EZ-XGs">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QT5-EZ-XGs" userLabel="Sort Icon View">
                                     <rect key="frame" x="298" y="10" width="40" height="40"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XHP-vI-pHp">
@@ -123,15 +123,26 @@
                                                 <constraint firstAttribute="height" constant="20" id="uLy-cv-sOf"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98y-b9-yk2">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="sortIconBtnAction:" destination="-1" eventType="touchUpInside" id="8lN-Uf-pjm"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="XHP-vI-pHp" firstAttribute="top" secondItem="QT5-EZ-XGs" secondAttribute="top" id="0d9-tP-bAO"/>
                                         <constraint firstItem="Yqz-OZ-Sba" firstAttribute="centerY" secondItem="QT5-EZ-XGs" secondAttribute="centerY" id="23w-xj-zZU"/>
                                         <constraint firstAttribute="bottom" secondItem="XHP-vI-pHp" secondAttribute="bottom" id="Mck-ca-Y23"/>
+                                        <constraint firstItem="98y-b9-yk2" firstAttribute="top" secondItem="QT5-EZ-XGs" secondAttribute="top" id="ObZ-L0-wqq"/>
+                                        <constraint firstAttribute="bottom" secondItem="98y-b9-yk2" secondAttribute="bottom" id="Pjq-PT-5Vt"/>
                                         <constraint firstAttribute="trailing" secondItem="XHP-vI-pHp" secondAttribute="trailing" id="Sd2-WN-HnG"/>
                                         <constraint firstItem="XHP-vI-pHp" firstAttribute="leading" secondItem="QT5-EZ-XGs" secondAttribute="leading" id="a6s-Oh-92n"/>
+                                        <constraint firstItem="98y-b9-yk2" firstAttribute="leading" secondItem="QT5-EZ-XGs" secondAttribute="leading" id="jeV-lv-1LS"/>
                                         <constraint firstAttribute="width" constant="40" id="mPu-yH-mNt"/>
+                                        <constraint firstAttribute="trailing" secondItem="98y-b9-yk2" secondAttribute="trailing" id="nB3-aj-abO"/>
                                         <constraint firstItem="Yqz-OZ-Sba" firstAttribute="centerX" secondItem="QT5-EZ-XGs" secondAttribute="centerX" id="nut-7N-da0"/>
                                         <constraint firstAttribute="height" constant="40" id="sXw-i4-vTl"/>
                                     </constraints>
@@ -283,7 +294,7 @@
                 <constraint firstItem="xMb-3b-KdG" firstAttribute="top" secondItem="A6J-Af-Y9Z" secondAttribute="bottom" id="cy1-0d-RAL"/>
                 <constraint firstItem="2A0-LY-R5O" firstAttribute="leading" secondItem="d3i-oU-64B" secondAttribute="leading" id="yhW-fo-ng9"/>
             </constraints>
-            <point key="canvasLocation" x="-599" y="-40"/>
+            <point key="canvasLocation" x="-599.23664122137404" y="-40.140845070422536"/>
         </view>
     </objects>
     <resources>

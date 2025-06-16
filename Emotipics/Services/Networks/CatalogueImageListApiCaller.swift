@@ -9,7 +9,7 @@ import Foundation
 
 
 class CatalogueImageListApiCaller {
-    static func catalogueImageListApiCaller(limit:String, offset:String,  catalogCode: String, CompletionHandler: @escaping(_ result: Result<CatalogueImageListResModel, NetworkError>) -> Void) {
+    static func catalogueImageListApiCaller(limit:String, offset:String,  catalogCode: String, sortImages: String, CompletionHandler: @escaping(_ result: Result<CatalogueImageListResModel, NetworkError>) -> Void) {
         let urlString = baseURL + APIEndpoint.catalogImageList.rawValue
         
         let data = KeychainManager.standard.read(service: "com.Emotipics.service", account: "access-token")!
@@ -31,7 +31,8 @@ class CatalogueImageListApiCaller {
         let requestBody: [String : Any] = [
             "limit": limit,
             "offset": offset,
-            "catalog_code": catalogCode
+            "catalog_code": catalogCode,
+            "sort_images": sortImages
         ]
         
         

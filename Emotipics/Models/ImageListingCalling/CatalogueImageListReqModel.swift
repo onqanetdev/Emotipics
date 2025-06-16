@@ -14,4 +14,5 @@ struct CatalogueImageListReqModel {
     var limit: String
     var offset: String
     var catalog_code: String
+    var sortImages: String
 }

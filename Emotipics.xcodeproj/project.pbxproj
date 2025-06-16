@@ -240,6 +240,8 @@
 		8A97F7A02DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A97F79E2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.xib */; };
 		8A9DC9722DFBE91E000D2F94 /* PlusIconViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9DC9712DFBE91E000D2F94 /* PlusIconViewController.xib */; };
 		8A9DC9732DFBE91E000D2F94 /* PlusIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9DC9702DFBE91E000D2F94 /* PlusIconViewController.swift */; };
+		8A9DC9772DFC27A2000D2F94 /* SortIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9DC9752DFC27A2000D2F94 /* SortIconViewController.swift */; };
+		8A9DC9782DFC27A2000D2F94 /* SortIconViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9DC9762DFC27A2000D2F94 /* SortIconViewController.xib */; };
 		8A9E7D542DA39DA2007CE28A /* DeletePopUpVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A9E7D532DA39DA2007CE28A /* DeletePopUpVC.xib */; };
 		8A9E7D552DA39DA2007CE28A /* DeletePopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D522DA39DA2007CE28A /* DeletePopUpVC.swift */; };
 		8A9E7D572DA3A425007CE28A /* DeleteContactApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9E7D562DA3A425007CE28A /* DeleteContactApiCaller.swift */; };
@@ -566,6 +568,8 @@
 		8A97F79E2DA7EE4B00D53C9C /* DeleteCatalogueGlobalPopUp.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteCatalogueGlobalPopUp.xib; sourceTree = "<group>"; };
 		8A9DC9702DFBE91E000D2F94 /* PlusIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusIconViewController.swift; sourceTree = "<group>"; };
 		8A9DC9712DFBE91E000D2F94 /* PlusIconViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlusIconViewController.xib; sourceTree = "<group>"; };
+		8A9DC9752DFC27A2000D2F94 /* SortIconViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortIconViewController.swift; sourceTree = "<group>"; };
+		8A9DC9762DFC27A2000D2F94 /* SortIconViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SortIconViewController.xib; sourceTree = "<group>"; };
 		8A9E7D522DA39DA2007CE28A /* DeletePopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePopUpVC.swift; sourceTree = "<group>"; };
 		8A9E7D532DA39DA2007CE28A /* DeletePopUpVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeletePopUpVC.xib; sourceTree = "<group>"; };
 		8A9E7D562DA3A425007CE28A /* DeleteContactApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteContactApiCaller.swift; sourceTree = "<group>"; };
@@ -975,6 +979,7 @@
 		8A241DEC2D80494E002D7BA8 /* Catalogues */ = {
 			isa = PBXGroup;
 			children = (
+				8A9DC9742DFC26F0000D2F94 /* Sort Catalogue Views */,
 				8AEADB522DA6435500BF187E /* WebView */,
 				8A1823562D87D315007A2E90 /* ImageCollectionView */,
 				8AA25B902D82A1920093F3F1 /* Shared Catalogues */,
@@ -1643,6 +1648,15 @@
 			path = "Plus Icon View";
 			sourceTree = "<group>";
 		};
+		8A9DC9742DFC26F0000D2F94 /* Sort Catalogue Views */ = {
+			isa = PBXGroup;
+			children = (
+				8A9DC9752DFC27A2000D2F94 /* SortIconViewController.swift */,
+				8A9DC9762DFC27A2000D2F94 /* SortIconViewController.xib */,
+			);
+			path = "Sort Catalogue Views";
+			sourceTree = "<group>";
+		};
 		8A9E7D512DA39D78007CE28A /* DeletePopUps */ = {
 			isa = PBXGroup;
 			children = (
@@ -2030,6 +2044,7 @@
 				8A1283D72DD6EEE5009307A7 /* NewCatalogueVC.xib in Resources */,
 				8AF792402D9BA36E00085FEC /* GlobalPopUpVC.xib in Resources */,
 				8A707E342DCA03E700054756 /* EmojiListViewController.xib in Resources */,
+				8A9DC9782DFC27A2000D2F94 /* SortIconViewController.xib in Resources */,
 				8A4353BE2D758F4700ABB7A0 /* poppins_medium.ttf in Resources */,
 				8A4353B42D758F4700ABB7A0 /* jost_light.ttf in Resources */,
 				8A31285E2D9FBEE2003FA3B8 /* AddContactViewController.xib in Resources */,
@@ -2315,6 +2330,7 @@
 				8A44CD742DB63D080044E904 /* ImageCopyOrMoveViewModel.swift in Sources */,
 				8A31285A2D9FB2F8003FA3B8 /* AddContactViewModel.swift in Sources */,
 				8A71E17C2DEF18700046DF88 /* SharedImgZoomableCell.swift in Sources */,
+				8A9DC9772DFC27A2000D2F94 /* SortIconViewController.swift in Sources */,
 				8A00BA252DBF712900513C44 /* SubmitButton.swift in Sources */,
 				8A97F7972DA7A06400D53C9C /* DeleteCatalogPopVC.swift in Sources */,
 				8A707E2C2DC9EB7F00054756 /* GroupEmojiListReqModel.swift in Sources */,

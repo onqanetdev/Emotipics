@@ -239,7 +239,8 @@ extension NewCatalogueVC: UIScrollViewDelegate {
                 if position > (contentHeight - frameHeight - 20), !isPaginatingImage {
                    
                     
-                    paginatingImageList()
+                   // paginatingImageList(sortingOrder: "DESC")
+                    paginatingImageList(sortingOrder: sortingOrderGlobal)
                 }
             
         }
@@ -256,7 +257,7 @@ extension NewCatalogueVC: UIScrollViewDelegate {
         
         catalogueListingViewModel.requestModel.limit = "10"
         catalogueListingViewModel.requestModel.offset = "\(currentPage)"
-        catalogueListingViewModel.requestModel.sort_folder = "DESC"
+        catalogueListingViewModel.requestModel.sort_folder = sortingOrderGlobal
         catalogueListingViewModel.requestModel.type_of_list = "catalog_lists"
         
         activityIndicator.startAnimating()
@@ -311,7 +312,7 @@ extension NewCatalogueVC: UIScrollViewDelegate {
     }
     
     
-    func paginatingImageList(){
+    func paginatingImageList(sortingOrder: String){
         isPaginatingImage = true
         currentImagePage += 1
         
@@ -319,7 +320,8 @@ extension NewCatalogueVC: UIScrollViewDelegate {
         catalogueImageListViewModel.requestModel.catalog_code = catalogCode
         catalogueImageListViewModel.requestModel.limit = "10"
         catalogueImageListViewModel.requestModel.offset = "\(currentImagePage)"
-        
+//        catalogueImageListViewModel.requestModel.sortImages = "DESC"
+        catalogueImageListViewModel.requestModel.sortImages = sortingOrderGlobal
        // startCustomLoader()
         photoActivityIndicator.startAnimating()
         catalogueImageListViewModel.catalogueImageListViewModel(request: catalogueImageListViewModel.requestModel) { [weak self] result in

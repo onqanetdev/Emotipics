@@ -108,7 +108,7 @@
                                         <constraint firstAttribute="width" constant="45" id="nUD-KZ-X9O"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-Is-jIZ">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jeS-Is-jIZ" userLabel="Sort Icon View">
                                     <rect key="frame" x="298" y="10" width="40" height="40"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dVD-q2-bWJ">
@@ -124,12 +124,23 @@
                                                 <constraint firstAttribute="height" constant="20" id="q6t-Xn-PjE"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGP-11-m1D" userLabel="Sort Button">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <connections>
+                                                <action selector="sortButtonAction:" destination="-1" eventType="touchUpInside" id="2Kg-Vm-6Tw"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="dVD-q2-bWJ" firstAttribute="top" secondItem="jeS-Is-jIZ" secondAttribute="top" id="7dS-9n-K7f"/>
+                                        <constraint firstAttribute="trailing" secondItem="XGP-11-m1D" secondAttribute="trailing" id="Fz9-ea-vGM"/>
+                                        <constraint firstItem="XGP-11-m1D" firstAttribute="leading" secondItem="jeS-Is-jIZ" secondAttribute="leading" id="WwJ-sD-U8x"/>
+                                        <constraint firstItem="XGP-11-m1D" firstAttribute="top" secondItem="jeS-Is-jIZ" secondAttribute="top" id="Xcn-sI-7kc"/>
                                         <constraint firstItem="dVD-q2-bWJ" firstAttribute="leading" secondItem="jeS-Is-jIZ" secondAttribute="leading" id="ZQN-so-J05"/>
                                         <constraint firstAttribute="height" constant="40" id="aWS-z4-PiG"/>
+                                        <constraint firstAttribute="bottom" secondItem="XGP-11-m1D" secondAttribute="bottom" id="d7v-En-h55"/>
                                         <constraint firstItem="LvP-Hp-YaO" firstAttribute="centerX" secondItem="jeS-Is-jIZ" secondAttribute="centerX" id="eGp-pd-AWP"/>
                                         <constraint firstAttribute="bottom" secondItem="dVD-q2-bWJ" secondAttribute="bottom" id="mjX-xg-vnZ"/>
                                         <constraint firstAttribute="trailing" secondItem="dVD-q2-bWJ" secondAttribute="trailing" id="pyP-j5-BWG"/>
