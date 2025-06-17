@@ -168,7 +168,9 @@ class AddContactViewController: UIViewController {
                                 return
                             }
 
-                            let loginVC = EntryViewController() // Or instantiate from storyboard if needed
+                           // let loginVC = EntryViewController() // Or instantiate from storyboard if needed
+                            let loginVC = DashboardViewController()
+                            
                             //loginVC.isSomeFieldsHidden = true
                             let nav = UINavigationController(rootViewController: loginVC)
                             nav.modalPresentationStyle = .fullScreen

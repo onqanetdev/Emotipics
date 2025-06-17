@@ -199,10 +199,13 @@ class ContactsViewController: UIViewController, UpdateUI {
         
         emptyViewForContacts.noCatLbl.text = "No Contacts!"
         emptyViewForContacts.addSomeCat.text = "Add Some Contact to Share"
-        
         emptyViewForContacts.addBtn.setTitle("Add New Contact", for: .normal)
+    
+        emptyViewForContacts.addBtn.isHidden = true
+        emptyViewForContacts.imgHeightConstraint.constant = 200
+        emptyViewForContacts.imgWidthConstraint.constant = 250
+        emptyViewForContacts.layoutIfNeeded()
         
-        emptyViewForContacts.addBtn.addTarget(self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
         
         // Set constraints
         NSLayoutConstraint.activate([

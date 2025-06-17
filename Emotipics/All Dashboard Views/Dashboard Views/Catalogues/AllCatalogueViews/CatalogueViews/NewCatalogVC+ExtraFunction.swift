@@ -84,12 +84,13 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
         shareInfo.modalTransitionStyle = .crossDissolve
         shareInfo.delegate = self
         
-        if let sharedList = catalogueListingViewModel.responseModel?.data?[indexNo].sharedcatalog,
-           let catalogName = catalogueListingViewModel.responseModel?.data?[indexNo].catalog_name{
+        if let sharedList = tempMemory[indexNo].sharedcatalog,
+           let catalogName = tempMemory[indexNo].catalog_name,
+           let ownerName = tempMemory[indexNo].owner_detials?.name{
             
             shareInfo.temporaryMemory = sharedList
             shareInfo.catalogueNameText = catalogName
-            
+            shareInfo.ownerName = ownerName
         } else {
             AlertView.showAlert("Warning!", message: "There is no memory", okTitle: "OK")
         }
@@ -119,14 +120,13 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
     func deletePopup(){
         deleteCatalogueFunction(pin: indexNo)
     }
+   
     
     func deleteCatalogueFunction(pin: Int){
         guard let item = tempMemory[pin].catalogue_uuid else {
             return
         }
-        
-        
-        
+    
         //self.activityIndicator.startAnimating()
         startCustomLoader()
         deleteCatalogueViewModel.requestModel.UUID = item
@@ -138,15 +138,37 @@ extension NewCatalogueVC: DeleteCatalogDelegate, SharedInformationDelegate {
                 case .goAhead:
                     print("Catalogue View Model from Catalogue View Controller")
                     self.tempMemory.remove(at: pin)
-                    self.catalogueCollView.reloadData()
+
                     
-//                    if self.tempMemory.isEmpty {
-//                        self.emptyViewForCatalogueView.isHidden = false
-//                        self.catalougeCollView.isHidden = true
-//                    } else {
-//                        self.emptyViewForCatalogueView.isHidden = true
-//                        self.catalougeCollView.isHidden = false
-//                    }
+                    if self.tempMemory.isEmpty || self.tempMemory.count == 0 {
+                        self.catalogueEmptyView.isHidden = false
+
+                        self.uploadImgBtn.isEnabled = false
+                        self.uploadImgBtn.backgroundColor = UIColor(red: 232/255, green: 238/255, blue: 243/255, alpha: 1.0)
+                        
+                        self.uploadImgBtn.tintColor = .darkGray
+                        
+                        self.uploadImgBtn.setTitleColor(.darkGray, for: .normal)
+
+                        self.uploadImgBtn.layer.borderWidth = 1
+                        self.uploadImgBtn.layer.borderColor = UIColor(red: 134/255, green: 133/255, blue: 147/255, alpha: 1).cgColor
+                        self.catalogueEmptyView.isHidden = false
+                        
+                        self.catalogueCollView.reloadData()
+                        
+                    } else {
+                        self.catalogueEmptyView.isHidden = true
+
+                        self.uploadImgBtn.isEnabled = true
+                        self.uploadImgBtn.backgroundColor = UIColor(red: 217/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                        self.uploadImgBtn.titleLabel?.textColor = UIColor(red: 0/255, green: 153/255, blue: 153/255, alpha: 1.0)
+                        self.uploadImgBtn.tintColor = UIColor(red: 0/255, green: 153/255, blue: 153/255, alpha: 1.0)
+                        self.uploadImgBtn.layer.borderWidth = 1
+                        self.uploadImgBtn.layer.borderColor = UIColor.systemTeal.cgColor
+                        
+                        self.catalogueCollView.reloadData()
+                        
+                    }
                 case .heyStop:
                     print("Error")
                 }

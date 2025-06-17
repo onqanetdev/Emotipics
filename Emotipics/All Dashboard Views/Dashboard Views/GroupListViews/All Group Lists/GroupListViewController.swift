@@ -122,7 +122,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
         }
         
         
-        //addPlusIcon()
+        addPlusIcon()
         loadingAllGroups()
         setupEmptyGroupListView()
     }

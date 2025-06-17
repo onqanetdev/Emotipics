@@ -229,15 +229,30 @@ class NewCatalogueVC: UIViewController {
                         self.catalogueEmptyView.isHidden = true
                         
                         if self.tempMemory.count == 0 || self.tempMemory.isEmpty {
+                            
+                            self.uploadImgBtn.isEnabled = false
+                            self.uploadImgBtn.backgroundColor = UIColor(red: 232/255, green: 238/255, blue: 243/255, alpha: 1.0)
+                            self.uploadImgBtn.titleLabel?.textColor = .darkGray
+                            self.uploadImgBtn.tintColor = .darkGray
+                            self.uploadImgBtn.layer.borderWidth = 1
+                            self.uploadImgBtn.layer.borderColor = UIColor(red: 134/255, green: 133/255, blue: 147/255, alpha: 1).cgColor
                             self.catalogueEmptyView.isHidden = false
+                            
                         } else {
-                            self.catalogueEmptyView.isHidden = true                       
                             
                             
+                            self.catalogueEmptyView.isHidden = true
                             self.catalogCode = self.tempMemory[0].catalog_code ?? ""
-                            
-                            
                             self.selectedIndexPath = IndexPath(row: 0, section: 0)
+                            
+                            self.uploadImgBtn.isEnabled = true
+                            self.uploadImgBtn.backgroundColor = UIColor(red: 217/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                            self.uploadImgBtn.titleLabel?.textColor = UIColor(red: 0/255, green: 153/255, blue: 153/255, alpha: 1.0)
+                            self.uploadImgBtn.tintColor = UIColor(red: 0/255, green: 153/255, blue: 153/255, alpha: 1.0)
+                            self.uploadImgBtn.layer.borderWidth = 1
+                            self.uploadImgBtn.layer.borderColor = UIColor.systemTeal.cgColor
+                            
+                            
                             
                             if UserDefaults.standard.object(forKey: "selectedIndexRowCatalogue") != nil {
                                 let selectedIndex = UserDefaults.standard.integer(forKey: "selectedIndexRowCatalogue")

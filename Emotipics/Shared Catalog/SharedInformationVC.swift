@@ -154,13 +154,6 @@ class SharedInformationVC: UIViewController {
         else
         {
             
-            
-//            print("Deleted Contact code would be", temporaryMemory[sender.tag].contactcode as Any)
-//            
-//            print("The folder code would be--->", temporaryMemory[sender.tag].catalogcode)
-//            print("The User That Should be deleted", temporaryMemory[sender.tag].id)
-            
-            
             guard let contactId = temporaryMemory[sender.tag].id else {
                 AlertView.showAlert("Warning!", message: "Not Able to Fetch Contact Id", okTitle: "OK")
                 return
@@ -169,6 +162,8 @@ class SharedInformationVC: UIViewController {
             catalogueUserDelete(folderContactCode: contactId, removeAt: sender.tag)
         }
     }
+    
+    
     
     func userListForGrp() {
         grpUserListViewModel.requestModel.groupCode = groupCode
@@ -196,34 +191,53 @@ class SharedInformationVC: UIViewController {
 
     
     
-    func catalogueUserDelete(folderContactCode:Int, removeAt: Int){
+//    func catalogueUserDelete(folderContactCode:Int, removeAt: Int){
+//        catalogueUserDeleteViewModel.requestModel.contactCode = folderContactCode
+//        startCustomLoader()
+//        catalogueUserDeleteViewModel.catalogueUserDeleteViewModel(request: catalogueUserDeleteViewModel.requestModel) { result in
+//            DispatchQueue.main.async {
+//                //self.activityIndicator.stopAnimating()
+//                self.stopCustomLoader()
+//                switch result {
+//                case .goAhead:
+//                    print("Shared Catalogue View Model From Shared Catalogue View Controller")
+//                    //table View Reload Data
+//                    DispatchQueue.main.async { [self] in
+//                        temporaryMemory.remove(at: removeAt)
+//                        self.sharedConListTblView.reloadData()
+//                        
+//                    }
+//                case .heyStop:
+//                    print("Error")
+//                }
+//                
+//                
+//            }
+//            
+//            
+//        }
+//    }
+    
+    func catalogueUserDelete(folderContactCode: Int, removeAt: Int) {
         catalogueUserDeleteViewModel.requestModel.contactCode = folderContactCode
         startCustomLoader()
-        catalogueUserDeleteViewModel.catalogueUserDeleteViewModel(request: catalogueUserDeleteViewModel.requestModel) { result in
+        
+        catalogueUserDeleteViewModel.catalogueUserDeleteViewModel(request: catalogueUserDeleteViewModel.requestModel) { [weak self] result in
             DispatchQueue.main.async {
-                //self.activityIndicator.stopAnimating()
+                guard let self = self else { return }
                 self.stopCustomLoader()
                 switch result {
                 case .goAhead:
                     print("Shared Catalogue View Model From Shared Catalogue View Controller")
-                    //table View Reload Data
-                    DispatchQueue.main.async { [self] in
-                        temporaryMemory.remove(at: removeAt)
-                        self.sharedConListTblView.reloadData()
-                        
-                    }
+                    self.temporaryMemory.remove(at: removeAt)
+                    self.sharedConListTblView.reloadData()
                 case .heyStop:
                     print("Error")
                 }
-                
-                
             }
-            
-            
         }
     }
-    
-    
+
     
     
     func startCustomLoader(){
