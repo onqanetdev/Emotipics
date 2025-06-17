@@ -78,6 +78,9 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
     var currentPage = 1
     
     
+    var emptyGroupView = EmptyCollView()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,8 +122,9 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
         }
         
         
-        addPlusIcon()
+        //addPlusIcon()
         loadingAllGroups()
+        setupEmptyGroupListView()
     }
     
     
@@ -214,12 +218,19 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
                 case .goAhead:
                     print("✅ Data received successfully!")
                     guard let resultArray = self.groupListingView.responseModel?.data else {
+                        self.emptyGroupView.isHidden = false
                         return
                     }
                     
-                    self.newResultArray = resultArray
-                    self.tblViewForGroups.reloadData()
-                    
+                    if resultArray.count == 0 || resultArray.isEmpty {
+                        
+                        self.emptyGroupView.isHidden = false
+                        
+                    } else {
+                        self.emptyGroupView.isHidden = true
+                        self.newResultArray = resultArray
+                        self.tblViewForGroups.reloadData()
+                    }
                 case .heyStop:
                     print("Error")
                 }
@@ -260,10 +271,7 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
         }
     }
 
-    
-    
-    
-    
+
     func startCustomLoader(){
         //        let loaderSize: CGFloat = 220
         
@@ -373,7 +381,24 @@ class GroupListViewController: UIViewController, DeleteCatalogDelegate {
         }
     }
     
-    
+    func setupEmptyGroupListView() {
+        emptyGroupView.translatesAutoresizingMaskIntoConstraints = false
+        
+        tblViewForGroups.addSubview(emptyGroupView)
+        
+        emptyGroupView.noCatLbl.text = "No Group Found!"
+        emptyGroupView.addSomeCat.text = "Add Some Group List!"
+        emptyGroupView.addBtn.isHidden = true
+        emptyGroupView.imgPhoto.isHidden = true
+        emptyGroupView.layoutIfNeeded()
+        
+        
+        NSLayoutConstraint.activate([
+            emptyGroupView.centerXAnchor.constraint(equalTo: tblViewForGroups.centerXAnchor) ,
+            emptyGroupView.topAnchor.constraint(equalTo: tblViewForGroups.topAnchor, constant: 100)
+        ])
+        
+    }
 }
 
 

@@ -764,6 +764,7 @@
 			isa = PBXGroup;
 			children = (
 				8A22D9192D7AC75400F358FD /* Circular Views */,
+				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
 				8A0521672D7960B000AE5FC4 /* Entry Cell Views */,
 				8A0521622D7958F800AE5FC4 /* EntryViewController.swift */,
 				8A0521632D7958F800AE5FC4 /* EntryViewController.xib */,
@@ -1733,7 +1734,6 @@
 				8A2DED8C2D894CF30057DFC0 /* Group Details View */,
 				8A3B823C2D881A8A00CFFC37 /* GroupListViews */,
 				8A241DEC2D80494E002D7BA8 /* Catalogues */,
-				8A241DDB2D7FF9E7002D7BA8 /* Contacts Views */,
 				8A0521612D79588700AE5FC4 /* All Entry Views */,
 				8ABA8ABD2D771B69003D4727 /* DashboardViewController.swift */,
 				8ABA8ABE2D771B69003D4727 /* DashboardViewController.xib */,

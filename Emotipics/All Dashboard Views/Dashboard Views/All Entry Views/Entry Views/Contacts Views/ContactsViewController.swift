@@ -24,12 +24,12 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     
     
-    private var floatingBtn: FloatingBtn = {
-        let btn = FloatingBtn()
-        btn.translatesAutoresizingMaskIntoConstraints = false
-      //  btn.setTarget(ContactsViewController.self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
-        return btn
-    }()
+//    private var floatingBtn: FloatingBtn = {
+//        let btn = FloatingBtn()
+//        btn.translatesAutoresizingMaskIntoConstraints = false
+//      //  btn.setTarget(ContactsViewController.self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
+//        return btn
+//    }()
     
     var allContactsViewModel: AllContactsViewModel = AllContactsViewModel()
     
@@ -54,6 +54,16 @@ class ContactsViewController: UIViewController, UpdateUI {
 //        indicator.hidesWhenStopped = true
 //        return indicator
 //    }()
+    
+    
+    private var submitButton: SubmitButton = {
+        let btn = SubmitButton()
+        btn.plusViewBtn.setTitle("Add Contacts", for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.plusViewBtn.addTarget(self, action: #selector(addNewContact), for: .touchUpInside)
+        return btn
+    }()
+    
     
 
     @IBOutlet weak var contentView: UIView!
@@ -89,13 +99,12 @@ class ContactsViewController: UIViewController, UpdateUI {
         footerActivityIndicator.frame = CGRect(x: 0, y: 0, width: contactsTblView.bounds.width, height: 50)
 
         
-        addPlusIcon()
+
      //   setupActivityIndicator()
     
+        addNewContactBtn()
+        
         contactsAllViewModel()
-        
-        
-        
         setupEmptyContactView()
         
     }
@@ -158,25 +167,23 @@ class ContactsViewController: UIViewController, UpdateUI {
     
     
     
-    
-
-    
-    
-    func addPlusIcon(){
-       // floatingBtn.addSubview(Flo)
-        view.addSubview(floatingBtn)
-        
-        
-        floatingBtn.setTarget(self, action: #selector(handleFloatingBtnTap), for: .touchUpInside)
+    func addNewContactBtn(){
+        // floatingBtn.addSubview(Flo)
+        view.addSubview(submitButton)
         
         NSLayoutConstraint.activate([
-            floatingBtn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90),
-            floatingBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            floatingBtn.heightAnchor.constraint(equalToConstant: 60),
-            floatingBtn.widthAnchor.constraint(equalToConstant: 60)
+            submitButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            submitButton.heightAnchor.constraint(equalToConstant: 50)
+            
         ])
         
     }
+
+    
+    
+
     
     
     func updateUI(){
@@ -240,6 +247,12 @@ class ContactsViewController: UIViewController, UpdateUI {
         }
         deleteScreenPopUp(desiredCode: code)
     }
+    
+    
+    @objc func addNewContact() {
+        navigationController?.pushViewController(AddContactViewController(), animated: true)
+    }
+    
     
 
 

@@ -485,19 +485,22 @@ class EntryViewController: UIViewController , UpdateUI,SharedInformationDelegate
         emptyViewForContacts.addBtn.setTitle("Add Contacts", for: .normal)
         emptyViewForContacts.noCatLbl.text = "No Contacts Found"
         emptyViewForContacts.addSomeCat.text = "Add Some Contacts to Share"
-        
+        emptyViewForContacts.imgWidthConstraint.constant = 170
+        emptyViewForContacts.imgHeightConstraint.constant = 130
+        emptyView.layoutIfNeeded()
+    
         emptyViewForContacts.addBtn.addTarget(self, action: #selector(addNewContact), for: .touchUpInside)
         
         // Set constraints
         NSLayoutConstraint.activate([
-            emptyViewForContacts.topAnchor.constraint(equalTo: myContactsHeaderView.bottomAnchor),
+            emptyViewForContacts.topAnchor.constraint(equalTo: myContactsHeaderView.bottomAnchor, constant: 80),
             emptyViewForContacts.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             emptyViewForContacts.widthAnchor.constraint(equalTo: view.widthAnchor),
             emptyViewForContacts.heightAnchor.constraint(equalToConstant: 200) // adjust as needed
         ])
         
         // Call method to setup inner views
-        emptyViewForContacts.settingUpConstraints()
+        //emptyViewForContacts.settingUpConstraints()
     }
     
     
